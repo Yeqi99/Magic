@@ -10,7 +10,7 @@ public class MagicManager {
     private Map<String,Integer> typePriority=new HashMap<>();
     private int targetPriority=20;
     private int behaviorPriority=10;
-    private int ConstraintPriority=30;
+    private int constraintPriority=30;
     public MagicManager(){
         init();
     }
@@ -19,7 +19,7 @@ public class MagicManager {
         fastExpression=new FastExpression();
         getTypePriority().put("TARGET", targetPriority);
         getTypePriority().put("BEHAVIOR",behaviorPriority);
-        getTypePriority().put("CONSTRAINT",ConstraintPriority);
+        getTypePriority().put("CONSTRAINT",constraintPriority);
     }
     public boolean isInit(){
         return fastExpression != null;
@@ -58,10 +58,10 @@ public class MagicManager {
     }
 
     public int getConstraintPriority() {
-        return ConstraintPriority;
+        return constraintPriority;
     }
 
     public void setConstraintPriority(int constraintPriority) {
-        ConstraintPriority = constraintPriority;
+        this.constraintPriority = constraintPriority;
     }
 }
