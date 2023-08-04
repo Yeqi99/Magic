@@ -7,9 +7,13 @@ import java.util.Map;
 
 public class MagicManager {
     private FastExpression fastExpression;
+    // 行为优先级
     private Map<String,Integer> typePriority=new HashMap<>();
+    // 目标优先级
     private int targetPriority=20;
+    // 行为优先级
     private int behaviorPriority=10;
+    // 约束优先级
     private int constraintPriority=30;
     public MagicManager(){
         init();
