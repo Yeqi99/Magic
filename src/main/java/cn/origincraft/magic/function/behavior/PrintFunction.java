@@ -7,6 +7,7 @@ import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParamet
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 
@@ -26,7 +27,8 @@ public class PrintFunction implements FastFunction {
         if (list.size()>0){
             StringParameter stringParameter=
                     (StringParameter) list.get(0).getParameter();
-            FunctionResult.ObjectResult functionResult= (FunctionResult.ObjectResult) list.get(0).getFunction().call(stringParameter);
+            spellContext.putExecuteParameter(stringParameter.getString());
+            FunctionResult.ObjectResult functionResult= (FunctionResult.ObjectResult) list.get(0).getFunction().call(new SpellContextParameter(spellContext));
             String s= String.valueOf(functionResult.getObject());
             System.out.print(s);
         }else {

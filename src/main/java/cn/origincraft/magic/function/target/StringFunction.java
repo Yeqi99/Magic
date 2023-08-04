@@ -6,6 +6,7 @@ import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParamet
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
@@ -31,7 +32,8 @@ public class StringFunction implements FastFunction {
                 .parseExpression(value);
         if (list.size() > 0){
             StringParameter stringParameter = (StringParameter) list.get(0).getParameter();
-            FunctionResult functionResult = list.get(0).getFunction().call(stringParameter);
+            spellContext.putExecuteParameter(stringParameter.getString());
+            FunctionResult functionResult = list.get(0).getFunction().call(new SpellContextParameter(spellContext));
             if (functionResult instanceof FunctionResult.StringResult){
                 result = ((FunctionResult.StringResult) functionResult).getString();
             }

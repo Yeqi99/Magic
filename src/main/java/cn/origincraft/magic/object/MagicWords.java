@@ -41,8 +41,8 @@ public class MagicWords {
                             .call(new SpellContextParameter(spellContext));
             spellContext = spellContextResult.getSpellContext();
             // 检查是否继续这行本条魔语
-            if (!spellContext.getExecuteIndexAllow(i)){
-                spellContext.removeExecuteIndexAllow(i);
+            if (!spellContext.getExecuteIndexAllow(spellContext.getExecuteIndex())){
+                spellContext.removeExecuteIndexAllow(spellContext.getExecuteIndex());
                 break;
             }
         }

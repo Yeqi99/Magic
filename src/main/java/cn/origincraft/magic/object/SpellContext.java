@@ -3,7 +3,6 @@ package cn.origincraft.magic.object;
 
 import cn.origincraft.magic.MagicManager;
 
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +36,7 @@ public class SpellContext {
     }
 
     public boolean hasExecuteCount() {
-        return getObjectMap().containsKey("execute.count");
+        return getExecuteResultMap().containsKey("execute.count");
     }
 
     public void addExecuteCount(int addValue) {
@@ -49,7 +48,7 @@ public class SpellContext {
         if (!hasExecuteIndex()) {
             return 0;
         }
-        return (int) getObjectMap().get("execute.index");
+        return (int) getExecuteResultMap().get("execute.index");
     }
 
     public void putExecuteIndex(int num) {
@@ -92,7 +91,7 @@ public class SpellContext {
     }
     // 中断语句队列
     public void putExecuteBreak(boolean bool) {
-        putObject("execute.break", bool);
+        putExecuteResult("execute.break", bool);
     }
     public boolean getExecuteBreak(){
         if (!hasExecuteBreak()) {

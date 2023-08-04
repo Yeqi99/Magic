@@ -1,6 +1,7 @@
 package cn.origincraft.magic.interpreter.fastexpression.parameters;
 
 
+import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
 
 public class StringParameter extends FunctionParameter {
@@ -15,4 +16,5 @@ public class StringParameter extends FunctionParameter {
     public void setString(String string) {
         setObject(string);
     }
+
 }

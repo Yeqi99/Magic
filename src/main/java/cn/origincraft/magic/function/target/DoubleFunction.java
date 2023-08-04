@@ -6,6 +6,7 @@ import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParamet
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
@@ -15,6 +16,7 @@ import java.util.List;
 public class DoubleFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
+        // 获得上下文
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para=spellContext.getExecuteParameter();
         String[] s=para.split(" ");
@@ -37,7 +39,11 @@ public class DoubleFunction implements FastFunction {
             if (list.size()>0){
                 StringParameter stringParameter=
                         (StringParameter) list.get(0).getParameter();
-                FunctionResult functionResult= list.get(0).getFunction().call(stringParameter);
+                spellContext.putExecuteParameter(stringParameter.getString());
+                FunctionResult functionResult=
+                        list.get(0)
+                                .getFunction()
+                                .call(new SpellContextParameter(spellContext));
                 if (functionResult instanceof FunctionResult.DoubleResult){
                     result=((FunctionResult.DoubleResult) functionResult).getDouble();
                 }

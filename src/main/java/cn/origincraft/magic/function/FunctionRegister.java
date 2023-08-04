@@ -2,6 +2,8 @@ package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.behavior.PrintFunction;
+import cn.origincraft.magic.function.constraint.BreakMagicWordsFunction;
+import cn.origincraft.magic.function.constraint.BreakSpellFunction;
 import cn.origincraft.magic.function.target.DoubleFunction;
 import cn.origincraft.magic.function.target.IntFunction;
 import cn.origincraft.magic.function.target.StringFunction;
@@ -24,5 +26,13 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new PrintFunction(), "显示", "打印");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new BreakMagicWordsFunction(), "魔语停止");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new BreakSpellFunction(), "魔咒停止");
     }
 }
