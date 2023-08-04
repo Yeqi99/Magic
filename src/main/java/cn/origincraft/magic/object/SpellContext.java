@@ -141,15 +141,20 @@ public class SpellContext {
         return getExecuteResultMap().containsKey("execute.pass");
     }
 
-    public void addExecutePass(int addValue) {
-        putExecutePass(getExecutePass() + addValue);
+
+
+    public void putExecuteParameter(String parameter) {
+        putExecuteResult("execute.parameter", parameter);
     }
-
-
-
-
-
-
+    public String getExecuteParameter() {
+        if (!hasExecuteParameter()) {
+            return null;
+        }
+        return (String) getExecuteResultMap().get("execute.parameter");
+    }
+    public boolean hasExecuteParameter() {
+        return getExecuteResultMap().containsKey("execute.parameter");
+    }
 
 
 

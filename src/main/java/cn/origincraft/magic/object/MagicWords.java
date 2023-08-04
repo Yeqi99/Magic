@@ -1,8 +1,10 @@
 package cn.origincraft.magic.object;
 
 
+import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
+import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 
 import java.util.List;
 
@@ -12,13 +14,15 @@ public class MagicWords {
 
     public MagicWords(String magicWords) {
         setOriginMagicWords(magicWords);
-        FastExpression fastExpression = new FastExpression();
+        FastExpression fastExpression = MagicManager.getFastExpression();
         List<CallableFunction> function = fastExpression.getFunctionManager().parseExpression(magicWords);
         setFunction(function);
     }
 
     public SpellContext execute(SpellContext spellContext) {
         for (CallableFunction callableFunction : function) {
+            StringParameter stringParameter= (StringParameter) callableFunction.getParameter();
+            spellContext.putExecuteParameter(stringParameter.getString());
             SpellContextResult spellContextResult =
                     (SpellContextResult) callableFunction.getFunction()
                             .call(new SpellContextParameter(spellContext));
