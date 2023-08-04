@@ -14,24 +14,7 @@ public class IntFunction implements FastFunction {
         SpellContextParameter spellContextParameter= (SpellContextParameter) parameter;
         SpellContext spellContext=spellContextParameter.getSpellContext();
         String stringParameter=spellContext.getExecuteParameter();
-        String[] p=stringParameter.split(" ");
-        if (p.length==0){
-            return new FunctionResult.IntResult(0);
-        }
-        if (p.length==1){
-            if (VariableUtil.isInt(p[0])){
-                return new FunctionResult.IntResult(Integer.parseInt(p[0]));
-            }else {
-                return new FunctionResult.IntResult(0);
-            }
-        }
-        if (p.length==2){
-            int result=0;
-            if (VariableUtil.isInt(p[0])){
-                result = Integer.parseInt(p[0]);
-            }
 
-        }
         return new SpellContextResult(spellContext);
     }
 
