@@ -12,8 +12,7 @@ import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
 
-
-public class IntFunction implements FastFunction {
+public class DoubleFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
@@ -24,9 +23,9 @@ public class IntFunction implements FastFunction {
         }
         String variableName=s[0];
         String value=s[1];
-        int result=0;
-        if (VariableUtil.isInt(value)){
-            result=Integer.parseInt(value);
+        double result=0;
+        if (VariableUtil.isDouble(value)){
+            result=Double.parseDouble(value);
             spellContext.putVariable(variableName,result);
             return new SpellContextResult(spellContext);
         }else{
@@ -39,12 +38,12 @@ public class IntFunction implements FastFunction {
                 StringParameter stringParameter=
                         (StringParameter) list.get(0).getParameter();
                 FunctionResult functionResult= list.get(0).getFunction().call(stringParameter);
-                if (functionResult instanceof FunctionResult.IntResult){
-                    result=((FunctionResult.IntResult) functionResult).getInt();
+                if (functionResult instanceof FunctionResult.DoubleResult){
+                    result=((FunctionResult.DoubleResult) functionResult).getDouble();
                 }
             }else {
                 if(spellContext.getVariableMap().containsKey(value)){
-                    result = (int) spellContext.getVariableMap().get(value);
+                    result = (double) spellContext.getVariableMap().get(value);
                 }
             }
             spellContext.putVariable(variableName,result);
@@ -54,7 +53,7 @@ public class IntFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "int";
+        return "double";
     }
 
     @Override

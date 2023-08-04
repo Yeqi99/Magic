@@ -6,14 +6,20 @@ import cn.origincraft.magic.object.Spell;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class Test {
     public static void main(String[] args){
         MagicManager magicManager=new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList=new ArrayList<>();
-        testList.add("显示(第一个数) 显示(,) 显示(第二个数) 显示(你好) 整数(第一个数 1) 整数(第二个数 2)");
+        testList.add("给我弄个整数(一个整数 10)");
+
+        testList.add("给个整数(第二个整数 20)");
+        testList.add("给个小数(第一个小数 1099.888)");
+        testList.add("给我弄个字符串(一个字符串 第一个小数)");
+        testList.add("显示()");
+        testList.add("显示(一个字符串) 显示(,) 显示(第二个整数) 显示(,) 显示(第一个小数) 显示(你好)");
         Spell spell=new Spell(testList, magicManager);
         spell.execute(new HashMap<>(),new HashMap<>());
     }

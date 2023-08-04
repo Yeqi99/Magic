@@ -9,4 +9,12 @@ public class VariableUtil {
         }
         return true;
     }
+    public static boolean isDouble(String s) {
+        try {
+            Double.parseDouble(s);
+        } catch(NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 }

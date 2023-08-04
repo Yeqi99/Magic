@@ -41,4 +41,27 @@ public abstract class FunctionResult {
             return value;
         }
     }
+
+    public static class DoubleResult extends FunctionResult {
+        private final double value;
+
+        public DoubleResult(double value) {
+            this.value = value;
+        }
+
+        public double getDouble() {
+            return value;
+        }
+    }
+    public static class StringResult extends FunctionResult {
+        private final String value;
+
+        public StringResult(String value) {
+            this.value = value;
+        }
+
+        public String getString() {
+            return value;
+        }
+    }
 }
