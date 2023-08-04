@@ -1,6 +1,9 @@
 package cn.origincraft.magic.utils;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
+import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
+import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.object.SpellContextParameter;
 
 import java.util.*;
 
@@ -14,8 +17,15 @@ public class MethodUtil {
             if (p1 == null) p1 = 0;
             if (p2 == null) p2 = 0;
 
-            return p1.compareTo(p2);
+            return p2.compareTo(p1); // Compare in reverse order
         });
         return sortedFunctions;
+    }
+    public static boolean isExecuteFunction(FunctionParameter parameter){
+        return parameter instanceof SpellContextParameter;
+    }
+    public static SpellContext getSpellContext(FunctionParameter parameter){
+        SpellContextParameter spellContextParameter= (SpellContextParameter) parameter;
+        return spellContextParameter.getSpellContext();
     }
 }

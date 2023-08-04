@@ -12,9 +12,11 @@ import java.util.List;
 public class MagicWords {
     private String originMagicWords;
     private List<CallableFunction> function;
+    private MagicManager magicManager;
 
     public MagicWords(String magicWords,MagicManager magicManager) {
         setOriginMagicWords(magicWords);
+        setMagicManager(magicManager);
         // 解析语句为方法
         List<CallableFunction> function = magicManager
                 .getFastExpression()
@@ -54,5 +56,13 @@ public class MagicWords {
 
     public void setOriginMagicWords(String originMagicWords) {
         this.originMagicWords = originMagicWords;
+    }
+
+    public MagicManager getMagicManager() {
+        return magicManager;
+    }
+
+    public void setMagicManager(MagicManager magicManager) {
+        this.magicManager = magicManager;
     }
 }

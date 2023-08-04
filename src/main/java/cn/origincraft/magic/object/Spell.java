@@ -24,6 +24,7 @@ public class Spell {
         spellContext.getObjectMap().putAll(objectMap);
         // 变量字典初始化
         spellContext.getVariableMap().putAll(variableMap);
+        spellContext.putMagicManager(getMagicManager());
         int index = 0;
         while (index < magicWordsList.size()) {
             // 中段判断

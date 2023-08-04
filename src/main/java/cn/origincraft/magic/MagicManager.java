@@ -1,5 +1,6 @@
 package cn.origincraft.magic;
 
+import cn.origincraft.magic.function.FunctionRegister;
 import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class MagicManager {
         getTypePriority().put("TARGET", targetPriority);
         getTypePriority().put("BEHAVIOR",behaviorPriority);
         getTypePriority().put("CONSTRAINT",constraintPriority);
+        FunctionRegister.regDefault(this);
     }
     public boolean isInit(){
         return fastExpression != null;

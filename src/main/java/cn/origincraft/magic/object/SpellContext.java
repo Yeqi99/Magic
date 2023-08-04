@@ -1,6 +1,9 @@
 package cn.origincraft.magic.object;
 
 
+import cn.origincraft.magic.MagicManager;
+
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -156,7 +159,18 @@ public class SpellContext {
         return getExecuteResultMap().containsKey("execute.parameter");
     }
 
-
+    public void putMagicManager(MagicManager magicManager){
+        getExecuteResultMap().put("magic.manager",magicManager);
+    }
+    public MagicManager getMagicManager(){
+        if (!hasMagicManager()){
+            return null;
+        }
+        return (MagicManager) getExecuteResultMap().get("magic.manager");
+    }
+    public boolean hasMagicManager(){
+        return getExecuteResultMap().containsKey("magic.manager");
+    }
 
 
 

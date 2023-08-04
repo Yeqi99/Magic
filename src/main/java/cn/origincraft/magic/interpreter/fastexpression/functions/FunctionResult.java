@@ -30,4 +30,15 @@ public abstract class FunctionResult {
             return value;
         }
     }
+    public static class ObjectResult extends FunctionResult {
+        private final Object value;
+
+        public ObjectResult(Object value) {
+            this.value = value;
+        }
+
+        public Object getObject() {
+            return value;
+        }
+    }
 }
