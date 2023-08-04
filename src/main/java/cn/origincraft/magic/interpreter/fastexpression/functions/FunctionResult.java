@@ -18,4 +18,16 @@ public abstract class FunctionResult {
             return status;
         }
     }
+
+    public static class IntResult extends FunctionResult {
+        private final int value;
+
+        public IntResult(int value) {
+            this.value = value;
+        }
+
+        public int getInt() {
+            return value;
+        }
+    }
 }

@@ -5,6 +5,7 @@ import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
+import cn.origincraft.magic.utils.MethodUtil;
 
 import java.util.List;
 
@@ -12,10 +13,18 @@ public class MagicWords {
     private String originMagicWords;
     private List<CallableFunction> function;
 
-    public MagicWords(String magicWords) {
+    public MagicWords(String magicWords,MagicManager magicManager) {
         setOriginMagicWords(magicWords);
-        FastExpression fastExpression = MagicManager.getFastExpression();
-        List<CallableFunction> function = fastExpression.getFunctionManager().parseExpression(magicWords);
+        // 解析语句为方法
+        List<CallableFunction> function = magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .parseExpression(magicWords);
+        // 方法按照优先级排序
+        function= MethodUtil
+                .sortFunctions(
+                        magicManager
+                                .getTypePriority(),function);
         setFunction(function);
     }
 

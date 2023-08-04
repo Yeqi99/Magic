@@ -2,20 +2,66 @@ package cn.origincraft.magic;
 
 import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MagicManager {
-    private static FastExpression fastExpression;
-    public static void init(){
-        fastExpression=new FastExpression();
+    private FastExpression fastExpression;
+    private Map<String,Integer> typePriority=new HashMap<>();
+    private int targetPriority=20;
+    private int behaviorPriority=10;
+    private int ConstraintPriority=30;
+    public MagicManager(){
+        init();
     }
-    public static boolean isInit(){
+
+    public void init(){
+        fastExpression=new FastExpression();
+        getTypePriority().put("TARGET", targetPriority);
+        getTypePriority().put("BEHAVIOR",behaviorPriority);
+        getTypePriority().put("CONSTRAINT",ConstraintPriority);
+    }
+    public boolean isInit(){
         return fastExpression != null;
     }
 
-    public static FastExpression getFastExpression() {
+    public FastExpression getFastExpression() {
         return fastExpression;
     }
 
-    public static void setFastExpression(FastExpression fastExpression) {
-        MagicManager.fastExpression = fastExpression;
+    public void setFastExpression(FastExpression fastExpression) {
+        this.fastExpression = fastExpression;
+    }
+
+    public Map<String, Integer> getTypePriority() {
+        return typePriority;
+    }
+
+    public void setTypePriority(Map<String, Integer> typePriority) {
+        this.typePriority = typePriority;
+    }
+
+    public int getTargetPriority() {
+        return targetPriority;
+    }
+
+    public void setTargetPriority(int targetPriority) {
+        this.targetPriority = targetPriority;
+    }
+
+    public int getBehaviorPriority() {
+        return behaviorPriority;
+    }
+
+    public void setBehaviorPriority(int behaviorPriority) {
+        this.behaviorPriority = behaviorPriority;
+    }
+
+    public int getConstraintPriority() {
+        return ConstraintPriority;
+    }
+
+    public void setConstraintPriority(int constraintPriority) {
+        ConstraintPriority = constraintPriority;
     }
 }

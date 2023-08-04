@@ -1,5 +1,7 @@
 package cn.origincraft.magic.object;
 
+import cn.origincraft.magic.MagicManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +9,13 @@ import java.util.Map;
 public class Spell {
     private SpellContext spellContext;
     private List<MagicWords> magicWordsList = new ArrayList<>();
+    private MagicManager magicManager;
 
-    public Spell(List<String> magicWordsStringList) {
+
+    public Spell(List<String> magicWordsStringList, MagicManager magicManager) {
+        setMagicManager(magicManager);
         for (String s : magicWordsStringList) {
-            magicWordsList.add(new MagicWords(s));
+            magicWordsList.add(new MagicWords(s,magicManager));
         }
     }
     public SpellContext execute(Map<String, Object> objectMap,Map<String, Object> variableMap) {
@@ -71,6 +76,14 @@ public class Spell {
     }
 
     public void addMagicWords(String magicWords) {
-        getMagicWordsList().add(new MagicWords(magicWords));
+        getMagicWordsList().add(new MagicWords(magicWords,getMagicManager()));
+    }
+
+    public MagicManager getMagicManager() {
+        return magicManager;
+    }
+
+    public void setMagicManager(MagicManager magicManager) {
+        this.magicManager = magicManager;
     }
 }
