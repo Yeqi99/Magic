@@ -172,7 +172,23 @@ public class SpellContext {
         return getExecuteResultMap().containsKey("magic.manager");
     }
 
-
+    public void putExecuteIndexAllow(int index,boolean bool){
+        getExecuteResultMap().put("execute.+"+index+".allow",bool);
+    }
+    public boolean hasExecuteIndexAllow(int index){
+        return getExecuteResultMap().containsKey("execute.+"+index+".allow");
+    }
+    public boolean getExecuteIndexAllow(int index){
+        if (!hasExecuteIndexAllow(index)){
+            return true;
+        }
+        return (boolean) getExecuteResultMap().get("execute.+"+index+".allow");
+    }
+    public void removeExecuteIndexAllow(int index){
+        if (hasExecuteIndexAllow(index)){
+            getExecuteResultMap().remove("execute.+"+index+".allow");
+        }
+    }
 
 
 

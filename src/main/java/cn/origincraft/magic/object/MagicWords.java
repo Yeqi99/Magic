@@ -31,13 +31,20 @@ public class MagicWords {
     }
 
     public SpellContext execute(SpellContext spellContext) {
-        for (CallableFunction callableFunction : function) {
-            StringParameter stringParameter= (StringParameter) callableFunction.getParameter();
+        // 遍历魔语中的语义元素
+        for (int i = 0; i < function.size(); i++) {
+            CallableFunction callableFunction = function.get(i);
+            StringParameter stringParameter = (StringParameter) callableFunction.getParameter();
             spellContext.putExecuteParameter(stringParameter.getString());
             SpellContextResult spellContextResult =
                     (SpellContextResult) callableFunction.getFunction()
                             .call(new SpellContextParameter(spellContext));
-            spellContext=spellContextResult.getSpellContext();
+            spellContext = spellContextResult.getSpellContext();
+            // 检查是否继续这行本条魔语
+            if (!spellContext.getExecuteIndexAllow(i)){
+                spellContext.removeExecuteIndexAllow(i);
+                break;
+            }
         }
         return spellContext;
     }
