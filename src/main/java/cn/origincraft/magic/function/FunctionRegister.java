@@ -9,11 +9,11 @@ public class FunctionRegister {
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
-                .register(new IntFunction());
+                .register(new IntFunction(),"整数");
 
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
-                .register(new PrintFunction());
+                .register(new PrintFunction(), "显示", "打印");
     }
 }

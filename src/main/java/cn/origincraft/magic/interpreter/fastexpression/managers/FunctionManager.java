@@ -60,12 +60,12 @@ public class FunctionManager {
 
     public List<CallableFunction> parseExpression(String expression) {
         List<CallableFunction> callableFunctions = new ArrayList<>();
-        Pattern pattern = Pattern.compile("(\\w+\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))");
+        Pattern pattern = Pattern.compile("([\\w\\p{IsHan}]+\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))");
         Matcher matcher = pattern.matcher(expression);
         while (matcher.find()) {
             String functionExpression = matcher.group(0);
-            Pattern functionPattern = Pattern.compile("(\\w+)\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\)");
-            Pattern parameterPattern = Pattern.compile("\\w+\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
+            Pattern functionPattern = Pattern.compile("([\\w\\p{IsHan}]+)\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\)");
+            Pattern parameterPattern = Pattern.compile("[\\w\\p{IsHan}]+\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
             Matcher functionMatcher = functionPattern.matcher(functionExpression);
             if (!functionMatcher.find()) continue;
             String functionName = functionMatcher.group(1);

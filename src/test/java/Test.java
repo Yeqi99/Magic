@@ -13,8 +13,7 @@ public class Test {
         MagicManager magicManager=new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList=new ArrayList<>();
-        magicManager.getFastExpression().getAliasesManager().registerAliases("print","打印");
-        testList.add("print(i) print(,) print(j) print(你好) int(i 1) int(j 2)");
+        testList.add("显示(第一个数) 显示(,) 显示(第二个数) 显示(你好) 整数(第一个数 1) 整数(第二个数 2)");
         Spell spell=new Spell(testList, magicManager);
         spell.execute(new HashMap<>(),new HashMap<>());
     }
