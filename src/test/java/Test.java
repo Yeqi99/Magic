@@ -13,12 +13,7 @@ public class Test {
         MagicManager magicManager=new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList=new ArrayList<>();
-        testList.add("给我弄个整数(一个整数 10)");
-        testList.add("魔语停止() 给个整数(第二个整数 20)");
-        testList.add("给我弄个字符串(一个字符串 第一个小数)");
-        testList.add("显示(\n)");
-        testList.add("显示(一个字符串) 显示(,)  显示(第二个整数) 显示(,) 显示(第一个小数) 显示(你好)");
-        testList.add("");
+        testList.add("显示(相加(1 -2 3.5 7 8 9 -100.5))");
         Spell spell=new Spell(testList, magicManager);
         spell.execute(new HashMap<>(),new HashMap<>());
     }

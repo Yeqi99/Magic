@@ -2,6 +2,7 @@ package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.behavior.PrintFunction;
+import cn.origincraft.magic.function.calculate.AddFunction;
 import cn.origincraft.magic.function.constraint.BreakMagicWordsFunction;
 import cn.origincraft.magic.function.constraint.BreakSpellFunction;
 import cn.origincraft.magic.function.target.DoubleFunction;
@@ -34,5 +35,9 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new BreakSpellFunction(), "魔咒停止");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new AddFunction(), "相加");
     }
 }

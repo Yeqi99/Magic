@@ -46,8 +46,11 @@ public class AddFunction implements FastFunction {
                 }
             }
         }
-
-        return new FunctionResult.DoubleResult(result);
+        if (VariableUtil.hasFractionalPart(result)){
+            return new FunctionResult.ObjectResult(result);
+        }else {
+            return new FunctionResult.ObjectResult((int)result);
+        }
     }
 
     @Override

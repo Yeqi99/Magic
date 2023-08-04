@@ -17,4 +17,22 @@ public class VariableUtil {
         }
         return true;
     }
+    public static boolean isInt(Object obj) {
+        return obj instanceof Integer;
+    }
+
+    public static boolean isDouble(Object obj) {
+        return obj instanceof Double;
+    }
+
+    public static boolean isFloat(Object obj) {
+        return obj instanceof Float;
+    }
+
+    public static boolean isString(Object obj) {
+        return obj instanceof String;
+    }
+    public static boolean hasFractionalPart(double d) {
+        return d != (int) d;
+    }
 }
