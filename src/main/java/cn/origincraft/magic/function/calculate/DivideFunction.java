@@ -11,7 +11,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-
+//除法运算
 public class DivideFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {

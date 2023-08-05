@@ -60,20 +60,39 @@ public class FunctionManager {
 
     public List<CallableFunction> parseExpression(String expression) {
         List<CallableFunction> callableFunctions = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([\\w\\p{IsHan}]+\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))");
+        // 正则表达式匹配函数名和括号内的参数
+        Pattern pattern = Pattern.compile("([\\w\\p{IsHan}]+)\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
         Matcher matcher = pattern.matcher(expression);
         while (matcher.find()) {
-            String functionExpression = matcher.group(0);
-            Pattern functionPattern = Pattern.compile("([\\w\\p{IsHan}]+)\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\)");
-            Pattern parameterPattern = Pattern.compile("[\\w\\p{IsHan}]+\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
-            Matcher functionMatcher = functionPattern.matcher(functionExpression);
-            if (!functionMatcher.find()) continue;
-            String functionName = functionMatcher.group(1);
-            Matcher parameterMatcher = parameterPattern.matcher(functionExpression);
-            if (!parameterMatcher.find()) continue;
-            String parameter = parameterMatcher.group(1);
+            String functionName = matcher.group(1); // 函数名
+            String parameter = matcher.group(2); // 参数
             callableFunctions.add(new CallableFunction(get(functionName), new StringParameter(parameter)));
         }
         return callableFunctions;
+    }
+
+
+    public List<Object> parseParaExpression(String expression) {
+        List<Object> result = new ArrayList<>();
+        Pattern pattern = Pattern.compile("([\\w\\p{IsHan}\\.]+(?:\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))?)");
+        Matcher matcher = pattern.matcher(expression);
+
+        while (matcher.find()) {
+            String token = matcher.group(1);
+            if (token.endsWith(")")) {
+                // 这是一个函数调用
+                Pattern functionPattern = Pattern.compile("([\\w\\p{IsHan}]+)\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
+                Matcher functionMatcher = functionPattern.matcher(token);
+                if (functionMatcher.find()) {
+                    String functionName = functionMatcher.group(1);
+                    String parameter = functionMatcher.group(2); // 使用相同的匹配器获取参数
+                    result.add(new CallableFunction(get(functionName), new StringParameter(parameter)));
+                }
+            } else {
+                // 这是一个字符串
+                result.add(token);
+            }
+        }
+        return result;
     }
 }

@@ -2,6 +2,8 @@ package cn.origincraft.magic.utils;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
+import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
+import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 
@@ -28,4 +30,13 @@ public class MethodUtil {
         SpellContextParameter spellContextParameter= (SpellContextParameter) parameter;
         return spellContextParameter.getSpellContext();
     }
+
+    public static boolean isFunction(Object object){
+        return object instanceof CallableFunction;
+    }
+
+    public static String getSpace(int num){
+        return " ".repeat(num);
+    }
+
 }

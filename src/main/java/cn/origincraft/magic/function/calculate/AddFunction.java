@@ -11,7 +11,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-
+//加法运算
 public class AddFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {

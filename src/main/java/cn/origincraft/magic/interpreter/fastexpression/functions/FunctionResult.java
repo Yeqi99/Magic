@@ -64,4 +64,15 @@ public abstract class FunctionResult {
             return value;
         }
     }
+    public static class BooleanResult extends FunctionResult {
+        private final boolean value;
+
+        public BooleanResult(boolean value) {
+            this.value = value;
+        }
+
+        public boolean getBoolean() {
+            return value;
+        }
+    }
 }

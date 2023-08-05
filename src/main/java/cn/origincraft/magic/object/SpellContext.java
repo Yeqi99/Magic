@@ -2,6 +2,7 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -143,8 +144,18 @@ public class SpellContext {
         return getExecuteResultMap().containsKey("execute.pass");
     }
 
-
-
+    public void putExecuteReturn(FunctionResult functionResult){
+        putExecuteResult("execute.return", functionResult);
+    }
+    public boolean hasExecuteReturn() {
+        return getExecuteResultMap().containsKey("execute.return");
+    }
+    public FunctionResult getExecuteReturn() {
+        if (!hasExecuteReturn()) {
+            return null;
+        }
+        return (FunctionResult) getExecuteResultMap().get("execute.return");
+    }
     public void putExecuteParameter(String parameter) {
         putExecuteResult("execute.parameter", parameter);
     }

@@ -11,7 +11,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-
+// 乘法运算
 public class MultiplyFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {

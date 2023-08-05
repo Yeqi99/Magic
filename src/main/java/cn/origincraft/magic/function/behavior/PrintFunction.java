@@ -20,33 +20,54 @@ public class PrintFunction implements FastFunction {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para=spellContext.getExecuteParameter();
         MagicManager mm=spellContext.getMagicManager();
-        String s="";
-        List<CallableFunction> list=mm
+        List<Object> list=mm
                 .getFastExpression()
                 .getFunctionManager()
-                .parseExpression(para);
-        if (list.size()>0){
-            StringParameter stringParameter=
-                    (StringParameter) list.get(0).getParameter();
-            spellContext.putExecuteParameter(stringParameter.getString());
-            FunctionResult functionResult= list.get(0).getFunction().call(new SpellContextParameter(spellContext));
-            if (functionResult instanceof FunctionResult.ObjectResult){
-                s = String.valueOf(((FunctionResult.ObjectResult) functionResult).getObject());
-            }
-            if (functionResult instanceof FunctionResult.IntResult){
-                s = String.valueOf(((FunctionResult.IntResult)functionResult).getInt());
-            }
-            if (functionResult instanceof FunctionResult.DoubleResult){
-                s = String.valueOf(((FunctionResult.DoubleResult)functionResult).getDouble());
-            }
-            System.out.print(s);
-        }else {
-            if(spellContext.getVariableMap().containsKey(para)){
-                System.out.print(spellContext.getVariableMap().get(para));
+                .parseParaExpression(para);
+        StringBuilder s= new StringBuilder();
+        for (Object o : list) {
+            if (MethodUtil.isFunction(o)){
+                CallableFunction function= (CallableFunction) o;
+                StringParameter stringParameter=
+                        (StringParameter)function.getParameter();
+                spellContext.putExecuteParameter(stringParameter.getString());
+                SpellContextResult spellContextResult =
+                        (SpellContextResult) function
+                                .getFunction()
+                                .call(
+                                        new SpellContextParameter(spellContext)
+                                );
+                spellContext = spellContextResult.getSpellContext();
+                FunctionResult functionResult = spellContext.getExecuteReturn();
+                // 判断值类型处理
+                // Double型
+                if (functionResult instanceof FunctionResult.DoubleResult v){
+                    s.append(v.getDouble());
+                }
+                // Int型
+                if (functionResult instanceof FunctionResult.IntResult v){
+                    s.append(v.getInt());
+                }
+                // String型
+                if (functionResult instanceof FunctionResult.StringResult v){
+                    s.append(v.getString());
+                }
+                // Object型
+                if (functionResult instanceof FunctionResult.ObjectResult v){
+                    s.append(v.getObject());
+                }
+                // Boolean型
+                if (functionResult instanceof FunctionResult.BooleanResult v){
+                    s.append(v.getBoolean());
+                }
             }else {
-                System.out.print(para);
+                String str= (String) o;
+                s.append(spellContext.getVariableMap().getOrDefault(str, str));
             }
-            return new SpellContextResult(spellContext);
+        }
+
+        if (s.length()>0){
+            System.out.print(s);
         }
         return new SpellContextResult(spellContext);
     }

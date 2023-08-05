@@ -11,7 +11,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-
+// 减法运算
 public class SubtractFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
