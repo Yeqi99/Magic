@@ -9,12 +9,15 @@ import java.util.List;
 
 
 public class Test {
-    public static void main(String[] args){
-        MagicManager magicManager=new MagicManager();
+    public static void main(String[] args) {
+        MagicManager magicManager = new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
-        List<String> testList=new ArrayList<>();
-        testList.add("显示(相加(1 -2 3.5 7 8 9 -100.5))");
-        Spell spell=new Spell(testList, magicManager);
-        spell.execute(new HashMap<>(),new HashMap<>());
+        List<String> testList = new ArrayList<>();
+        testList.add("int(j 10)");
+        testList.add("double(i A(j 2 3))");
+        testList.add("double(j S(j 2 3))");
+        testList.add("print(A(1 2 j i))");
+        Spell spell = new Spell(testList, magicManager);
+        spell.execute(new HashMap<>(), new HashMap<>());
     }
 }

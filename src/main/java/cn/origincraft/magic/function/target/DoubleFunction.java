@@ -19,7 +19,7 @@ public class DoubleFunction implements FastFunction {
         // 获得上下文
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para=spellContext.getExecuteParameter();
-        String[] s=para.split(" ");
+        String[] s=para.split(" ",2);
         if (s.length<2){
             return new SpellContextResult(spellContext);
         }
@@ -46,6 +46,9 @@ public class DoubleFunction implements FastFunction {
                                 .call(new SpellContextParameter(spellContext));
                 if (functionResult instanceof FunctionResult.DoubleResult){
                     result=((FunctionResult.DoubleResult) functionResult).getDouble();
+                }
+                if (functionResult instanceof FunctionResult.IntResult){
+                    result=((FunctionResult.IntResult) functionResult).getInt();
                 }
             }else {
                 if(spellContext.getVariableMap().containsKey(value)){

@@ -12,13 +12,14 @@ import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
 
-public class AddFunction implements FastFunction {
+public class MultiplyFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
         String para = spellContext.getExecuteParameter();
         String[] pares = para.split(" ");
-        double result = 0;
+        double result = 1; // 乘法的初始结果应该为 1
+
         for (String s : pares) {
             List<CallableFunction> list = spellContext
                     .getMagicManager()
@@ -31,27 +32,28 @@ public class AddFunction implements FastFunction {
                 spellContext.putExecuteParameter(sPara.getString());
                 FunctionResult functionResult = list.get(0).getFunction().call(new SpellContextParameter(spellContext));
                 if (functionResult instanceof FunctionResult.DoubleResult) {
-                    result += ((FunctionResult.DoubleResult) functionResult).getDouble();
+                    result *= ((FunctionResult.DoubleResult) functionResult).getDouble();
                 }
                 if (functionResult instanceof FunctionResult.IntResult) {
-                    result += ((FunctionResult.IntResult) functionResult).getInt();
+                    result *= ((FunctionResult.IntResult) functionResult).getInt();
                 }
             } else {
                 if (spellContext.getVariableMap().containsKey(s)) {
                     Object num = spellContext.getVariableMap().get(s);
                     if (num instanceof Integer) {
-                        result += (int) num;
+                        result *= (int) num;
                     }
                     if (num instanceof Double) {
-                        result += (double) num;
+                        result *= (double) num;
                     }
                 } else {
                     if (VariableUtil.isDouble(s)) {
-                        result += Double.parseDouble(s);
+                        result *= Double.parseDouble(s);
                     }
                 }
             }
         }
+
         if (VariableUtil.hasFractionalPart(result)) {
             return new FunctionResult.DoubleResult(result);
         } else {
@@ -61,7 +63,7 @@ public class AddFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "add";
+        return "multiply";
     }
 
     @Override

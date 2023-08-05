@@ -19,7 +19,7 @@ public class IntFunction implements FastFunction {
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para=spellContext.getExecuteParameter();
-        String[] s=para.split(" ");
+        String[] s=para.split(" ",2);
         if (s.length<2){
             return new SpellContextResult(spellContext);
         }

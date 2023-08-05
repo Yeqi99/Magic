@@ -20,6 +20,7 @@ public class PrintFunction implements FastFunction {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para=spellContext.getExecuteParameter();
         MagicManager mm=spellContext.getMagicManager();
+        String s="";
         List<CallableFunction> list=mm
                 .getFastExpression()
                 .getFunctionManager()
@@ -28,15 +29,24 @@ public class PrintFunction implements FastFunction {
             StringParameter stringParameter=
                     (StringParameter) list.get(0).getParameter();
             spellContext.putExecuteParameter(stringParameter.getString());
-            FunctionResult.ObjectResult functionResult= (FunctionResult.ObjectResult) list.get(0).getFunction().call(new SpellContextParameter(spellContext));
-            String s= String.valueOf(functionResult.getObject());
+            FunctionResult functionResult= list.get(0).getFunction().call(new SpellContextParameter(spellContext));
+            if (functionResult instanceof FunctionResult.ObjectResult){
+                s = String.valueOf(((FunctionResult.ObjectResult) functionResult).getObject());
+            }
+            if (functionResult instanceof FunctionResult.IntResult){
+                s = String.valueOf(((FunctionResult.IntResult)functionResult).getInt());
+            }
+            if (functionResult instanceof FunctionResult.DoubleResult){
+                s = String.valueOf(((FunctionResult.DoubleResult)functionResult).getDouble());
+            }
             System.out.print(s);
         }else {
             if(spellContext.getVariableMap().containsKey(para)){
                 System.out.print(spellContext.getVariableMap().get(para));
-                return new SpellContextResult(spellContext);
+            }else {
+                System.out.print(para);
             }
-            System.out.print(para);
+            return new SpellContextResult(spellContext);
         }
         return new SpellContextResult(spellContext);
     }

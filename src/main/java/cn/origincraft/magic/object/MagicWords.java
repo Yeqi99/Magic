@@ -14,7 +14,7 @@ public class MagicWords {
     private List<CallableFunction> function;
     private MagicManager magicManager;
 
-    public MagicWords(String magicWords,MagicManager magicManager) {
+    public MagicWords(String magicWords, MagicManager magicManager) {
         setOriginMagicWords(magicWords);
         setMagicManager(magicManager);
         // 解析语句为方法
@@ -23,10 +23,10 @@ public class MagicWords {
                 .getFunctionManager()
                 .parseExpression(magicWords);
         // 方法按照优先级排序
-        function= MethodUtil
+        function = MethodUtil
                 .sortFunctions(
                         magicManager
-                                .getTypePriority(),function);
+                                .getTypePriority(), function);
         setFunction(function);
     }
 
@@ -41,13 +41,14 @@ public class MagicWords {
                             .call(new SpellContextParameter(spellContext));
             spellContext = spellContextResult.getSpellContext();
             // 检查是否继续这行本条魔语
-            if (!spellContext.getExecuteIndexAllow(spellContext.getExecuteIndex())){
+            if (!spellContext.getExecuteIndexAllow(spellContext.getExecuteIndex())) {
                 spellContext.removeExecuteIndexAllow(spellContext.getExecuteIndex());
                 break;
             }
         }
         return spellContext;
     }
+
     public List<CallableFunction> getFunction() {
         return function;
     }
