@@ -1,5 +1,6 @@
 package cn.origincraft.magic.function.calculate;
 
+import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
@@ -7,6 +8,7 @@ import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
+import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
@@ -17,122 +19,103 @@ public class DivideFunction implements FastFunction {
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
         String para = spellContext.getExecuteParameter();
-        String[] pares = para.split(" ");
+        MagicManager mm = spellContext.getMagicManager();
+        List<Object> list = mm
+                .getFastExpression()
+                .getFunctionManager()
+                .parseParaExpression(para);
 
-        // 第一个参数作为被除数
-        if (pares.length > 0) {
-            String firstParameter = pares[0];
-            List<CallableFunction> firstFunctionList = spellContext
-                    .getMagicManager()
-                    .getFastExpression()
-                    .getFunctionManager()
-                    .parseExpression(firstParameter);
+        // 开始计算的标记
+        boolean isFirst = true;
+        double result = 1;
 
-            double result = 0;
+        for (Object o : list) {
+            double value = 0;
 
-            if (firstFunctionList.size() > 0) {
-                StringParameter sPara =
-                        (StringParameter) firstFunctionList.get(0).getParameter();
-                spellContext.putExecuteParameter(sPara.getString());
-                FunctionResult functionResult = firstFunctionList.get(0).getFunction().call(new SpellContextParameter(spellContext));
-                if (functionResult instanceof FunctionResult.DoubleResult) {
-                    result = ((FunctionResult.DoubleResult) functionResult).getDouble();
-                }
-                if (functionResult instanceof FunctionResult.IntResult) {
-                    result = ((FunctionResult.IntResult) functionResult).getInt();
-                }
+            if (MethodUtil.isFunction(o)) {
+                CallableFunction function = (CallableFunction) o;
+                StringParameter stringParameter =
+                        (StringParameter) function.getParameter();
+                spellContext.putExecuteParameter(stringParameter.getString());
+                SpellContextResult spellContextResult =
+                        (SpellContextResult) function.getFunction().call(new SpellContextParameter(spellContext));
+                spellContext = spellContextResult.getSpellContext();
+                FunctionResult functionResult = spellContext.getExecuteReturn();
+
+                value = extractValueFromResult(functionResult);
             } else {
-                if (spellContext.getVariableMap().containsKey(firstParameter)) {
-                    Object num = spellContext.getVariableMap().get(firstParameter);
-                    if (num instanceof Integer) {
-                        result = (int) num;
-                    }
-                    if (num instanceof Double) {
-                        result = (double) num;
-                    }
+                String sValue = (String) o;
+                if (spellContext.getVariableMap().containsKey(sValue)) {
+                    Object v = spellContext.getVariableMap().get(sValue);
+                    value = extractValueFromObject(v);
                 } else {
-                    if (VariableUtil.isDouble(firstParameter)) {
-                        result = Double.parseDouble(firstParameter);
+                    if (VariableUtil.tryDouble(sValue)) {
+                        value = Double.parseDouble(sValue);
                     }
                 }
             }
 
-            // 其他参数都作为除数
-            for (int i = 1; i < pares.length; i++) {
-                String s = pares[i];
-                List<CallableFunction> list = spellContext
-                        .getMagicManager()
-                        .getFastExpression()
-                        .getFunctionManager()
-                        .parseExpression(s);
-                if (list.size() > 0) {
-                    StringParameter sPara =
-                            (StringParameter) list.get(0).getParameter();
-                    spellContext.putExecuteParameter(sPara.getString());
-                    FunctionResult functionResult = list.get(0).getFunction().call(new SpellContextParameter(spellContext));
-                    if (functionResult instanceof FunctionResult.DoubleResult) {
-                        double divisor = ((FunctionResult.DoubleResult) functionResult).getDouble();
-                        if (divisor != 0) {
-                            result /= divisor;
-                        } else {
-                            // 如果除数为零或参数不合法，则返回0
-                            return new FunctionResult.ObjectResult(0);
-                        }
-                    }
-                    if (functionResult instanceof FunctionResult.IntResult) {
-                        int divisor = ((FunctionResult.IntResult) functionResult).getInt();
-                        if (divisor != 0) {
-                            result /= divisor;
-                        } else {
-                            // 如果除数为零或参数不合法，则返回0
-                            return new FunctionResult.ObjectResult(0);
-                        }
-                    }
-                } else {
-                    if (spellContext.getVariableMap().containsKey(s)) {
-                        Object num = spellContext.getVariableMap().get(s);
-                        if (num instanceof Integer) {
-                            int divisor = (int) num;
-                            if (divisor != 0) {
-                                result /= divisor;
-                            } else {
-                                // 如果除数为零或参数不合法，则返回0
-                                return new FunctionResult.ObjectResult(0);
-                            }
-                        }
-                        if (num instanceof Double) {
-                            double divisor = (double) num;
-                            if (divisor != 0) {
-                                result /= divisor;
-                            } else {
-                                // 如果除数为零或参数不合法，则返回0
-                                return new FunctionResult.ObjectResult(0);
-                            }
-                        }
-                    } else {
-                        if (VariableUtil.isDouble(s)) {
-                            double divisor = Double.parseDouble(s);
-                            if (divisor != 0) {
-                                result /= divisor;
-                            } else {
-                                // 如果除数为零或参数不合法，则返回0
-                                return new FunctionResult.ObjectResult(0);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (VariableUtil.hasFractionalPart(result)) {
-                return new FunctionResult.DoubleResult(result);
+            if (isFirst) {
+                result = value;
+                isFirst = false;
             } else {
-                return new FunctionResult.IntResult((int) result);
+                if (value != 0) {
+                    result /= value;
+                } else {
+                    // 这里应该处理除数为0的情况，可以抛出异常或返回特定结果
+                    throw new ArithmeticException("Division by zero");
+                }
             }
         }
 
-        // 如果参数为空，则返回0
-        return new FunctionResult.ObjectResult(0);
+        if (VariableUtil.hasFractionalPart(result)) {
+            spellContext.putExecuteReturn(new FunctionResult.DoubleResult(result));
+        } else {
+            spellContext.putExecuteReturn(new FunctionResult.IntResult((int) result));
+        }
+        return new SpellContextResult(spellContext);
     }
+
+    private double extractValueFromResult(FunctionResult functionResult) {
+        double value = 0;
+        if (functionResult instanceof FunctionResult.DoubleResult v){
+            value = v.getDouble();
+        }
+        if (functionResult instanceof FunctionResult.IntResult v){
+            value = v.getInt();
+        }
+        if (functionResult instanceof FunctionResult.StringResult v){
+            if (VariableUtil.tryDouble(v.getString())){
+                value = Double.parseDouble(v.getString());
+            }
+        }
+        if (functionResult instanceof FunctionResult.ObjectResult v){
+            if (VariableUtil.isDouble(v.getObject())){
+                value = (double)v.getObject();
+            }
+            if (VariableUtil.isInt(v.getObject())){
+                value = (int)v.getObject();
+            }
+        }
+        return value;
+    }
+
+    private double extractValueFromObject(Object object) {
+        double value = 0;
+        if (VariableUtil.isDouble(object)) {
+            value = (double) object;
+        }
+        if (VariableUtil.isInt(object)){
+            value = (int) object;
+        }
+        if (VariableUtil.isString(object)){
+            if (VariableUtil.tryDouble((String) object)){
+                value = Double.parseDouble((String) object);
+            }
+        }
+        return value;
+    }
+
 
     @Override
     public String getName() {

@@ -61,6 +61,18 @@ public class FunctionRegister {
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
+                .register(new IntegerDivisionFunction(), "整除");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new ModulusFunction(), "取模","取余");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
                 .register(new MultiplyFunction(), "相乘","乘","m");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new PowerFunction(), "幂","求方");
     }
 }

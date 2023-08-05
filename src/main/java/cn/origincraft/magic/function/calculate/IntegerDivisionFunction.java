@@ -11,10 +11,9 @@ import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
-
 import java.util.List;
-// 减法运算
-public class SubtractFunction implements FastFunction {
+
+public class IntegerDivisionFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
@@ -27,12 +26,12 @@ public class SubtractFunction implements FastFunction {
 
         // 开始计算的标记
         boolean isFirst = true;
-        double result = 0;
+        int result = 1;
 
         for (Object o : list) {
-            double value = 0;
+            int value = 0;
 
-            if (MethodUtil.isFunction(o)){
+            if (MethodUtil.isFunction(o)) {
                 CallableFunction function = (CallableFunction) o;
                 StringParameter stringParameter =
                         (StringParameter) function.getParameter();
@@ -49,8 +48,8 @@ public class SubtractFunction implements FastFunction {
                     Object v = spellContext.getVariableMap().get(sValue);
                     value = extractValueFromObject(v);
                 } else {
-                    if (VariableUtil.tryDouble(sValue)) {
-                        value = Double.parseDouble(sValue);
+                    if (VariableUtil.tryInt(sValue)) {
+                        value = Integer.parseInt(sValue);
                     }
                 }
             }
@@ -59,35 +58,30 @@ public class SubtractFunction implements FastFunction {
                 result = value;
                 isFirst = false;
             } else {
-                result -= value;
+                if (value != 0) {
+                    result /= value;
+                } else {
+                    // 这里应该处理除数为0的情况，可以抛出异常或返回特定结果
+                    throw new ArithmeticException("Division by zero");
+                }
             }
         }
 
-        if (VariableUtil.hasFractionalPart(result)) {
-            spellContext.putExecuteReturn(new FunctionResult.DoubleResult(result));
-        } else {
-            spellContext.putExecuteReturn(new FunctionResult.IntResult((int) result));
-        }
+        spellContext.putExecuteReturn(new FunctionResult.IntResult(result));
         return new SpellContextResult(spellContext);
     }
 
-    private double extractValueFromResult(FunctionResult functionResult) {
-        double value = 0;
-        if (functionResult instanceof FunctionResult.DoubleResult v){
-            value = v.getDouble();
-        }
+    private int extractValueFromResult(FunctionResult functionResult) {
+        int value = 0;
         if (functionResult instanceof FunctionResult.IntResult v){
             value = v.getInt();
         }
         if (functionResult instanceof FunctionResult.StringResult v){
-            if (VariableUtil.tryDouble(v.getString())){
-                value = Double.parseDouble(v.getString());
+            if (VariableUtil.tryInt(v.getString())) {
+                value = Integer.parseInt(v.getString());
             }
         }
         if (functionResult instanceof FunctionResult.ObjectResult v){
-            if (VariableUtil.isDouble(v.getObject())){
-                value = (double)v.getObject();
-            }
             if (VariableUtil.isInt(v.getObject())){
                 value = (int)v.getObject();
             }
@@ -95,17 +89,14 @@ public class SubtractFunction implements FastFunction {
         return value;
     }
 
-    private double extractValueFromObject(Object object) {
-        double value = 0;
-        if (VariableUtil.isDouble(object)) {
-            value = (double) object;
-        }
-        if (VariableUtil.isInt(object)){
+    private int extractValueFromObject(Object object) {
+        int value = 0;
+        if (VariableUtil.isInt(object)) {
             value = (int) object;
         }
-        if (VariableUtil.isString(object)){
-            if (VariableUtil.tryDouble((String) object)){
-                value = Double.parseDouble((String) object);
+        if (VariableUtil.isString(object)) {
+            if (VariableUtil.tryInt((String) object)) {
+                value = Integer.parseInt((String) object);
             }
         }
         return value;
@@ -113,7 +104,7 @@ public class SubtractFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "subtract";
+        return "integerDivide";
     }
 
     @Override
