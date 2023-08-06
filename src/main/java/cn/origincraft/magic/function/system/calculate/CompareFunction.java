@@ -63,11 +63,11 @@ public class CompareFunction implements FastFunction {
                     return Double.parseDouble(stringValue);
                 } else if (spellContext.getVariableMap().containsKey(stringValue)) {
                     Object variableValue = spellContext.getVariableMap().get(stringValue);
-                    if (VariableUtil.isDouble(variableValue)) {
+                    if (variableValue instanceof Double) {
                         return (double) variableValue;
-                    } else if (VariableUtil.isInt(variableValue)) {
+                    } else if (variableValue instanceof Integer) {
                         return (int) variableValue;
-                    } else if (VariableUtil.isBoolean(variableValue)) {
+                    } else if (variableValue instanceof Boolean) {
                         return (Boolean) variableValue ? 1 : 0;
                     }
                 }
@@ -77,7 +77,6 @@ public class CompareFunction implements FastFunction {
         }
         return 0;
     }
-
     private boolean compareValues(double firstValue, String compareType, double secondValue) {
         try {
             switch (compareType) {

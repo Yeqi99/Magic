@@ -51,6 +51,13 @@ public class IntFunction implements FastFunction {
                 fResult = functionResult;
             }
 
+            if (functionResult instanceof FunctionResult.StringResult v) {
+                String s=v.getString();
+                if (VariableUtil.tryInt(s)){
+                    fResult=new FunctionResult.IntResult(Integer.parseInt(v.getString()));
+                }
+            }
+
             if (functionResult instanceof FunctionResult.DoubleResult v) {
                 fResult = new FunctionResult.IntResult((int) v.getDouble());
             }

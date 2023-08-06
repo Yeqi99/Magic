@@ -1,6 +1,7 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.system.in.InputFunction;
 import cn.origincraft.magic.function.system.string.EnterFunction;
 import cn.origincraft.magic.function.system.out.PrintFunction;
 import cn.origincraft.magic.function.system.control.BreakMagicWordsFunction;
@@ -29,7 +30,7 @@ public class FunctionRegister {
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
-                .register(new IntFunction(), "int", "小数");
+                .register(new IntFunction(), "int", "整数");
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
@@ -42,6 +43,10 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new PrintFunction(), "显示", "打印");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new InputFunction(), "输入");
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
