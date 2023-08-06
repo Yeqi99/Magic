@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.system.out;
+package cn.origincraft.magic.function.system.string;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
@@ -13,8 +13,8 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-
-public class EnterFunction implements FastFunction {
+// 生成空格字符串
+public class SpaceFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
@@ -25,7 +25,7 @@ public class EnterFunction implements FastFunction {
                 .getFunctionManager()
                 .parseParaExpression(para);
         if (list.size()<1){
-            spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getEnter(1)));
+            spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getSpace(1)));
             return new SpellContextResult(spellContext);
         }
         Object value=list.get(0);
@@ -44,7 +44,7 @@ public class EnterFunction implements FastFunction {
             FunctionResult functionResult = spellContext.getExecuteReturn();
             if (functionResult instanceof FunctionResult.IntResult v){
                 if (v.getInt()>0){
-                    spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getEnter(v.getInt())));
+                    spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getSpace(v.getInt())));
                     return new SpellContextResult(spellContext);
                 }
             }
@@ -58,7 +58,7 @@ public class EnterFunction implements FastFunction {
                 if (VariableUtil.isInt(v)){
                     int num = (int) v;
                     if (num>0){
-                        spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getEnter(num)));
+                        spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getSpace(num)));
                         return new SpellContextResult(spellContext);
                     }
                 }
@@ -66,7 +66,7 @@ public class EnterFunction implements FastFunction {
                 if (VariableUtil.tryInt((String) value)){
                     int num = Integer.parseInt((String) value);
                     if (num>0){
-                        spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getEnter(num)));
+                        spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getSpace(num)));
                         return new SpellContextResult(spellContext);
                     }
                 }
@@ -78,7 +78,7 @@ public class EnterFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "enter";
+        return "space";
     }
 
     @Override

@@ -1,7 +1,7 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.function.system.out.EnterFunction;
+import cn.origincraft.magic.function.system.string.EnterFunction;
 import cn.origincraft.magic.function.system.out.PrintFunction;
 import cn.origincraft.magic.function.system.control.BreakMagicWordsFunction;
 import cn.origincraft.magic.function.system.control.BreakSpellFunction;
@@ -13,7 +13,7 @@ import cn.origincraft.magic.function.system.control.IfFunction;
 import cn.origincraft.magic.function.system.control.IfNotFunction;
 import cn.origincraft.magic.function.system.information.ExecuteCountFunction;
 import cn.origincraft.magic.function.system.information.MagicWordsIndexFunction;
-import cn.origincraft.magic.function.system.out.SpaceFunction;
+import cn.origincraft.magic.function.system.string.SpaceFunction;
 import cn.origincraft.magic.function.system.variable.*;
 
 public class FunctionRegister {
