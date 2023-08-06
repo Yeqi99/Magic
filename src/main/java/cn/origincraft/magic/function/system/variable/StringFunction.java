@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.system;
+package cn.origincraft.magic.function.system.variable;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
@@ -10,11 +10,10 @@ import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
-import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-//Boolean值生成
-public class BooleanFunction implements FastFunction {
+// 生成字符串值
+public class StringFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
@@ -26,10 +25,10 @@ public class BooleanFunction implements FastFunction {
         List<Object> os = fManager.parseParaExpression(para);
 
         if (os.size() < 1) {
-            return new FunctionResult.BooleanResult(false);
+            return new FunctionResult.StringResult("");
         }
 
-        FunctionResult fResult = new FunctionResult.BooleanResult(false);
+        FunctionResult fResult = new FunctionResult.StringResult("");
         Object value = os.get(0);
 
         if (MethodUtil.isFunction(value)) {
@@ -46,26 +45,24 @@ public class BooleanFunction implements FastFunction {
             spellContext = spellContextResult.getSpellContext();
             FunctionResult functionResult = spellContext.getExecuteReturn();
 
-            if (functionResult instanceof FunctionResult.BooleanResult) {
+            if (functionResult instanceof FunctionResult.StringResult) {
                 fResult = functionResult;
             }
 
             if (functionResult instanceof FunctionResult.DoubleResult v) {
-                fResult = new FunctionResult.BooleanResult(v.getDouble() != 0);
+                fResult = new FunctionResult.StringResult(String.valueOf(v.getDouble()));
             }
 
             if (functionResult instanceof FunctionResult.IntResult v) {
-                fResult = new FunctionResult.BooleanResult(v.getInt() != 0);
+                fResult = new FunctionResult.StringResult(String.valueOf(v.getInt()));
             }
 
-            if (functionResult instanceof FunctionResult.StringResult v) {
-                fResult = new FunctionResult.BooleanResult(Boolean.parseBoolean(v.getString()));
+            if (functionResult instanceof FunctionResult.BooleanResult v) {
+                fResult = new FunctionResult.StringResult(String.valueOf(v.getBoolean()));
             }
 
             if (functionResult instanceof FunctionResult.ObjectResult v) {
-                if (VariableUtil.isBoolean(v.getObject())) {
-                    fResult = new FunctionResult.BooleanResult((boolean) v.getObject());
-                }
+                fResult = new FunctionResult.StringResult(String.valueOf(v.getObject()));
             }
             // ...需要处理的结果
         } else {
@@ -73,13 +70,9 @@ public class BooleanFunction implements FastFunction {
                     .getVariableMap()
                     .containsKey((String) value)) {
                 Object v = spellContext.getVariableMap().get((String) value);
-                if (VariableUtil.isBoolean(v)) {
-                    fResult = new FunctionResult.BooleanResult((boolean) v);
-                }
+                fResult = new FunctionResult.StringResult(String.valueOf(v));
             } else {
-                if (VariableUtil.tryBoolean((String) value)) {
-                    fResult = new FunctionResult.BooleanResult(Boolean.parseBoolean((String) value));
-                }
+                fResult = new FunctionResult.StringResult(String.valueOf(value));
             }
         }
 
@@ -89,7 +82,7 @@ public class BooleanFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "boolean";
+        return "string";
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.system;
+package cn.origincraft.magic.function.system.control;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
@@ -13,8 +13,8 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-//Double值生成
-public class DoubleFunction implements FastFunction {
+
+public class PassFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         // 从参数获取上下文
@@ -31,10 +31,9 @@ public class DoubleFunction implements FastFunction {
         List<Object> os= fManager.parseParaExpression(para);
         // 判断参数个数 不满足要求则原样返回上下文
         if (os.size()<1){
-            return new FunctionResult.DoubleResult(0);
+            spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.FAILURE));
+            return new SpellContextResult(spellContext);
         }
-        FunctionResult fResult = new FunctionResult.DoubleResult(0);
-        // 对象获取
         Object value=os.get(0);
         // 判断参数是否为嵌套方法
         if (MethodUtil.isFunction(value)){
@@ -55,51 +54,11 @@ public class DoubleFunction implements FastFunction {
             spellContext=spellContextResult.getSpellContext();
             FunctionResult functionResult=spellContext.getExecuteReturn();
             // 判断值类型处理
-            // Double型
-            if (functionResult instanceof FunctionResult.DoubleResult){
-                fResult=functionResult;
-            }
             // Int型
             if (functionResult instanceof FunctionResult.IntResult v){
-                fResult=new FunctionResult.DoubleResult(v.getInt());
-            }
-            // String型
-            if (functionResult instanceof FunctionResult.StringResult v){
-                if (VariableUtil.tryDouble(v.getString())){
-                    fResult=new FunctionResult.DoubleResult(
-                            Double.parseDouble(v.getString()));
-                }
-            }
-            // Boolean型
-            if (functionResult instanceof FunctionResult.BooleanResult v){
-                boolean flag=v.getBoolean();
-                if (flag){
-                    fResult=new FunctionResult.DoubleResult(1);
-                }else {
-                    fResult=new FunctionResult.DoubleResult(0);
-                }
-            }
-            // Object型
-            if (functionResult instanceof FunctionResult.ObjectResult v){
-                if (VariableUtil.isDouble(v.getObject())){
-                    fResult=new FunctionResult.DoubleResult((double) v.getObject());
-                }
-                if (VariableUtil.isInt(v.getObject())){
-                    fResult=new FunctionResult.DoubleResult((int) v.getObject());
-                }
-                if (VariableUtil.isBoolean(v.getObject())){
-                    boolean flag= (boolean) v.getObject();
-                    if (flag){
-                        fResult=new FunctionResult.DoubleResult(1);
-                    }else {
-                        fResult=new FunctionResult.DoubleResult(0);
-                    }
-                }
-                if (VariableUtil.isString(v.getObject())){
-                    if (VariableUtil.tryDouble((String) v.getObject())){
-                        fResult=new FunctionResult.DoubleResult(Double.parseDouble((String) v.getObject()));
-                    }
-                }
+                spellContext.putExecutePass(v.getInt());
+                spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.SUCCESS));
+                return new SpellContextResult(spellContext);
             }
             // ...需要处理的结果
         }else {
@@ -109,39 +68,28 @@ public class DoubleFunction implements FastFunction {
                     .containsKey((String)value)){
                 // 提取变量值
                 Object v=spellContext.getVariableMap().get((String)value);
-                if (VariableUtil.isDouble(v)){
-                    fResult=new FunctionResult.DoubleResult((double) v);
-                }
-                if (VariableUtil.isInt(v)){
-                    fResult=new FunctionResult.DoubleResult((int) v);
-                }
-                if (VariableUtil.isBoolean(v)){
-                    boolean flag= (boolean) v;
-                    if (flag){
-                        fResult=new FunctionResult.DoubleResult(1);
-                    }else {
-                        fResult=new FunctionResult.DoubleResult(0);
-                    }
-                }
-                if (VariableUtil.isString(v)){
-                    if (VariableUtil.tryDouble((String) v)){
-                        fResult=new FunctionResult.DoubleResult(Double.parseDouble((String) v));
+                // 存入指定变量名
+                if (VariableUtil.tryInt((String) v)){
+                    if (Integer.parseInt(String.valueOf(v))>=0){
+                        spellContext.putExecutePass(Integer.parseInt((String) v));
                     }
                 }
                 // 不是变量 默认存为字符串
             }else {
-                if (VariableUtil.tryDouble((String) value)){
-                    fResult=new FunctionResult.DoubleResult(Double.parseDouble((String) value));
+                if (VariableUtil.tryInt((String) value)) {
+                    if (Integer.parseInt(String.valueOf(value)) >= 0) {
+                        spellContext.putExecutePass(Integer.parseInt((String) value));
+                    }
                 }
             }
         }
-        spellContext.putExecuteReturn(fResult);
+        spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.SUCCESS));
         return new SpellContextResult(spellContext);
     }
 
     @Override
     public String getName() {
-        return "double";
+        return "pass";
     }
 
     @Override

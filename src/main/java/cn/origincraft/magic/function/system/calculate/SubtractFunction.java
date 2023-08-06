@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.calculate;
+package cn.origincraft.magic.function.system.calculate;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;

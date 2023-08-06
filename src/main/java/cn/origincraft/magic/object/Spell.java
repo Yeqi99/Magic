@@ -47,6 +47,8 @@ public class Spell {
             spellContext = magicWords.execute(spellContext);
             // 记录执行语句为上一条语句
             spellContext.putExecutePrevious(index);
+            // 语句下标与上下文同步
+            index = spellContext.getExecuteNext();
             // 查看是否有跳过需求，有则处理
             if (spellContext.hasExecutePass()){
                 int passValue=spellContext.getExecutePass();
@@ -55,8 +57,6 @@ public class Spell {
                 }
                 spellContext.removeExecutePass();
             }
-            // 语句下标与上下文同步
-            index = spellContext.getExecuteNext();
         }
         return spellContext;
     }

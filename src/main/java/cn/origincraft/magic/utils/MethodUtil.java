@@ -38,5 +38,7 @@ public class MethodUtil {
     public static String getSpace(int num){
         return " ".repeat(num);
     }
-
+    public static String getEnter(int num){
+        return "\n".repeat(num);
+    }
 }

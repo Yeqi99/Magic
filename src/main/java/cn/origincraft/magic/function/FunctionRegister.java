@@ -1,12 +1,20 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.function.behavior.PrintFunction;
-import cn.origincraft.magic.function.calculate.*;
-import cn.origincraft.magic.function.constraint.BreakMagicWordsFunction;
-import cn.origincraft.magic.function.constraint.BreakSpellFunction;
-import cn.origincraft.magic.function.system.*;
-import cn.origincraft.magic.function.target.*;
+import cn.origincraft.magic.function.system.out.EnterFunction;
+import cn.origincraft.magic.function.system.out.PrintFunction;
+import cn.origincraft.magic.function.system.control.BreakMagicWordsFunction;
+import cn.origincraft.magic.function.system.control.BreakSpellFunction;
+import cn.origincraft.magic.function.system.control.JumpFunction;
+import cn.origincraft.magic.function.system.control.PassFunction;
+import cn.origincraft.magic.function.system.calculate.*;
+import cn.origincraft.magic.function.system.control.ForFunction;
+import cn.origincraft.magic.function.system.control.IfFunction;
+import cn.origincraft.magic.function.system.control.IfNotFunction;
+import cn.origincraft.magic.function.system.information.ExecuteCountFunction;
+import cn.origincraft.magic.function.system.information.MagicWordsIndexFunction;
+import cn.origincraft.magic.function.system.out.SpaceFunction;
+import cn.origincraft.magic.function.system.variable.*;
 
 public class FunctionRegister {
     public static void regDefault(MagicManager magicManager){
@@ -41,11 +49,31 @@ public class FunctionRegister {
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
+                .register(new EnterFunction(), "回车");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
                 .register(new BreakMagicWordsFunction(), "魔语停止");
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new BreakSpellFunction(), "魔咒停止");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new MagicWordsIndexFunction(), "魔语序号");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new ExecuteCountFunction(), "执行统计");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new JumpFunction(), "跳到");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new PassFunction(), "跳过");
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
@@ -74,5 +102,21 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new PowerFunction(), "幂","求方");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new IfFunction(), "如果是");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new ForFunction(), "当");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new IfNotFunction(), "如果否");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new CompareFunction(), "比较");
     }
 }

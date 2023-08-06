@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.calculate;
+package cn.origincraft.magic.function.system.calculate;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
@@ -13,18 +13,18 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-//加法运算
-public class AddFunction implements FastFunction {
+// 乘法运算
+public class MultiplyFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
-        SpellContext spellContext= MethodUtil.getSpellContext(parameter);
-        String para=spellContext.getExecuteParameter();
-        MagicManager mm=spellContext.getMagicManager();
-        List<Object> list=mm
+        SpellContext spellContext = MethodUtil.getSpellContext(parameter);
+        String para = spellContext.getExecuteParameter();
+        MagicManager mm = spellContext.getMagicManager();
+        List<Object> list = mm
                 .getFastExpression()
                 .getFunctionManager()
                 .parseParaExpression(para);
-        double result = 0;
+        double result = 1;
         for (Object o : list) {
             if (MethodUtil.isFunction(o)){
                 CallableFunction function= (CallableFunction) o;
@@ -32,63 +32,46 @@ public class AddFunction implements FastFunction {
                         (StringParameter)function.getParameter();
                 spellContext.putExecuteParameter(stringParameter.getString());
                 SpellContextResult spellContextResult =
-                        (SpellContextResult) function
-                                .getFunction()
-                                .call(
-                                        new SpellContextParameter(spellContext)
-                                );
+                        (SpellContextResult) function.getFunction().call(new SpellContextParameter(spellContext));
                 spellContext = spellContextResult.getSpellContext();
                 FunctionResult functionResult = spellContext.getExecuteReturn();
-                // 判断值类型处理
-                // Double型
                 if (functionResult instanceof FunctionResult.DoubleResult v){
-                    result+=v.getDouble();
+                    result *= v.getDouble();
                 }
-                // Int型
                 if (functionResult instanceof FunctionResult.IntResult v){
-                    result+=v.getInt();
+                    result *= v.getInt();
                 }
-                // String型
                 if (functionResult instanceof FunctionResult.StringResult v){
                     if (VariableUtil.tryDouble(v.getString())){
-                        result+=Double.parseDouble(v.getString());
+                        result *= Double.parseDouble(v.getString());
                     }
                 }
-                // Object型
                 if (functionResult instanceof FunctionResult.ObjectResult v){
                     if (VariableUtil.isDouble(v.getObject())){
-                        result += (double)v.getObject();
+                        result *= (double)v.getObject();
                     }
                     if (VariableUtil.isInt(v.getObject())){
-                        result += (int)v.getObject();
+                        result *= (int)v.getObject();
                     }
                 }
-                // Boolean型
-                if (functionResult instanceof FunctionResult.BooleanResult v){
-                    if (v.getBoolean()){
-                        result+=1;
-                    }
-                }
-            }else {
-                String value= (String) o;
-                if (spellContext
-                        .getVariableMap()
-                        .containsKey((String) value)) {
-                    Object v = spellContext.getVariableMap().get((String) value);
+            } else {
+                String value = (String) o;
+                if (spellContext.getVariableMap().containsKey(value)) {
+                    Object v = spellContext.getVariableMap().get(value);
                     if (VariableUtil.isDouble(v)) {
-                        result+=(double) v;
+                        result *= (double) v;
                     }
                     if (VariableUtil.isInt(v)){
-                        result+=(int) v;
+                        result *= (int) v;
                     }
                     if (VariableUtil.isString(v)){
                         if (VariableUtil.tryDouble((String) v)){
-                            result+=Double.parseDouble((String)v);
+                            result *= Double.parseDouble((String)v);
                         }
                     }
                 } else {
                     if (VariableUtil.tryDouble(value)) {
-                        result+=Double.parseDouble(value);
+                        result *= Double.parseDouble(value);
                     }
                 }
             }
@@ -104,7 +87,7 @@ public class AddFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "add";
+        return "multiply";
     }
 
     @Override

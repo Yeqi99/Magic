@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.calculate;
+package cn.origincraft.magic.function.system.calculate;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
@@ -13,7 +13,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 import java.util.List;
 
-public class ModulusFunction implements FastFunction {
+public class IntegerDivisionFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
@@ -26,7 +26,7 @@ public class ModulusFunction implements FastFunction {
 
         // 开始计算的标记
         boolean isFirst = true;
-        int result = 0;
+        int result = 1;
 
         for (Object o : list) {
             int value = 0;
@@ -59,7 +59,7 @@ public class ModulusFunction implements FastFunction {
                 isFirst = false;
             } else {
                 if (value != 0) {
-                    result %= value;
+                    result /= value;
                 } else {
                     // 这里应该处理除数为0的情况，可以抛出异常或返回特定结果
                     throw new ArithmeticException("Division by zero");
@@ -104,7 +104,7 @@ public class ModulusFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "modulus";
+        return "integerDivide";
     }
 
     @Override

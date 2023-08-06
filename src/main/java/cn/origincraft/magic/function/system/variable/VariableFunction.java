@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.target;
+package cn.origincraft.magic.function.system.variable;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
@@ -30,6 +30,7 @@ public class VariableFunction implements FastFunction {
         List<Object> os= fManager.parseParaExpression(para);
         // 判断参数个数 不满足要求则原样返回上下文
         if (os.size()<2){
+            spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.FAILURE));
             return new SpellContextResult(spellContext);
         }
         // 第一个参数固定为字符串 为变量名
@@ -58,22 +59,27 @@ public class VariableFunction implements FastFunction {
             // Double型
             if (functionResult instanceof FunctionResult.DoubleResult v){
                 spellContext.putVariable(varName, v.getDouble());
+                return new SpellContextResult(spellContext);
             }
             // Int型
             if (functionResult instanceof FunctionResult.IntResult v){
                 spellContext.putVariable(varName, v.getInt());
+                return new SpellContextResult(spellContext);
             }
             // String型
             if (functionResult instanceof FunctionResult.StringResult v){
                 spellContext.putVariable(varName, v.getString());
+                return new SpellContextResult(spellContext);
             }
             // Object型
             if (functionResult instanceof FunctionResult.ObjectResult v){
                 spellContext.putVariable(varName, v.getObject());
+                return new SpellContextResult(spellContext);
             }
             // Boolean型
             if (functionResult instanceof FunctionResult.BooleanResult v){
                 spellContext.putVariable(varName, v.getBoolean());
+                return new SpellContextResult(spellContext);
             }
             // ...需要处理的结果
         }else {
@@ -90,6 +96,7 @@ public class VariableFunction implements FastFunction {
                 spellContext.putVariable(varName, value);
             }
         }
+        spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.SUCCESS));
         return new SpellContextResult(spellContext);
     }
 
@@ -100,6 +107,6 @@ public class VariableFunction implements FastFunction {
 
     @Override
     public String getType() {
-        return "TARGET";
+        return "SYSTEM";
     }
 }

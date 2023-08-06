@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.calculate;
+package cn.origincraft.magic.function.system.calculate;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
@@ -13,7 +13,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 import java.util.List;
 
-public class IntegerDivisionFunction implements FastFunction {
+public class PowerFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
@@ -24,12 +24,13 @@ public class IntegerDivisionFunction implements FastFunction {
                 .getFunctionManager()
                 .parseParaExpression(para);
 
-        // 开始计算的标记
-        boolean isFirst = true;
-        int result = 1;
+        // 第一个参数是基数，第二个参数是指数
+        double base = 0;
+        double exponent = 0;
+        int count = 0;
 
         for (Object o : list) {
-            int value = 0;
+            double value = 0;
 
             if (MethodUtil.isFunction(o)) {
                 CallableFunction function = (CallableFunction) o;
@@ -48,26 +49,32 @@ public class IntegerDivisionFunction implements FastFunction {
                     Object v = spellContext.getVariableMap().get(sValue);
                     value = extractValueFromObject(v);
                 } else {
-                    if (VariableUtil.tryInt(sValue)) {
-                        value = Integer.parseInt(sValue);
+                    if (VariableUtil.tryDouble(sValue)) {
+                        value = Double.parseDouble(sValue);
                     }
                 }
             }
 
-            if (isFirst) {
-                result = value;
-                isFirst = false;
+            if (count == 0) {
+                base = value;
+            } else if (count == 1) {
+                exponent = value;
             } else {
-                if (value != 0) {
-                    result /= value;
-                } else {
-                    // 这里应该处理除数为0的情况，可以抛出异常或返回特定结果
-                    throw new ArithmeticException("Division by zero");
-                }
+                // 只解析前两个参数
+                break;
             }
+
+            count++;
         }
 
-        spellContext.putExecuteReturn(new FunctionResult.IntResult(result));
+        double result = Math.pow(base, exponent);
+
+        if (VariableUtil.hasFractionalPart(result)) {
+            spellContext.putExecuteReturn(new FunctionResult.DoubleResult(result));
+        } else {
+            spellContext.putExecuteReturn(new FunctionResult.IntResult((int) result));
+        }
+
         return new SpellContextResult(spellContext);
     }
 
@@ -104,7 +111,7 @@ public class IntegerDivisionFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "integerDivide";
+        return "power";
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.behavior;
+package cn.origincraft.magic.function.system.calculate;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
@@ -10,11 +10,11 @@ import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
+import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
-
-public class PrintFunction implements FastFunction {
-
+//加法运算
+public class AddFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
@@ -24,7 +24,7 @@ public class PrintFunction implements FastFunction {
                 .getFastExpression()
                 .getFunctionManager()
                 .parseParaExpression(para);
-        StringBuilder s= new StringBuilder();
+        double result = 0;
         for (Object o : list) {
             if (MethodUtil.isFunction(o)){
                 CallableFunction function= (CallableFunction) o;
@@ -42,43 +42,73 @@ public class PrintFunction implements FastFunction {
                 // 判断值类型处理
                 // Double型
                 if (functionResult instanceof FunctionResult.DoubleResult v){
-                    s.append(v.getDouble());
+                    result+=v.getDouble();
                 }
                 // Int型
                 if (functionResult instanceof FunctionResult.IntResult v){
-                    s.append(v.getInt());
+                    result+=v.getInt();
                 }
                 // String型
                 if (functionResult instanceof FunctionResult.StringResult v){
-                    s.append(v.getString());
+                    if (VariableUtil.tryDouble(v.getString())){
+                        result+=Double.parseDouble(v.getString());
+                    }
                 }
                 // Object型
                 if (functionResult instanceof FunctionResult.ObjectResult v){
-                    s.append(v.getObject());
+                    if (VariableUtil.isDouble(v.getObject())){
+                        result += (double)v.getObject();
+                    }
+                    if (VariableUtil.isInt(v.getObject())){
+                        result += (int)v.getObject();
+                    }
                 }
                 // Boolean型
                 if (functionResult instanceof FunctionResult.BooleanResult v){
-                    s.append(v.getBoolean());
+                    if (v.getBoolean()){
+                        result+=1;
+                    }
                 }
             }else {
-                String str= (String) o;
-                s.append(spellContext.getVariableMap().getOrDefault(str, str));
+                String value= (String) o;
+                if (spellContext
+                        .getVariableMap()
+                        .containsKey((String) value)) {
+                    Object v = spellContext.getVariableMap().get((String) value);
+                    if (VariableUtil.isDouble(v)) {
+                        result+=(double) v;
+                    }
+                    if (VariableUtil.isInt(v)){
+                        result+=(int) v;
+                    }
+                    if (VariableUtil.isString(v)){
+                        if (VariableUtil.tryDouble((String) v)){
+                            result+=Double.parseDouble((String)v);
+                        }
+                    }
+                } else {
+                    if (VariableUtil.tryDouble(value)) {
+                        result+=Double.parseDouble(value);
+                    }
+                }
             }
         }
 
-        if (s.length()>0){
-            System.out.print(s);
+        if (VariableUtil.hasFractionalPart(result)) {
+            spellContext.putExecuteReturn(new FunctionResult.DoubleResult(result));
+        } else {
+            spellContext.putExecuteReturn(new FunctionResult.IntResult((int) result));
         }
         return new SpellContextResult(spellContext);
     }
 
     @Override
     public String getName() {
-        return "print";
+        return "add";
     }
 
     @Override
     public String getType() {
-        return "BEHAVIOR";
+        return "CALCULATE";
     }
 }

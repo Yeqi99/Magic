@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.calculate;
+package cn.origincraft.magic.function.system.calculate;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
@@ -11,9 +11,10 @@ import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
-import java.util.List;
 
-public class PowerFunction implements FastFunction {
+import java.util.List;
+//除法运算
+public class DivideFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
@@ -24,10 +25,9 @@ public class PowerFunction implements FastFunction {
                 .getFunctionManager()
                 .parseParaExpression(para);
 
-        // 第一个参数是基数，第二个参数是指数
-        double base = 0;
-        double exponent = 0;
-        int count = 0;
+        // 开始计算的标记
+        boolean isFirst = true;
+        double result = 1;
 
         for (Object o : list) {
             double value = 0;
@@ -55,40 +55,44 @@ public class PowerFunction implements FastFunction {
                 }
             }
 
-            if (count == 0) {
-                base = value;
-            } else if (count == 1) {
-                exponent = value;
+            if (isFirst) {
+                result = value;
+                isFirst = false;
             } else {
-                // 只解析前两个参数
-                break;
+                if (value != 0) {
+                    result /= value;
+                } else {
+                    // 这里应该处理除数为0的情况，可以抛出异常或返回特定结果
+                    throw new ArithmeticException("Division by zero");
+                }
             }
-
-            count++;
         }
-
-        double result = Math.pow(base, exponent);
 
         if (VariableUtil.hasFractionalPart(result)) {
             spellContext.putExecuteReturn(new FunctionResult.DoubleResult(result));
         } else {
             spellContext.putExecuteReturn(new FunctionResult.IntResult((int) result));
         }
-
         return new SpellContextResult(spellContext);
     }
 
-    private int extractValueFromResult(FunctionResult functionResult) {
-        int value = 0;
+    private double extractValueFromResult(FunctionResult functionResult) {
+        double value = 0;
+        if (functionResult instanceof FunctionResult.DoubleResult v){
+            value = v.getDouble();
+        }
         if (functionResult instanceof FunctionResult.IntResult v){
             value = v.getInt();
         }
         if (functionResult instanceof FunctionResult.StringResult v){
-            if (VariableUtil.tryInt(v.getString())) {
-                value = Integer.parseInt(v.getString());
+            if (VariableUtil.tryDouble(v.getString())){
+                value = Double.parseDouble(v.getString());
             }
         }
         if (functionResult instanceof FunctionResult.ObjectResult v){
+            if (VariableUtil.isDouble(v.getObject())){
+                value = (double)v.getObject();
+            }
             if (VariableUtil.isInt(v.getObject())){
                 value = (int)v.getObject();
             }
@@ -96,22 +100,26 @@ public class PowerFunction implements FastFunction {
         return value;
     }
 
-    private int extractValueFromObject(Object object) {
-        int value = 0;
-        if (VariableUtil.isInt(object)) {
+    private double extractValueFromObject(Object object) {
+        double value = 0;
+        if (VariableUtil.isDouble(object)) {
+            value = (double) object;
+        }
+        if (VariableUtil.isInt(object)){
             value = (int) object;
         }
-        if (VariableUtil.isString(object)) {
-            if (VariableUtil.tryInt((String) object)) {
-                value = Integer.parseInt((String) object);
+        if (VariableUtil.isString(object)){
+            if (VariableUtil.tryDouble((String) object)){
+                value = Double.parseDouble((String) object);
             }
         }
         return value;
     }
 
+
     @Override
     public String getName() {
-        return "power";
+        return "divide";
     }
 
     @Override

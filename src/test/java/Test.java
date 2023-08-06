@@ -11,8 +11,8 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList = new ArrayList<>();
-        testList.add("var(i 5) var(j double(int(10)))");
-        testList.add("print(space(10) int(10) space(10) 相除(int(5) 2 int(3)))");
+        testList.add("变量(控制变量 0)");
+        testList.add("如果是(比较(控制变量 < 100) 跳到(魔语序号())) 显示(控制变量 回车(1)) 变量(控制变量 相加(控制变量 1))");
         Spell spell = new Spell(testList, magicManager);
         spell.execute(new HashMap<>(), new HashMap<>());
     }

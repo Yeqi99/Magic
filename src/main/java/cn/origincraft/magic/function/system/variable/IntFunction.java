@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.system;
+package cn.origincraft.magic.function.system.variable;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;

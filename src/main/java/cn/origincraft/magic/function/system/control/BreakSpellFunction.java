@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.constraint;
+package cn.origincraft.magic.function.system.control;
 
 import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
@@ -12,6 +12,7 @@ public class BreakSpellFunction implements FastFunction {
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         spellContext.putExecuteBreak(true);
+        spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.SUCCESS));
         return new SpellContextResult(spellContext);
     }
 
@@ -22,6 +23,6 @@ public class BreakSpellFunction implements FastFunction {
 
     @Override
     public String getType() {
-        return "CONSTRAINT";
+        return "SYSTEM";
     }
 }

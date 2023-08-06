@@ -4,6 +4,7 @@ import cn.origincraft.magic.function.FunctionRegister;
 import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MagicManager {
@@ -18,6 +19,9 @@ public class MagicManager {
     private int constraintPriority=30;
     public MagicManager(){
         init();
+    }
+    public List<String> getFunctionsRealNames(){
+        return getFastExpression().getFunctionManager().getFunctionRealNames();
     }
 
     public void init(){
