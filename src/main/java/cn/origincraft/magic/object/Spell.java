@@ -18,12 +18,9 @@ public class Spell {
             magicWordsList.add(new MagicWords(s,magicManager));
         }
     }
-    public SpellContext execute(Map<String, Object> objectMap,Map<String, Object> variableMap) {
+    public SpellContext execute(ContextMap contextMap) {
         spellContext = new SpellContext();
-        // 对象字典初始化
-        spellContext.getObjectMap().putAll(objectMap);
-        // 变量字典初始化
-        spellContext.getVariableMap().putAll(variableMap);
+        spellContext.setContextMap(contextMap);
         spellContext.putMagicManager(getMagicManager());
         int index = 0;
         while (index < magicWordsList.size()) {

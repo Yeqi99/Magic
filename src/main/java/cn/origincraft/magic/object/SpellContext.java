@@ -8,12 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SpellContext {
-    // 目标字典
-    private Map<String, Object> objectMap = new HashMap<>();
+    private ContextMap contextMap;
+
     // 执行字典
     private Map<String, Object> executeResultMap = new HashMap<>();
-    // 变量字典
-    private Map<String, Object> variableMap = new HashMap<>();
+
 
     public SpellContext() {
         putExecuteNext(0);
@@ -211,27 +210,35 @@ public class SpellContext {
     }
 
     public Map<String, Object> getVariableMap() {
-        return variableMap;
+        return contextMap.getVariableMap();
     }
 
     public void setVariableMap(Map<String, Object> variableMap) {
-        this.variableMap = variableMap;
+        contextMap.setVariableMap(variableMap);;
     }
 
     public Map<String, Object> getObjectMap() {
-        return objectMap;
+        return contextMap.getObjectMap();
     }
 
     public void setObjectMap(Map<String, Object> objectMap) {
-        this.objectMap = objectMap;
+        contextMap.setObjectMap(objectMap);
     }
     public void putObject(String key,Object value){
-        getObjectMap().put(key,value);
+        contextMap.putObject(key,value);
     }
     public void putVariable(String key,Object value){
-        getVariableMap().put(key,value);
+        contextMap.putVariable(key,value);
     }
     public void putExecuteResult(String key,Object value){
         getExecuteResultMap().put(key,value);
+    }
+
+    public ContextMap getContextMap() {
+        return contextMap;
+    }
+
+    public void setContextMap(ContextMap contextMap) {
+        this.contextMap = contextMap;
     }
 }
