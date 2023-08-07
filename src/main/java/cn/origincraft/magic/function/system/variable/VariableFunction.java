@@ -81,6 +81,34 @@ public class VariableFunction implements FastFunction {
                 spellContext.putVariable(varName, v.getBoolean());
                 return new SpellContextResult(spellContext);
             }
+            // 结果型
+            if (functionResult instanceof FunctionResult.DefaultResult v){
+                if (v.getStatus()==FunctionResult.Status.FAILURE) {
+                    spellContext.putVariable(varName, false);
+                    return new SpellContextResult(spellContext);
+                }else if (v.getStatus()==FunctionResult.Status.SUCCESS){
+                    spellContext.putVariable(varName, true);
+                    return new SpellContextResult(spellContext);
+                }else {
+                    spellContext.putVariable(varName, null);
+                    return new SpellContextResult(spellContext);
+                }
+            }
+            // List型
+            if (functionResult instanceof FunctionResult.ListResult v){
+                spellContext.putVariable(varName, v.getList());
+                return new SpellContextResult(spellContext);
+            }
+            // Map型
+            if (functionResult instanceof FunctionResult.MapResult v){
+                spellContext.putVariable(varName, v.getMap());
+                return new SpellContextResult(spellContext);
+            }
+            // Set型
+            if (functionResult instanceof FunctionResult.SetResult v){
+                spellContext.putVariable(varName, v.getSet());
+                return new SpellContextResult(spellContext);
+            }
             // ...需要处理的结果
         }else {
             // 如果不是嵌套方法 判断是否为变量

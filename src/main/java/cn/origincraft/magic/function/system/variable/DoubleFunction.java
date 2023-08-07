@@ -30,7 +30,7 @@ public class DoubleFunction implements FastFunction {
         // 解析当前参数 获得参数列表
         List<Object> os= fManager.parseParaExpression(para);
         // 判断参数个数 不满足要求则原样返回上下文
-        if (os.size()<1){
+        if (os.isEmpty()){
             return new FunctionResult.DoubleResult(0);
         }
         FunctionResult fResult = new FunctionResult.DoubleResult(0);

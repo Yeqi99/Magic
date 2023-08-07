@@ -12,9 +12,7 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList = new ArrayList<>();
-        testList.add("变量(控制变量 整数(输入(请输入循环次数)))");
-        testList.add("变量(i 1)");
-        testList.add("如果是(比较(i < 控制变量) 跳到(魔语序号()) )  print(i) 变量(i 相加(i 1))");
+        testList.add("print(add(set(1 2 3 4 ) list(4 5 6 1)))");
         Spell spell = new Spell(testList, magicManager);
         spell.execute(new HashMap<>(), new HashMap<>());
     }

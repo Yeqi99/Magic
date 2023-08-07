@@ -123,5 +123,17 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new CompareFunction(), "比较");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new ListFunction(), "列表");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new DictionaryFunction(), "字典");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new SetFunction(), "集合");
     }
 }

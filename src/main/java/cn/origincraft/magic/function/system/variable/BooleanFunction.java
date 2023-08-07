@@ -25,7 +25,7 @@ public class BooleanFunction implements FastFunction {
                 .getFunctionManager();
         List<Object> os = fManager.parseParaExpression(para);
 
-        if (os.size() < 1) {
+        if (os.isEmpty()) {
             return new FunctionResult.BooleanResult(false);
         }
 

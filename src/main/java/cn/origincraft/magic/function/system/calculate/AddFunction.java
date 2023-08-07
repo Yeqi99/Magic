@@ -12,7 +12,8 @@ import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
 
-import java.util.List;
+import java.util.*;
+
 //加法运算
 public class AddFunction implements FastFunction {
     @Override
@@ -25,6 +26,9 @@ public class AddFunction implements FastFunction {
                 .getFunctionManager()
                 .parseParaExpression(para);
         double result = 0;
+        List<Object> maybeResult=new ArrayList<>();
+        Map<String,Object> maybeMapResult=new HashMap<>();
+        Set<Object> maybeSetResult=new HashSet<>();
         for (Object o : list) {
             if (MethodUtil.isFunction(o)){
                 CallableFunction function= (CallableFunction) o;
@@ -54,6 +58,10 @@ public class AddFunction implements FastFunction {
                         result+=Double.parseDouble(v.getString());
                     }
                 }
+                // List型
+                if (functionResult instanceof FunctionResult.ListResult v){
+                    maybeResult.addAll(v.getList());
+                }
                 // Object型
                 if (functionResult instanceof FunctionResult.ObjectResult v){
                     if (VariableUtil.isDouble(v.getObject())){
@@ -68,6 +76,14 @@ public class AddFunction implements FastFunction {
                     if (v.getBoolean()){
                         result+=1;
                     }
+                }
+                // Map型
+                if (functionResult instanceof FunctionResult.MapResult v){
+                    maybeMapResult.putAll(v.getMap());
+                }
+                // Set型
+                if (functionResult instanceof FunctionResult.SetResult v){
+                    maybeSetResult.addAll(v.getSet());
                 }
             }else {
                 String value= (String) o;
@@ -86,6 +102,20 @@ public class AddFunction implements FastFunction {
                             result+=Double.parseDouble((String)v);
                         }
                     }
+                    if (v instanceof List){
+                        maybeResult.addAll((List<?>) v);
+                    }
+                    if (VariableUtil.isBoolean(v)){
+                        if ((boolean) v){
+                            result+=1;
+                        }
+                    }
+                    if (v instanceof Map){
+                        maybeMapResult.putAll((Map<? extends String, ?>) v);
+                    }
+                    if (v instanceof Set){
+                        maybeSetResult.addAll((Set<?>) v);
+                    }
                 } else {
                     if (VariableUtil.tryDouble(value)) {
                         result+=Double.parseDouble(value);
@@ -93,8 +123,17 @@ public class AddFunction implements FastFunction {
                 }
             }
         }
-
-        if (VariableUtil.hasFractionalPart(result)) {
+        if (!maybeMapResult.isEmpty()) {
+            spellContext.putExecuteReturn(new FunctionResult.MapResult(maybeMapResult));
+        } else if (!maybeSetResult.isEmpty() && !maybeResult.isEmpty()) {
+            Set<Object> combinedSet = new HashSet<>(maybeSetResult);
+            combinedSet.addAll(maybeResult);
+            spellContext.putExecuteReturn(new FunctionResult.SetResult(combinedSet));
+        } else if (!maybeSetResult.isEmpty()) {
+            spellContext.putExecuteReturn(new FunctionResult.SetResult(maybeSetResult));
+        } else if (!maybeResult.isEmpty()) {
+            spellContext.putExecuteReturn(new FunctionResult.ListResult(maybeResult));
+        } else if (VariableUtil.hasFractionalPart(result)) {
             spellContext.putExecuteReturn(new FunctionResult.DoubleResult(result));
         } else {
             spellContext.putExecuteReturn(new FunctionResult.IntResult((int) result));

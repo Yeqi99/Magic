@@ -60,13 +60,35 @@ public class PrintFunction implements FastFunction {
                 if (functionResult instanceof FunctionResult.BooleanResult v){
                     s.append(v.getBoolean());
                 }
+                // Map型
+                if (functionResult instanceof FunctionResult.MapResult v){
+                    s.append(v.getMap());
+                }
+                // List型
+                if (functionResult instanceof FunctionResult.DefaultResult v){
+                    if (v.getStatus()== FunctionResult.Status.SUCCESS){
+                        s.append(true);
+                    }else if (v.getStatus()== FunctionResult.Status.FAILURE){
+                        s.append(false);
+                    }else {
+                        s.append("null");
+                    }
+                }
+                // List型
+                if (functionResult instanceof FunctionResult.ListResult v){
+                    s.append(v.getList());
+                }
+                // Set型
+                if (functionResult instanceof FunctionResult.SetResult v){
+                    s.append(v.getSet());
+                }
             }else {
                 String str= (String) o;
                 s.append(spellContext.getVariableMap().getOrDefault(str, str));
             }
         }
 
-        if (s.length()>0){
+        if (!s.isEmpty()){
             System.out.print(s);
         }
         spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.SUCCESS));

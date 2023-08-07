@@ -1,5 +1,9 @@
 package cn.origincraft.magic.interpreter.fastexpression.functions;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 public abstract class FunctionResult {
     public enum Status {
         SUCCESS,
@@ -72,6 +76,42 @@ public abstract class FunctionResult {
         }
 
         public boolean getBoolean() {
+            return value;
+        }
+    }
+
+    public static class ListResult extends FunctionResult {
+        private final List<Object> value;
+
+        public ListResult(List<Object> value) {
+            this.value = value;
+        }
+
+        public List<Object> getList() {
+            return value;
+        }
+    }
+
+    public static class MapResult extends FunctionResult {
+        private final Map<String,Object> value;
+
+        public MapResult(Map<String,Object> value) {
+            this.value = value;
+        }
+
+        public Map<String,Object> getMap() {
+            return value;
+        }
+    }
+
+    public static class SetResult extends FunctionResult {
+        private final Set<Object> value;
+
+        public SetResult(Set<Object> value) {
+            this.value = value;
+        }
+
+        public Set<Object> getSet() {
             return value;
         }
     }
