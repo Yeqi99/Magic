@@ -2,6 +2,8 @@ package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.system.in.InputFunction;
+import cn.origincraft.magic.function.system.information.HasObjectFunction;
+import cn.origincraft.magic.function.system.information.HasVariableFunction;
 import cn.origincraft.magic.function.system.string.EnterFunction;
 import cn.origincraft.magic.function.system.out.PrintFunction;
 import cn.origincraft.magic.function.system.control.BreakMagicWordsFunction;
@@ -22,7 +24,11 @@ public class FunctionRegister {
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
-                .register(new VariableFunction(), "var", "变量");
+                .register(new VariableFunction(), "var","v", "变量");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new ObjectFunction(), "obj","o", "对象");
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
@@ -135,5 +141,21 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new SetFunction(), "集合");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new HasObjectFunction(), "存在对象");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new HasVariableFunction(), "存在变量");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new GetObjectFunction(), "获取对象");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new GetVariableFunction(), "获取变量");
     }
 }
