@@ -35,6 +35,10 @@ public class MagicManager {
         return fastExpression != null;
     }
 
+    public boolean addAlias(String realName, String alias) {
+        return getFastExpression().getAliasesManager().addAlias(realName, alias);
+    }
+
     public FastExpression getFastExpression() {
         return fastExpression;
     }
