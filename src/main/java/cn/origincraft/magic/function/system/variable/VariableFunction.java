@@ -130,7 +130,7 @@ public class VariableFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "VariableFunction";
+        return "variable";
     }
 
     @Override

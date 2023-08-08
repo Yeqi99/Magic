@@ -1,5 +1,7 @@
 package cn.origincraft.magic.interpreter.fastexpression.functions;
 
+import cn.origincraft.magic.object.Spell;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -112,6 +114,17 @@ public abstract class FunctionResult {
         }
 
         public Set<Object> getSet() {
+            return value;
+        }
+    }
+    public static class SpellResult extends FunctionResult {
+        private final Spell value;
+
+        public SpellResult(Spell value) {
+            this.value = value;
+        }
+
+        public Spell getSpell() {
             return value;
         }
     }
