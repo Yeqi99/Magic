@@ -4,6 +4,7 @@ import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 
 public class ExecuteSpellFunction implements FastFunction {
@@ -12,7 +13,7 @@ public class ExecuteSpellFunction implements FastFunction {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para = spellContext.getExecuteParameter();
 
-        return null;
+        return new SpellContextResult(spellContext);
     }
 
     @Override

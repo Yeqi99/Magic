@@ -1,5 +1,6 @@
 package cn.origincraft.magic.interpreter.fastexpression.functions;
 
+import cn.origincraft.magic.object.MagicWords;
 import cn.origincraft.magic.object.Spell;
 
 import java.util.List;
@@ -125,6 +126,17 @@ public abstract class FunctionResult {
         }
 
         public Spell getSpell() {
+            return value;
+        }
+    }
+    public static class MagicWordsResult extends FunctionResult {
+        private final MagicWords value;
+
+        public MagicWordsResult(MagicWords value) {
+            this.value = value;
+        }
+
+        public MagicWords getMagicWords() {
             return value;
         }
     }
