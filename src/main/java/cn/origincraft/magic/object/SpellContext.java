@@ -4,14 +4,14 @@ package cn.origincraft.magic.object;
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SpellContext {
     private ContextMap contextMap;
 
     // 执行字典
-    private Map<String, Object> executeResultMap = new HashMap<>();
+    private ConcurrentHashMap<String, Object> executeResultMap = new ConcurrentHashMap<>();
 
 
     public SpellContext() {
@@ -205,7 +205,7 @@ public class SpellContext {
         return executeResultMap;
     }
 
-    public void setExecuteResultMap(Map<String, Object> executeResultMap) {
+    public void setExecuteResultMap(ConcurrentHashMap<String, Object> executeResultMap) {
         this.executeResultMap = executeResultMap;
     }
 
@@ -213,7 +213,7 @@ public class SpellContext {
         return contextMap.getVariableMap();
     }
 
-    public void setVariableMap(Map<String, Object> variableMap) {
+    public void setVariableMap(ConcurrentHashMap<String, Object> variableMap) {
         contextMap.setVariableMap(variableMap);;
     }
 
@@ -221,7 +221,7 @@ public class SpellContext {
         return contextMap.getObjectMap();
     }
 
-    public void setObjectMap(Map<String, Object> objectMap) {
+    public void setObjectMap(ConcurrentHashMap<String, Object> objectMap) {
         contextMap.setObjectMap(objectMap);
     }
     public void putObject(String key,Object value){

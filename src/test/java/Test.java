@@ -6,25 +6,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class Test {
-    private static Map<String,Object> objectMap=new HashMap<>();
-    private static Map<String,Object> variableMap=new HashMap<>();
+    private static ConcurrentHashMap<String, Object> objectMap=new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, Object> variableMap=new ConcurrentHashMap<>();
     public static void main(String[] args) {
         MagicManager magicManager = new MagicManager();
         magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList = new ArrayList<>();
-        testList.add("print(abc)");
+        testList.add("var(i int(0)) var(j int(10))");
+        testList.add("if(compare(i < j) jump(魔语序号())) print(i) var( i add(i 1) ) )");
         Spell spell = new Spell(testList, magicManager);
         ContextMap contextMap=new ContextMap() {
             @Override
-            public Map<String, Object> getObjectMap() {
+            public ConcurrentHashMap<String, Object> getObjectMap() {
                 return Test.getObjectMap();
             }
 
             @Override
-            public Map<String, Object> getVariableMap() {
+            public ConcurrentHashMap<String, Object> getVariableMap() {
                 return Test.getVariableMap();
             }
 
@@ -39,36 +41,38 @@ public class Test {
             }
 
             @Override
-            public void setObjectMap(Map<String, Object> objectMap) {
+            public void setObjectMap(ConcurrentHashMap<String, Object> objectMap) {
                 Test.setObjectMap(objectMap);
             }
 
             @Override
-            public void setVariableMap(Map<String, Object> variableMap) {
+            public void setVariableMap(ConcurrentHashMap<String, Object> variableMap) {
                 Test.setVariableMap(variableMap);
             }
         };
         contextMap.putObject("a", "Hello World!" );
         contextMap.putObject("test", spell);
         List<String> testList2 = new ArrayList<>();
-        testList2.add("spell(test)");
+        testList2.add("aspell(test)");
+
         Spell spell2 = new Spell(testList2, magicManager);
         spell2.execute(contextMap);
     }
 
-    public static Map<String, Object> getObjectMap() {
+
+    public static ConcurrentHashMap<String, Object> getObjectMap() {
         return objectMap;
     }
 
-    public static void setObjectMap(Map<String, Object> objectMap) {
+    public static void setObjectMap(ConcurrentHashMap<String, Object> objectMap) {
         Test.objectMap = objectMap;
     }
 
-    public static Map<String, Object> getVariableMap() {
+    public static ConcurrentHashMap<String, Object> getVariableMap() {
         return variableMap;
     }
 
-    public static void setVariableMap(Map<String, Object> variableMap) {
+    public static void setVariableMap(ConcurrentHashMap<String, Object> variableMap) {
         Test.variableMap = variableMap;
     }
 }

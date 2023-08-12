@@ -1,16 +1,17 @@
 package cn.origincraft.magic.object;
 
-import java.util.Map;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 public interface ContextMap {
-    Map<String, Object> getObjectMap();
-    Map<String, Object> getVariableMap();
+    ConcurrentHashMap<String, Object> getObjectMap();
+    ConcurrentHashMap<String, Object> getVariableMap();
 
     void putObject(String key, Object value);
 
     void putVariable(String key, Object value);
 
-    void setObjectMap(Map<String, Object> objectMap);
+    void setObjectMap(ConcurrentHashMap<String, Object> objectMap);
 
-    void setVariableMap(Map<String, Object> variableMap);
+    void setVariableMap(ConcurrentHashMap<String, Object> variableMap);
 }

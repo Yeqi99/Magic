@@ -11,6 +11,8 @@ import cn.origincraft.magic.function.system.calculate.*;
 import cn.origincraft.magic.function.system.information.ExecuteCountFunction;
 import cn.origincraft.magic.function.system.information.MagicWordsIndexFunction;
 import cn.origincraft.magic.function.system.string.SpaceFunction;
+import cn.origincraft.magic.function.system.thread.AsyncDaemonExecuteSpellFunction;
+import cn.origincraft.magic.function.system.thread.AsyncExecuteSpellFunction;
 import cn.origincraft.magic.function.system.variable.*;
 
 public class FunctionRegister {
@@ -155,5 +157,13 @@ public class FunctionRegister {
                 .getFastExpression()
                 .getFunctionManager()
                 .register(new ExecuteSpellFunction(), "spell","魔咒");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new AsyncExecuteSpellFunction(), "aspell","异步魔咒");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new AsyncDaemonExecuteSpellFunction(), "adspell","守护异步魔咒");
     }
 }
