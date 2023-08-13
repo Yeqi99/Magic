@@ -79,22 +79,15 @@ public class CompareFunction implements FastFunction {
     }
     private boolean compareValues(double firstValue, String compareType, double secondValue) {
         try {
-            switch (compareType) {
-                case "==":
-                    return Double.compare(firstValue, secondValue) == 0;
-                case ">":
-                    return Double.compare(firstValue, secondValue) > 0;
-                case ">=":
-                    return Double.compare(firstValue, secondValue) >= 0;
-                case "<":
-                    return Double.compare(firstValue, secondValue) < 0;
-                case "<=":
-                    return Double.compare(firstValue, secondValue) <= 0;
-                case "!=":
-                    return Double.compare(firstValue, secondValue) != 0;
-                default:
-                    return false;
-            }
+            return switch (compareType) {
+                case "==" -> Double.compare(firstValue, secondValue) == 0;
+                case ">" -> Double.compare(firstValue, secondValue) > 0;
+                case ">=" -> Double.compare(firstValue, secondValue) >= 0;
+                case "<" -> Double.compare(firstValue, secondValue) < 0;
+                case "<=" -> Double.compare(firstValue, secondValue) <= 0;
+                case "!=" -> Double.compare(firstValue, secondValue) != 0;
+                default -> false;
+            };
         } catch (Exception e) {
             return false;
         }

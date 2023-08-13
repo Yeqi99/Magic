@@ -18,7 +18,7 @@ public class BreakSpellFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "BreakSpell";
+        return "breakSpell";
     }
 
     @Override

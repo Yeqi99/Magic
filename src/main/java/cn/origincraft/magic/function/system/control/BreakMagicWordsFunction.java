@@ -18,7 +18,7 @@ public class BreakMagicWordsFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return "BreakMagicWordsFunction";
+        return "breakMagicWords";
     }
 
     @Override
