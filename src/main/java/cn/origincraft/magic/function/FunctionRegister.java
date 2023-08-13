@@ -116,7 +116,11 @@ public class FunctionRegister {
         magicManager
                 .getFastExpression()
                 .getFunctionManager()
-                .register(new ForFunction(), "当");
+                .register(new ForFunction(), "控制循环");
+        magicManager
+                .getFastExpression()
+                .getFunctionManager()
+                .register(new WhileFunction(), "当");
         magicManager
                 .getFastExpression()
                 .getFunctionManager()

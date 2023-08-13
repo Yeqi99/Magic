@@ -19,11 +19,11 @@ public class HasVariableFunction implements FastFunction {
 
     @Override
     public String getName() {
-        return null;
+        return "hasVariable";
     }
 
     @Override
     public String getType() {
-        return null;
+        return "SYSTEM";
     }
 }

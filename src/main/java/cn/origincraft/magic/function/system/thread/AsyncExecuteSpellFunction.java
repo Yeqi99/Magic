@@ -51,7 +51,6 @@ public class AsyncExecuteSpellFunction implements FastFunction {
                 Thread asyncThread = new Thread(() -> {
                     spell.execute(clone.getContextMap());
                 });
-                asyncThread.setDaemon(true);
                 asyncThread.start();
             }
 
@@ -61,7 +60,6 @@ public class AsyncExecuteSpellFunction implements FastFunction {
                     Thread asyncThread = new Thread(() -> {
                         spell.execute(clone.getContextMap());
                     });
-                    asyncThread.setDaemon(true);
                     asyncThread.start();
                 }
             }
@@ -76,7 +74,6 @@ public class AsyncExecuteSpellFunction implements FastFunction {
                     Thread asyncThread = new Thread(() -> {
                         spell.execute(clone.getContextMap());
                     });
-                    asyncThread.setDaemon(true);
                     asyncThread.start();
                 }
             }

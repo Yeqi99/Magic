@@ -14,10 +14,11 @@ public class Test {
     private static ConcurrentHashMap<String, Object> variableMap=new ConcurrentHashMap<>();
     public static void main(String[] args) {
         MagicManager magicManager = new MagicManager();
-        magicManager.getFastExpression().getFunctionManager().register(new TestFunction());
         List<String> testList = new ArrayList<>();
+
         testList.add("var(i int(0)) var(j int(10))");
-        testList.add("if(compare(i < j) jump(魔语序号())) print(i) var( i add(i 1) ) )");
+        testList.add("while(compare(i < j) print(i) var( i add(i 1) ) )");
+       // testList.add("if(compare(i < j) jump(魔语序号())) print(i) var( i add(i 1) ) )");
         Spell spell = new Spell(testList, magicManager);
         ContextMap contextMap=new ContextMap() {
             @Override
@@ -53,7 +54,9 @@ public class Test {
         contextMap.putObject("a", "Hello World!" );
         contextMap.putObject("test", spell);
         List<String> testList2 = new ArrayList<>();
+        testList2.add("print(abc)");
         testList2.add("aspell(test)");
+        testList2.add("print(a i)");
 
         Spell spell2 = new Spell(testList2, magicManager);
         spell2.execute(contextMap);

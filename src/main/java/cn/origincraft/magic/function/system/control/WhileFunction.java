@@ -13,7 +13,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 
 import java.util.List;
 
-public class IfNotFunction implements FastFunction {
+public class WhileFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
@@ -23,26 +23,28 @@ public class IfNotFunction implements FastFunction {
                 .getFastExpression()
                 .getFunctionManager()
                 .parseParaExpression(para);
-        if (list.isEmpty()) {
+        if (list.size() < 2) {
             return new SpellContextResult(spellContext);
         }
 
-        Object condition = list.get(0);
-        boolean result = true;
-
-        if (MethodUtil.isFunction(condition)) {
-            CallableFunction conditionFunction = (CallableFunction) condition;
-            StringParameter conditionParameter = (StringParameter) conditionFunction.getParameter();
-            spellContext.putExecuteParameter(conditionParameter.getString());
-            SpellContextResult conditionResult =
-                    (SpellContextResult) conditionFunction.getFunction().call(new SpellContextParameter(spellContext));
-            FunctionResult functionResult = conditionResult.getSpellContext().getExecuteReturn();
-            if (functionResult instanceof FunctionResult.BooleanResult v) {
-                result = !v.getBoolean();
+        while (true) {
+            Object condition = list.get(0);
+            if (MethodUtil.isFunction(condition)) {
+                CallableFunction conditionFunction = (CallableFunction) condition;
+                StringParameter conditionParameter = (StringParameter) conditionFunction.getParameter();
+                spellContext.putExecuteParameter(conditionParameter.getString());
+                SpellContextResult conditionResult =
+                        (SpellContextResult) conditionFunction.getFunction().call(new SpellContextParameter(spellContext));
+                FunctionResult functionResult = conditionResult.getSpellContext().getExecuteReturn();
+                if (functionResult instanceof FunctionResult.BooleanResult v) {
+                    if (!v.getBoolean()) {
+                        break;
+                    }
+                }
+            } else {
+                break;
             }
-        }
 
-        if (result) {
             for (int i = 1; i < list.size(); i++) {
                 Object o = list.get(i);
                 if (MethodUtil.isFunction(o)) {
@@ -54,18 +56,16 @@ public class IfNotFunction implements FastFunction {
             }
         }
 
-        spellContext.putExecuteReturn(new FunctionResult.BooleanResult(!result));
-
         return new SpellContextResult(spellContext);
     }
 
     @Override
     public String getName() {
-        return "ifnot";
+        return "while";
     }
 
     @Override
     public String getType() {
-        return "CONTROL";
+        return "SYSTEM";
     }
 }

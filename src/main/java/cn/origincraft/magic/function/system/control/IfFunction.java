@@ -23,7 +23,7 @@ public class IfFunction implements FastFunction {
                 .getFastExpression()
                 .getFunctionManager()
                 .parseParaExpression(para);
-        if (list.size() < 1) {
+        if (list.isEmpty()) {
             return new SpellContextResult(spellContext);
         }
 
