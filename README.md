@@ -1,3 +1,5 @@
+## 使用WIKI
+[中文](https://wiki.originmc.cn/zh/Magic)
 ## 开源协议
 
 本项目采用 [GNU通用公共许可证 3.0 (GNU GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.en.html)。
