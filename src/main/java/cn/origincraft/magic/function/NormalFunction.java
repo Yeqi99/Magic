@@ -14,6 +14,12 @@ import cn.origincraft.magic.utils.MethodUtil;
 import java.util.*;
 
 public abstract class NormalFunction implements FastFunction {
+    /**
+     * 当方法被调用时执行的代码
+     * @param spellContext 上下文
+     * @param args 方法参数列表
+     * @return 方法返回值
+     */
     abstract FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args);
 
     @Override
