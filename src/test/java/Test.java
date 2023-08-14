@@ -1,4 +1,5 @@
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.system.out.PrintFunction;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
 
