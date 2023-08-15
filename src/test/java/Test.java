@@ -15,10 +15,11 @@ public class Test {
     private static ConcurrentHashMap<String, Object> variableMap=new ConcurrentHashMap<>();
     public static void main(String[] args) {
         MagicManager magicManager = new MagicManager();
+
+
         List<String> testList = new ArrayList<>();
 
-        testList.add("var(i int(0)) var(j int(10))");
-        testList.add("while(compare(i < j) print(i) var( i add(i 1) ) )");
+        testList.add("打印(你好 空格() 世界)");
        // testList.add("if(compare(i < j) jump(魔语序号())) print(i) var( i add(i 1) ) )");
         Spell spell = new Spell(testList, magicManager);
         ContextMap contextMap=new ContextMap() {
@@ -60,7 +61,7 @@ public class Test {
         testList2.add("print(a i)");
 
         Spell spell2 = new Spell(testList2, magicManager);
-        spell2.execute(contextMap);
+        spell.execute(contextMap);
     }
 
 
