@@ -20,7 +20,7 @@ public abstract class NormalFunction implements FastFunction {
      * @param args 方法参数列表
      * @return 方法返回值
      */
-    abstract FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args);
+    public abstract FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args);
 
     @Override
     public FunctionResult call(FunctionParameter parameter) {
