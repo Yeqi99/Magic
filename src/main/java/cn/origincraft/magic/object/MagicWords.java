@@ -2,11 +2,9 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
-import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
-import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.utils.MethodUtil;
-
+import dev.rgbmc.expression.functions.CallableFunction;
+import dev.rgbmc.expression.parameters.StringParameter;
 import java.util.List;
 
 public class MagicWords {
@@ -35,6 +33,7 @@ public class MagicWords {
         for (int i = 0; i < function.size(); i++) {
             long startTime = System.nanoTime();
             CallableFunction callableFunction = function.get(i);
+        for (CallableFunction callableFunction : function) {
             StringParameter stringParameter = (StringParameter) callableFunction.getParameter();
             spellContext.putExecuteParameter(stringParameter.getString());
             SpellContextResult spellContextResult =

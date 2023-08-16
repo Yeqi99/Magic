@@ -1,8 +1,7 @@
 package cn.origincraft.magic.object;
 
 
-import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
+import dev.rgbmc.expression.functions.FunctionParameter;
 
 public class SpellContextParameter extends FunctionParameter {
 

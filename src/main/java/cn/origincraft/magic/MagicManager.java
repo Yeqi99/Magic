@@ -1,8 +1,7 @@
 package cn.origincraft.magic;
 
 import cn.origincraft.magic.function.FunctionRegister;
-import cn.origincraft.magic.interpreter.fastexpression.FastExpression;
-
+import dev.rgbmc.expression.FastExpression;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

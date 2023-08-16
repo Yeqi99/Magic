@@ -1,19 +1,19 @@
 package cn.origincraft.magic.function.system.variable;
 
-import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
-import cn.origincraft.magic.interpreter.fastexpression.managers.FunctionManager;
-import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
-
+import dev.rgbmc.expression.functions.CallableFunction;
+import dev.rgbmc.expression.functions.FastFunction;
+import dev.rgbmc.expression.functions.FunctionParameter;
+import dev.rgbmc.expression.functions.FunctionResult;
+import dev.rgbmc.expression.managers.FunctionManager;
+import dev.rgbmc.expression.parameters.StringParameter;
 import java.util.List;
 //Boolean值生成
+
 public class BooleanFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {

@@ -1,7 +1,7 @@
 package cn.origincraft.magic.object;
 
 
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
+import dev.rgbmc.expression.functions.FunctionResult;
 
 public class SpellContextResult extends FunctionResult {
     private final SpellContext spellContext;
