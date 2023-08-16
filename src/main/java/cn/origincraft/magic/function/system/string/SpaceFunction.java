@@ -1,19 +1,19 @@
 package cn.origincraft.magic.function.system.string;
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
-import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
-
+import dev.rgbmc.expression.functions.CallableFunction;
+import dev.rgbmc.expression.functions.FastFunction;
+import dev.rgbmc.expression.functions.FunctionParameter;
+import dev.rgbmc.expression.functions.FunctionResult;
+import dev.rgbmc.expression.parameters.StringParameter;
 import java.util.List;
 // 生成空格字符串
+
 public class SpaceFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
@@ -24,7 +24,7 @@ public class SpaceFunction implements FastFunction {
                 .getFastExpression()
                 .getFunctionManager()
                 .parseParaExpression(para);
-        if (list.size()<1){
+        if (list.isEmpty()){
             spellContext.putExecuteReturn(new FunctionResult.StringResult(MethodUtil.getSpace(1)));
             return new SpellContextResult(spellContext);
         }

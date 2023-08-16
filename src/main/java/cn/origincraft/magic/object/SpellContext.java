@@ -2,8 +2,7 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
-
+import dev.rgbmc.expression.functions.FunctionResult;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -214,7 +213,7 @@ public class SpellContext {
     }
 
     public void setVariableMap(ConcurrentHashMap<String, Object> variableMap) {
-        contextMap.setVariableMap(variableMap);;
+        contextMap.setVariableMap(variableMap);
     }
 
     public Map<String, Object> getObjectMap() {

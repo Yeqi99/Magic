@@ -1,16 +1,20 @@
 package cn.origincraft.magic.function.system.out;
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FastFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
-import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
+import cn.origincraft.magic.function.results.ListResult;
+import cn.origincraft.magic.function.results.MapResult;
+import cn.origincraft.magic.function.results.SetResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.object.SpellContextResult;
+import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtil;
-
+import dev.rgbmc.expression.functions.CallableFunction;
+import dev.rgbmc.expression.functions.FastFunction;
+import dev.rgbmc.expression.functions.FunctionParameter;
+import dev.rgbmc.expression.functions.FunctionResult;
+import dev.rgbmc.expression.parameters.StringParameter;
+import dev.rgbmc.expression.results.*;
 import java.util.List;
 
 public class PrintFunction implements FastFunction {
@@ -20,10 +24,10 @@ public class PrintFunction implements FastFunction {
         SpellContext spellContext= MethodUtil.getSpellContext(parameter);
         String para=spellContext.getExecuteParameter();
         MagicManager mm=spellContext.getMagicManager();
-        List<Object> list=mm
-                .getFastExpression()
-                .getFunctionManager()
-                .parseParaExpression(para);
+        List<Object> list= FunctionUtils.parseParaExpression(para,
+                        mm
+                        .getFastExpression()
+                        .getFunctionManager());
         StringBuilder s= new StringBuilder();
         for (Object o : list) {
             if (MethodUtil.isFunction(o)){
@@ -41,27 +45,27 @@ public class PrintFunction implements FastFunction {
                 FunctionResult functionResult = spellContext.getExecuteReturn();
                 // 判断值类型处理
                 // Double型
-                if (functionResult instanceof FunctionResult.DoubleResult v){
+                if (functionResult instanceof DoubleResult v){
                     s.append(v.getDouble());
                 }
                 // Int型
-                if (functionResult instanceof FunctionResult.IntResult v){
-                    s.append(v.getInt());
+                if (functionResult instanceof IntegerResult v){
+                    s.append(v.getInteger());
                 }
                 // String型
-                if (functionResult instanceof FunctionResult.StringResult v){
+                if (functionResult instanceof StringResult v){
                     s.append(v.getString());
                 }
                 // Object型
-                if (functionResult instanceof FunctionResult.ObjectResult v){
+                if (functionResult instanceof ObjectResult v){
                     s.append(v.getObject());
                 }
                 // Boolean型
-                if (functionResult instanceof FunctionResult.BooleanResult v){
+                if (functionResult instanceof BooleanResult v){
                     s.append(v.getBoolean());
                 }
                 // Map型
-                if (functionResult instanceof FunctionResult.MapResult v){
+                if (functionResult instanceof MapResult v){
                     s.append(v.getMap());
                 }
                 // List型
@@ -75,11 +79,11 @@ public class PrintFunction implements FastFunction {
                     }
                 }
                 // List型
-                if (functionResult instanceof FunctionResult.ListResult v){
+                if (functionResult instanceof ListResult v){
                     s.append(v.getList());
                 }
                 // Set型
-                if (functionResult instanceof FunctionResult.SetResult v){
+                if (functionResult instanceof SetResult v){
                     s.append(v.getSet());
                 }
             }else {

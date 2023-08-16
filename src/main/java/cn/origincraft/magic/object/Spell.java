@@ -1,10 +1,8 @@
 package cn.origincraft.magic.object;
 
 import cn.origincraft.magic.MagicManager;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Spell {
     private SpellContext spellContext;

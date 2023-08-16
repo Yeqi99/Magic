@@ -1,12 +1,9 @@
 package cn.origincraft.magic.utils;
 
-import cn.origincraft.magic.interpreter.fastexpression.functions.CallableFunction;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionParameter;
-import cn.origincraft.magic.interpreter.fastexpression.functions.FunctionResult;
-import cn.origincraft.magic.interpreter.fastexpression.parameters.StringParameter;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
-
+import dev.rgbmc.expression.functions.CallableFunction;
+import dev.rgbmc.expression.functions.FunctionParameter;
 import java.util.*;
 
 public class MethodUtil {

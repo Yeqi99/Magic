@@ -1,15 +1,15 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.system.calculate.*;
 import cn.origincraft.magic.function.system.control.*;
 import cn.origincraft.magic.function.system.in.InputFunction;
+import cn.origincraft.magic.function.system.information.ExecuteCountFunction;
 import cn.origincraft.magic.function.system.information.HasObjectFunction;
 import cn.origincraft.magic.function.system.information.HasVariableFunction;
-import cn.origincraft.magic.function.system.string.EnterFunction;
-import cn.origincraft.magic.function.system.out.PrintFunction;
-import cn.origincraft.magic.function.system.calculate.*;
-import cn.origincraft.magic.function.system.information.ExecuteCountFunction;
 import cn.origincraft.magic.function.system.information.MagicWordsIndexFunction;
+import cn.origincraft.magic.function.system.out.PrintFunction;
+import cn.origincraft.magic.function.system.string.EnterFunction;
 import cn.origincraft.magic.function.system.string.SpaceFunction;
 import cn.origincraft.magic.function.system.thread.AsyncDaemonExecuteSpellFunction;
 import cn.origincraft.magic.function.system.thread.AsyncExecuteSpellFunction;
