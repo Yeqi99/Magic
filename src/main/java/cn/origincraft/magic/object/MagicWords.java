@@ -33,18 +33,22 @@ public class MagicWords {
     public SpellContext execute(SpellContext spellContext) {
         // 遍历魔语中的语义元素
         for (int i = 0; i < function.size(); i++) {
+            long startTime = System.nanoTime();
             CallableFunction callableFunction = function.get(i);
             StringParameter stringParameter = (StringParameter) callableFunction.getParameter();
             spellContext.putExecuteParameter(stringParameter.getString());
             SpellContextResult spellContextResult =
                     (SpellContextResult) callableFunction.getFunction()
                             .call(new SpellContextParameter(spellContext));
-            spellContext = spellContextResult.getSpellContext();
             // 检查是否继续这行本条魔语
             if (!spellContext.getExecuteIndexAllow(spellContext.getExecuteIndex())) {
                 spellContext.removeExecuteIndexAllow(spellContext.getExecuteIndex());
                 break;
             }
+            long endTime = System.nanoTime();
+            double executionTime = (endTime - startTime) / 1e9; // 转换为秒
+
+            System.out.printf("第"+i+"个方法代码执行时间：%.6f 秒%n", executionTime);
         }
         return spellContext;
     }

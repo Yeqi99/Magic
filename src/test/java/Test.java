@@ -2,6 +2,7 @@ import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.system.out.PrintFunction;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
+import com.sun.tools.javac.Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,9 +19,11 @@ public class Test {
 
 
         List<String> testList = new ArrayList<>();
-
-        testList.add("打印(你好 空格() 世界)");
-       // testList.add("if(compare(i < j) jump(魔语序号())) print(i) var( i add(i 1) ) )");
+        long startTime = System.nanoTime();
+        testList.add("var(i int(0))  var(j int(1000000))");
+        testList.add("while(compare(i < j) print(i enter()) var( i add(i 1)))");
+        //testList.add("while(比较(i < j) print(i) var( i add(i 1) ) )");
+        //testList.add("if(compare(i < j) jump(魔语序号())) ifnot(compare(i < j) 魔语停止()) print(你好 空格() 世界 i 回车()) var( i add(i 1) ) )");
         Spell spell = new Spell(testList, magicManager);
         ContextMap contextMap=new ContextMap() {
             @Override
@@ -53,16 +56,13 @@ public class Test {
                 Test.setVariableMap(variableMap);
             }
         };
-        contextMap.putObject("a", "Hello World!" );
-        contextMap.putObject("test", spell);
-        List<String> testList2 = new ArrayList<>();
-        testList2.add("print(abc)");
-        testList2.add("aspell(test)");
-        testList2.add("print(a i)");
-
-        Spell spell2 = new Spell(testList2, magicManager);
         spell.execute(contextMap);
+        long endTime = System.nanoTime();
+        double executionTime = (endTime - startTime) / 1e9; // 转换为秒
+
+        System.out.printf("主程序代码执行时间：%.6f 秒%n", executionTime);
     }
+
 
 
     public static ConcurrentHashMap<String, Object> getObjectMap() {

@@ -24,6 +24,7 @@ public class Spell {
         spellContext.putMagicManager(getMagicManager());
         int index = 0;
         while (index < magicWordsList.size()) {
+            long startTime = System.nanoTime();
             // 中段判断
             if (spellContext.getExecuteBreak()){
                 break;
@@ -54,6 +55,10 @@ public class Spell {
                 }
                 spellContext.removeExecutePass();
             }
+            long endTime = System.nanoTime();
+            double executionTime = (endTime - startTime) / 1e9; // 转换为秒
+
+            System.out.printf("第"+index+"个语句代码执行时间：%.6f 秒%n", executionTime);
         }
         return spellContext;
     }

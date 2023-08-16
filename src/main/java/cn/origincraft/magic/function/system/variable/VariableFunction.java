@@ -53,8 +53,9 @@ public class VariableFunction implements FastFunction {
                             .call(
                                     new SpellContextParameter(spellContext)
                             );
-            spellContext=spellContextResult.getSpellContext();
+            //spellContext=spellContextResult.getSpellContext();
             FunctionResult functionResult=spellContext.getExecuteReturn();
+
             // 判断值类型处理
             // Double型
             if (functionResult instanceof FunctionResult.DoubleResult v){
@@ -125,6 +126,7 @@ public class VariableFunction implements FastFunction {
             }
         }
         spellContext.putExecuteReturn(new FunctionResult.DefaultResult(FunctionResult.Status.SUCCESS));
+
         return new SpellContextResult(spellContext);
     }
 

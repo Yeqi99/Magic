@@ -18,6 +18,7 @@ import java.util.List;
 public class IntFunction implements FastFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
+        long startTime = System.nanoTime();
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
         String para = spellContext.getExecuteParameter();
         FunctionManager fManager = spellContext
@@ -92,7 +93,10 @@ public class IntFunction implements FastFunction {
                 }
             }
         }
+        long endTime = System.nanoTime();
+        double executionTime = (endTime - startTime) / 1e9; // 转换为秒
 
+        System.out.printf("int()方法代码执行时间：%.6f 秒%n", executionTime);
         spellContext.putExecuteReturn(fResult);
         return new SpellContextResult(spellContext);
     }
