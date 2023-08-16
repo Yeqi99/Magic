@@ -1,13 +1,9 @@
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.function.system.out.PrintFunction;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
-import com.sun.tools.javac.Main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -16,44 +12,50 @@ public class Test {
     private static ConcurrentHashMap<String, Object> variableMap=new ConcurrentHashMap<>();
     public static void main(String[] args) {
         MagicManager magicManager = new MagicManager();
-
-
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-        testList.add("var(i int(0))  var(j int(1000000))");
-        testList.add("while(compare(i < j) print(i enter()) var( i add(i 1)))");
-        //testList.add("while(比较(i < j) print(i) var( i add(i 1) ) )");
-        //testList.add("if(compare(i < j) jump(魔语序号())) ifnot(compare(i < j) 魔语停止()) print(你好 空格() 世界 i 回车()) var( i add(i 1) ) )");
+        testList.add("print(compare(3 > 2))");
         Spell spell = new Spell(testList, magicManager);
-        ContextMap contextMap=new ContextMap() {
-            @Override
-            public ConcurrentHashMap<String, Object> getObjectMap() {
-                return Test.getObjectMap();
-            }
-
-            @Override
-            public ConcurrentHashMap<String, Object> getVariableMap() {
-                return Test.getVariableMap();
-            }
+        ContextMap contextMap= new ContextMap() {
 
             @Override
             public void putObject(String key, Object value) {
-                Test.getObjectMap().put(key, value);
+                getObjectMap().put(key, value);
             }
 
             @Override
             public void putVariable(String key, Object value) {
-                Test.getVariableMap().put(key, value);
+                getVariableMap().put(key, value);
             }
 
             @Override
-            public void setObjectMap(ConcurrentHashMap<String, Object> objectMap) {
-                Test.setObjectMap(objectMap);
+            public void removeObject(String key) {
+                getObjectMap().remove(key);
             }
 
             @Override
-            public void setVariableMap(ConcurrentHashMap<String, Object> variableMap) {
-                Test.setVariableMap(variableMap);
+            public void removeVariable(String key) {
+                getVariableMap().remove(key);
+            }
+
+            @Override
+            public Object getObject(String key) {
+                return getObjectMap().get(key);
+            }
+
+            @Override
+            public Object getVariable(String key) {
+                return getVariableMap().get(key);
+            }
+
+            @Override
+            public boolean hasObject(String key) {
+                return getObjectMap().containsKey(key);
+            }
+
+            @Override
+            public boolean hasVariable(String key) {
+                return getVariableMap().containsKey(key);
             }
         };
         spell.execute(contextMap);

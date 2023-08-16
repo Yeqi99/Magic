@@ -19,9 +19,9 @@ public class MagicManager {
     public MagicManager(){
         init();
     }
-    public List<String> getFunctionsRealNames(){
-        return getFastExpression().getFunctionManager().getFunctionRealNames();
-    }
+//    public List<String> getFunctionsRealNames(){
+//        return getFastExpression().getFunctionManager().getFunctionRealNames();
+//    }
 
     public void init(){
         fastExpression=new FastExpression();
@@ -34,9 +34,9 @@ public class MagicManager {
         return fastExpression != null;
     }
 
-    public boolean addAlias(String realName, String alias) {
-        return getFastExpression().getAliasesManager().addAlias(realName, alias);
-    }
+//    public boolean addAlias(String realName, String alias) {
+//        return getFastExpression().getAliasesManager().addAlias(realName, alias);
+//    }
 
     public FastExpression getFastExpression() {
         return fastExpression;

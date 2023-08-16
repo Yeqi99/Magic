@@ -1,5 +1,6 @@
 package cn.origincraft.magic.utils;
 
+import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import dev.rgbmc.expression.functions.CallableFunction;
@@ -10,8 +11,8 @@ public class MethodUtil {
     public static List<CallableFunction> sortFunctions(Map<String, Integer> typePriority, List<CallableFunction> functions) {
         List<CallableFunction> sortedFunctions = new ArrayList<>(functions);
         sortedFunctions.sort((o1, o2) -> {
-            Integer p1 = typePriority.get(o1.getFunction().getType());
-            Integer p2 = typePriority.get(o2.getFunction().getType());
+            Integer p1 = typePriority.get(((NormalFunction)o1.getFunction()).getType());
+            Integer p2 = typePriority.get(((NormalFunction)o2.getFunction()).getType());
 
             if (p1 == null) p1 = 0;
             if (p2 == null) p2 = 0;

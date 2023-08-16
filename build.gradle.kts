@@ -1,3 +1,4 @@
+
 plugins {
     `java-library`
     `maven-publish`
@@ -9,6 +10,7 @@ repositories {
     maven {
         url = uri("https://repo.fastmcmirror.org/content/repositories/releases/")
     }
+
 }
 
 dependencies {
@@ -19,7 +21,7 @@ group = "cn.originmc.magic"
 version = "1.0.3b1-SNAPSHOT"
 description = "Magic"
 java.sourceCompatibility = JavaVersion.VERSION_17
-java.targetCompatibility = JavaVersion.VERSION_1_8
+java.targetCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {

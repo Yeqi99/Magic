@@ -3,6 +3,8 @@ package cn.origincraft.magic.object;
 
 import cn.origincraft.magic.MagicManager;
 import dev.rgbmc.expression.functions.FunctionResult;
+
+import java.security.Permission;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -142,18 +144,6 @@ public class SpellContext {
         return getExecuteResultMap().containsKey("execute.pass");
     }
 
-    public void putExecuteReturn(FunctionResult functionResult){
-        putExecuteResult("execute.return", functionResult);
-    }
-    public boolean hasExecuteReturn() {
-        return getExecuteResultMap().containsKey("execute.return");
-    }
-    public FunctionResult getExecuteReturn() {
-        if (!hasExecuteReturn()) {
-            return null;
-        }
-        return (FunctionResult) getExecuteResultMap().get("execute.return");
-    }
     public void putExecuteParameter(String parameter) {
         putExecuteResult("execute.parameter", parameter);
     }
@@ -198,31 +188,15 @@ public class SpellContext {
         }
     }
 
-
-
     public Map<String, Object> getExecuteResultMap() {
         return executeResultMap;
     }
+
 
     public void setExecuteResultMap(ConcurrentHashMap<String, Object> executeResultMap) {
         this.executeResultMap = executeResultMap;
     }
 
-    public Map<String, Object> getVariableMap() {
-        return contextMap.getVariableMap();
-    }
-
-    public void setVariableMap(ConcurrentHashMap<String, Object> variableMap) {
-        contextMap.setVariableMap(variableMap);
-    }
-
-    public Map<String, Object> getObjectMap() {
-        return contextMap.getObjectMap();
-    }
-
-    public void setObjectMap(ConcurrentHashMap<String, Object> objectMap) {
-        contextMap.setObjectMap(objectMap);
-    }
     public void putObject(String key,Object value){
         contextMap.putObject(key,value);
     }

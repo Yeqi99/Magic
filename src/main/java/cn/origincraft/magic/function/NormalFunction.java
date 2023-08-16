@@ -36,25 +36,21 @@ public abstract class NormalFunction implements FastFunction {
                         .getFunctionManager());
         for (Object o : list) {
             if (MethodUtil.isFunction(o)){
+                // 设置当前方法为嵌套调用
                 CallableFunction function= (CallableFunction) o;
                 StringParameter stringParameter=
                         (StringParameter)function.getParameter();
                 spellContext.putExecuteParameter(stringParameter.getString());
-                SpellContextResult spellContextResult =
-                        (SpellContextResult) function
-                                .getFunction()
-                                .call(
-                                        new SpellContextParameter(spellContext)
-                                );
-                spellContext = spellContextResult.getSpellContext();
-                FunctionResult functionResult = spellContext.getExecuteReturn();
+                FunctionResult functionResult = function.getFunction().call(
+                        new SpellContextParameter(spellContext)
+                );
                 args.add(functionResult);
             }else {
                 String value= (String) o;
                 if (spellContext
-                        .getVariableMap()
-                        .containsKey(value)) {
-                    Object v = spellContext.getVariableMap().get(value);
+                        .getContextMap()
+                        .hasVariable(value)) {
+                    Object v = spellContext.getContextMap().getVariable(value);
 
                     if (v instanceof Integer){
                         args.add(new IntegerResult((Integer) v));
@@ -86,8 +82,7 @@ public abstract class NormalFunction implements FastFunction {
                 }
             }
         }
-        spellContext.putExecuteReturn(whenFunctionCalled(spellContext,args));
-        return new SpellContextResult(spellContext);
+        return whenFunctionCalled(spellContext,args);
     }
 
     public abstract String getType();
