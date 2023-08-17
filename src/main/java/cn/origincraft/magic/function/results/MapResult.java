@@ -4,13 +4,13 @@ import dev.rgbmc.expression.functions.FunctionResult;
 import java.util.Map;
 
 public class MapResult extends FunctionResult {
-    private final Map<String,Object> value;
+    private final Map<Object,Object> value;
 
-    public MapResult(Map<String,Object> value) {
+    public MapResult(Map<Object,Object> value) {
         this.value = value;
     }
 
-    public Map<String,Object> getMap() {
+    public Map<Object,Object> getMap() {
         return value;
     }
 }

@@ -13,9 +13,13 @@ import dev.rgbmc.expression.functions.FunctionParameter;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.parameters.StringParameter;
 import dev.rgbmc.expression.results.*;
-import java.util.*;
 
-public abstract class NormalFunction implements FastFunction {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public abstract class HasVariableFunction implements FastFunction {
     /**
      * 当方法被调用时执行的代码
      * @param spellContext 上下文
@@ -49,42 +53,7 @@ public abstract class NormalFunction implements FastFunction {
                 }
                 args.add(functionResult);
             }else {
-                String value= (String) o;
-                if (spellContext
-                        .getContextMap()
-                        .hasVariable(value)) {
-                    Object v = spellContext.getContextMap().getVariable(value);
-                    if (v instanceof ErrorResult){
-                        return (ErrorResult) v;
-                    }
-                    if (v instanceof Integer){
-                        args.add(new IntegerResult((Integer) v));
-                    }else if (v instanceof Double){
-                        args.add(new DoubleResult((Double) v));
-                    }else if (v instanceof String){
-                        args.add(new StringResult((String) v));
-                    }else if (v instanceof List){
-                        args.add(new ListResult((List<Object>) v));
-                    }else if (v instanceof Map){
-                        args.add(new MapResult((Map<Object,Object>) v));
-                    }else if (v instanceof Set){
-                        args.add(new SetResult((Set<Object>) v));
-                    }else if (v instanceof SpellContextResult){
-                        args.add((SpellContextResult) v);
-                    }else if (v instanceof SpellResult){
-                        args.add((SpellResult) v);
-                    }else if (v instanceof MagicWordsResult){
-                        args.add((MagicWordsResult) v);
-                    }else if (v instanceof BooleanResult){
-                        args.add((BooleanResult) v);
-                    }else if (v instanceof FunctionResult.DefaultResult){
-                        args.add((FunctionResult.DefaultResult) v);
-                    }else if (v instanceof ObjectResult){
-                        args.add((ObjectResult) v);
-                    }
-                } else {
-                    args.add(new StringResult(value));
-                }
+                args.add(new StringResult((String) o));
             }
         }
         return whenFunctionCalled(spellContext,args);

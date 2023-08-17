@@ -14,8 +14,16 @@ import cn.origincraft.magic.function.system.operations.logic.AndFunction;
 import cn.origincraft.magic.function.system.operations.logic.NotFunction;
 import cn.origincraft.magic.function.system.operations.logic.OrFunction;
 import cn.origincraft.magic.function.system.operations.logic.XOrFunction;
+import cn.origincraft.magic.function.system.variable.container.ListFunction;
+import cn.origincraft.magic.function.system.variable.container.MapFunction;
+import cn.origincraft.magic.function.system.variable.container.SetFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
+import cn.origincraft.magic.function.system.variable.get.ObjectGetFunction;
+import cn.origincraft.magic.function.system.variable.get.VariableGetFunction;
+import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
+import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
 import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
+import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
 
 
@@ -62,6 +70,16 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new VariableDefineFunction(), "vdef");
         // variable.magic
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
-
+        magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
+        // variable.container
+        magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new MapFunction());
+        // variable.get
+        magicManager.getFastExpression().getFunctionManager().register(new VariableGetFunction(), "vget");
+        magicManager.getFastExpression().getFunctionManager().register(new ObjectGetFunction(), "oget");
+        // variable.has
+        magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
+        magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
     }
 }

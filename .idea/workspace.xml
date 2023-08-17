@@ -5,22 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.4b2&#10;&#10;系统语义重写">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/OriginFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/results/ContextMapResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/MagicWordsBreakFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/SpellBreakFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/SpellExecuteFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/ObjectDefineFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/ContextMapFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/SpellFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/meta/ObjectFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/asus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/asus.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/HasVariableFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/ListFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/MapFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/SetFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ObjectGetFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/VariableGetFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/has/ObjectGetFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/has/VariableHasFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/MagicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/MagicManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/DivisionFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/DivisionFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/Spell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/NormalFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/NormalFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/OriginFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/OriginFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/results/MapResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/results/MapResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/SpellFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/SpellFunction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692191849819</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version 1.0.4b2&#10;&#10;系统语义重写">
+      <option name="closed" value="true" />
+      <created>1692265779080</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692265779080</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
