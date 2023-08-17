@@ -24,6 +24,7 @@ public class Spell {
         while (index < magicWordsList.size()) {
             // 中段判断
             if (spellContext.getExecuteBreak()){
+                spellContext.putExecuteBreak(false);
                 break;
             }
             // 跳过判断

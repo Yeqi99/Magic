@@ -30,7 +30,7 @@ public class DivisionFunction extends NormalFunction {
             dividend = ((BooleanResult) dividendArg).getBoolean() ? 1 : 0;
         } else if (dividendArg instanceof StringResult) {
             String stringValue = ((StringResult) dividendArg).getString();
-            if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
+            if (VariableUtil.tryDouble(stringValue)) {
                 dividend = Double.parseDouble(stringValue);
             } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");

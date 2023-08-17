@@ -5,40 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.4b2&#10;&#10;系统语义重写">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/results/NullResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/IfFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/IfNotFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/meta/BooleanFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/meta/DoubleFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/meta/IntFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/meta/StringFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/OriginFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/results/ContextMapResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/MagicWordsBreakFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/SpellBreakFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/SpellExecuteFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/ObjectDefineFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/ContextMapFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/SpellFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/meta/ObjectFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/asus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/asus.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/MagicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/MagicManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/NormalFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/NormalFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/io/input/InputFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/io/input/InputFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/io/output/PrintFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/io/output/PrintFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/AdditionFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/AdditionFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/DivisionFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/DivisionFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/IntegerDivisionFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/IntegerDivisionFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/ModulusFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/ModulusFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/MultiplyFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/MultiplyFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/PowerFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/PowerFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/arithmetic/SubtractionFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/SubtractionFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/comparison/CompareFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/comparison/CompareFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/logic/AndFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/logic/AndFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/logic/NotFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/logic/NotFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/logic/OrFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/logic/OrFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/newsystem/operations/logic/XOrFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/logic/XOrFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/MagicWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/MagicWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/SpellContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/SpellContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/utils/VariableUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/utils/VariableUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/DivisionFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/operations/arithmetic/DivisionFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/Spell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +78,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/asus/Desktop/system&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,

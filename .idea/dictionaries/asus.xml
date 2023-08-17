@@ -2,6 +2,8 @@
   <dictionary name="asus">
     <words>
       <w>adspell</w>
+      <w>mwbreak</w>
+      <w>sbreak</w>
     </words>
   </dictionary>
 </component>
