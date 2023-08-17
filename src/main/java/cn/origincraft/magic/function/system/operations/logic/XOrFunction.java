@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.operations.logic;
+package cn.origincraft.magic.function.system.operations.logic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.object.SpellContext;

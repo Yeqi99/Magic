@@ -1,29 +1,21 @@
 package cn.origincraft.magic.utils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class VariableUtil {
     public static boolean tryInt(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        return true;
+        Pattern pattern = Pattern.compile("^-?\\d+$");
+        Matcher matcher = pattern.matcher(s);
+        return matcher.matches();
     }
     public static boolean tryBoolean(String s) {
-        try {
-            Boolean.parseBoolean(s);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        return true;
+        return s.equalsIgnoreCase("true") || s.equalsIgnoreCase("false");
     }
     public static boolean tryDouble(String s) {
-        try {
-            Double.parseDouble(s);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        return true;
+        Pattern pattern = Pattern.compile("^-?\\d+(\\.\\d+)?$");
+        Matcher matcher = pattern.matcher(s);
+        return matcher.matches();
     }
     public static boolean isInt(Object obj) {
         return obj instanceof Integer;

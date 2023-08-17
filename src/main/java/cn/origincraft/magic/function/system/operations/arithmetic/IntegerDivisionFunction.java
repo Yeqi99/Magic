@@ -1,18 +1,19 @@
-package cn.origincraft.magic.function.newsystem.operations.arithmetic;
+package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.utils.VariableUtil;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
-public class ModulusFunction extends NormalFunction {
+public class IntegerDivisionFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
         if (args.size() < 2) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Modulus function requires at least two arguments.");
+            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Integer division function requires at least two arguments.");
         }
 
         int result = 0;
@@ -46,7 +47,7 @@ public class ModulusFunction extends NormalFunction {
                 } else if (objectValue instanceof Boolean) {
                     value = (Boolean) objectValue ? 1 : 0;
                 } else if (objectValue instanceof String stringValue) {
-                    if (stringValue.matches("-?\\d+")) {
+                    if (VariableUtil.tryInt(stringValue)) {
                         value = Integer.parseInt(stringValue);
                     } else {
                         return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
@@ -63,9 +64,9 @@ public class ModulusFunction extends NormalFunction {
                 isFirstArg = false;
             } else {
                 if (value == 0) {
-                    return new ErrorResult("MODULUS_BY_ZERO", "Modulus by zero is not allowed.");
+                    return new ErrorResult("DIVISION_BY_ZERO", "Division by zero is not allowed.");
                 }
-                result %= value;
+                result /= value;
             }
         }
 
@@ -79,6 +80,6 @@ public class ModulusFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "modulus";
+        return "integer_division";
     }
 }

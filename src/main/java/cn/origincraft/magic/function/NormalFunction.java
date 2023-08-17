@@ -44,6 +44,9 @@ public abstract class NormalFunction implements FastFunction {
                 FunctionResult functionResult = function.getFunction().call(
                         new SpellContextParameter(spellContext)
                 );
+                if (functionResult instanceof ErrorResult){
+                    return functionResult;
+                }
                 args.add(functionResult);
             }else {
                 String value= (String) o;
@@ -51,7 +54,9 @@ public abstract class NormalFunction implements FastFunction {
                         .getContextMap()
                         .hasVariable(value)) {
                     Object v = spellContext.getContextMap().getVariable(value);
-
+                    if (v instanceof ErrorResult){
+                        return (ErrorResult) v;
+                    }
                     if (v instanceof Integer){
                         args.add(new IntegerResult((Integer) v));
                     }else if (v instanceof Double){

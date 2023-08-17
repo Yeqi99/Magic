@@ -2,8 +2,10 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.utils.MethodUtil;
 import dev.rgbmc.expression.functions.CallableFunction;
+import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.parameters.StringParameter;
 import java.util.List;
 
@@ -34,8 +36,13 @@ public class MagicWords {
             // 设置当前方法为非嵌套调用
             StringParameter stringParameter = (StringParameter) callableFunction.getParameter();
             spellContext.putExecuteParameter(stringParameter.getString());
-            callableFunction.getFunction()
+
+            FunctionResult result = callableFunction.getFunction()
                             .call(new SpellContextParameter(spellContext));
+            if (result instanceof ErrorResult) {
+                spellContext.putExecuteError(result);
+                break;
+            }
             // 检查是否继续这行本条魔语
             if (!spellContext.getExecuteIndexAllow(spellContext.getExecuteIndex())) {
                 spellContext.removeExecuteIndexAllow(spellContext.getExecuteIndex());

@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.operations.comparison;
+package cn.origincraft.magic.function.system.operations.comparison;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;

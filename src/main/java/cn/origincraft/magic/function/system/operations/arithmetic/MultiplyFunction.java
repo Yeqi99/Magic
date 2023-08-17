@@ -1,75 +1,66 @@
-package cn.origincraft.magic.function.newsystem.operations.arithmetic;
+package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.utils.VariableUtil;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
-public class IntegerDivisionFunction extends NormalFunction {
+public class MultiplyFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Integer division function requires at least two arguments.");
+        if (args.isEmpty()) {
+            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "MultiplyFunction function requires at least one argument.");
         }
 
-        int result = 0;
-        boolean isFirstArg = true;
+        double result = 1.0; // Initialize result to 1 for multiplication
 
         for (FunctionResult arg : args) {
             if (arg instanceof ErrorResult) {
                 return arg;
             }
 
-            int value;
             if (arg instanceof IntegerResult) {
-                value = ((IntegerResult) arg).getInteger();
+                result *= ((IntegerResult) arg).getInteger();
             } else if (arg instanceof DoubleResult) {
-                value = (int) ((DoubleResult) arg).getDouble();
+                result *= ((DoubleResult) arg).getDouble();
             } else if (arg instanceof BooleanResult) {
-                value = ((BooleanResult) arg).getBoolean() ? 1 : 0;
+                result *= ((BooleanResult) arg).getBoolean() ? 1 : 0;
             } else if (arg instanceof StringResult) {
                 String stringValue = ((StringResult) arg).getString();
-                if (stringValue.matches("-?\\d+")) {
-                    value = Integer.parseInt(stringValue);
+                if (VariableUtil.tryDouble(stringValue)) {
+                    result *= Double.parseDouble(stringValue);
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (arg instanceof ObjectResult) {
                 Object objectValue = ((ObjectResult) arg).getObject();
                 if (objectValue instanceof Integer) {
-                    value = (Integer) objectValue;
+                    result *= (Integer) objectValue;
                 } else if (objectValue instanceof Double) {
-                    value = (int) ((Double) objectValue).doubleValue();
+                    result *= (Double) objectValue;
                 } else if (objectValue instanceof Boolean) {
-                    value = (Boolean) objectValue ? 1 : 0;
+                    result *= (Boolean) objectValue ? 1 : 0;
                 } else if (objectValue instanceof String stringValue) {
-                    if (stringValue.matches("-?\\d+")) {
-                        value = Integer.parseInt(stringValue);
+                    if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
+                        result *= Double.parseDouble(stringValue);
                     } else {
                         return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                     }
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
                 }
-            } else {
-                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
-            }
-
-            if (isFirstArg) {
-                result = value;
-                isFirstArg = false;
-            } else {
-                if (value == 0) {
-                    return new ErrorResult("DIVISION_BY_ZERO", "Division by zero is not allowed.");
-                }
-                result /= value;
             }
         }
 
-        return new IntegerResult(result);
+        if (VariableUtil.hasFractionalPart(result)) {
+            return new DoubleResult(result);
+        } else {
+            return new IntegerResult((int) result);
+        }
     }
 
     @Override
@@ -79,6 +70,6 @@ public class IntegerDivisionFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "integer_division";
+        return "multiplication";
     }
 }

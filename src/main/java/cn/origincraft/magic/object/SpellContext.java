@@ -2,6 +2,7 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.results.ErrorResult;
 import dev.rgbmc.expression.functions.FunctionResult;
 
 import java.security.Permission;
@@ -186,6 +187,23 @@ public class SpellContext {
         if (hasExecuteIndexAllow(index)){
             getExecuteResultMap().remove("execute.+"+index+".allow");
         }
+    }
+    public void putExecuteError(FunctionResult error){
+        getExecuteResultMap().put("execute.error",error);
+    }
+    public void removeExecuteError(){
+        if (hasExecuteError()){
+            getExecuteResultMap().remove("execute.error");
+        }
+    }
+    public boolean hasExecuteError(){
+        return getExecuteResultMap().containsKey("execute.error");
+    }
+    public ErrorResult getExecuteError(){
+        if (!hasExecuteError()){
+            return null;
+        }
+        return (ErrorResult) getExecuteResultMap().get("execute.error");
     }
 
     public Map<String, Object> getExecuteResultMap() {

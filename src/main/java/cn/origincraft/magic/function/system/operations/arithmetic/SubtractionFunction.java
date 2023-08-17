@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.operations.arithmetic;
+package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
@@ -9,57 +9,52 @@ import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
-public class PowerFunction extends NormalFunction {
+public class SubtractionFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "PowerFunction function requires at least one argument.");
-        }
-
         if (args.size() < 2) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "PowerFunction requires at least two arguments: base and exponent.");
+            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Subtraction function requires at least two arguments.");
         }
 
-        FunctionResult baseArg = args.get(0);
-        double base = 1.0; // Initialize base to 1 for multiplication
-
-        if (baseArg instanceof ErrorResult) {
-            return baseArg;
+        FunctionResult firstArg = args.get(0);
+        if (firstArg instanceof ErrorResult) {
+            return firstArg;
         }
 
-        if (baseArg instanceof IntegerResult) {
-            base = ((IntegerResult) baseArg).getInteger();
-        } else if (baseArg instanceof DoubleResult) {
-            base = ((DoubleResult) baseArg).getDouble();
-        } else if (baseArg instanceof BooleanResult) {
-            base = ((BooleanResult) baseArg).getBoolean() ? 1 : 0;
-        } else if (baseArg instanceof StringResult) {
-            String stringValue = ((StringResult) baseArg).getString();
-            if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                base = Double.parseDouble(stringValue);
+        double result;
+        if (firstArg instanceof IntegerResult) {
+            result = ((IntegerResult) firstArg).getInteger();
+        } else if (firstArg instanceof DoubleResult) {
+            result = ((DoubleResult) firstArg).getDouble();
+        } else if (firstArg instanceof BooleanResult) {
+            result = ((BooleanResult) firstArg).getBoolean() ? 1 : 0;
+        } else if (firstArg instanceof StringResult) {
+            String stringValue = ((StringResult) firstArg).getString();
+            if (VariableUtil.tryDouble(stringValue)) {
+                result = Double.parseDouble(stringValue);
             } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
             }
-        } else if (baseArg instanceof ObjectResult) {
-            Object objectValue = ((ObjectResult) baseArg).getObject();
+        } else if (firstArg instanceof ObjectResult) {
+            Object objectValue = ((ObjectResult) firstArg).getObject();
             if (objectValue instanceof Integer) {
-                base = (Integer) objectValue;
+                result = (Integer) objectValue;
             } else if (objectValue instanceof Double) {
-                base = (Double) objectValue;
+                result = (Double) objectValue;
             } else if (objectValue instanceof Boolean) {
-                base = (Boolean) objectValue ? 1 : 0;
+                result = (Boolean) objectValue ? 1 : 0;
             } else if (objectValue instanceof String stringValue) {
                 if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                    base = Double.parseDouble(stringValue);
+                    result = Double.parseDouble(stringValue);
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
             }
+        } else {
+            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
-
-        double result = base; // Initialize result with the base
 
         for (int i = 1; i < args.size(); i++) {
             FunctionResult arg = args.get(i);
@@ -68,35 +63,38 @@ public class PowerFunction extends NormalFunction {
             }
 
             if (arg instanceof IntegerResult) {
-                result = Math.pow(result, ((IntegerResult) arg).getInteger());
+                result -= ((IntegerResult) arg).getInteger();
             } else if (arg instanceof DoubleResult) {
-                result = Math.pow(result, ((DoubleResult) arg).getDouble());
+                result -= ((DoubleResult) arg).getDouble();
             } else if (arg instanceof BooleanResult) {
-                result = Math.pow(result, ((BooleanResult) arg).getBoolean() ? 1 : 0);
+                result -= ((BooleanResult) arg).getBoolean() ? 1 : 0;
             } else if (arg instanceof StringResult) {
                 String stringValue = ((StringResult) arg).getString();
                 if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                    result = Math.pow(result, Double.parseDouble(stringValue));
+                    result -= Double.parseDouble(stringValue);
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (arg instanceof ObjectResult) {
                 Object objectValue = ((ObjectResult) arg).getObject();
                 if (objectValue instanceof Integer) {
-                    result = Math.pow(result, (Integer) objectValue);
+                    result -= (Integer) objectValue;
                 } else if (objectValue instanceof Double) {
-                    result = Math.pow(result, (Double) objectValue);
+                    result -= (Double) objectValue;
                 } else if (objectValue instanceof Boolean) {
-                    result = Math.pow(result, (Boolean) objectValue ? 1 : 0);
-                } else if (objectValue instanceof String stringValue) {
+                    result -= (Boolean) objectValue ? 1 : 0;
+                } else if (objectValue instanceof String) {
+                    String stringValue = (String) objectValue;
                     if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                        result = Math.pow(result, Double.parseDouble(stringValue));
+                        result -= Double.parseDouble(stringValue);
                     } else {
                         return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                     }
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
                 }
+            } else {
+                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
             }
         }
 
@@ -114,6 +112,6 @@ public class PowerFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "power";
+        return "subtraction";
     }
 }

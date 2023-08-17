@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.operations.arithmetic;
+package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
@@ -9,58 +9,68 @@ import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
-public class MultiplyFunction extends NormalFunction {
+public class ModulusFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "MultiplyFunction function requires at least one argument.");
+        if (args.size() < 2) {
+            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Modulus function requires at least two arguments.");
         }
 
-        double result = 1.0; // Initialize result to 1 for multiplication
+        int result = 0;
+        boolean isFirstArg = true;
 
         for (FunctionResult arg : args) {
             if (arg instanceof ErrorResult) {
                 return arg;
             }
 
+            int value;
             if (arg instanceof IntegerResult) {
-                result *= ((IntegerResult) arg).getInteger();
+                value = ((IntegerResult) arg).getInteger();
             } else if (arg instanceof DoubleResult) {
-                result *= ((DoubleResult) arg).getDouble();
+                value = (int) ((DoubleResult) arg).getDouble();
             } else if (arg instanceof BooleanResult) {
-                result *= ((BooleanResult) arg).getBoolean() ? 1 : 0;
+                value = ((BooleanResult) arg).getBoolean() ? 1 : 0;
             } else if (arg instanceof StringResult) {
                 String stringValue = ((StringResult) arg).getString();
-                if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                    result *= Double.parseDouble(stringValue);
+                if (stringValue.matches("-?\\d+")) {
+                    value = Integer.parseInt(stringValue);
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (arg instanceof ObjectResult) {
                 Object objectValue = ((ObjectResult) arg).getObject();
                 if (objectValue instanceof Integer) {
-                    result *= (Integer) objectValue;
+                    value = (Integer) objectValue;
                 } else if (objectValue instanceof Double) {
-                    result *= (Double) objectValue;
+                    value = (int) ((Double) objectValue).doubleValue();
                 } else if (objectValue instanceof Boolean) {
-                    result *= (Boolean) objectValue ? 1 : 0;
+                    value = (Boolean) objectValue ? 1 : 0;
                 } else if (objectValue instanceof String stringValue) {
-                    if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                        result *= Double.parseDouble(stringValue);
+                    if (VariableUtil.tryInt(stringValue)) {
+                        value = Integer.parseInt(stringValue);
                     } else {
                         return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                     }
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
                 }
+            } else {
+                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+            }
+
+            if (isFirstArg) {
+                result = value;
+                isFirstArg = false;
+            } else {
+                if (value == 0) {
+                    return new ErrorResult("MODULUS_BY_ZERO", "Modulus by zero is not allowed.");
+                }
+                result %= value;
             }
         }
 
-        if (VariableUtil.hasFractionalPart(result)) {
-            return new DoubleResult(result);
-        } else {
-            return new IntegerResult((int) result);
-        }
+        return new IntegerResult(result);
     }
 
     @Override
@@ -70,6 +80,6 @@ public class MultiplyFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "multiplication";
+        return "modulus";
     }
 }

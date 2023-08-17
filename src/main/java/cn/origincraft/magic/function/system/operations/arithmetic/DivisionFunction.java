@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.operations.arithmetic;
+package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
@@ -44,7 +44,7 @@ public class DivisionFunction extends NormalFunction {
             } else if (objectValue instanceof Boolean) {
                 dividend = (Boolean) objectValue ? 1 : 0;
             } else if (objectValue instanceof String stringValue) {
-                if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
+                if (VariableUtil.tryDouble(stringValue)) {
                     dividend = Double.parseDouble(stringValue);
                 } else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");

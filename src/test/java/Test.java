@@ -1,4 +1,5 @@
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.system.io.output.PrintFunction;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
 
@@ -14,7 +15,8 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-        testList.add("print(compare(3 > 2))");
+        testList.add("it(comp(2 > 3)) print(not(comp(3 > 2) comp(4 > 3)))");
+        testList.add("it(comp(3 > 2)) print(comp(3 > 2))");
         Spell spell = new Spell(testList, magicManager);
         ContextMap contextMap= new ContextMap() {
 
@@ -59,6 +61,7 @@ public class Test {
             }
         };
         spell.execute(contextMap);
+
         long endTime = System.nanoTime();
         double executionTime = (endTime - startTime) / 1e9; // 转换为秒
 

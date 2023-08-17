@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.io.input;
+package cn.origincraft.magic.function.system.io.input;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;

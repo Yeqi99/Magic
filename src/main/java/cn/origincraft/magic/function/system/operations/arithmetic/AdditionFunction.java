@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.newsystem.operations.arithmetic;
+package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
@@ -23,7 +23,7 @@ public class AdditionFunction extends NormalFunction {
             }else if (arg instanceof BooleanResult value){
                 result+=value.getBoolean()?1:0;
             }else if (arg instanceof StringResult value){
-                if (value.getString().matches("-?\\d+(\\.\\d+)?")){
+                if (VariableUtil.tryDouble(value.getString())){
                     result+=Double.parseDouble(value.getString());
                 }else {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
