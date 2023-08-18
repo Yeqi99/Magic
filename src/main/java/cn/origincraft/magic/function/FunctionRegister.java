@@ -5,6 +5,8 @@ import cn.origincraft.magic.function.system.control.IfFunction;
 import cn.origincraft.magic.function.system.control.IfNotFunction;
 import cn.origincraft.magic.function.system.control.WhileFunction;
 import cn.origincraft.magic.function.system.control.execute.*;
+import cn.origincraft.magic.function.system.info.ExecuteCountFunction;
+import cn.origincraft.magic.function.system.info.MagicWordsIndexFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
@@ -62,6 +64,9 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new SpellExecuteFunction(), "spelle");
         magicManager.getFastExpression().getFunctionManager().register(new JumpFunction());
         magicManager.getFastExpression().getFunctionManager().register(new PassFunction());
+        // info
+        magicManager.getFastExpression().getFunctionManager().register(new ExecuteCountFunction(), "ecount");
+        magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");
         // variable.meta
         magicManager.getFastExpression().getFunctionManager().register(new IntFunction());
         magicManager.getFastExpression().getFunctionManager().register(new DoubleFunction());
