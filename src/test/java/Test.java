@@ -58,13 +58,9 @@ public class Test {
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
         testList.add("vdef(start now())");
-        testList.add("vdef(i int(0)) vdef(j int(1))");
-        testList.add("vdef(end now())");
-        testList.add("print(sub(end start))");
-        testList.add("while(comp(i < j)) print(i) vdef(i add(i int(1)))");
-
-        testList.add("vdef(end now())");
-        testList.add("print(sub(end start))");
+        testList.add("vdef(i int(0)) vdef(j int(1000000))");
+        testList.add("while(comp(i < j)) vdef(start now())  print(i) vdef(i add(i int(1))) vdef(end now()) print(第 i 次循环耗时 sub(end start))");
+        testList.add("vdef(end now()) print(总耗时 sub(end start))");
         Spell spell = new Spell(testList, magicManager);
 
         spell.execute(contextMap);
