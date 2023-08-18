@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class HasVariableFunction implements FastFunction {
+public abstract class HasVariableFunction extends NormalFunction {
     /**
      * 当方法被调用时执行的代码
      * @param spellContext 上下文

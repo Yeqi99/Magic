@@ -18,7 +18,7 @@ dependencies {
 }
 
 group = "cn.originmc.magic"
-version = "1.0.4b4-SNAPSHOT"
+version = "1.0.4b6-SNAPSHOT"
 description = "Magic"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17

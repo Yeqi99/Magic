@@ -14,9 +14,7 @@ public class AdditionFunction extends NormalFunction {
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
         double result=0;
         for (FunctionResult arg : args) {
-            if (arg instanceof ErrorResult){
-                return arg;
-            }else if (arg instanceof IntegerResult value){
+            if (arg instanceof IntegerResult value){
                 result+=value.getInteger();
             }else if (arg instanceof DoubleResult value){
                 result+=value.getDouble();

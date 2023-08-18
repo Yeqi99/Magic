@@ -11,55 +11,62 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Test {
     private static ConcurrentHashMap<String, Object> objectMap=new ConcurrentHashMap<>();
     private static ConcurrentHashMap<String, Object> variableMap=new ConcurrentHashMap<>();
+    private static final ContextMap contextMap= new ContextMap() {
+
+        @Override
+        public void putObject(String key, Object value) {
+            getObjectMap().put(key, value);
+        }
+
+        @Override
+        public void putVariable(String key, Object value) {
+            getVariableMap().put(key, value);
+        }
+
+        @Override
+        public void removeObject(String key) {
+            getObjectMap().remove(key);
+        }
+
+        @Override
+        public void removeVariable(String key) {
+            getVariableMap().remove(key);
+        }
+
+        @Override
+        public Object getObject(String key) {
+            return getObjectMap().get(key);
+        }
+
+        @Override
+        public Object getVariable(String key) {
+            return getVariableMap().get(key);
+        }
+
+        @Override
+        public boolean hasObject(String key) {
+            return getObjectMap().containsKey(key);
+        }
+
+        @Override
+        public boolean hasVariable(String key) {
+            return getVariableMap().containsKey(key);
+        }
+    };
     public static void main(String[] args) {
         MagicManager magicManager = new MagicManager();
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-        testList.add("if(comp(2 > 3)) print(not(comp(3 > 2) comp(4 > 3)))");
-        testList.add("it(comp(3 > 2)) print(comp(3 > 2))");
+        testList.add("vdef(start now())");
+        testList.add("vdef(i int(0)) vdef(j int(1))");
+        testList.add("vdef(end now())");
+        testList.add("print(sub(end start))");
+        testList.add("while(comp(i < j)) print(i) vdef(i add(i int(1)))");
+
+        testList.add("vdef(end now())");
+        testList.add("print(sub(end start))");
         Spell spell = new Spell(testList, magicManager);
-        ContextMap contextMap= new ContextMap() {
 
-            @Override
-            public void putObject(String key, Object value) {
-                getObjectMap().put(key, value);
-            }
-
-            @Override
-            public void putVariable(String key, Object value) {
-                getVariableMap().put(key, value);
-            }
-
-            @Override
-            public void removeObject(String key) {
-                getObjectMap().remove(key);
-            }
-
-            @Override
-            public void removeVariable(String key) {
-                getVariableMap().remove(key);
-            }
-
-            @Override
-            public Object getObject(String key) {
-                return getObjectMap().get(key);
-            }
-
-            @Override
-            public Object getVariable(String key) {
-                return getVariableMap().get(key);
-            }
-
-            @Override
-            public boolean hasObject(String key) {
-                return getObjectMap().containsKey(key);
-            }
-
-            @Override
-            public boolean hasVariable(String key) {
-                return getVariableMap().containsKey(key);
-            }
-        };
         spell.execute(contextMap);
 
         long endTime = System.nanoTime();

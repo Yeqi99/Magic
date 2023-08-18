@@ -7,6 +7,7 @@ import cn.origincraft.magic.function.system.control.WhileFunction;
 import cn.origincraft.magic.function.system.control.execute.*;
 import cn.origincraft.magic.function.system.info.ExecuteCountFunction;
 import cn.origincraft.magic.function.system.info.MagicWordsIndexFunction;
+import cn.origincraft.magic.function.system.info.time.NowFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
@@ -20,6 +21,7 @@ import cn.origincraft.magic.function.system.thread.SpellAsyncExecuteFunction;
 import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
 import cn.origincraft.magic.function.system.variable.container.SetFunction;
+import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
 import cn.origincraft.magic.function.system.variable.get.ObjectGetFunction;
 import cn.origincraft.magic.function.system.variable.get.VariableGetFunction;
@@ -67,6 +69,8 @@ public class FunctionRegister {
         // info
         magicManager.getFastExpression().getFunctionManager().register(new ExecuteCountFunction(), "ecount");
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");
+        // info.time
+        magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta
         magicManager.getFastExpression().getFunctionManager().register(new IntFunction());
         magicManager.getFastExpression().getFunctionManager().register(new DoubleFunction());
@@ -74,7 +78,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new StringFunction(),"str");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectFunction(),"obj");
         // variable.define
-        magicManager.getFastExpression().getFunctionManager().register(new ObjectFunction(), "odef");
+        magicManager.getFastExpression().getFunctionManager().register(new ObjectDefineFunction(), "odef");
         magicManager.getFastExpression().getFunctionManager().register(new VariableDefineFunction(), "vdef");
         // variable.magic
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");

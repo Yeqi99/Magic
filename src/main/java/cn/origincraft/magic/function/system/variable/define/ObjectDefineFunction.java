@@ -1,5 +1,6 @@
 package cn.origincraft.magic.function.system.variable.define;
 
+import cn.origincraft.magic.function.HasVariableFunction;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
@@ -9,7 +10,7 @@ import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
-public class ObjectDefineFunction extends NormalFunction {
+public class ObjectDefineFunction extends HasVariableFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
