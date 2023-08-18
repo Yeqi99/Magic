@@ -3,9 +3,8 @@ package cn.origincraft.magic.function;
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.system.control.IfFunction;
 import cn.origincraft.magic.function.system.control.IfNotFunction;
-import cn.origincraft.magic.function.system.control.execute.MagicWordsBreakFunction;
-import cn.origincraft.magic.function.system.control.execute.SpellBreakFunction;
-import cn.origincraft.magic.function.system.control.execute.SpellExecuteFunction;
+import cn.origincraft.magic.function.system.control.WhileFunction;
+import cn.origincraft.magic.function.system.control.execute.*;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
@@ -14,6 +13,8 @@ import cn.origincraft.magic.function.system.operations.logic.AndFunction;
 import cn.origincraft.magic.function.system.operations.logic.NotFunction;
 import cn.origincraft.magic.function.system.operations.logic.OrFunction;
 import cn.origincraft.magic.function.system.operations.logic.XOrFunction;
+import cn.origincraft.magic.function.system.thread.SpellAsyncDaemonExecuteFunction;
+import cn.origincraft.magic.function.system.thread.SpellAsyncExecuteFunction;
 import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
 import cn.origincraft.magic.function.system.variable.container.SetFunction;
@@ -25,6 +26,9 @@ import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
 import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
+import cn.origincraft.magic.function.system.variable.meta.string.ASCIIFunction;
+import cn.origincraft.magic.function.system.variable.meta.string.EnterFunction;
+import cn.origincraft.magic.function.system.variable.meta.string.SpaceFunction;
 
 
 public class FunctionRegister {
@@ -49,16 +53,15 @@ public class FunctionRegister {
         // io.in
         magicManager.getFastExpression().getFunctionManager().register(new InputFunction(),"in");
         // control
-        magicManager.getFastExpression().getFunctionManager().register(new IfFunction(), "i");
-        magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction(), "it");
+        magicManager.getFastExpression().getFunctionManager().register(new IfFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction());
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellExecuteFunction(), "spelle");
-
-        // control.execute
-        magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
-        magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");
+        magicManager.getFastExpression().getFunctionManager().register(new JumpFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new PassFunction());
         // variable.meta
         magicManager.getFastExpression().getFunctionManager().register(new IntFunction());
         magicManager.getFastExpression().getFunctionManager().register(new DoubleFunction());
@@ -81,5 +84,12 @@ public class FunctionRegister {
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
+        // variable.meta.string
+        magicManager.getFastExpression().getFunctionManager().register(new SpaceFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new EnterFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new ASCIIFunction());
+        // thread
+        magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncExecuteFunction(), "spellae");
+        magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncDaemonExecuteFunction(), "spellade");
     }
 }

@@ -9,18 +9,22 @@ import dev.rgbmc.expression.results.BooleanResult;
 
 import java.util.List;
 
-public class IfFunction extends NormalFunction {
+public class WhileFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()) {
-            return new ErrorResult("IF_FUNCTION_ARGS_ERROR", "If don't have enough args.");
+        if (args.isEmpty()){
+            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "While function requires at least one argument.");
         }
-        if (args.get(0) instanceof BooleanResult v) {
-            if (!v.getBoolean()){
-                spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
+        if (args.get(0) instanceof BooleanResult v){
+            if (v.getBoolean()){
+                spellContext.putExecuteNext(spellContext.getExecuteIndex());
+                return new BooleanResult(true);
+            }else {
+                return new BooleanResult(false);
             }
+        }else {
+            return new ErrorResult("INVALID_ARGUMENT", "While function requires a boolean argument.");
         }
-        return new NullResult();
     }
 
     @Override
@@ -30,6 +34,6 @@ public class IfFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "if";
+        return "while";
     }
 }

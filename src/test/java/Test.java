@@ -15,7 +15,7 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-        testList.add("it(comp(2 > 3)) print(not(comp(3 > 2) comp(4 > 3)))");
+        testList.add("if(comp(2 > 3)) print(not(comp(3 > 2) comp(4 > 3)))");
         testList.add("it(comp(3 > 2)) print(comp(3 > 2))");
         Spell spell = new Spell(testList, magicManager);
         ContextMap contextMap= new ContextMap() {

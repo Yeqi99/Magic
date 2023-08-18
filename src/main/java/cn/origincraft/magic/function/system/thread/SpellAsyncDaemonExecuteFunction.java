@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.system.control.execute;
+package cn.origincraft.magic.function.system.thread;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
@@ -8,10 +8,9 @@ import cn.origincraft.magic.object.SpellContext;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.results.IntegerResult;
 
-
 import java.util.List;
 
-public class SpellExecuteFunction extends NormalFunction {
+public class SpellAsyncDaemonExecuteFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
         if (args.isEmpty()){
@@ -21,12 +20,19 @@ public class SpellExecuteFunction extends NormalFunction {
         for (FunctionResult arg : args) {
             if (arg instanceof SpellResult spellResult){
                 Spell spell = spellResult.getSpell();
-                spell.execute(spellContext.getContextMap());
+                final SpellContext clone=spellContext;
+                Thread asyncThread = new Thread(() -> {
+                    spell.execute(clone.getContextMap());
+                });
+                asyncThread.setDaemon(true);
+                asyncThread.start();
+
                 count++;
             }
         }
         // 返回执行统计
         return new IntegerResult(count);
+
     }
 
     @Override
@@ -36,6 +42,6 @@ public class SpellExecuteFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "spellExecute";
+        return "spellAsyncDaemonExecute";
     }
 }

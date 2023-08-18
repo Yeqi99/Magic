@@ -15,9 +15,6 @@ public class IfNotFunction extends NormalFunction {
         if (args.isEmpty()) {
             return new ErrorResult("IF_FUNCTION_ARGS_ERROR", "If don't have enough args.");
         }
-        if(args.get(0) instanceof ErrorResult v){
-            return v;
-        }
         if (args.get(0) instanceof BooleanResult v) {
             if (v.getBoolean()){
                 spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
