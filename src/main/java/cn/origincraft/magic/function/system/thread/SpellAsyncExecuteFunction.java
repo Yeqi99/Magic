@@ -25,7 +25,11 @@ public class SpellAsyncExecuteFunction extends NormalFunction {
                     spell.execute(clone.getContextMap());
                 });
                 asyncThread.start();
-
+                try {
+                    asyncThread.join();
+                } catch (InterruptedException e) {
+                    return new ErrorResult("ERROR_IN_THREAD", "Thread interrupted.");
+                }
                 count++;
             }
         }

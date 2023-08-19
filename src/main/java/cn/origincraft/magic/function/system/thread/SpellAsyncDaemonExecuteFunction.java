@@ -26,7 +26,11 @@ public class SpellAsyncDaemonExecuteFunction extends NormalFunction {
                 });
                 asyncThread.setDaemon(true);
                 asyncThread.start();
-
+                try {
+                    asyncThread.join();
+                } catch (InterruptedException e) {
+                    return new ErrorResult("ERROR_IN_THREAD", "Thread interrupted.");
+                }
                 count++;
             }
         }

@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.4b6&#10;&#10;系统语义重写">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/asus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/asus.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/thread/SpellAsyncDaemonExecuteFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/thread/SpellAsyncDaemonExecuteFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/thread/SpellAsyncExecuteFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/thread/SpellAsyncExecuteFunction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +65,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/asus/Desktop/system",
+    "last_opened_file_path": "C:/Users/asus/Desktop/java项目/MagicBukkit",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,7 +80,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="应用程序.Test">
+  <component name="RunManager" selected="Gradle.Magic [build]">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="Magic.test" />
@@ -208,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692372774032</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Version 1.0.4b6&#10;&#10;系统语义重写">
+      <option name="closed" value="true" />
+      <created>1692373529125</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692373529125</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
