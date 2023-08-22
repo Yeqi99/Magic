@@ -3,6 +3,8 @@ package cn.origincraft.magic.function.system.variable.define;
 import cn.origincraft.magic.function.HasVariableFunction;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.FloatResult;
+import cn.origincraft.magic.function.results.LongResult;
 import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.object.SpellContext;
 import dev.rgbmc.expression.functions.FunctionResult;
@@ -33,7 +35,11 @@ public class ObjectDefineFunction extends HasVariableFunction {
             spellContext.getContextMap().putObject(varName, v.getInteger());
         }else if(args.get(1) instanceof ObjectResult v) {
             spellContext.getContextMap().putObject(varName, v.getObject());
-        } else {
+        }else if (args.get(1) instanceof LongResult v){
+            spellContext.getContextMap().putObject(varName, v.getLong());
+        }else if (args.get(1) instanceof FloatResult v){
+            spellContext.getContextMap().putObject(varName, v.getFloat());
+        }else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
         return new NullResult();

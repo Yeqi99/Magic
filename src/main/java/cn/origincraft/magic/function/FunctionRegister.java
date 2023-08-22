@@ -77,6 +77,8 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new BooleanFunction(), "bool");
         magicManager.getFastExpression().getFunctionManager().register(new StringFunction(),"str");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectFunction(),"obj");
+        magicManager.getFastExpression().getFunctionManager().register(new LongFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new FloatFunction());
         // variable.define
         magicManager.getFastExpression().getFunctionManager().register(new ObjectDefineFunction(), "odef");
         magicManager.getFastExpression().getFunctionManager().register(new VariableDefineFunction(), "vdef");

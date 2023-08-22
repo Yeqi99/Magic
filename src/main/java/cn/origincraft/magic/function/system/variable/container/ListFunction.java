@@ -20,33 +20,28 @@ public class ListFunction extends NormalFunction {
         for (FunctionResult functionResult : args) {
             if (functionResult instanceof ListResult v) {
                 resultList.add(v.getList());
-            }
-            if (functionResult instanceof ObjectResult v) {
+            }else if (functionResult instanceof ObjectResult v) {
                 resultList.add(v.getObject());
-            }
-            if (functionResult instanceof StringResult v) {
+            }else if (functionResult instanceof StringResult v) {
                 resultList.add(v.getString());
-            }
-            if (functionResult instanceof IntegerResult v) {
+            }else if (functionResult instanceof IntegerResult v) {
                 resultList.add(v.getInteger());
-            }
-            if (functionResult instanceof DoubleResult v) {
+            }else if (functionResult instanceof LongResult v) {
+                resultList.add(v.getLong());
+            }else if (functionResult instanceof FloatResult v) {
+                resultList.add(v.getFloat());
+            }else if (functionResult instanceof DoubleResult v) {
                 resultList.add(v.getDouble());
-            }
-            if (functionResult instanceof BooleanResult v) {
+            }else if (functionResult instanceof BooleanResult v) {
                 resultList.add(v.getBoolean());
-            }
-            if (functionResult instanceof NullResult) {
+            }else if (functionResult instanceof NullResult) {
                 resultList.add(null);
-            }
-            if(functionResult instanceof SpellResult spellResult){
+            }else if(functionResult instanceof SpellResult spellResult){
                 Spell spell=spellResult.getSpell();
                 resultList.add(spell);
-            }
-            if (functionResult instanceof MapResult v) {
+            }else if (functionResult instanceof MapResult v) {
                 resultList.add(v.getMap());
-            }
-            if (functionResult instanceof SetResult v){
+            }else if (functionResult instanceof SetResult v){
                 resultList.add(v.getSet());
             }
         }

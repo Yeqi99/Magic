@@ -37,6 +37,10 @@ public class ObjectGetFunction extends NormalFunction {
                     return new MapResult(map);
                 }else if (o instanceof Spell spell) {
                     return new SpellResult(spell);
+                }else if (o instanceof Long l){
+                    return new LongResult(l);
+                }else if(o instanceof Float f){
+                    return new FloatResult(f);
                 }else {
                     return new ObjectResult(o);
                 }
