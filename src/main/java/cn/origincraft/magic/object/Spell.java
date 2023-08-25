@@ -41,6 +41,10 @@ public class Spell {
             spellContext.putExecuteIndex(index);
             // 执行魔语并获取执行后的上下文
             magicWords.execute(spellContext);
+            // 检查是否抛出错误
+            if (spellContext.hasExecuteError()){
+                break;
+            }
             // 记录执行语句为上一条语句
             spellContext.putExecutePrevious(index);
             // 语句下标与上下文同步
