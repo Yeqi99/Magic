@@ -2,6 +2,8 @@ package cn.origincraft.magic.function.system.variable.meta;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.FloatResult;
+import cn.origincraft.magic.function.results.LongResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtil;
 import dev.rgbmc.expression.functions.FunctionResult;
@@ -18,18 +20,25 @@ public class StringFunction extends NormalFunction {
         if (args.isEmpty()) {
             return new ErrorResult("STRING_FUNCTION_ARGS_ERROR", "String don't have enough args.");
         }
-        FunctionResult functionResult = args.get(0);
-        if (functionResult instanceof StringResult v) {
-            return new StringResult(v.getString());
-        }else if (functionResult instanceof IntegerResult v) {
-            return new StringResult(v.getInteger()+"");
-        }else if (functionResult instanceof DoubleResult v) {
-            return new StringResult(v.getDouble()+"");
-        }else if (functionResult instanceof BooleanResult v) {
-            return new StringResult(v.getBoolean()+"");
-        }else {
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (FunctionResult functionResult : args) {
+            if (functionResult instanceof StringResult v) {
+                stringBuilder.append(v.getString());
+            }else if (functionResult instanceof IntegerResult v) {
+                stringBuilder.append(v.getInteger());
+            }else if (functionResult instanceof DoubleResult v) {
+                stringBuilder.append(v.getDouble());
+            }else if (functionResult instanceof BooleanResult v) {
+                stringBuilder.append(v.getBoolean());
+            }else if(functionResult instanceof LongResult){
+                stringBuilder.append(((LongResult) functionResult).getLong());
+            }else if (functionResult instanceof FloatResult v) {
+                stringBuilder.append(v.getFloat());
+            }else {
+                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+            }
         }
+        return new StringResult(stringBuilder.toString());
     }
 
     @Override

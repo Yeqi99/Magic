@@ -14,9 +14,7 @@ public class PrintFunction extends NormalFunction {
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
         StringBuilder sb=new StringBuilder();
         for (FunctionResult arg : args) {
-            if (arg instanceof ErrorResult){
-                return arg;
-            }else if (arg instanceof IntegerResult value){
+            if (arg instanceof IntegerResult value){
                 sb.append(value.getInteger());
             }else if (arg instanceof DoubleResult value){
                 sb.append(value.getDouble());
