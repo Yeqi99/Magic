@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.5b1&#10;&#10;系统语义重写">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.5b2&#10;系统语义重写">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/NormalContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/NormalContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/Spell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692664936138</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Version 1.0.5b2&#10;系统语义重写">
+      <option name="closed" value="true" />
+      <created>1692977785374</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1692977785374</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +266,8 @@
     <MESSAGE value="Version 1.0.4b7" />
     <MESSAGE value="Version 1.0.5&#10;&#10;系统语义重写" />
     <MESSAGE value="Version 1.0.5b1&#10;&#10;系统语义重写" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0.5b1&#10;&#10;系统语义重写" />
+    <MESSAGE value="Version 1.0.5b2&#10;系统语义重写" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0.5b2&#10;系统语义重写" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Magic$Test.ic" NAME="Test Coverage Results" MODIFIED="1691118756686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
