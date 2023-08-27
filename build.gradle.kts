@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("dev.rgbmc:FastExpression:1.0.0-e2a809d")
+    implementation("dev.rgbmc:FastExpression:1.0.0-3e4feaa")
 }
 
 group = "cn.originmc.magic"

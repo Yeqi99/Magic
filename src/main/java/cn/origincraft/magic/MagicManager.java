@@ -2,9 +2,10 @@ package cn.origincraft.magic;
 
 import cn.origincraft.magic.function.FunctionRegister;
 import dev.rgbmc.expression.FastExpression;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MagicManager {
     private FastExpression fastExpression;
@@ -33,12 +34,19 @@ public class MagicManager {
         return fastExpression != null;
     }
 
-//    public boolean addAlias(String realName, String alias) {
-//        return getFastExpression().getAliasesManager().addAlias(realName, alias);
-//    }
-//    public List<String> getFunctionsRealNames(){
-//        return getFastExpression().getFunctionManager().getFunctionRealNames();
-//    }
+    public boolean addAlias(String realName, String alias) {
+        if (getFastExpression().getAliasesManager().isRealName(alias)){
+            return false;
+        }
+        if (!getFastExpression().getAliasesManager().getRealName(alias).equals(alias)){
+            return false;
+        }
+        getFastExpression().getAliasesManager().addAlias(realName,alias);
+        return true;
+    }
+    public Set<String> getFunctionsRealNames(){
+        return getFastExpression().getFunctionManager().getRegistry().keySet();
+    }
 
     public FastExpression getFastExpression() {
         return fastExpression;
