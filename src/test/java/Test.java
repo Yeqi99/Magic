@@ -18,8 +18,8 @@ public class Test {
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-        System.out.println("+-*&^%$#@!~<>?/.,[]:;'\\");
-        testList.add("print(str(!@#@&$*))");
+        testList.add("import(default str(C:\\Users\\asus\\Desktop\\test))");
+        testList.add("spelle(default.example)");
         Spell spell = new Spell(testList, magicManager);
 
         spell.execute(contextMap);
@@ -27,7 +27,7 @@ public class Test {
         long endTime = System.nanoTime();
         double executionTime = (endTime - startTime) / 1e9; // 转换为秒
 
-        System.out.printf("主程序时间：%.6f 秒%n", executionTime);
+        System.out.printf("time:%.6f s%n", executionTime);
     }
 
 }

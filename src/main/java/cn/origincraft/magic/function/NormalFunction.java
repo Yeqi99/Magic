@@ -2,8 +2,7 @@ package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.results.*;
-import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.object.SpellContextParameter;
+import cn.origincraft.magic.object.*;
 import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtil;
@@ -54,9 +53,11 @@ public abstract class NormalFunction implements FastFunction {
                         .getContextMap()
                         .hasVariable(value)) {
                     Object v = spellContext.getContextMap().getVariable(value);
+
                     if (v instanceof ErrorResult){
                         return (ErrorResult) v;
                     }
+
                     if (v instanceof Integer){
                         args.add(new IntegerResult((Integer) v));
                     }else if (v instanceof Double){
@@ -69,19 +70,18 @@ public abstract class NormalFunction implements FastFunction {
                         args.add(new MapResult((Map<Object,Object>) v));
                     }else if (v instanceof Set){
                         args.add(new SetResult((Set<Object>) v));
-                    }else if (v instanceof SpellContextResult){
-                        args.add((SpellContextResult) v);
-                    }else if (v instanceof SpellResult){
-                        args.add((SpellResult) v);
-                    }else if (v instanceof MagicWordsResult){
-                        args.add((MagicWordsResult) v);
-                    }else if (v instanceof BooleanResult){
-                        args.add((BooleanResult) v);
-                    }else if (v instanceof FunctionResult.DefaultResult){
-                        args.add((FunctionResult.DefaultResult) v);
-                    }else if (v instanceof ObjectResult){
-                        args.add((ObjectResult) v);
+                    }else if (v instanceof SpellContext){
+                        args.add(new SpellContextResult((SpellContext) v));
+                    }else if (v instanceof Spell){
+                        args.add((new SpellResult((Spell) v)));
+                    }else if (v instanceof MagicWords){
+                        args.add(new MagicWordsResult((MagicWords) v));
+                    }else if (v instanceof Boolean){
+                        args.add(new BooleanResult((Boolean) v));
+                    }else{
+                        args.add(new ObjectResult(v));
                     }
+
                 } else {
                     args.add(new StringResult(value));
                 }

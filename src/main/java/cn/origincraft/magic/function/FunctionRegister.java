@@ -8,6 +8,7 @@ import cn.origincraft.magic.function.system.control.execute.*;
 import cn.origincraft.magic.function.system.info.ExecuteCountFunction;
 import cn.origincraft.magic.function.system.info.MagicWordsIndexFunction;
 import cn.origincraft.magic.function.system.info.time.NowFunction;
+import cn.origincraft.magic.function.system.io.input.ImportFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
@@ -56,6 +57,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new PrintFunction(),"out");
         // io.in
         magicManager.getFastExpression().getFunctionManager().register(new InputFunction(),"in");
+        magicManager.getFastExpression().getFunctionManager().register(new ImportFunction());
         // control
         magicManager.getFastExpression().getFunctionManager().register(new IfFunction());
         magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction());
