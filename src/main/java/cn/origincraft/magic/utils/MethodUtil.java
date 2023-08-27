@@ -39,4 +39,6 @@ public class MethodUtil {
     public static String getEnter(int num){
         return "\n".repeat(num);
     }
+
+
 }
