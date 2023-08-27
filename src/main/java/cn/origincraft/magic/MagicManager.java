@@ -2,6 +2,7 @@ package cn.origincraft.magic;
 
 import cn.origincraft.magic.function.FunctionRegister;
 import dev.rgbmc.expression.FastExpression;
+import dev.rgbmc.expression.functions.FastFunction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +48,12 @@ public class MagicManager {
     public Set<String> getFunctionsRealNames(){
         return getFastExpression().getFunctionManager().getRegistry().keySet();
     }
-
+    public void registerFunction(FastFunction fastFunction,String... alies){
+        getFastExpression().getFunctionManager().register(fastFunction, alies);
+    }
+    public void registerFunction(FastFunction fastFunction){
+        getFastExpression().getFunctionManager().register(fastFunction);
+    }
     public FastExpression getFastExpression() {
         return fastExpression;
     }
