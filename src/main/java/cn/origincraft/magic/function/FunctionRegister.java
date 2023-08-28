@@ -1,6 +1,7 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.system.AliasAddFunction;
 import cn.origincraft.magic.function.system.control.IfFunction;
 import cn.origincraft.magic.function.system.control.IfNotFunction;
 import cn.origincraft.magic.function.system.control.WhileFunction;
@@ -104,5 +105,7 @@ public class FunctionRegister {
         // thread
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncExecuteFunction(), "spellae");
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncDaemonExecuteFunction(), "spellade");
+        // normal
+        magicManager.getFastExpression().getFunctionManager().register(new AliasAddFunction(), "alias","aliases","别名");
     }
 }

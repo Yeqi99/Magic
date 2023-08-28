@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.6&#10;新增ImportFunction&#10;增加包管理" />
+    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.6&#10;新增ImportFunction&#10;增加包管理">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/AliasAddFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +138,8 @@
       <workItem from="1692155143980" duration="5304000" />
       <workItem from="1693043362563" duration="1195000" />
       <workItem from="1693097132200" duration="5315000" />
-      <workItem from="1693102604007" duration="11008000" />
+      <workItem from="1693102604007" duration="17307000" />
+      <workItem from="1693212789036" duration="677000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1.0.4b1&#10;&#10;版本号更新&#10;系统语义重写&#10;分离解析器">
       <option name="closed" value="true" />
@@ -279,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693122402169</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Version 1.0.6&#10;新增ImportFunction&#10;增加包管理">
+      <option name="closed" value="true" />
+      <created>1693122820502</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1693122820502</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
