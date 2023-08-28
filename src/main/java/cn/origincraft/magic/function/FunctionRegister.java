@@ -62,7 +62,7 @@ public class FunctionRegister {
         // control
         magicManager.getFastExpression().getFunctionManager().register(new IfFunction());
         magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(),"w");
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");

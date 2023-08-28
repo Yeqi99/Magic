@@ -18,12 +18,15 @@ public class Test {
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-        testList.add("import(default str(C:\\Users\\asus\\Desktop\\test))");
-        testList.add("spelle(default.example)");
+//        testList.add("import(default str(C:\\Users\\asus\\Desktop\\test))");
+//        testList.add("spelle(default.example)");
+        testList.add("alias(while d)");
+        testList.set(0,"d(bool(false))");
         Spell spell = new Spell(testList, magicManager);
 
         spell.execute(contextMap);
-
+        testList.set(0,"d(bool(false))");
+        spell.execute(contextMap);
         long endTime = System.nanoTime();
         double executionTime = (endTime - startTime) / 1e9; // 转换为秒
 

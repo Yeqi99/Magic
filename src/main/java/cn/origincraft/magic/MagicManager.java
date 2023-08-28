@@ -36,13 +36,10 @@ public class MagicManager {
     }
 
     public boolean addAlias(String realName, String alias) {
-        if (getFastExpression().getAliasesManager().isRealName(alias)){
-            return false;
-        }
         if (!getFastExpression().getAliasesManager().getRealName(alias).equals(alias)){
             return false;
         }
-        getFastExpression().getAliasesManager().addAlias(realName,alias);
+        getFastExpression().getAliasesManager().addAlias(realName,alias,getFastExpression().getFunctionManager());
         return true;
     }
     public Set<String> getFunctionsRealNames(){
