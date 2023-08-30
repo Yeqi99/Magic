@@ -2,11 +2,10 @@ package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.system.AliasAddFunction;
-import cn.origincraft.magic.function.system.control.IfFunction;
-import cn.origincraft.magic.function.system.control.IfNotFunction;
-import cn.origincraft.magic.function.system.control.WhileFunction;
+import cn.origincraft.magic.function.system.control.*;
 import cn.origincraft.magic.function.system.control.execute.*;
 import cn.origincraft.magic.function.system.info.ExecuteCountFunction;
+import cn.origincraft.magic.function.system.info.IsNullFunction;
 import cn.origincraft.magic.function.system.info.MagicWordsIndexFunction;
 import cn.origincraft.magic.function.system.info.time.NowFunction;
 import cn.origincraft.magic.function.system.io.input.ImportFunction;
@@ -29,6 +28,7 @@ import cn.origincraft.magic.function.system.variable.get.ObjectGetFunction;
 import cn.origincraft.magic.function.system.variable.get.VariableGetFunction;
 import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
 import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
+import cn.origincraft.magic.function.system.variable.magic.ArgumentsFunction;
 import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
@@ -63,6 +63,8 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new IfFunction());
         magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction());
         magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(),"w");
+        magicManager.getFastExpression().getFunctionManager().register(new ReturnFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new ReturnBreakFunction(),"returnb");
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");
@@ -72,6 +74,7 @@ public class FunctionRegister {
         // info
         magicManager.getFastExpression().getFunctionManager().register(new ExecuteCountFunction(), "ecount");
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");
+        magicManager.getFastExpression().getFunctionManager().register(new IsNullFunction(), "null");
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta
@@ -88,6 +91,7 @@ public class FunctionRegister {
         // variable.magic
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
         magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
+        magicManager.getFastExpression().getFunctionManager().register(new ArgumentsFunction(), "args");
         // variable.container
         magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());

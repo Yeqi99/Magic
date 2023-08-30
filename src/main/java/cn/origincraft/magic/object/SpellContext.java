@@ -227,8 +227,8 @@ public class SpellContext {
     public void putSpellReturn(FunctionResult functionResult){
         getExecuteResultMap().put("spellReturn",functionResult);
     }
-    public void getSpellReturn(){
-        getExecuteResultMap().get("spellReturn");
+    public FunctionResult getSpellReturn(){
+        return (FunctionResult) getExecuteResultMap().get("spellReturn");
     }
     public boolean hasSpellReturn(){
         return getExecuteResultMap().containsKey("spellReturn");
