@@ -224,6 +224,16 @@ public class SpellContext {
     public void putExecuteResult(String key,Object value){
         getExecuteResultMap().put(key,value);
     }
+    public void putSpellReturn(FunctionResult functionResult){
+        getExecuteResultMap().put("spellReturn",functionResult);
+    }
+    public void getSpellReturn(){
+        getExecuteResultMap().get("spellReturn");
+    }
+    public boolean hasSpellReturn(){
+        return getExecuteResultMap().containsKey("spellReturn");
+    }
+
 
     public ContextMap getContextMap() {
         return contextMap;

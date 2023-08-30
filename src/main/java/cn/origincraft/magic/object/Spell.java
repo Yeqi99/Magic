@@ -1,6 +1,8 @@
 package cn.origincraft.magic.object;
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.results.NullResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,9 @@ public class Spell {
                 }
                 spellContext.removeExecutePass();
             }
-
+        }
+        if (!spellContext.hasSpellReturn()){
+            spellContext.putSpellReturn(new NullResult());
         }
         return spellContext;
     }

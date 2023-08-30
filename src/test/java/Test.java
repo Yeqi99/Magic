@@ -18,10 +18,10 @@ public class Test {
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
         long startTime = System.nanoTime();
-//        testList.add("import(default str(C:\\Users\\asus\\Desktop\\test))");
-//        testList.add("spelle(default.example)");
-        testList.add("alias(while d)");
-        testList.set(0,"d(bool(false))");
+
+        testList.add("vdef(i int(0)) vdef(j int(10))");
+        testList.add("vdef(message str(Hello space() World))");
+        testList.add("while(comp(i < j)) vdef(i add(i 1)) print(第 i 次 message)");
         Spell spell = new Spell(testList, magicManager);
 
         spell.execute(contextMap);
