@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.9&#10;语境中的spell返回值约定">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/results/ArgumentsResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/ReturnBreakFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/ReturnFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/execute/ArgsSpellExecuteFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/info/IsNullFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/ArgumentsFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/arguments/ArgumentsGetFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/SpellContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/object/SpellContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/ObjectDefineFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/ObjectDefineFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ObjectGetFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ObjectGetFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/VariableGetFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/VariableGetFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/magic/ArgumentsFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/ArgumentsFunction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +149,8 @@
       <workItem from="1693212789036" duration="6210000" />
       <workItem from="1693321283178" duration="597000" />
       <workItem from="1693376849991" duration="5682000" />
+      <workItem from="1693443038940" duration="325000" />
+      <workItem from="1693443380178" duration="2718000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1.0.4b1&#10;&#10;版本号更新&#10;系统语义重写&#10;分离解析器">
       <option name="closed" value="true" />

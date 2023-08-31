@@ -2,6 +2,7 @@ package cn.origincraft.magic.function.system.variable.get;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 import dev.rgbmc.expression.functions.FunctionResult;
@@ -41,6 +42,12 @@ public class ObjectGetFunction extends NormalFunction {
                     return new LongResult(l);
                 }else if(o instanceof Float f){
                     return new FloatResult(f);
+                }else if(o == null){
+                    return new NullResult();
+                }else if(o instanceof ContextMap){
+                    return new ContextMapResult((ContextMap) o);
+                }else if(o instanceof ArgumentsResult){
+                    return (ArgumentsResult) o;
                 }else {
                     return new ObjectResult(o);
                 }

@@ -1,4 +1,4 @@
-package cn.origincraft.magic.function.system.variable.magic;
+package cn.origincraft.magic.function.system.variable.container;
 
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ArgumentsResult;

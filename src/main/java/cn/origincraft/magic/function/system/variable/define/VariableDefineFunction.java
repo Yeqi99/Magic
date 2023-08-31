@@ -2,10 +2,8 @@ package cn.origincraft.magic.function.system.variable.define;
 
 import cn.origincraft.magic.function.HasVariableFunction;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.FloatResult;
-import cn.origincraft.magic.function.results.LongResult;
-import cn.origincraft.magic.function.results.NullResult;
+import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.function.system.variable.container.SetFunction;
 import cn.origincraft.magic.object.SpellContext;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.results.BooleanResult;
@@ -39,6 +37,22 @@ public class VariableDefineFunction extends HasVariableFunction {
             spellContext.getContextMap().putVariable(varName, v.getLong());
         }else if (args.get(1) instanceof FloatResult v){
             spellContext.getContextMap().putVariable(varName, v.getFloat());
+        }else if(args.get(1) instanceof ListResult v){
+            spellContext.getContextMap().putObject(varName, v.getList());
+        }else if(args.get(1) instanceof MapResult v){
+            spellContext.getContextMap().putObject(varName, v.getMap());
+        }else if(args.get(1) instanceof SetResult v){
+            spellContext.getContextMap().putObject(varName, v.getSet());
+        }else if(args.get(1) instanceof SpellResult v) {
+            spellContext.getContextMap().putObject(varName, v.getSpell());
+        }else if(args.get(1) instanceof SpellResult v) {
+            spellContext.getContextMap().putObject(varName, v.getSpell());
+        }else if(args.get(1) instanceof NullResult v){
+            spellContext.getContextMap().putObject(varName, null);
+        }else if(args.get(1) instanceof ContextMapResult v){
+            spellContext.getContextMap().putObject(varName, v.getContextMap());
+        }else if(args.get(1) instanceof ArgumentsResult v){
+            spellContext.getContextMap().putObject(varName, v);
         }else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }

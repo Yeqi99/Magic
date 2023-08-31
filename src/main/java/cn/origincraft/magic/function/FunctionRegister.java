@@ -22,13 +22,14 @@ import cn.origincraft.magic.function.system.thread.SpellAsyncExecuteFunction;
 import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
 import cn.origincraft.magic.function.system.variable.container.SetFunction;
+import cn.origincraft.magic.function.system.variable.container.arguments.ArgumentsGetFunction;
 import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
 import cn.origincraft.magic.function.system.variable.get.ObjectGetFunction;
 import cn.origincraft.magic.function.system.variable.get.VariableGetFunction;
 import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
 import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
-import cn.origincraft.magic.function.system.variable.magic.ArgumentsFunction;
+import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction;
 import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
@@ -91,11 +92,13 @@ public class FunctionRegister {
         // variable.magic
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
         magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
-        magicManager.getFastExpression().getFunctionManager().register(new ArgumentsFunction(), "args");
         // variable.container
         magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
         magicManager.getFastExpression().getFunctionManager().register(new MapFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new ArgumentsFunction(), "args");
+        // variable.container.arguments
+        magicManager.getFastExpression().getFunctionManager().register(new ArgumentsGetFunction(), "argsget");
         // variable.get
         magicManager.getFastExpression().getFunctionManager().register(new VariableGetFunction(), "vget");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectGetFunction(), "oget");
