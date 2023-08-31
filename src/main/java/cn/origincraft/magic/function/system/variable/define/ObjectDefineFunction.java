@@ -52,7 +52,7 @@ public class ObjectDefineFunction extends HasVariableFunction {
         }else if(args.get(1) instanceof ArgumentsResult v){
             spellContext.getContextMap().putObject(varName, v);
         }else {
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+            spellContext.getContextMap().putObject(varName, args.get(1));
         }
         return new NullResult();
 

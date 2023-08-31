@@ -49,6 +49,8 @@ public class VariableGetFunction extends NormalFunction {
                     return new ContextMapResult((ContextMap) o);
                 }else if(o instanceof ArgumentsResult){
                     return (ArgumentsResult) o;
+                }else if(o instanceof FunctionResult){
+                    return (FunctionResult) o;
                 }else {
                     return new ObjectResult(o);
                 }

@@ -38,23 +38,23 @@ public class VariableDefineFunction extends HasVariableFunction {
         }else if (args.get(1) instanceof FloatResult v){
             spellContext.getContextMap().putVariable(varName, v.getFloat());
         }else if(args.get(1) instanceof ListResult v){
-            spellContext.getContextMap().putObject(varName, v.getList());
+            spellContext.getContextMap().putVariable(varName, v.getList());
         }else if(args.get(1) instanceof MapResult v){
-            spellContext.getContextMap().putObject(varName, v.getMap());
+            spellContext.getContextMap().putVariable(varName, v.getMap());
         }else if(args.get(1) instanceof SetResult v){
-            spellContext.getContextMap().putObject(varName, v.getSet());
+            spellContext.getContextMap().putVariable(varName, v.getSet());
         }else if(args.get(1) instanceof SpellResult v) {
-            spellContext.getContextMap().putObject(varName, v.getSpell());
+            spellContext.getContextMap().putVariable(varName, v.getSpell());
         }else if(args.get(1) instanceof SpellResult v) {
-            spellContext.getContextMap().putObject(varName, v.getSpell());
+            spellContext.getContextMap().putVariable(varName, v.getSpell());
         }else if(args.get(1) instanceof NullResult v){
-            spellContext.getContextMap().putObject(varName, null);
+            spellContext.getContextMap().putVariable(varName, null);
         }else if(args.get(1) instanceof ContextMapResult v){
-            spellContext.getContextMap().putObject(varName, v.getContextMap());
+            spellContext.getContextMap().putVariable(varName, v.getContextMap());
         }else if(args.get(1) instanceof ArgumentsResult v){
-            spellContext.getContextMap().putObject(varName, v);
+            spellContext.getContextMap().putVariable(varName, v);
         }else {
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+            spellContext.getContextMap().putVariable(varName, args.get(1));
         }
         return new NullResult();
 
