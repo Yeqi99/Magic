@@ -4,11 +4,9 @@ import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
-import cn.origincraft.magic.object.SpellContextResult;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtil;
 import dev.rgbmc.expression.functions.CallableFunction;
-import dev.rgbmc.expression.functions.FastFunction;
 import dev.rgbmc.expression.functions.FunctionParameter;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.parameters.StringParameter;
@@ -16,8 +14,6 @@ import dev.rgbmc.expression.results.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public abstract class HasVariableFunction extends NormalFunction {
     /**
