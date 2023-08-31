@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.9&#10;删除多余依赖">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.10&#10;修复数据上下文定义方法、&#10;现在def方法将未知结果以FunctionResult类型存入&#10;get方法将会取出FunctionResult方法">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/ObjectDefineFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/ObjectDefineFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/define/VariableDefineFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ObjectGetFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ObjectGetFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/VariableGetFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/VariableGetFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +97,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.Magic [build]">
+  <component name="RunManager" selected="Maven.Magic [clean,package]">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="Magic.test" />
@@ -131,6 +127,41 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="Magic [clean,package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Test" />
+      <item itemvalue="Gradle.Magic [build]" />
+      <item itemvalue="Maven.Magic [clean,package]" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="项目级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -148,7 +179,7 @@
       <workItem from="1693321283178" duration="597000" />
       <workItem from="1693376849991" duration="5682000" />
       <workItem from="1693443038940" duration="325000" />
-      <workItem from="1693443380178" duration="7206000" />
+      <workItem from="1693443380178" duration="9113000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1.0.4b1&#10;&#10;版本号更新&#10;系统语义重写&#10;分离解析器">
       <option name="closed" value="true" />
@@ -350,7 +381,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693446671123</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Version 1.0.10&#10;修复数据上下文定义方法、&#10;现在def方法将未知结果以FunctionResult类型存入&#10;get方法将会取出FunctionResult方法">
+      <option name="closed" value="true" />
+      <created>1693462460051</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1693462460051</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +430,8 @@
     <MESSAGE value="Version 1.0.9&#10;语境中的spell返回值约定" />
     <MESSAGE value="Version 1.0.9&#10;spell传参与返回值完成(未测试)" />
     <MESSAGE value="Version 1.0.9&#10;删除多余依赖" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0.9&#10;删除多余依赖" />
+    <MESSAGE value="Version 1.0.10&#10;修复数据上下文定义方法、&#10;现在def方法将未知结果以FunctionResult类型存入&#10;get方法将会取出FunctionResult方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.0.10&#10;修复数据上下文定义方法、&#10;现在def方法将未知结果以FunctionResult类型存入&#10;get方法将会取出FunctionResult方法" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Magic$Test.ic" NAME="Test Coverage Results" MODIFIED="1691118756686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -17,7 +17,6 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
-        long startTime = System.nanoTime();
 
         testList.add("vdef(i int(0)) vdef(j int(10))");
         testList.add("vdef(message str(Hello space() World))");
@@ -25,12 +24,7 @@ public class Test {
         Spell spell = new Spell(testList, magicManager);
 
         spell.execute(contextMap);
-        testList.set(0,"d(bool(false))");
-        spell.execute(contextMap);
-        long endTime = System.nanoTime();
-        double executionTime = (endTime - startTime) / 1e9; // 转换为秒
 
-        System.out.printf("time:%.6f s%n", executionTime);
     }
 
 }
