@@ -25,12 +25,14 @@ import cn.origincraft.magic.function.system.variable.container.SetFunction;
 import cn.origincraft.magic.function.system.variable.container.arguments.ArgumentsGetFunction;
 import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
+import cn.origincraft.magic.function.system.variable.get.ContextGetFunction;
 import cn.origincraft.magic.function.system.variable.get.ObjectGetFunction;
 import cn.origincraft.magic.function.system.variable.get.VariableGetFunction;
 import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
 import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
 import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction;
 import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
+import cn.origincraft.magic.function.system.variable.magic.NormalContextFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
 import cn.origincraft.magic.function.system.variable.meta.string.ASCIIFunction;
@@ -72,6 +74,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new SpellExecuteFunction(), "spelle");
         magicManager.getFastExpression().getFunctionManager().register(new JumpFunction());
         magicManager.getFastExpression().getFunctionManager().register(new PassFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new LoadContextFunction(), "lcontext");
         // info
         magicManager.getFastExpression().getFunctionManager().register(new ExecuteCountFunction(), "ecount");
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");
@@ -92,6 +95,7 @@ public class FunctionRegister {
         // variable.magic
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
         magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
+        magicManager.getFastExpression().getFunctionManager().register(new NormalContextFunction(), "ncontext");
         // variable.container
         magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
@@ -102,6 +106,7 @@ public class FunctionRegister {
         // variable.get
         magicManager.getFastExpression().getFunctionManager().register(new VariableGetFunction(), "vget");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectGetFunction(), "oget");
+        magicManager.getFastExpression().getFunctionManager().register(new ContextGetFunction(), "cget");
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
