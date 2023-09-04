@@ -14,11 +14,11 @@ repositories {
 }
 
 dependencies {
-    implementation("dev.rgbmc:FastExpression:1.0.0-2e5db94")
+    implementation("dev.rgbmc:FastExpression:1.0.0-a0aa2c1")
 }
 
 group = "cn.originmc.magic"
-version = "1.0.12-SNAPSHOT"
+version = "1.0.13-SNAPSHOT"
 description = "Magic"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
