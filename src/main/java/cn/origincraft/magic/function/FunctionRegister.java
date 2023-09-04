@@ -50,6 +50,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new PowerFunction(), "pow");
         magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(),"mod");
         magicManager.getFastExpression().getFunctionManager().register(new IntegerDivisionFunction(),"idiv");
+        magicManager.getFastExpression().getFunctionManager().register(new SelfAddFunction(),"sadd");
         // operations.comparison
         magicManager.getFastExpression().getFunctionManager().register(new CompareFunction(),"comp");
         // operations.logic
@@ -68,6 +69,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(),"w");
         magicManager.getFastExpression().getFunctionManager().register(new ReturnFunction());
         magicManager.getFastExpression().getFunctionManager().register(new ReturnBreakFunction(),"returnb");
+        magicManager.getFastExpression().getFunctionManager().register(new ForFunction());
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");

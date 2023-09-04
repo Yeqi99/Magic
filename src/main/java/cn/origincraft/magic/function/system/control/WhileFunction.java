@@ -20,6 +20,7 @@ public class WhileFunction extends NormalFunction {
                 spellContext.putExecuteNext(spellContext.getExecuteIndex());
                 return new BooleanResult(true);
             }else {
+                spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
                 return new BooleanResult(false);
             }
         }else {
