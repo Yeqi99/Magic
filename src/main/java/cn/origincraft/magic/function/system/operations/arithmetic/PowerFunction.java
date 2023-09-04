@@ -63,9 +63,7 @@ public class PowerFunction extends NormalFunction {
 
         for (int i = 1; i < args.size(); i++) {
             FunctionResult arg = args.get(i);
-            if (arg instanceof ErrorResult) {
-                return arg;
-            }
+
 
             if (arg instanceof IntegerResult) {
                 result = Math.pow(result, ((IntegerResult) arg).getInteger());

@@ -66,6 +66,6 @@ public class ObjectGetFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "getObject";
+            return "getObject";
     }
 }

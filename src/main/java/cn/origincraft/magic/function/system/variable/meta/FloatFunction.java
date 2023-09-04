@@ -41,11 +41,11 @@ public class FloatFunction extends NormalFunction {
 
     @Override
     public String getType() {
-        return null;
+        return "SYSTEM";
     }
 
     @Override
     public String getName() {
-        return null;
+        return "float";
     }
 }

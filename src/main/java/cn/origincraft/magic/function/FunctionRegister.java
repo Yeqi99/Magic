@@ -43,7 +43,7 @@ public class FunctionRegister {
         // operations.arithmetic
         magicManager.getFastExpression().getFunctionManager().register(new AdditionFunction(),"add");
         magicManager.getFastExpression().getFunctionManager().register(new SubtractionFunction(),"sub");
-        magicManager.getFastExpression().getFunctionManager().register(new MultiplyFunction(), "mul");
+        magicManager.getFastExpression().getFunctionManager().register(new MultiplicationFunction(), "mul");
         magicManager.getFastExpression().getFunctionManager().register(new DivisionFunction(), "div");
         magicManager.getFastExpression().getFunctionManager().register(new PowerFunction(), "pow");
         magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(),"mod");

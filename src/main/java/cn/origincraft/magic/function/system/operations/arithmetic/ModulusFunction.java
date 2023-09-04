@@ -20,10 +20,6 @@ public class ModulusFunction extends NormalFunction {
         boolean isFirstArg = true;
 
         for (FunctionResult arg : args) {
-            if (arg instanceof ErrorResult) {
-                return arg;
-            }
-
             int value;
             if (arg instanceof IntegerResult) {
                 value = ((IntegerResult) arg).getInteger();

@@ -20,9 +20,7 @@ public class IntegerDivisionFunction extends NormalFunction {
         boolean isFirstArg = true;
 
         for (FunctionResult arg : args) {
-            if (arg instanceof ErrorResult) {
-                return arg;
-            }
+
 
             int value;
             if (arg instanceof IntegerResult) {
@@ -80,6 +78,6 @@ public class IntegerDivisionFunction extends NormalFunction {
 
     @Override
     public String getName() {
-        return "integer_division";
+        return "integerDivision";
     }
 }

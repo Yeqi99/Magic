@@ -9,7 +9,7 @@ import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
-public class MultiplyFunction extends NormalFunction {
+public class MultiplicationFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
         if (args.isEmpty()) {
@@ -19,9 +19,7 @@ public class MultiplyFunction extends NormalFunction {
         double result = 1.0; // Initialize result to 1 for multiplication
 
         for (FunctionResult arg : args) {
-            if (arg instanceof ErrorResult) {
-                return arg;
-            }
+
 
             if (arg instanceof IntegerResult) {
                 result *= ((IntegerResult) arg).getInteger();
