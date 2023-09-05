@@ -1,5 +1,7 @@
 package cn.origincraft.magic.manager;
 
+import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.io.File;
@@ -42,6 +44,11 @@ public class MagicPackage {
     public void importPackage(SpellContext spellContext){
         magicInstances.forEach((id,instance)->{
             spellContext.putVariable(getId()+"."+id,instance.getSpell(spellContext.getMagicManager()));
+        });
+    }
+    public void importPackage(ContextMap context, MagicManager magicManager){
+        magicInstances.forEach((id,instance)->{
+            context.putVariable(getId()+"."+id,instance.getSpell(magicManager));
         });
     }
 
