@@ -3,7 +3,9 @@ package cn.origincraft.magic.manager;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 public class MagicPackage {
     private final String id;
@@ -45,5 +47,17 @@ public class MagicPackage {
 
     public String getId() {
         return id;
+    }
+    public Map<String, MagicInstance> getMagicInstances() {
+        return magicInstances;
+    }
+    public MagicInstance getMagicInstance(String id){
+        return magicInstances.get(id);
+    }
+    public boolean hasMagicInstance(String id){
+        return magicInstances.containsKey(id);
+    }
+    public List<String> getMagicInstanceIds(){
+        return new ArrayList<>(magicInstances.keySet());
     }
 }
