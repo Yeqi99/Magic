@@ -25,9 +25,7 @@ import cn.origincraft.magic.function.system.variable.container.SetFunction;
 import cn.origincraft.magic.function.system.variable.container.arguments.ArgumentsGetFunction;
 import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
-import cn.origincraft.magic.function.system.variable.get.ContextGetFunction;
-import cn.origincraft.magic.function.system.variable.get.ObjectGetFunction;
-import cn.origincraft.magic.function.system.variable.get.VariableGetFunction;
+import cn.origincraft.magic.function.system.variable.get.*;
 import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
 import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
 import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction;
@@ -66,10 +64,11 @@ public class FunctionRegister {
         // control
         magicManager.getFastExpression().getFunctionManager().register(new IfFunction());
         magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(),"w");
+        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(),"when");
         magicManager.getFastExpression().getFunctionManager().register(new ReturnFunction());
         magicManager.getFastExpression().getFunctionManager().register(new ReturnBreakFunction(),"returnb");
         magicManager.getFastExpression().getFunctionManager().register(new ForFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new TraversalFunction(),"t");
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");
@@ -109,6 +108,11 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new VariableGetFunction(), "vget");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectGetFunction(), "oget");
         magicManager.getFastExpression().getFunctionManager().register(new ContextGetFunction(), "cget");
+        magicManager.getFastExpression().getFunctionManager().register(new ListGetFunction(), "listg");
+        magicManager.getFastExpression().getFunctionManager().register(new MapGetFunction(), "mapg");
+        magicManager.getFastExpression().getFunctionManager().register(new ContainerRandomGetFunction(), "crandomg");
+        magicManager.getFastExpression().getFunctionManager().register(new MapGetKeyListFunction(), "mapgkl");
+        magicManager.getFastExpression().getFunctionManager().register(new MapGetValueListFunction(), "mapgvl");
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");

@@ -16,6 +16,12 @@ public class ListFunction extends NormalFunction {
         if (args.isEmpty()) {
             return new ErrorResult("LIST_FUNCTION_ARGS_ERROR", "List don't have enough args.");
         }
+        if (args.size()==1){
+            if (args.get(0) instanceof SetResult) {
+                SetResult v= (SetResult) args.get(0);
+                return new ListResult(new ArrayList<>(v.getSet()));
+            }
+        }
         List<Object> resultList=new ArrayList<>();
         for (FunctionResult functionResult : args) {
             if (functionResult instanceof ListResult v) {
