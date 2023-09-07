@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.16&#10;MagicPackage优化方法">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/control/TraversalFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ContainerRandomGetFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/ListGetFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/MapGetFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/MapGetKeyListFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/get/MapGetValueListFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/RegisterCustomFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/ListFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/system/variable/container/ListFunction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,26 +76,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/asus/Desktop/java项目/MagicBukkit&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/asus/Desktop/java项目/MagicBukkit",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Gradle.Magic [build]">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
@@ -251,6 +244,8 @@
       <workItem from="1693794087340" duration="16728000" />
       <workItem from="1693874121462" duration="4047000" />
       <workItem from="1693960694602" duration="5420000" />
+      <workItem from="1693989750489" duration="595000" />
+      <workItem from="1694053075756" duration="5250000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1.0.4b1&#10;&#10;版本号更新&#10;系统语义重写&#10;分离解析器">
       <option name="closed" value="true" />
