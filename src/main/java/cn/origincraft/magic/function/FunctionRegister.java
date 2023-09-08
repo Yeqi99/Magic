@@ -12,6 +12,8 @@ import cn.origincraft.magic.function.system.info.time.NowFunction;
 import cn.origincraft.magic.function.system.io.input.ImportFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
+import cn.origincraft.magic.function.system.java.PackagingFunction;
+import cn.origincraft.magic.function.system.java.UnpackingFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
 import cn.origincraft.magic.function.system.operations.comparison.CompareFunction;
 import cn.origincraft.magic.function.system.operations.logic.AndFunction;
@@ -30,9 +32,7 @@ import cn.origincraft.magic.function.system.variable.get.*;
 import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
 import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
 import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction;
-import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
-import cn.origincraft.magic.function.system.variable.magic.NormalContextFunction;
-import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
+import cn.origincraft.magic.function.system.variable.magic.*;
 import cn.origincraft.magic.function.system.variable.meta.*;
 import cn.origincraft.magic.function.system.variable.meta.string.ASCIIFunction;
 import cn.origincraft.magic.function.system.variable.meta.string.EnterFunction;
@@ -98,6 +98,8 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
         magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
         magicManager.getFastExpression().getFunctionManager().register(new NormalContextFunction(), "ncontext");
+        magicManager.getFastExpression().getFunctionManager().register(new UnpackingFunction(), "unpack");
+        magicManager.getFastExpression().getFunctionManager().register(new PackagingFunction(), "pack");
         // variable.container
         magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
