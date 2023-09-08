@@ -15,7 +15,7 @@ public class ReturnFunction extends NormalFunction {
         if (args.isEmpty()) {
             return new ErrorResult("RETURN_FUNCTION_ARGS_ERROR", "Return don't have enough args.");
         }
-        spellContext.putSpellReturn(new ArgumentsResult(args));
+        spellContext.putSpellReturn(args.get(0));
         return new NullResult();
     }
 
