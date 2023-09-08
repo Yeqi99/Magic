@@ -12,6 +12,8 @@ import cn.origincraft.magic.function.system.info.time.NowFunction;
 import cn.origincraft.magic.function.system.io.input.ImportFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
+import cn.origincraft.magic.function.system.java.LookPackFunction;
+import cn.origincraft.magic.function.system.java.PackMethodsFunction;
 import cn.origincraft.magic.function.system.java.PackagingFunction;
 import cn.origincraft.magic.function.system.java.UnpackingFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
@@ -98,8 +100,6 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
         magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
         magicManager.getFastExpression().getFunctionManager().register(new NormalContextFunction(), "ncontext");
-        magicManager.getFastExpression().getFunctionManager().register(new UnpackingFunction(), "unpack");
-        magicManager.getFastExpression().getFunctionManager().register(new PackagingFunction(), "pack");
         // variable.container
         magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
@@ -126,6 +126,11 @@ public class FunctionRegister {
         // thread
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncExecuteFunction(), "spellae");
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncDaemonExecuteFunction(), "spellade");
+        // java
+        magicManager.getFastExpression().getFunctionManager().register(new UnpackingFunction(), "unpack");
+        magicManager.getFastExpression().getFunctionManager().register(new PackagingFunction(), "pack");
+        magicManager.getFastExpression().getFunctionManager().register(new PackMethodsFunction(), "packm");
+        magicManager.getFastExpression().getFunctionManager().register(new LookPackFunction(), "lookpack");
         // normal
         magicManager.getFastExpression().getFunctionManager().register(new AliasAddFunction(), "alias","aliases","别名");
         magicManager.getFastExpression().getFunctionManager().register(new RegisterCustomFunction(), "rcf");

@@ -1,7 +1,8 @@
 package cn.origincraft.magic.object;
 
 
-
+import java.util.List;
+import java.util.Set;
 
 public interface ContextMap {
 
@@ -14,4 +15,11 @@ public interface ContextMap {
     Object getVariable(String key);
     boolean hasObject(String key);
     boolean hasVariable(String key);
+    Set<String> getVariableNames();
+    Set<String> getObjectNames();
+    Set<Object> getVariables();
+    Set<Object> getObjects();
+    void clearVariable();
+    void clearObject();
+
 }

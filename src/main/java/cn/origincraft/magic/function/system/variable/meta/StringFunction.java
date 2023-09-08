@@ -3,14 +3,12 @@ package cn.origincraft.magic.function.system.variable.meta;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.FloatResult;
+import cn.origincraft.magic.function.results.ListResult;
 import cn.origincraft.magic.function.results.LongResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtil;
 import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.BooleanResult;
-import dev.rgbmc.expression.results.DoubleResult;
-import dev.rgbmc.expression.results.IntegerResult;
-import dev.rgbmc.expression.results.StringResult;
+import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 
@@ -34,7 +32,16 @@ public class StringFunction extends NormalFunction {
                 stringBuilder.append(((LongResult) functionResult).getLong());
             }else if (functionResult instanceof FloatResult v) {
                 stringBuilder.append(v.getFloat());
-            }else {
+            }else if(functionResult instanceof ObjectResult v){
+                stringBuilder.append(v.getObject().toString());
+            }else if(functionResult instanceof ListResult){
+                List<Object> list=((ListResult) functionResult).getList();
+                for (Object o : list) {
+                    if (o instanceof String){
+                        stringBuilder.append(o).append("\n");
+                    }
+                }
+            } else {
                 return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
             }
         }

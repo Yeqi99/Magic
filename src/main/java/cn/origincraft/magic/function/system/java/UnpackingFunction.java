@@ -36,7 +36,7 @@ public class UnpackingFunction extends NormalFunction {
             try {
                 spellContext.getContextMap().putVariable(name+"."+field.getName(), new ObjectResult(field.get(object)));
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
             }
         }
         for (Method method : methods) {

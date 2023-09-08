@@ -1,5 +1,8 @@
 package cn.origincraft.magic.object;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class NormalContext implements ContextMap{
@@ -44,6 +47,37 @@ public class NormalContext implements ContextMap{
     public boolean hasVariable(String key) {
         return getVariableMap().containsKey(key);
     }
+
+    @Override
+    public Set<String> getVariableNames() {
+        return variableMap.keySet();
+    }
+
+    @Override
+    public Set<String> getObjectNames() {
+        return objectMap.keySet();
+    }
+
+    @Override
+    public Set<Object> getVariables() {
+        return new HashSet<>(variableMap.values());
+    }
+
+    @Override
+    public Set<Object> getObjects() {
+        return new HashSet<>(objectMap.values());
+    }
+
+    @Override
+    public void clearVariable() {
+        variableMap.clear();
+    }
+
+    @Override
+    public void clearObject() {
+        objectMap.clear();
+    }
+
 
     public ConcurrentHashMap<String, Object> getObjectMap() {
         return objectMap;

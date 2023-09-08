@@ -36,7 +36,7 @@ public class PackagingFunction extends NormalFunction {
                 try {
                     field.set(obj,value);
                 } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
+                    return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
                 }
             }
         }
