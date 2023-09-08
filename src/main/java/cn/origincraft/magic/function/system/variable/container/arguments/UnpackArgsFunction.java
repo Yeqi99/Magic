@@ -23,7 +23,7 @@ public class UnpackArgsFunction extends NormalFunction {
         ArgumentsResult argumentsResult = (ArgumentsResult) argsResult;
         List<FunctionResult> argList= argumentsResult.getArgs();
         for (int i=0;i<argList.size();i++) {
-            spellContext.getContextMap().putVariable("arg"+i,argList.get(i));
+            spellContext.getContextMap().putVariable("arg"+(i+1),argList.get(i));
         }
         return new NullResult();
     }
