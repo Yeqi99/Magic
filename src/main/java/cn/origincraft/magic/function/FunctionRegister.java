@@ -79,6 +79,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new JumpFunction());
         magicManager.getFastExpression().getFunctionManager().register(new PassFunction());
         magicManager.getFastExpression().getFunctionManager().register(new LoadContextFunction(), "lcontext");
+        magicManager.getFastExpression().getFunctionManager().register(new ArgsSpellExecuteFunction(), "argsse");
         // info
         magicManager.getFastExpression().getFunctionManager().register(new ExecuteCountFunction(), "ecount");
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");

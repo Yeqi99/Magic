@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.20b2&#10;Packaging()&#10;PackMethodsFunction()&#10;Unpacking()&#10;LookPackFunction()">
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/origincraft/magic/function/FunctionRegister.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +249,8 @@
       <workItem from="1694053075756" duration="5250000" />
       <workItem from="1694093997468" duration="781000" />
       <workItem from="1694095450689" duration="146000" />
-      <workItem from="1694133726014" duration="7655000" />
+      <workItem from="1694133726014" duration="9683000" />
+      <workItem from="1694175153980" duration="1633000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1.0.4b1&#10;&#10;版本号更新&#10;系统语义重写&#10;分离解析器">
       <option name="closed" value="true" />
@@ -551,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694142288588</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Version 1.0.20&#10;ResultUtils.reduction">
+      <option name="closed" value="true" />
+      <created>1694142516888</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1694142516888</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +583,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Version 1.0.5b1&#10;&#10;系统语义重写" />
     <MESSAGE value="Version 1.0.5b2&#10;系统语义重写" />
     <MESSAGE value="Version 1.0.5b4&#10;测试修复优化" />
     <MESSAGE value="Version 1.0.5b5&#10;测试修复优化" />
@@ -594,6 +606,7 @@
     <MESSAGE value="Version 1.0.15&#10;MagicPackage优化方法" />
     <MESSAGE value="Version 1.0.16&#10;MagicPackage优化方法" />
     <MESSAGE value="Version 1.0.20b1&#10;Packaging()&#10;PackMethodsFunction()&#10;Unpacking()" />
+    <MESSAGE value="Version 1.0.20&#10;ResultUtils.reduction" />
     <MESSAGE value="Version 1.0.20b2&#10;Packaging()&#10;PackMethodsFunction()&#10;Unpacking()&#10;LookPackFunction()" />
     <option name="LAST_COMMIT_MESSAGE" value="Version 1.0.20b2&#10;Packaging()&#10;PackMethodsFunction()&#10;Unpacking()&#10;LookPackFunction()" />
   </component>
