@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.21&#10;注册&#10;argsSpellExecute()">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-    </list>
+    <list default="true" id="e15f7398-b49f-4f86-993d-49a0f2092a01" name="更改" comment="Version 1.0.21&#10;注册&#10;argsSpellExecute()" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -248,7 +244,7 @@
       <workItem from="1694093997468" duration="781000" />
       <workItem from="1694095450689" duration="146000" />
       <workItem from="1694133726014" duration="9683000" />
-      <workItem from="1694175153980" duration="2696000" />
+      <workItem from="1694175153980" duration="3078000" />
     </task>
     <task id="LOCAL-00001" summary="Version 1.0.4b1&#10;&#10;版本号更新&#10;系统语义重写&#10;分离解析器">
       <option name="closed" value="true" />
@@ -570,7 +566,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694177908520</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Version 1.0.21&#10;注册&#10;argsSpellExecute()">
+      <option name="closed" value="true" />
+      <created>1694179176148</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1694179176148</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

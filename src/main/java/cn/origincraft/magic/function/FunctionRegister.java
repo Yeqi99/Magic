@@ -28,6 +28,7 @@ import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
 import cn.origincraft.magic.function.system.variable.container.SetFunction;
 import cn.origincraft.magic.function.system.variable.container.arguments.ArgumentsGetFunction;
+import cn.origincraft.magic.function.system.variable.container.arguments.UnpackArgsFunction;
 import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
 import cn.origincraft.magic.function.system.variable.get.*;
@@ -106,6 +107,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
         magicManager.getFastExpression().getFunctionManager().register(new MapFunction());
         magicManager.getFastExpression().getFunctionManager().register(new ArgumentsFunction(), "args");
+        magicManager.getFastExpression().getFunctionManager().register(new UnpackArgsFunction(), "upargs");
         // variable.container.arguments
         magicManager.getFastExpression().getFunctionManager().register(new ArgumentsGetFunction(), "argsget");
         // variable.get
