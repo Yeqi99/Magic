@@ -3,7 +3,6 @@ package cn.origincraft.magic.object;
 
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtil;
 import dev.rgbmc.expression.functions.CallableFunction;
 import dev.rgbmc.expression.functions.FunctionResult;

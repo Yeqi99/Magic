@@ -1,7 +1,6 @@
 package cn.origincraft.magic.object;
 
 
-import java.util.List;
 import java.util.Set;
 
 public interface ContextMap {
