@@ -17,7 +17,6 @@ public class MagicInstance {
         this.contentLines = new ArrayList<>();
         this.filePath = filePath;
     }
-
     public String getId() {
         return id;
     }

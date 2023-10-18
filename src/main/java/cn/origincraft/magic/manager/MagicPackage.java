@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class MagicPackage {
     private final String id;
     private final Map<String, MagicInstance> magicInstances;
@@ -36,35 +37,53 @@ public class MagicPackage {
         }
     }
 
-
     public MagicInstance getInstanceById(String id) {
         return magicInstances.get(id);
     }
 
-    public void importPackage(SpellContext spellContext){
-        magicInstances.forEach((id,instance)->{
-            spellContext.putVariable(getId()+"."+id,instance.getSpell(spellContext.getMagicManager()));
+    public List<MagicInstance> getInstances() {
+        return new ArrayList<>(magicInstances.values());
+    }
+
+    public List<String> getInstanceIds() {
+        return new ArrayList<>(magicInstances.keySet());
+    }
+
+    public void saveToFile() {
+        magicInstances.forEach((id, instance) -> {
+            instance.saveToFile();
         });
     }
-    public void importPackage(ContextMap context, MagicManager magicManager){
-        magicInstances.forEach((id,instance)->{
-            context.putVariable(getId()+"."+id,instance.getSpell(magicManager));
+
+    public void importPackage(SpellContext spellContext) {
+        magicInstances.forEach((id, instance) -> {
+            spellContext.putVariable(getId() + "." + id, instance.getSpell(spellContext.getMagicManager()));
+        });
+    }
+
+    public void importPackage(ContextMap context, MagicManager magicManager) {
+        magicInstances.forEach((id, instance) -> {
+            context.putVariable(getId() + "." + id, instance.getSpell(magicManager));
         });
     }
 
     public String getId() {
         return id;
     }
+
     public Map<String, MagicInstance> getMagicInstances() {
         return magicInstances;
     }
-    public MagicInstance getMagicInstance(String id){
+
+    public MagicInstance getMagicInstance(String id) {
         return magicInstances.get(id);
     }
-    public boolean hasMagicInstance(String id){
+
+    public boolean hasMagicInstance(String id) {
         return magicInstances.containsKey(id);
     }
-    public List<String> getMagicInstanceIds(){
+
+    public List<String> getMagicInstanceIds() {
         return new ArrayList<>(magicInstances.keySet());
     }
 }

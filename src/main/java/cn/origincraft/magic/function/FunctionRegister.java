@@ -18,6 +18,8 @@ import cn.origincraft.magic.function.system.java.PackagingFunction;
 import cn.origincraft.magic.function.system.java.UnpackingFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
 import cn.origincraft.magic.function.system.operations.comparison.CompareFunction;
+import cn.origincraft.magic.function.system.operations.equal.EqualFunction;
+import cn.origincraft.magic.function.system.operations.equal.EqualsIgnoreCaseFunction;
 import cn.origincraft.magic.function.system.operations.logic.AndFunction;
 import cn.origincraft.magic.function.system.operations.logic.NotFunction;
 import cn.origincraft.magic.function.system.operations.logic.OrFunction;
@@ -60,6 +62,9 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new OrFunction());
         magicManager.getFastExpression().getFunctionManager().register(new XOrFunction());
         magicManager.getFastExpression().getFunctionManager().register(new NotFunction());
+        // operations.equal
+        magicManager.getFastExpression().getFunctionManager().register(new EqualFunction(),"eq");
+        magicManager.getFastExpression().getFunctionManager().register(new EqualsIgnoreCaseFunction(),"eqic");
         // io.out
         magicManager.getFastExpression().getFunctionManager().register(new PrintFunction(),"out");
         // io.in
