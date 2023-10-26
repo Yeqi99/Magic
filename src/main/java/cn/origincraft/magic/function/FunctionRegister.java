@@ -77,7 +77,9 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new ReturnFunction());
         magicManager.getFastExpression().getFunctionManager().register(new ReturnBreakFunction(),"returnb");
         magicManager.getFastExpression().getFunctionManager().register(new ForFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new TraversalFunction(),"t");
+        magicManager.getFastExpression().getFunctionManager().register(new TraversalFunction(),"t","T");
+        magicManager.getFastExpression().getFunctionManager().register(new EvalFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new EvalExecuteFunction(),"evale");
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");

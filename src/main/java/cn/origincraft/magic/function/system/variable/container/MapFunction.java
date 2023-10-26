@@ -24,8 +24,8 @@ public class MapFunction extends NormalFunction {
         if (keys instanceof ListResult k){
            if (values instanceof ListResult v){
                if (k.getList().size()==v.getList().size()) {
-                   List<Object> keysList=k.getList();
-                   List<Object> valuesList=v.getList();
+                   List<?> keysList=k.getList();
+                   List<?> valuesList=v.getList();
                    Map<Object, Object> resultMap = new HashMap<>();
 
                    for (int i = 0; i < keysList.size(); i++) {

@@ -65,11 +65,11 @@ public abstract class NormalFunction implements FastFunction {
                     }else if (v instanceof String){
                         args.add(new StringResult((String) v));
                     }else if (v instanceof List){
-                        args.add(new ListResult((List<Object>) v));
+                        args.add(new ListResult((List<?>) v));
                     }else if (v instanceof Map){
-                        args.add(new MapResult((Map<Object,Object>) v));
+                        args.add(new MapResult((Map<?,?>) v));
                     }else if (v instanceof Set){
-                        args.add(new SetResult((Set<Object>) v));
+                        args.add(new SetResult((Set<?>) v));
                     }else if (v instanceof SpellContext){
                         args.add(new SpellContextResult((SpellContext) v));
                     }else if (v instanceof Spell){

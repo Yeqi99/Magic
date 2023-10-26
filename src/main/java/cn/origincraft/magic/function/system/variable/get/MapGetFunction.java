@@ -23,7 +23,7 @@ public class MapGetFunction extends NormalFunction {
         if (!(container instanceof MapResult)){
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
-        Map<Object,Object> map=((MapResult) container).getMap();
+        Map<?,?> map=((MapResult) container).getMap();
         Object keyO=null;
         if (key instanceof StringResult){
             keyO=((StringResult) key).getString();

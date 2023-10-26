@@ -1,70 +1,101 @@
 package cn.origincraft.magic.function.system.control;
 
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ArgumentsResult;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.ListResult;
-import cn.origincraft.magic.function.results.SetResult;
+import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.object.ContextMap;
+import cn.origincraft.magic.object.NormalContext;
+import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.VariableUtil;
 import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.ObjectResult;
-import dev.rgbmc.expression.results.StringResult;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class TraversalFunction extends NormalFunction {
+
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<3){
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Traversal function requires at least three arguments.");
+        if (args.size()<2) {
+            return new ErrorResult("TRAVERSAL_FUNCTION_ARGS_ERROR", "Traversal needs at least 3 arguments.");
         }
-        FunctionResult container=args.get(0);
-        FunctionResult value=args.get(1);
-        FunctionResult index=args.get(2);
-        if (!(value instanceof StringResult && index instanceof StringResult)){
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+        FunctionResult arg0 = args.get(0);
+        FunctionResult arg1 = args.get(1);
+        if (!(arg1 instanceof SpellResult)){
+            return new ErrorResult("TRAVERSAL_FUNCTION_ARGS_ERROR", "Traversal needs a spell as the second argument.");
         }
-
-        String valueString=((StringResult) value).getString();
-        String indexString=((StringResult) index).getString();
-        if (!spellContext.getContextMap().hasVariable(indexString)){
-            spellContext.getContextMap().putVariable(indexString, 0);
+        Spell spell=((SpellResult) arg1).getSpell();
+        ArgumentsResult argumentsResult=null;
+        if (args.size()>2){
+            List<FunctionResult> arguments=new ArrayList<>();
+            arguments.containsAll(args.subList(2,args.size()));
+            argumentsResult=new ArgumentsResult(arguments);
         }
-        Object oi= spellContext.getContextMap().getVariable(indexString);
-        if (!(oi instanceof Integer)){
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
-        }
-        int i= (int) oi;
-        if (container instanceof ListResult){
-            List<Object> list=((ListResult) container).getList();
-            if (i<list.size()){
-                Object o=list.get(i);
-                ObjectResult objectResult=new ObjectResult(o);
-                spellContext.getContextMap().putVariable(valueString, objectResult);
-                spellContext.getContextMap().putVariable(indexString, i+1);
-                spellContext.putExecuteNext(spellContext.getExecuteIndex());
-                return new StringResult(valueString);
-            }else {
-                spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
-                return new StringResult(valueString);
+        if (arg0 instanceof ListResult){
+            List<Object> result=new ArrayList<>();
+            List<?> container=((ListResult) arg0).getList();
+            for (int i=0;i<container.size();i++){
+                ContextMap contextMap=new NormalContext();
+                contextMap.putVariable("index",i);
+                contextMap.putVariable("value",container.get(i));
+                if (argumentsResult!=null){
+                    contextMap.putVariable("args",argumentsResult);
+                }
+                SpellContext context= spell.execute(contextMap);
+                Object value=context.getContextMap().getVariable("value");
+                if (value == null){
+                    continue;
+                }
+                result.add(context.getContextMap().getVariable("value"));
+                if (context.hasExecuteError()){
+                    return context.getExecuteError();
+                }
             }
-        }else if (container instanceof ArgumentsResult){
-            List<FunctionResult> list=((ArgumentsResult) container).getArgs();
-            if (i<list.size()){
-                FunctionResult o=list.get(i);
-                spellContext.getContextMap().putVariable(valueString, o);
-                spellContext.getContextMap().putVariable(indexString, i+1);
-                spellContext.putExecuteNext(spellContext.getExecuteIndex());
-                return new StringResult(valueString);
-            }else {
-                spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
-                return new StringResult(valueString);
+            return new ListResult(result);
+        }else if (arg0 instanceof MapResult){
+            Map<Object,Object> result=new ConcurrentHashMap<>();
+            Map<?,?> container=((MapResult) arg0).getMap();
+            for (Map.Entry<?,?> entry:container.entrySet()){
+                ContextMap contextMap=new NormalContext();
+                contextMap.putVariable("key",entry.getKey());
+                contextMap.putVariable("value",entry.getValue());
+                if (argumentsResult!=null){
+                    contextMap.putVariable("args",argumentsResult);
+                }
+                SpellContext context= spell.execute(contextMap);
+                Object value=context.getContextMap().getVariable("value");
+                if (value == null){
+                    continue;
+                }
+                result.put(context.getContextMap().getVariable("key"),context.getContextMap().getVariable("value"));
+                if (context.hasExecuteError()){
+                    return context.getExecuteError();
+                }
             }
-        }else {
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+            return new MapResult(result);
+        }else if (arg0 instanceof SetResult){
+            Set<?> inContainer=((SetResult) arg0).getSet();
+            Set<Object> result=new HashSet<>();
+            List<?> container=new ArrayList<>(inContainer);
+            for (int i=0;i<container.size();i++){
+                ContextMap contextMap=new NormalContext();
+                contextMap.putVariable("index",i);
+                contextMap.putVariable("value",container.get(i));
+                if (argumentsResult!=null){
+                    contextMap.putVariable("args",argumentsResult);
+                }
+                SpellContext context= spell.execute(contextMap);
+                Object value=context.getContextMap().getVariable("value");
+                if (value == null){
+                    continue;
+                }
+                result.add(context.getContextMap().getVariable("value"));
+                if (context.hasExecuteError()){
+                    return context.getExecuteError();
+                }
+            }
+            return new SetResult(result);
         }
+        return new NullResult();
     }
 
     @Override

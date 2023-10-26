@@ -6,6 +6,7 @@ import cn.origincraft.magic.function.results.ErrorResult;
 import dev.rgbmc.expression.functions.FunctionResult;
 
 import java.security.Permission;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -198,6 +199,23 @@ public class SpellContext {
     }
     public boolean hasExecuteError(){
         return getExecuteResultMap().containsKey("execute.error");
+    }
+    public void putExecuteErrorLocation(List<String> info){
+        getExecuteResultMap().put("execute.error.location",info);
+    }
+    public void removeExecuteErrorLocation(){
+        if (hasExecuteErrorLocation()){
+            getExecuteResultMap().remove("execute.error.location");
+        }
+    }
+    public boolean hasExecuteErrorLocation(){
+        return getExecuteResultMap().containsKey("execute.error.location");
+    }
+    public List<String> getExecuteErrorLocation(){
+        if (!hasExecuteErrorLocation()){
+            return null;
+        }
+        return (List<String>) getExecuteResultMap().get("execute.error.location");
     }
     public ErrorResult getExecuteError(){
         if (!hasExecuteError()){

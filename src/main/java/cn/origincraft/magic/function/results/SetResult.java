@@ -4,13 +4,13 @@ import dev.rgbmc.expression.functions.FunctionResult;
 import java.util.Set;
 
 public class SetResult extends FunctionResult {
-    private final Set<Object> value;
+    private final Set<?> value;
 
-    public SetResult(Set<Object> value) {
+    public SetResult(Set<?> value) {
         this.value = value;
     }
 
-    public Set<Object> getSet() {
+    public Set<?> getSet() {
         return value;
     }
 }

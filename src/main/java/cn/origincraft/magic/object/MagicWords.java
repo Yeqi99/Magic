@@ -7,6 +7,8 @@ import cn.origincraft.magic.utils.MethodUtil;
 import dev.rgbmc.expression.functions.CallableFunction;
 import dev.rgbmc.expression.functions.FunctionResult;
 import dev.rgbmc.expression.parameters.StringParameter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MagicWords {
@@ -41,6 +43,14 @@ public class MagicWords {
                             .call(new SpellContextParameter(spellContext));
             if (result instanceof ErrorResult) {
                 spellContext.putExecuteError(result);
+                List<String> errLocation=new ArrayList<>();
+                String location="At index "+spellContext.getExecuteIndex();
+                String sum="Already executed "+spellContext.getExecuteCount()+" statements";
+                String word="Words "+getOriginMagicWords();
+                errLocation.add(location);
+                errLocation.add(sum);
+                errLocation.add(word);
+                spellContext.putExecuteErrorLocation(errLocation);
                 break;
             }
             // 检查是否继续这行本条魔语
