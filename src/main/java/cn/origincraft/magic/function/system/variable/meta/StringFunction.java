@@ -35,7 +35,7 @@ public class StringFunction extends NormalFunction {
             }else if(functionResult instanceof ObjectResult v){
                 stringBuilder.append(v.getObject().toString());
             }else if(functionResult instanceof ListResult){
-                List<Object> list=((ListResult) functionResult).getList();
+                List<?> list=((ListResult) functionResult).getList();
                 for (Object o : list) {
                     if (o instanceof String){
                         stringBuilder.append(o).append("\n");

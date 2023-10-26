@@ -27,7 +27,7 @@ public class ListGetFunction extends NormalFunction {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
         if (container instanceof ListResult){
-            List<Object> list=((ListResult) container).getList();
+            List<?> list=((ListResult) container).getList();
             if (!VariableUtil.tryInt(k)){
                 return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
             }

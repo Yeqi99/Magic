@@ -19,7 +19,7 @@ public class ContainerRandomGetFunction extends NormalFunction {
         }
         FunctionResult container = args.get(0);
         if (container instanceof ListResult){
-            List<Object> list=((ListResult) container).getList();
+            List<?> list=((ListResult) container).getList();
             int i=(int)(Math.random()*list.size());
             Object o=list.get(i);
             return new ObjectResult(o);
