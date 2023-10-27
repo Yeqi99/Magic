@@ -34,7 +34,7 @@ public class TraversalFunction extends NormalFunction {
             List<Object> result=new ArrayList<>();
             List<?> container=((ListResult) arg0).getList();
             for (int i=0;i<container.size();i++){
-                ContextMap contextMap=new NormalContext();
+                ContextMap contextMap=spellContext.getContextMap();
                 contextMap.putVariable("index",i);
                 contextMap.putVariable("value",container.get(i));
                 if (argumentsResult!=null){
@@ -55,7 +55,7 @@ public class TraversalFunction extends NormalFunction {
             Map<Object,Object> result=new ConcurrentHashMap<>();
             Map<?,?> container=((MapResult) arg0).getMap();
             for (Map.Entry<?,?> entry:container.entrySet()){
-                ContextMap contextMap=new NormalContext();
+                ContextMap contextMap=spellContext.getContextMap();
                 contextMap.putVariable("key",entry.getKey());
                 contextMap.putVariable("value",entry.getValue());
                 if (argumentsResult!=null){
@@ -77,7 +77,7 @@ public class TraversalFunction extends NormalFunction {
             Set<Object> result=new HashSet<>();
             List<?> container=new ArrayList<>(inContainer);
             for (int i=0;i<container.size();i++){
-                ContextMap contextMap=new NormalContext();
+                ContextMap contextMap=spellContext.getContextMap();
                 contextMap.putVariable("index",i);
                 contextMap.putVariable("value",container.get(i));
                 if (argumentsResult!=null){
