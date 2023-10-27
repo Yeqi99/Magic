@@ -23,9 +23,8 @@ public class EvalExecuteFunction extends OnlyStringFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, String args) {
-        String[] lines=args.split("/|");
         List<String> spellWorlds=new ArrayList<>();
-        Collections.addAll(spellWorlds,lines);
+        spellWorlds.add(args);
         Spell spell =new Spell(spellWorlds,spellContext.getMagicManager());
         SpellContext evalSpellContext= spell.execute(spellContext.getContextMap());
         return evalSpellContext.getSpellReturn();

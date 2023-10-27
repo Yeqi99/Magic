@@ -49,6 +49,8 @@ public class ListFunction extends NormalFunction {
                 resultList.add(v.getMap());
             }else if (functionResult instanceof SetResult v){
                 resultList.add(v.getSet());
+            }else {
+                resultList.add(functionResult);
             }
         }
         return new ListResult(resultList);

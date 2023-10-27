@@ -18,7 +18,7 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
-        testList.add("if(bool(false)) print(1)");
+        testList.add("spelle(eval(print(a)))");
 //        testList.add("vdef(i int(0)) vdef(j int(10))");
 //        testList.add("vdef(message str(Hello space() World))");
 //        testList.add("while(comp(i < j)) print(第 i 次 message) vdef(i add(i 1))");
@@ -28,6 +28,11 @@ public class Test {
         SpellContext spellContext= spell.execute(contextMap);
         if(spellContext.hasExecuteError()){
             System.out.println(spellContext.getExecuteError());
+            for (String s : spellContext.getExecuteErrorLocation()) {
+
+                System.out.println(s);
+            }
+
         }
 
     }

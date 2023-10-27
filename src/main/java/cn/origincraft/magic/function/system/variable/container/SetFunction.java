@@ -45,6 +45,8 @@ public class SetFunction extends NormalFunction {
                 resultSet.add(v.getMap());
             }else if (functionResult instanceof SetResult v){
                 resultSet.add(v);
+            }else {
+                resultSet.add(functionResult);
             }
         }
         return new SetResult(resultSet);

@@ -7,7 +7,6 @@ import cn.origincraft.magic.object.SpellContext;
 import dev.rgbmc.expression.functions.FunctionResult;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -25,9 +24,8 @@ public class EvalFunction extends OnlyStringFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, String args) {
-        String[] lines=args.split("/|");
         List<String> spellWorlds=new ArrayList<>();
-        Collections.addAll(spellWorlds,lines);
+        spellWorlds.add(args);
         Spell spell =new Spell(spellWorlds,spellContext.getMagicManager());
         return new SpellResult(spell);
     }

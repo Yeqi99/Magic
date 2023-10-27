@@ -57,7 +57,6 @@ public abstract class NormalFunction implements FastFunction {
                     if (v instanceof ErrorResult){
                         return (ErrorResult) v;
                     }
-
                     if (v instanceof Integer){
                         args.add(new IntegerResult((Integer) v));
                     }else if (v instanceof Double){
