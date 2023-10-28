@@ -1,16 +1,16 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
-import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.expression.functions.CallableFunction;
+import cn.origincraft.magic.expression.functions.FunctionParameter;
+import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.expression.parameters.StringParameter;
+import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtil;
-import dev.rgbmc.expression.functions.CallableFunction;
-import dev.rgbmc.expression.functions.FunctionParameter;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.parameters.StringParameter;
-import dev.rgbmc.expression.results.*;
 
 import java.util.ArrayList;
 import java.util.List;

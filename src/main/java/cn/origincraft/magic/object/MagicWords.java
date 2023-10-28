@@ -2,11 +2,11 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.expression.functions.CallableFunction;
+import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.expression.parameters.StringParameter;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.utils.MethodUtil;
-import dev.rgbmc.expression.functions.CallableFunction;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.parameters.StringParameter;
 
 import java.util.ArrayList;
 import java.util.List;

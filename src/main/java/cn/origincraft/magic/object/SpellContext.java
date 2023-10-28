@@ -2,10 +2,9 @@ package cn.origincraft.magic.object;
 
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.results.ErrorResult;
-import dev.rgbmc.expression.functions.FunctionResult;
 
-import java.security.Permission;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

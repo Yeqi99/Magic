@@ -1,17 +1,21 @@
 package cn.origincraft.magic.function.results;
 
 
-import dev.rgbmc.expression.functions.FunctionResult;
 
-public class LongResult extends FunctionResult {
-    private final long value;
+public class LongResult extends ObjectResult{
 
     public LongResult(long value) {
-        this.value = value;
+        super(value);
     }
 
 
     public long getLong() {
-        return value;
+        return (long) getObject();
+    }
+
+
+    @Override
+    public String getName() {
+        return "Long";
     }
 }

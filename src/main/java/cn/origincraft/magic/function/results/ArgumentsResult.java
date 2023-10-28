@@ -1,17 +1,22 @@
 package cn.origincraft.magic.function.results;
 
-import dev.rgbmc.expression.functions.FunctionResult;
+
+import cn.origincraft.magic.expression.functions.FunctionResult;
 
 import java.util.List;
 
-public class ArgumentsResult extends FunctionResult{
-    private final List<FunctionResult> args;
+public class ArgumentsResult extends ObjectResult{
 
     public ArgumentsResult(List<FunctionResult> args) {
-        this.args = args;
+        super(args);
     }
 
     public List<FunctionResult> getArgs() {
-        return args;
+        return (List<FunctionResult>) getObject();
+    }
+
+    @Override
+    public String getName() {
+        return "Arguments";
     }
 }

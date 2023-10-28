@@ -1,10 +1,9 @@
 package cn.origincraft.magic.function.system.info.time;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
+import cn.origincraft.magic.function.results.DoubleResult;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.DoubleResult;
-import dev.rgbmc.expression.results.IntegerResult;
 
 import java.util.List;
 

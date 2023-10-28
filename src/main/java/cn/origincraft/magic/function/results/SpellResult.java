@@ -1,16 +1,20 @@
 package cn.origincraft.magic.function.results;
 
 import cn.origincraft.magic.object.Spell;
-import dev.rgbmc.expression.functions.FunctionResult;
 
-public class SpellResult extends FunctionResult {
-    private final Spell value;
+public class SpellResult extends ObjectResult{
+
 
     public SpellResult(Spell value) {
-        this.value = value;
+        super(value);
     }
 
     public Spell getSpell() {
-        return value;
+        return (Spell) getObject();
+    }
+
+    @Override
+    public String getName() {
+        return "Spell";
     }
 }

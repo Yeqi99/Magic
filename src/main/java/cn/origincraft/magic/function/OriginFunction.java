@@ -1,12 +1,13 @@
 package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.expression.functions.FastFunction;
+import cn.origincraft.magic.expression.functions.FunctionParameter;
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtil;
-import dev.rgbmc.expression.functions.FastFunction;
-import dev.rgbmc.expression.functions.FunctionParameter;
-import dev.rgbmc.expression.functions.FunctionResult;
+
 import java.util.List;
 
 

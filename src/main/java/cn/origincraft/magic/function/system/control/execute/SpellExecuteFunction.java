@@ -1,13 +1,12 @@
 package cn.origincraft.magic.function.system.control.execute;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.IntegerResult;
 import cn.origincraft.magic.function.results.SpellResult;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.IntegerResult;
-
 
 import java.util.List;
 

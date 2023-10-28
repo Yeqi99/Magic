@@ -1,10 +1,10 @@
 package cn.origincraft.magic.function.system.control;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.OnlyStringFunction;
 import cn.origincraft.magic.function.results.SpellResult;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
 
 import java.util.ArrayList;
 import java.util.List;

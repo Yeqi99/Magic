@@ -1,12 +1,9 @@
 package cn.origincraft.magic.function.system.variable.define;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.HasVariableFunction;
-import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
-import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 

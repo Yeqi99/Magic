@@ -1,16 +1,19 @@
 package cn.origincraft.magic.function.results;
 
 import cn.origincraft.magic.object.MagicWords;
-import dev.rgbmc.expression.functions.FunctionResult;
 
-public class MagicWordsResult extends FunctionResult {
-    private final MagicWords value;
+public class MagicWordsResult extends ObjectResult{
 
     public MagicWordsResult(MagicWords value) {
-        this.value = value;
+        super(value);
     }
 
     public MagicWords getMagicWords() {
-        return value;
+        return (MagicWords) getObject();
+    }
+
+    @Override
+    public String getName() {
+        return "MagicWords";
     }
 }

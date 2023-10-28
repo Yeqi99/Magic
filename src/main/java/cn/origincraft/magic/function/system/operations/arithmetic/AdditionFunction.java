@@ -1,13 +1,12 @@
 package cn.origincraft.magic.function.system.operations.arithmetic;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtil;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.*;
 
-import java.util.*;
+import java.util.List;
 
 public class AdditionFunction extends NormalFunction {
     @Override

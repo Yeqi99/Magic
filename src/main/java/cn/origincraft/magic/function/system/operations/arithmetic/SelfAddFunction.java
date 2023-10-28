@@ -1,13 +1,9 @@
 package cn.origincraft.magic.function.system.operations.arithmetic;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.LongResult;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.BooleanResult;
-import dev.rgbmc.expression.results.IntegerResult;
-import dev.rgbmc.expression.results.StringResult;
 
 import java.util.List;
 

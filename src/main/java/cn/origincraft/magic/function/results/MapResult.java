@@ -1,16 +1,20 @@
 package cn.origincraft.magic.function.results;
 
-import dev.rgbmc.expression.functions.FunctionResult;
 import java.util.Map;
 
-public class MapResult extends FunctionResult {
-    private final Map<?,?> value;
+public class MapResult extends ObjectResult{
 
     public MapResult(Map<?,?> value) {
-        this.value = value;
+        super(value);
     }
 
     public Map<?,?> getMap() {
-        return value;
+        return (Map<?, ?>) getObject();
+    }
+
+
+    @Override
+    public String getName() {
+        return "Map";
     }
 }

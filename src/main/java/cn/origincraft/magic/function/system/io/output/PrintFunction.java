@@ -1,11 +1,9 @@
 package cn.origincraft.magic.function.system.io.output;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.NullResult;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 

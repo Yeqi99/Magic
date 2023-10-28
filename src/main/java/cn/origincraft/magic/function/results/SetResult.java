@@ -1,16 +1,19 @@
 package cn.origincraft.magic.function.results;
 
-import dev.rgbmc.expression.functions.FunctionResult;
 import java.util.Set;
 
-public class SetResult extends FunctionResult {
-    private final Set<?> value;
+public class SetResult extends ObjectResult{
 
     public SetResult(Set<?> value) {
-        this.value = value;
+        super(value);
     }
 
     public Set<?> getSet() {
-        return value;
+        return (Set<?>) getObject();
+    }
+
+    @Override
+    public String getName() {
+        return "Set";
     }
 }

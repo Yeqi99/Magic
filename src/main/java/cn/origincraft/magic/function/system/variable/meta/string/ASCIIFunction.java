@@ -1,13 +1,13 @@
 package cn.origincraft.magic.function.system.variable.meta.string;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.IntegerResult;
+import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.MethodUtil;
 import cn.origincraft.magic.utils.VariableUtil;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.IntegerResult;
-import dev.rgbmc.expression.results.StringResult;
 
 import java.util.List;
 

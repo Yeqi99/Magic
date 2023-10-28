@@ -1,12 +1,11 @@
 package cn.origincraft.magic.utils;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.MagicWords;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextResult;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 import java.util.Map;

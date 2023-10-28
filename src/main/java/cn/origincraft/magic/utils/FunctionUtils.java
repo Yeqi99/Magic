@@ -1,9 +1,12 @@
 package cn.origincraft.magic.utils;
 
-import dev.rgbmc.expression.functions.CallableFunction;
-import dev.rgbmc.expression.managers.FunctionManager;
-import dev.rgbmc.expression.parameters.StringParameter;
+import cn.origincraft.magic.expression.functions.CallableFunction;
+import cn.origincraft.magic.expression.managers.FunctionManager;
+import cn.origincraft.magic.expression.parameters.StringParameter;
+import cn.origincraft.magic.function.ArgsSetting;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,5 +37,13 @@ public class FunctionUtils {
             }
         }
         return result;
+    }
+
+    public static ArgsSetting createArgsSetting(int amount, String type, String info, String resultType) {
+        String[] types = type.split(" ");
+        List<String> typeList = new ArrayList<>(Arrays.asList(types));
+        String[] infos = info.split("\n");
+        List<String> infoList = new ArrayList<>(Arrays.asList(infos));
+        return new ArgsSetting(amount, typeList, infoList, resultType);
     }
 }

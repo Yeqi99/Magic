@@ -1,12 +1,11 @@
 package cn.origincraft.magic.function.system.variable.get;
 
+import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
-import dev.rgbmc.expression.functions.FunctionResult;
-import dev.rgbmc.expression.results.*;
 
 import java.util.List;
 import java.util.Map;
@@ -30,11 +29,11 @@ public class ObjectGetFunction extends NormalFunction {
                     return new DoubleResult(aDouble);
                 }else if (o instanceof Boolean aBoolean) {
                     return new BooleanResult(aBoolean);
-                }else if (o instanceof List list) {
+                }else if (o instanceof List<?> list) {
                     return new ListResult(list);
-                }else if (o instanceof Set set) {
+                }else if (o instanceof Set<?> set) {
                     return new SetResult(set);
-                }else if (o instanceof Map map){
+                }else if (o instanceof Map<?,?> map){
                     return new MapResult(map);
                 }else if (o instanceof Spell spell) {
                     return new SpellResult(spell);
