@@ -18,13 +18,13 @@ public class SpellFunction extends NormalFunction {
         }
         if (args.get(0) instanceof SpellResult v) {
             return new SpellResult(v.getSpell());
-        }else if (args.get(0) instanceof ObjectResult v) {
+        } else if (args.get(0) instanceof ObjectResult v) {
             if (v.getObject() instanceof Spell spell) {
                 return new SpellResult(spell);
-            }else {
+            } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to Spell.");
             }
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
 

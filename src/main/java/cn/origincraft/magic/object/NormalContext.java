@@ -4,9 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class NormalContext implements ContextMap{
-    private ConcurrentHashMap<String, Object> objectMap=new ConcurrentHashMap<>();
-    private ConcurrentHashMap<String, Object> variableMap=new ConcurrentHashMap<>();
+public class NormalContext implements ContextMap {
+    private ConcurrentHashMap<String, Object> objectMap = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, Object> variableMap = new ConcurrentHashMap<>();
+
     @Override
     public void putObject(String key, Object value) {
         getObjectMap().put(key, value);

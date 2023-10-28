@@ -9,14 +9,15 @@ import java.util.List;
 
 public class MagicInstance {
     private final String id;
-    private List<String> contentLines;
     private final String filePath;
+    private List<String> contentLines;
 
     public MagicInstance(String id, String filePath) {
         this.id = id;
         this.contentLines = new ArrayList<>();
         this.filePath = filePath;
     }
+
     public String getId() {
         return id;
     }
@@ -24,11 +25,13 @@ public class MagicInstance {
     public List<String> getContentLines() {
         return contentLines;
     }
-    public Spell getSpell(MagicManager magicManager){
-        return new Spell(contentLines,magicManager);
-    }
+
     public void setContentLines(List<String> contentLines) {
         this.contentLines = contentLines;
+    }
+
+    public Spell getSpell(MagicManager magicManager) {
+        return new Spell(contentLines, magicManager);
     }
 
     public String getFilePath() {
@@ -42,7 +45,7 @@ public class MagicInstance {
                 contentLines.add(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("load file error");
         }
     }
 
@@ -52,7 +55,7 @@ public class MagicInstance {
                 writer.write(line + "\n");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("save file error");
         }
     }
 }

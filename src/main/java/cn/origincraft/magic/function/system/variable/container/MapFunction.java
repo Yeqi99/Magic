@@ -16,26 +16,26 @@ public class MapFunction extends NormalFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2){
+        if (args.size() < 2) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Map function requires at least two arguments.");
         }
-        FunctionResult keys=args.get(0);
-        FunctionResult values=args.get(1);
-        if (keys instanceof ListResult k){
-           if (values instanceof ListResult v){
-               if (k.getList().size()==v.getList().size()) {
-                   List<?> keysList=k.getList();
-                   List<?> valuesList=v.getList();
-                   Map<Object, Object> resultMap = new HashMap<>();
+        FunctionResult keys = args.get(0);
+        FunctionResult values = args.get(1);
+        if (keys instanceof ListResult k) {
+            if (values instanceof ListResult v) {
+                if (k.getList().size() == v.getList().size()) {
+                    List<?> keysList = k.getList();
+                    List<?> valuesList = v.getList();
+                    Map<Object, Object> resultMap = new HashMap<>();
 
-                   for (int i = 0; i < keysList.size(); i++) {
-                       resultMap.put(keysList.get(i), valuesList.get(i));
-                   }
+                    for (int i = 0; i < keysList.size(); i++) {
+                        resultMap.put(keysList.get(i), valuesList.get(i));
+                    }
 
-                   return new MapResult(resultMap);
+                    return new MapResult(resultMap);
 
-               }
-           }
+                }
+            }
         }
         return new ErrorResult("MAP_FUNCTION_ARGS_ERROR", "Map function args error.");
     }

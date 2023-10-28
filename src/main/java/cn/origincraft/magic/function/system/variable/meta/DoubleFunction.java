@@ -17,17 +17,17 @@ public class DoubleFunction extends NormalFunction {
         FunctionResult functionResult = args.get(0);
         if (functionResult instanceof DoubleResult v) {
             return new DoubleResult(v.getDouble());
-        }else if (functionResult instanceof StringResult v) {
+        } else if (functionResult instanceof StringResult v) {
             if (VariableUtil.tryDouble(v.getString())) {
                 return new DoubleResult(Double.parseDouble(v.getString()));
-            }else {
+            } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
             }
-        }else if (functionResult instanceof IntegerResult v) {
+        } else if (functionResult instanceof IntegerResult v) {
             return new DoubleResult(v.getInteger());
-        }else if (functionResult instanceof BooleanResult v) {
+        } else if (functionResult instanceof BooleanResult v) {
             return new DoubleResult(v.getBoolean() ? 1 : 0);
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

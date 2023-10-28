@@ -19,13 +19,13 @@ public class ASCIIFunction extends NormalFunction {
         }
         FunctionResult functionResult = args.get(0);
         if (functionResult instanceof StringResult v) {
-            if (VariableUtil.tryInt(v.getString())){
+            if (VariableUtil.tryInt(v.getString())) {
                 return new StringResult(MethodUtil.getEnter(Integer.parseInt(v.getString())));
-            }else {
+            } else {
                 return new ErrorResult("ASCII_FUNCTION_ARGS_ERROR", "ASCII args must be a number.");
             }
-        }else if (functionResult instanceof IntegerResult v){
-            return new StringResult(((char)v.getInteger())+"");
+        } else if (functionResult instanceof IntegerResult v) {
+            return new StringResult(((char) v.getInteger()) + "");
         }
         return new ErrorResult("ASCII_FUNCTION_ARGS_ERROR", "ASCII args must be a number.");
     }

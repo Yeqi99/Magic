@@ -42,7 +42,7 @@ public class SpellContext {
     }
 
     public void addExecuteCount(int addValue) {
-        putExecuteCount(getExecuteCount()+addValue);
+        putExecuteCount(getExecuteCount() + addValue);
     }
 
     // 记录执行时的循环序号
@@ -76,6 +76,7 @@ public class SpellContext {
     public boolean hasExecuteNext() {
         return getExecuteResultMap().containsKey("execute.next");
     }
+
     // 上一条执行的语句序号
     public int getExecutePrevious() {
         if (!hasExecutePrevious()) {
@@ -91,16 +92,19 @@ public class SpellContext {
     public boolean hasExecutePrevious() {
         return getExecuteResultMap().containsKey("execute.previous");
     }
+
     // 中断语句队列
     public void putExecuteBreak(boolean bool) {
         putExecuteResult("execute.break", bool);
     }
-    public boolean getExecuteBreak(){
+
+    public boolean getExecuteBreak() {
         if (!hasExecuteBreak()) {
             return false;
         }
         return (boolean) getExecuteResultMap().get("execute.break");
     }
+
     public boolean hasExecuteBreak() {
         return getExecuteResultMap().containsKey("execute.break");
     }
@@ -109,11 +113,13 @@ public class SpellContext {
     public void putExecuteContinue(boolean bool) {
         putExecuteResult("execute.continue", bool);
     }
+
     public void removeExecuteContinue() {
-        if (hasExecuteContinue()){
+        if (hasExecuteContinue()) {
             getExecuteResultMap().remove("execute.continue");
         }
     }
+
     public boolean getExecuteContinue() {
         if (!hasExecuteContinue()) {
             return false;
@@ -129,11 +135,13 @@ public class SpellContext {
     public void putExecutePass(int num) {
         putExecuteResult("execute.pass", num);
     }
+
     public void removeExecutePass() {
-        if (hasExecutePass()){
+        if (hasExecutePass()) {
             getExecuteResultMap().remove("execute.pass");
         }
     }
+
     public int getExecutePass() {
         if (!hasExecutePass()) {
             return 0;
@@ -148,76 +156,91 @@ public class SpellContext {
     public void putExecuteParameter(String parameter) {
         putExecuteResult("execute.parameter", parameter);
     }
+
     public String getExecuteParameter() {
         if (!hasExecuteParameter()) {
             return null;
         }
         return (String) getExecuteResultMap().get("execute.parameter");
     }
+
     public boolean hasExecuteParameter() {
         return getExecuteResultMap().containsKey("execute.parameter");
     }
 
-    public void putMagicManager(MagicManager magicManager){
-        getExecuteResultMap().put("magic.manager",magicManager);
+    public void putMagicManager(MagicManager magicManager) {
+        getExecuteResultMap().put("magic.manager", magicManager);
     }
-    public MagicManager getMagicManager(){
-        if (!hasMagicManager()){
+
+    public MagicManager getMagicManager() {
+        if (!hasMagicManager()) {
             return null;
         }
         return (MagicManager) getExecuteResultMap().get("magic.manager");
     }
-    public boolean hasMagicManager(){
+
+    public boolean hasMagicManager() {
         return getExecuteResultMap().containsKey("magic.manager");
     }
 
-    public void putExecuteIndexAllow(int index,boolean bool){
-        getExecuteResultMap().put("execute.+"+index+".allow",bool);
+    public void putExecuteIndexAllow(int index, boolean bool) {
+        getExecuteResultMap().put("execute.+" + index + ".allow", bool);
     }
-    public boolean hasExecuteIndexAllow(int index){
-        return getExecuteResultMap().containsKey("execute.+"+index+".allow");
+
+    public boolean hasExecuteIndexAllow(int index) {
+        return getExecuteResultMap().containsKey("execute.+" + index + ".allow");
     }
-    public boolean getExecuteIndexAllow(int index){
-        if (!hasExecuteIndexAllow(index)){
+
+    public boolean getExecuteIndexAllow(int index) {
+        if (!hasExecuteIndexAllow(index)) {
             return true;
         }
-        return (boolean) getExecuteResultMap().get("execute.+"+index+".allow");
+        return (boolean) getExecuteResultMap().get("execute.+" + index + ".allow");
     }
-    public void removeExecuteIndexAllow(int index){
-        if (hasExecuteIndexAllow(index)){
-            getExecuteResultMap().remove("execute.+"+index+".allow");
+
+    public void removeExecuteIndexAllow(int index) {
+        if (hasExecuteIndexAllow(index)) {
+            getExecuteResultMap().remove("execute.+" + index + ".allow");
         }
     }
-    public void putExecuteError(FunctionResult error){
-        getExecuteResultMap().put("execute.error",error);
+
+    public void putExecuteError(FunctionResult error) {
+        getExecuteResultMap().put("execute.error", error);
     }
-    public void removeExecuteError(){
-        if (hasExecuteError()){
+
+    public void removeExecuteError() {
+        if (hasExecuteError()) {
             getExecuteResultMap().remove("execute.error");
         }
     }
-    public boolean hasExecuteError(){
+
+    public boolean hasExecuteError() {
         return getExecuteResultMap().containsKey("execute.error");
     }
-    public void putExecuteErrorLocation(List<String> info){
-        getExecuteResultMap().put("execute.error.location",info);
+
+    public void putExecuteErrorLocation(List<String> info) {
+        getExecuteResultMap().put("execute.error.location", info);
     }
-    public void removeExecuteErrorLocation(){
-        if (hasExecuteErrorLocation()){
+
+    public void removeExecuteErrorLocation() {
+        if (hasExecuteErrorLocation()) {
             getExecuteResultMap().remove("execute.error.location");
         }
     }
-    public boolean hasExecuteErrorLocation(){
+
+    public boolean hasExecuteErrorLocation() {
         return getExecuteResultMap().containsKey("execute.error.location");
     }
-    public List<String> getExecuteErrorLocation(){
-        if (!hasExecuteErrorLocation()){
+
+    public List<String> getExecuteErrorLocation() {
+        if (!hasExecuteErrorLocation()) {
             return null;
         }
         return (List<String>) getExecuteResultMap().get("execute.error.location");
     }
-    public ErrorResult getExecuteError(){
-        if (!hasExecuteError()){
+
+    public ErrorResult getExecuteError() {
+        if (!hasExecuteError()) {
             return null;
         }
         return (ErrorResult) getExecuteResultMap().get("execute.error");
@@ -232,22 +255,27 @@ public class SpellContext {
         this.executeResultMap = executeResultMap;
     }
 
-    public void putObject(String key,Object value){
-        contextMap.putObject(key,value);
+    public void putObject(String key, Object value) {
+        contextMap.putObject(key, value);
     }
-    public void putVariable(String key,Object value){
-        contextMap.putVariable(key,value);
+
+    public void putVariable(String key, Object value) {
+        contextMap.putVariable(key, value);
     }
-    public void putExecuteResult(String key,Object value){
-        getExecuteResultMap().put(key,value);
+
+    public void putExecuteResult(String key, Object value) {
+        getExecuteResultMap().put(key, value);
     }
-    public void putSpellReturn(FunctionResult functionResult){
-        getExecuteResultMap().put("spellReturn",functionResult);
+
+    public void putSpellReturn(FunctionResult functionResult) {
+        getExecuteResultMap().put("spellReturn", functionResult);
     }
-    public FunctionResult getSpellReturn(){
+
+    public FunctionResult getSpellReturn() {
         return (FunctionResult) getExecuteResultMap().get("spellReturn");
     }
-    public boolean hasSpellReturn(){
+
+    public boolean hasSpellReturn() {
         return getExecuteResultMap().containsKey("spellReturn");
     }
 

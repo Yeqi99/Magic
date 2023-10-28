@@ -11,10 +11,10 @@ import java.util.List;
 public class PassFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             return new NullResult();
         }
-        if (args.get(0) instanceof IntegerResult v){
+        if (args.get(0) instanceof IntegerResult v) {
             spellContext.putExecutePass(v.getInteger());
         }
         return new NullResult();

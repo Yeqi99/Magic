@@ -36,7 +36,8 @@ public class AliasesManager {
     }
 
     public void addAlias(String realName, String alias, FunctionManager functionManager) {
-        if (!functionManager.getRegistry().containsKey(realName)) throw new IllegalArgumentException("Function " + realName + " not found or not registered");
+        if (!functionManager.getRegistry().containsKey(realName))
+            throw new IllegalArgumentException("Function " + realName + " not found or not registered");
         if (!aliases.containsKey(realName)) {
             aliases.put(realName, new ArrayList<>());
             this.aliases.get(realName).add(alias);

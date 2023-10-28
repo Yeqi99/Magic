@@ -16,7 +16,7 @@ public class MagicWordsBreakFunction extends NormalFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
+        spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(), false);
         return new NullResult();
     }
 

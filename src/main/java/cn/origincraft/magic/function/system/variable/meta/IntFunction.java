@@ -17,17 +17,17 @@ public class IntFunction extends NormalFunction {
         FunctionResult functionResult = args.get(0);
         if (functionResult instanceof IntegerResult v) {
             return new IntegerResult(v.getInteger());
-        }else if (functionResult instanceof StringResult v) {
+        } else if (functionResult instanceof StringResult v) {
             if (VariableUtil.tryInt(v.getString())) {
                 return new IntegerResult(Integer.parseInt(v.getString()));
-            }else {
+            } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
             }
-        }else if (functionResult instanceof DoubleResult v) {
+        } else if (functionResult instanceof DoubleResult v) {
             return new IntegerResult((int) v.getDouble());
-        }else if (functionResult instanceof BooleanResult v) {
+        } else if (functionResult instanceof BooleanResult v) {
             return new IntegerResult(v.getBoolean() ? 1 : 0);
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

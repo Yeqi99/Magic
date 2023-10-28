@@ -11,24 +11,24 @@ import java.util.Map;
 public class MapGetFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<2) {
+        if (args.size() < 2) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "ContainerGet function requires at least two arguments.");
         }
         FunctionResult container = args.get(0);
         FunctionResult key = args.get(1);
-        if (!(container instanceof MapResult)){
+        if (!(container instanceof MapResult)) {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
-        Map<?,?> map=((MapResult) container).getMap();
-        Object keyO=null;
-        if (key instanceof StringResult){
-            keyO=((StringResult) key).getString();
-        }else {
-            keyO= ((ObjectResult)key).getObject();
+        Map<?, ?> map = ((MapResult) container).getMap();
+        Object keyO;
+        if (key instanceof StringResult) {
+            keyO = ((StringResult) key).getString();
+        } else {
+            keyO = (key).getObject();
         }
-        if (map.containsKey(keyO)){
+        if (map.containsKey(keyO)) {
             return new ObjectResult(map.get(keyO));
-        }else {
+        } else {
             return new NullResult();
         }
     }

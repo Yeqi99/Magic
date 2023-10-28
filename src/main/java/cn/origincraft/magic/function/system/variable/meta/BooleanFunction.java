@@ -18,17 +18,17 @@ public class BooleanFunction extends NormalFunction {
         FunctionResult functionResult = args.get(0);
         if (functionResult instanceof BooleanResult v) {
             return new BooleanResult(v.getBoolean());
-        }else if (functionResult instanceof StringResult v) {
+        } else if (functionResult instanceof StringResult v) {
             if (VariableUtil.tryBoolean(v.getString())) {
                 return new BooleanResult(Boolean.parseBoolean(v.getString()));
-            }else {
+            } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to boolean.");
             }
-        }else if (functionResult instanceof IntegerResult v) {
-            return new BooleanResult(v.getInteger()!=0);
-        }else if (functionResult instanceof DoubleResult v) {
-            return new BooleanResult(v.getDouble()!=0);
-        }else {
+        } else if (functionResult instanceof IntegerResult v) {
+            return new BooleanResult(v.getInteger() != 0);
+        } else if (functionResult instanceof DoubleResult v) {
+            return new BooleanResult(v.getDouble() != 0);
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

@@ -34,7 +34,7 @@ public class ModulusFunction extends NormalFunction {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (arg instanceof ObjectResult) {
-                Object objectValue = ((ObjectResult) arg).getObject();
+                Object objectValue = arg.getObject();
                 if (objectValue instanceof Integer) {
                     value = (Integer) objectValue;
                 } else if (objectValue instanceof Double) {

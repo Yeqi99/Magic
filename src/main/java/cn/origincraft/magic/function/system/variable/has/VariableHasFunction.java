@@ -14,14 +14,14 @@ public class VariableHasFunction extends HasVariableFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
-            return new ErrorResult("VARIABLE_HAS_FUNCTION_ARGS_ERROR","VariableHas don't have enough args.");
+        if (args.isEmpty()) {
+            return new ErrorResult("VARIABLE_HAS_FUNCTION_ARGS_ERROR", "VariableHas don't have enough args.");
         }
-        FunctionResult functionResult=args.get(0);
+        FunctionResult functionResult = args.get(0);
         if (functionResult instanceof StringResult v) {
             return new BooleanResult(spellContext.getContextMap().hasVariable(v.getString()));
         }
-        return new ErrorResult("UNKNOWN_ARGUMENT_TYPE","Unsupported argument type.");
+        return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
     }
 
     @Override

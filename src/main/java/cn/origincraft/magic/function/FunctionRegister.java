@@ -47,41 +47,41 @@ import cn.origincraft.magic.function.system.variable.meta.string.SpaceFunction;
 
 
 public class FunctionRegister {
-    public static void regDefault(MagicManager magicManager){
+    public static void regDefault(MagicManager magicManager) {
         // operations.arithmetic
-        magicManager.getFastExpression().getFunctionManager().register(new AdditionFunction(),"add");
-        magicManager.getFastExpression().getFunctionManager().register(new SubtractionFunction(),"sub");
+        magicManager.getFastExpression().getFunctionManager().register(new AdditionFunction(), "add");
+        magicManager.getFastExpression().getFunctionManager().register(new SubtractionFunction(), "sub");
         magicManager.getFastExpression().getFunctionManager().register(new MultiplicationFunction(), "mul");
         magicManager.getFastExpression().getFunctionManager().register(new DivisionFunction(), "div");
         magicManager.getFastExpression().getFunctionManager().register(new PowerFunction(), "pow");
-        magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(),"mod");
-        magicManager.getFastExpression().getFunctionManager().register(new IntegerDivisionFunction(),"idiv");
-        magicManager.getFastExpression().getFunctionManager().register(new SelfAddFunction(),"sadd");
+        magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(), "mod");
+        magicManager.getFastExpression().getFunctionManager().register(new IntegerDivisionFunction(), "idiv");
+        magicManager.getFastExpression().getFunctionManager().register(new SelfAddFunction(), "sadd");
         // operations.comparison
-        magicManager.getFastExpression().getFunctionManager().register(new CompareFunction(),"comp");
+        magicManager.getFastExpression().getFunctionManager().register(new CompareFunction(), "comp");
         // operations.logic
         magicManager.getFastExpression().getFunctionManager().register(new AndFunction());
         magicManager.getFastExpression().getFunctionManager().register(new OrFunction());
         magicManager.getFastExpression().getFunctionManager().register(new XOrFunction());
         magicManager.getFastExpression().getFunctionManager().register(new NotFunction());
         // operations.equal
-        magicManager.getFastExpression().getFunctionManager().register(new EqualFunction(),"eq");
-        magicManager.getFastExpression().getFunctionManager().register(new EqualsIgnoreCaseFunction(),"eqic");
+        magicManager.getFastExpression().getFunctionManager().register(new EqualFunction(), "eq");
+        magicManager.getFastExpression().getFunctionManager().register(new EqualsIgnoreCaseFunction(), "eqic");
         // io.out
-        magicManager.getFastExpression().getFunctionManager().register(new PrintFunction(),"out");
+        magicManager.getFastExpression().getFunctionManager().register(new PrintFunction(), "out");
         // io.in
-        magicManager.getFastExpression().getFunctionManager().register(new InputFunction(),"in");
+        magicManager.getFastExpression().getFunctionManager().register(new InputFunction(), "in");
         magicManager.getFastExpression().getFunctionManager().register(new ImportFunction());
         // control
         magicManager.getFastExpression().getFunctionManager().register(new IfFunction());
         magicManager.getFastExpression().getFunctionManager().register(new IfNotFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(),"when");
+        magicManager.getFastExpression().getFunctionManager().register(new WhileFunction(), "when");
         magicManager.getFastExpression().getFunctionManager().register(new ReturnFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new ReturnBreakFunction(),"returnb");
+        magicManager.getFastExpression().getFunctionManager().register(new ReturnBreakFunction(), "returnb");
         magicManager.getFastExpression().getFunctionManager().register(new ForFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new TraversalFunction(),"t","T");
+        magicManager.getFastExpression().getFunctionManager().register(new TraversalFunction(), "t", "T");
         magicManager.getFastExpression().getFunctionManager().register(new EvalFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new EvalExecuteFunction(),"evale");
+        magicManager.getFastExpression().getFunctionManager().register(new EvalExecuteFunction(), "evale");
         // control.execute
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsBreakFunction(), "mwbreak");
         magicManager.getFastExpression().getFunctionManager().register(new SpellBreakFunction(), "sbreak");
@@ -100,8 +100,8 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new IntFunction());
         magicManager.getFastExpression().getFunctionManager().register(new DoubleFunction());
         magicManager.getFastExpression().getFunctionManager().register(new BooleanFunction(), "bool");
-        magicManager.getFastExpression().getFunctionManager().register(new StringFunction(),"str");
-        magicManager.getFastExpression().getFunctionManager().register(new ObjectFunction(),"obj");
+        magicManager.getFastExpression().getFunctionManager().register(new StringFunction(), "str");
+        magicManager.getFastExpression().getFunctionManager().register(new ObjectFunction(), "obj");
         magicManager.getFastExpression().getFunctionManager().register(new LongFunction());
         magicManager.getFastExpression().getFunctionManager().register(new FloatFunction());
         // variable.define
@@ -144,7 +144,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new PackMethodsFunction(), "packm");
         magicManager.getFastExpression().getFunctionManager().register(new LookPackFunction(), "lookpack");
         // normal
-        magicManager.getFastExpression().getFunctionManager().register(new AliasAddFunction(), "alias","aliases","别名");
+        magicManager.getFastExpression().getFunctionManager().register(new AliasAddFunction(), "alias", "aliases", "别名");
         magicManager.getFastExpression().getFunctionManager().register(new RegisterCustomFunction(), "rcf");
     }
 }

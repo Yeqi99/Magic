@@ -15,7 +15,7 @@ import java.util.List;
 public class ArgsSpellExecuteFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<2) {
+        if (args.size() < 2) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments don't have enough args.");
         }
         FunctionResult spell = args.get(0);
@@ -26,16 +26,16 @@ public class ArgsSpellExecuteFunction extends NormalFunction {
                 List<FunctionResult> args1 = ((ArgumentsResult) arguments).getArgs();
                 NormalContext context = new NormalContext();
                 context.putVariable("args", new ArgumentsResult(args1));
-                SpellContext spellContext1= spell1.execute(context);
-                if (!spellContext1.hasSpellReturn()){
+                SpellContext spellContext1 = spell1.execute(context);
+                if (!spellContext1.hasSpellReturn()) {
                     return new NullResult();
-                }else {
+                } else {
                     return spellContext1.getSpellReturn();
                 }
-            }else {
+            } else {
                 return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
             }
-        }else {
+        } else {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
 

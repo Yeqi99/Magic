@@ -14,13 +14,13 @@ public class SpellExecuteFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
 
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "SpellExecute function requires at least one argument.");
         }
         int count = 0;
 
         for (FunctionResult arg : args) {
-            if (arg instanceof SpellResult spellResult){
+            if (arg instanceof SpellResult spellResult) {
                 Spell spell = spellResult.getSpell();
                 spell.execute(spellContext.getContextMap());
                 count++;

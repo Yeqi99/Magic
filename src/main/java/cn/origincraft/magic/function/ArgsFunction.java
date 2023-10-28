@@ -20,8 +20,8 @@ public abstract class ArgsFunction implements FastFunction {
 
     @Override
     public FunctionResult call(FunctionParameter parameter) {
-        List<FunctionResult> args = new ArrayList<>();
         SpellContext spellContext = MethodUtil.getSpellContext(parameter);
+        List<FunctionResult> args = new ArrayList<>();
         String para = spellContext.getExecuteParameter();
         MagicManager mm = spellContext.getMagicManager();
         List<Object> list = FunctionUtils
@@ -35,7 +35,7 @@ public abstract class ArgsFunction implements FastFunction {
                 StringParameter stringParameter =
                         (StringParameter) function.getParameter();
                 spellContext.putExecuteParameter(stringParameter.getString());
-                FunctionResult functionResult = (FunctionResult) function.getFunction().call(
+                FunctionResult functionResult = function.getFunction().call(
                         new SpellContextParameter(spellContext)
                 );
                 if (functionResult instanceof ErrorResult) {
@@ -91,42 +91,42 @@ public abstract class ArgsFunction implements FastFunction {
             }
         }
         // 获得语义的所有参数设置
-        List<ArgsSetting> argsSettings=getArgsSetting();
+        List<ArgsSetting> argsSettings = getArgsSetting();
         for (ArgsSetting argsSetting : argsSettings) {
-            if (argsSetting.checkArgs(args)){
+            if (argsSetting.checkArgs(args)) {
                 return whenFunctionCalled(spellContext, args, argsSetting);
             }
         }
-        StringBuilder inArgsTypes= new StringBuilder();
+        StringBuilder inArgsTypes = new StringBuilder();
         for (FunctionResult arg : args) {
-            MagicResult magicResult = (MagicResult) arg;
-            inArgsTypes.append(magicResult.getName()).append(" ");
+            inArgsTypes.append(((MagicResult) arg).getName()).append(" ");
         }
         // 如果没有找到匹配的参数设置，返回错误信息
-        ErrorResult errorResult=new ErrorResult("ARGS_ERROR",getName()+" insufficient parameters or type mismatch");
+        ErrorResult errorResult = new ErrorResult("ARGS_ERROR", getName() + " insufficient parameters or type mismatch");
         // log生成
         errorResult.addLog("Your input:");
-        errorResult.addLog(getName()+"( "+inArgsTypes+")");
+        errorResult.addLog(getName() + "( " + inArgsTypes + ")");
         errorResult.addLog("Possible usage:");
         errorResult.addLog(getUsage());
         return errorResult;
     }
 
-    public List<String> getUsage(){
-        List<String> usages=new ArrayList<>();
-        List<ArgsSetting> argsSettings=getArgsSetting();
+    public List<String> getUsage() {
+        List<String> usages = new ArrayList<>();
+        List<ArgsSetting> argsSettings = getArgsSetting();
         for (ArgsSetting argsSetting : argsSettings) {
-            StringBuilder typeUsage= new StringBuilder();
+            StringBuilder typeUsage = new StringBuilder();
             for (String argsType : argsSetting.getArgsTypes()) {
                 typeUsage.append(argsType).append(" ");
             }
-            usages.add(getName()+"( "+typeUsage+")");
-            usages.add("ArgsAmount:"+argsSetting.getArgsAmount());
-            usages.add("Return Type:"+argsSetting.getResultType());
+            usages.add(getName() + "( " + typeUsage + ")");
+            usages.add("ArgsAmount:" + argsSetting.getArgsAmount());
+            usages.add("Return Type:" + argsSetting.getResultType());
             usages.add("Info:");
             usages.addAll(argsSetting.getInfo());
         }
         return usages;
     }
+
     public abstract String getType();
 }

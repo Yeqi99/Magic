@@ -1,6 +1,6 @@
 package cn.origincraft.magic.function.results;
 
-public class BooleanResult extends ObjectResult{
+public class BooleanResult extends ObjectResult {
 
     public BooleanResult(boolean value) {
         super(value);

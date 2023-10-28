@@ -11,18 +11,18 @@ import java.util.List;
 public class WhileFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "While function requires at least one argument.");
         }
-        if (args.get(0) instanceof BooleanResult v){
-            if (v.getBoolean()){
+        if (args.get(0) instanceof BooleanResult v) {
+            if (v.getBoolean()) {
                 spellContext.putExecuteNext(spellContext.getExecuteIndex());
                 return new BooleanResult(true);
-            }else {
-                spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(),false);
+            } else {
+                spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(), false);
                 return new BooleanResult(false);
             }
-        }else {
+        } else {
             return new ErrorResult("INVALID_ARGUMENT", "While function requires a boolean argument.");
         }
     }

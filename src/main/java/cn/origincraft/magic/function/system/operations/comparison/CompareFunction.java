@@ -8,7 +8,7 @@ import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.List;
 
-public class CompareFunction extends NormalFunction{
+public class CompareFunction extends NormalFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {

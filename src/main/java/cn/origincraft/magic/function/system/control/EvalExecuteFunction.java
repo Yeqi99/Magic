@@ -21,10 +21,10 @@ public class EvalExecuteFunction extends OnlyStringFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, String args) {
-        List<String> spellWorlds=new ArrayList<>();
+        List<String> spellWorlds = new ArrayList<>();
         spellWorlds.add(args);
-        Spell spell =new Spell(spellWorlds,spellContext.getMagicManager());
-        SpellContext evalSpellContext= spell.execute(spellContext.getContextMap());
+        Spell spell = new Spell(spellWorlds, spellContext.getMagicManager());
+        SpellContext evalSpellContext = spell.execute(spellContext.getContextMap());
         return evalSpellContext.getSpellReturn();
     }
 }

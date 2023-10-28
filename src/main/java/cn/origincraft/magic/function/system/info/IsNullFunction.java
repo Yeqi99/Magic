@@ -12,12 +12,12 @@ import java.util.List;
 public class IsNullFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             return new ErrorResult("ISNULL_FUNCTION_ARGS_ERROR", "IsNull don't have enough args.");
         }
-        if (args.get(0) instanceof NullResult){
+        if (args.get(0) instanceof NullResult) {
             return new BooleanResult(true);
-        }else {
+        } else {
             return new BooleanResult(false);
         }
     }

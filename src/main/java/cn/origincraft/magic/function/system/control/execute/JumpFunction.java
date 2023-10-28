@@ -11,7 +11,7 @@ import java.util.List;
 public class JumpFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             spellContext.putExecuteNext(spellContext.getExecuteIndex());
         }
         if (args.get(0) instanceof IntegerResult v) {

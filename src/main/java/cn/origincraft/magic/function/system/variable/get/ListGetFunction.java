@@ -11,30 +11,30 @@ import java.util.List;
 public class ListGetFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<2) {
+        if (args.size() < 2) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "ContainerGet function requires at least two arguments.");
         }
         FunctionResult container = args.get(0);
         FunctionResult key = args.get(1);
-        String k="";
-        if (key instanceof StringResult){
-            k=((StringResult) key).getString();
-        }else {
+        String k;
+        if (key instanceof StringResult) {
+            k = ((StringResult) key).getString();
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
-        if (container instanceof ListResult){
-            List<?> list=((ListResult) container).getList();
-            if (!VariableUtil.tryInt(k)){
+        if (container instanceof ListResult) {
+            List<?> list = ((ListResult) container).getList();
+            if (!VariableUtil.tryInt(k)) {
                 return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
             }
-            int i=Integer.parseInt(k);
-            if (i<list.size()){
-                Object o=list.get(i);
+            int i = Integer.parseInt(k);
+            if (i < list.size()) {
+                Object o = list.get(i);
                 return new ObjectResult(o);
-            }else {
+            } else {
                 return new NullResult();
             }
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

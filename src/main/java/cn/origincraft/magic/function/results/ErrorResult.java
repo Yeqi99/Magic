@@ -9,13 +9,12 @@ import java.util.List;
 public class ErrorResult extends FunctionResult implements MagicResult {
     private final String errorId;
     private final String info;
-    private List<String>  log=new ArrayList<>();
+    private List<String> log = new ArrayList<>();
 
     public ErrorResult(String errorId, String info) {
         this.errorId = errorId;
         this.info = info;
     }
-
 
 
     public String getErrorId() {
@@ -28,7 +27,7 @@ public class ErrorResult extends FunctionResult implements MagicResult {
 
     @Override
     public Object getObject() {
-        return errorId+":"+info;
+        return errorId + ":" + info;
     }
 
     @Override
@@ -43,9 +42,11 @@ public class ErrorResult extends FunctionResult implements MagicResult {
     public void setLog(List<String> log) {
         this.log = log;
     }
+
     public void addLog(String log) {
         this.log.add(log);
     }
+
     public void addLog(List<String> log) {
         this.log.addAll(log);
     }

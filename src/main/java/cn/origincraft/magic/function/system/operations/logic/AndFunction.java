@@ -10,12 +10,12 @@ import java.util.List;
 public class AndFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             return new BooleanResult(false);
         }
         for (FunctionResult arg : args) {
-            if (arg instanceof BooleanResult value){
-                if (!value.getBoolean()){
+            if (arg instanceof BooleanResult value) {
+                if (!value.getBoolean()) {
                     return new BooleanResult(false);
                 }
             }

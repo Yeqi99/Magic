@@ -1,7 +1,6 @@
 package cn.origincraft.magic.expression.managers;
 
 
-
 import cn.origincraft.magic.expression.FastExpression;
 import cn.origincraft.magic.expression.functions.CallableFunction;
 import cn.origincraft.magic.expression.functions.FastFunction;
@@ -11,7 +10,6 @@ import cn.origincraft.magic.expression.parameters.StringParameter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;

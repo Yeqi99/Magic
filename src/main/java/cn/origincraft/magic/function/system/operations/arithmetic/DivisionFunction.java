@@ -35,7 +35,7 @@ public class DivisionFunction extends NormalFunction {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
             }
         } else if (dividendArg instanceof ObjectResult) {
-            Object objectValue = ((ObjectResult) dividendArg).getObject();
+            Object objectValue = dividendArg.getObject();
             if (objectValue instanceof Integer) {
                 dividend = (Integer) objectValue;
             } else if (objectValue instanceof Double) {
@@ -78,7 +78,7 @@ public class DivisionFunction extends NormalFunction {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (divisorArg instanceof ObjectResult) {
-                Object objectValue = ((ObjectResult) divisorArg).getObject();
+                Object objectValue = (divisorArg).getObject();
                 if (objectValue instanceof Integer) {
                     divisor = (Integer) objectValue;
                 } else if (objectValue instanceof Double) {

@@ -40,13 +40,13 @@ public class MagicWords {
             spellContext.putExecuteParameter(stringParameter.getString());
 
             FunctionResult result = callableFunction.getFunction()
-                            .call(new SpellContextParameter(spellContext));
+                    .call(new SpellContextParameter(spellContext));
             if (result instanceof ErrorResult) {
                 spellContext.putExecuteError(result);
-                List<String> errLocation=new ArrayList<>();
-                String location="At index "+spellContext.getExecuteIndex();
-                String sum="Already executed "+spellContext.getExecuteCount()+" statements";
-                String word="Words "+getOriginMagicWords();
+                List<String> errLocation = new ArrayList<>();
+                String location = "At index " + spellContext.getExecuteIndex();
+                String sum = "Already executed " + spellContext.getExecuteCount() + " statements";
+                String word = "Words " + getOriginMagicWords();
                 errLocation.add(location);
                 errLocation.add(sum);
                 errLocation.add(word);

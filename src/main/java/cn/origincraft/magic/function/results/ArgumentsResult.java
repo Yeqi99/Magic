@@ -5,7 +5,7 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 
 import java.util.List;
 
-public class ArgumentsResult extends ObjectResult{
+public class ArgumentsResult extends ObjectResult {
 
     public ArgumentsResult(List<FunctionResult> args) {
         super(args);

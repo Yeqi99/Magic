@@ -11,12 +11,12 @@ import java.util.List;
 public class NotFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()){
+        if (args.isEmpty()) {
             return new BooleanResult(false);
         }
-        if (args.get(0) instanceof BooleanResult value){
+        if (args.get(0) instanceof BooleanResult value) {
             return new BooleanResult(!value.getBoolean());
-        }else {
+        } else {
             return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to boolean.");
         }
     }

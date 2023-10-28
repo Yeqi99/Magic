@@ -18,13 +18,13 @@ public class ContextMapFunction extends NormalFunction {
         }
         if (args.get(0) instanceof ContextMapResult v) {
             return new ContextMapResult(v.getContextMap());
-        }else if (args.get(0) instanceof ObjectResult v) {
+        } else if (args.get(0) instanceof ObjectResult v) {
             if (v.getObject() instanceof ContextMap contextMap) {
                 return new ContextMapResult(contextMap);
-            }else {
+            } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to ContextMap.");
             }
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

@@ -2,7 +2,7 @@ package cn.origincraft.magic.function.results;
 
 import cn.origincraft.magic.object.MagicWords;
 
-public class MagicWordsResult extends ObjectResult{
+public class MagicWordsResult extends ObjectResult {
 
     public MagicWordsResult(MagicWords value) {
         super(value);

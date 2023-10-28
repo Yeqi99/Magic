@@ -2,7 +2,10 @@ package cn.origincraft.magic.function.system.variable.meta;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.ListResult;
+import cn.origincraft.magic.function.results.ObjectResult;
+import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.List;
@@ -15,27 +18,15 @@ public class StringFunction extends NormalFunction {
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (FunctionResult functionResult : args) {
-            if (functionResult instanceof StringResult v) {
-                stringBuilder.append(v.getString());
-            }else if (functionResult instanceof IntegerResult v) {
-                stringBuilder.append(v.getInteger());
-            }else if (functionResult instanceof DoubleResult v) {
-                stringBuilder.append(v.getDouble());
-            }else if (functionResult instanceof BooleanResult v) {
-                stringBuilder.append(v.getBoolean());
-            }else if(functionResult instanceof LongResult){
-                stringBuilder.append(((LongResult) functionResult).getLong());
-            }else if (functionResult instanceof FloatResult v) {
-                stringBuilder.append(v.getFloat());
-            }else if(functionResult instanceof ObjectResult v){
-                stringBuilder.append(v.getObject().toString());
-            }else if(functionResult instanceof ListResult){
-                List<?> list=((ListResult) functionResult).getList();
+            if (functionResult instanceof ListResult) {
+                List<?> list = ((ListResult) functionResult).getList();
                 for (Object o : list) {
-                    if (o instanceof String){
+                    if (o instanceof String) {
                         stringBuilder.append(o).append("\n");
                     }
                 }
+            } else if (functionResult instanceof ObjectResult v) {
+                stringBuilder.append(v.getObject().toString());
             } else {
                 return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
             }

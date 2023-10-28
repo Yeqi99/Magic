@@ -15,9 +15,10 @@ public class Spell {
     public Spell(List<String> magicWordsStringList, MagicManager magicManager) {
         setMagicManager(magicManager);
         for (String s : magicWordsStringList) {
-            magicWordsList.add(new MagicWords(s,magicManager));
+            magicWordsList.add(new MagicWords(s, magicManager));
         }
     }
+
     public SpellContext execute(ContextMap contextMap) {
         spellContext = new SpellContext();
         spellContext.setContextMap(contextMap);
@@ -25,18 +26,18 @@ public class Spell {
         int index = 0;
         while (index < magicWordsList.size()) {
             // 中段判断
-            if (spellContext.getExecuteBreak()){
+            if (spellContext.getExecuteBreak()) {
                 spellContext.putExecuteBreak(false);
                 break;
             }
             // 跳过判断
-            if (spellContext.getExecuteContinue()){
+            if (spellContext.getExecuteContinue()) {
                 spellContext.removeExecuteContinue();
                 continue;
             }
-            MagicWords magicWords=magicWordsList.get(index);
+            MagicWords magicWords = magicWordsList.get(index);
             // 初始化上下文中本次执行后要执行的序号
-            spellContext.putExecuteNext(index+1);
+            spellContext.putExecuteNext(index + 1);
             // 执行次数计数器计数
             spellContext.addExecuteCount(1);
             // 记录本条序号为执行序号
@@ -44,7 +45,7 @@ public class Spell {
             // 执行魔语并获取执行后的上下文
             magicWords.execute(spellContext);
             // 检查是否抛出错误
-            if (spellContext.hasExecuteError()){
+            if (spellContext.hasExecuteError()) {
                 break;
             }
             // 记录执行语句为上一条语句
@@ -52,19 +53,20 @@ public class Spell {
             // 语句下标与上下文同步
             index = spellContext.getExecuteNext();
             // 查看是否有跳过需求，有则处理
-            if (spellContext.hasExecutePass()){
-                int passValue=spellContext.getExecutePass();
-                if (passValue>0){
+            if (spellContext.hasExecutePass()) {
+                int passValue = spellContext.getExecutePass();
+                if (passValue > 0) {
                     index += passValue;
                 }
                 spellContext.removeExecutePass();
             }
         }
-        if (!spellContext.hasSpellReturn()){
+        if (!spellContext.hasSpellReturn()) {
             spellContext.putSpellReturn(new NullResult());
         }
         return spellContext;
     }
+
     public SpellContext getSpellContext() {
         return spellContext;
     }
@@ -82,7 +84,7 @@ public class Spell {
     }
 
     public void addMagicWords(String magicWords) {
-        getMagicWordsList().add(new MagicWords(magicWords,getMagicManager()));
+        getMagicWordsList().add(new MagicWords(magicWords, getMagicManager()));
     }
 
     public MagicManager getMagicManager() {

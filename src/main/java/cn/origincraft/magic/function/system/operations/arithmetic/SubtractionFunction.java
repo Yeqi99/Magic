@@ -35,7 +35,7 @@ public class SubtractionFunction extends NormalFunction {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
             }
         } else if (firstArg instanceof ObjectResult) {
-            Object objectValue = ((ObjectResult) firstArg).getObject();
+            Object objectValue = firstArg.getObject();
             if (objectValue instanceof Integer) {
                 result = (Integer) objectValue;
             } else if (objectValue instanceof Double) {
@@ -73,15 +73,14 @@ public class SubtractionFunction extends NormalFunction {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (arg instanceof ObjectResult) {
-                Object objectValue = ((ObjectResult) arg).getObject();
+                Object objectValue = arg.getObject();
                 if (objectValue instanceof Integer) {
                     result -= (Integer) objectValue;
                 } else if (objectValue instanceof Double) {
                     result -= (Double) objectValue;
                 } else if (objectValue instanceof Boolean) {
                     result -= (Boolean) objectValue ? 1 : 0;
-                } else if (objectValue instanceof String) {
-                    String stringValue = (String) objectValue;
+                } else if (objectValue instanceof String stringValue) {
                     if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
                         result -= Double.parseDouble(stringValue);
                     } else {

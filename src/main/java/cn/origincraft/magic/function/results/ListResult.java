@@ -2,7 +2,7 @@ package cn.origincraft.magic.function.results;
 
 import java.util.List;
 
-public class ListResult extends ObjectResult{
+public class ListResult extends ObjectResult {
 
     public ListResult(List<?> value) {
         super(value);

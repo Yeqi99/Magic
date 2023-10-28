@@ -16,13 +16,12 @@ public class UnpackArgsFunction extends NormalFunction {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments don't have enough args.");
         }
         FunctionResult argsResult = args.get(0);
-        if (!(argsResult instanceof ArgumentsResult)) {
+        if (!(argsResult instanceof ArgumentsResult argumentsResult)) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
-        ArgumentsResult argumentsResult = (ArgumentsResult) argsResult;
-        List<FunctionResult> argList= argumentsResult.getArgs();
-        for (int i=0;i<argList.size();i++) {
-            spellContext.getContextMap().putVariable("arg"+(i+1),argList.get(i));
+        List<FunctionResult> argList = argumentsResult.getArgs();
+        for (int i = 0; i < argList.size(); i++) {
+            spellContext.getContextMap().putVariable("arg" + (i + 1), argList.get(i));
         }
         return new NullResult();
     }

@@ -10,7 +10,7 @@ import java.util.List;
 public class NowFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        return new DoubleResult(System.nanoTime()/ 1e9);
+        return new DoubleResult(System.nanoTime() / 1e9);
     }
 
     @Override

@@ -18,12 +18,12 @@ public class EnterFunction extends NormalFunction {
         }
         FunctionResult functionResult = args.get(0);
         if (functionResult instanceof StringResult v) {
-            if (VariableUtil.tryInt(v.getString())){
+            if (VariableUtil.tryInt(v.getString())) {
                 return new StringResult(MethodUtil.getEnter(Integer.parseInt(v.getString())));
-            }else {
+            } else {
                 return new StringResult("\n");
             }
-        }else if (functionResult instanceof IntegerResult v){
+        } else if (functionResult instanceof IntegerResult v) {
             return new StringResult(MethodUtil.getEnter(v.getInteger()));
         }
         return new StringResult("\n");

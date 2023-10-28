@@ -13,25 +13,23 @@ public class AliasAddFunction extends NormalFunction {
 
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<2) {
+        if (args.size() < 2) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "AliasAdd function requires at least two arguments.");
         }
         FunctionResult real = args.get(0);
         List<FunctionResult> aliases = args.subList(1, args.size());
-        if (real instanceof StringResult){
-            StringResult realStringResult = (StringResult) real;
+        if (real instanceof StringResult realStringResult) {
             String realString = realStringResult.getString();
-            for (FunctionResult alias:aliases){
-                if (alias instanceof StringResult){
-                    StringResult aliasStringResult = (StringResult) alias;
+            for (FunctionResult alias : aliases) {
+                if (alias instanceof StringResult aliasStringResult) {
                     String aliasString = aliasStringResult.getString();
-                    spellContext.getMagicManager().addAlias(realString,aliasString);
+                    spellContext.getMagicManager().addAlias(realString, aliasString);
                 }
             }
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
-        return new  NullResult();
+        return new NullResult();
     }
 
     @Override

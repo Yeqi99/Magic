@@ -40,7 +40,7 @@ public class PowerFunction extends NormalFunction {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
             }
         } else if (baseArg instanceof ObjectResult) {
-            Object objectValue = ((ObjectResult) baseArg).getObject();
+            Object objectValue = baseArg.getObject();
             if (objectValue instanceof Integer) {
                 base = (Integer) objectValue;
             } else if (objectValue instanceof Double) {
@@ -78,7 +78,7 @@ public class PowerFunction extends NormalFunction {
                     return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
                 }
             } else if (arg instanceof ObjectResult) {
-                Object objectValue = ((ObjectResult) arg).getObject();
+                Object objectValue = arg.getObject();
                 if (objectValue instanceof Integer) {
                     result = Math.pow(result, (Integer) objectValue);
                 } else if (objectValue instanceof Double) {

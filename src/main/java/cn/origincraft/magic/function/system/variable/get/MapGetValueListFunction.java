@@ -13,14 +13,14 @@ import java.util.List;
 public class MapGetValueListFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<1) {
+        if (args.isEmpty()) {
             return new ErrorResult("INSUFFICIENT_ARGUMENTS", "ContainerGet function requires at least one argument.");
         }
         FunctionResult container = args.get(0);
-        if (container instanceof MapResult){
-            List<Object> list=new ArrayList<>(((MapResult) container).getMap().values());
+        if (container instanceof MapResult) {
+            List<Object> list = new ArrayList<>(((MapResult) container).getMap().values());
             return new ListResult(list);
-        }else{
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

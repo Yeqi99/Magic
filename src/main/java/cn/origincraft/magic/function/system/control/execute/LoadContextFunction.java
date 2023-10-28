@@ -19,7 +19,7 @@ public class LoadContextFunction extends NormalFunction {
         if (context instanceof ContextMapResult) {
             spellContext.setContextMap(((ContextMapResult) context).getContextMap());
             return new NullResult();
-        }else {
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
     }

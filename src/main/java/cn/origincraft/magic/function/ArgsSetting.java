@@ -11,27 +11,31 @@ public class ArgsSetting {
     private List<String> info;
     private String resultType;
     private String id;
-    public ArgsSetting(int argsAmount, List<String> argsTypes, List<String> info,String resultType) {
+
+    public ArgsSetting(int argsAmount, List<String> argsTypes, List<String> info, String resultType) {
         this.argsAmount = argsAmount;
         this.argsTypes = argsTypes;
         this.info = info;
         this.resultType = resultType;
     }
-    public boolean checkArgs(List<FunctionResult> args){
-        return checkArgsAmount(args)&&checkArgsType(args);
+
+    public boolean checkArgs(List<FunctionResult> args) {
+        return checkArgsAmount(args) && checkArgsType(args);
     }
-    public boolean checkArgsAmount(List<FunctionResult> args){
-        return args.size()==argsAmount;
+
+    public boolean checkArgsAmount(List<FunctionResult> args) {
+        return args.size() == argsAmount;
     }
-    public boolean checkArgsType(List<FunctionResult> args){
+
+    public boolean checkArgsType(List<FunctionResult> args) {
         for (int i = 0; i < args.size(); i++) {
             String type = argsTypes.get(i);
-            FunctionResult arg = args.get(i);
-            MagicResult magicResult = (MagicResult) arg;
+            MagicResult magicResult = args.get(i);
             if (!magicResult.getName().equals(type)) return false;
         }
         return true;
     }
+
     public int getArgsAmount() {
         return argsAmount;
     }

@@ -1,7 +1,6 @@
 package cn.origincraft.magic.expression.functions;
 
 
-
 public class CallableFunction {
     private final FastFunction function;
     private FunctionParameter parameter;

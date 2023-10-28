@@ -14,39 +14,39 @@ import java.util.List;
 public class PackMethodsFunction extends NormalFunction {
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size()<2){
+        if (args.size() < 2) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments don't have enough args.");
         }
-        FunctionResult nameResult=args.get(0);
-        FunctionResult methodNameResult=args.get(1);
-        if (!(nameResult instanceof StringResult)){
+        FunctionResult nameResult = args.get(0);
+        FunctionResult methodNameResult = args.get(1);
+        if (!(nameResult instanceof StringResult)) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
-        if (!(methodNameResult instanceof StringResult)){
+        if (!(methodNameResult instanceof StringResult)) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
-        String name=((StringResult) nameResult).getString();
-        String methodName=((StringResult) methodNameResult).getString();
-        if (!spellContext.getContextMap().hasVariable(name+".o")){
+        String name = ((StringResult) nameResult).getString();
+        String methodName = ((StringResult) methodNameResult).getString();
+        if (!spellContext.getContextMap().hasVariable(name + ".o")) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
-        if (!spellContext.getContextMap().hasVariable(name+".m."+methodName)){
+        if (!spellContext.getContextMap().hasVariable(name + ".m." + methodName)) {
             return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
-        Object obj=spellContext.getContextMap().getVariable(name+".o");
-        Method method=(Method) spellContext.getContextMap().getVariable(name+".m."+methodName);
-        if (args.size()>2){
-            List<FunctionResult> methodArg=args.subList(2,args.size());
-            Object[] methodArgs= ResultUtils.reductionToArray(methodArg);
+        Object obj = spellContext.getContextMap().getVariable(name + ".o");
+        Method method = (Method) spellContext.getContextMap().getVariable(name + ".m." + methodName);
+        if (args.size() > 2) {
+            List<FunctionResult> methodArg = args.subList(2, args.size());
+            Object[] methodArgs = ResultUtils.reductionToArray(methodArg);
             try {
-                Object result=method.invoke(obj,methodArgs);
+                Object result = method.invoke(obj, methodArgs);
                 return new ObjectResult(result);
             } catch (Exception e) {
                 return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
             }
-        }else {
+        } else {
             try {
-                Object result=method.invoke(obj);
+                Object result = method.invoke(obj);
                 return new ObjectResult(result);
             } catch (Exception e) {
                 return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");

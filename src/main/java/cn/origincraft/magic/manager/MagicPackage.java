@@ -50,21 +50,15 @@ public class MagicPackage {
     }
 
     public void saveToFile() {
-        magicInstances.forEach((id, instance) -> {
-            instance.saveToFile();
-        });
+        magicInstances.forEach((id, instance) -> instance.saveToFile());
     }
 
     public void importPackage(SpellContext spellContext) {
-        magicInstances.forEach((id, instance) -> {
-            spellContext.putVariable(getId() + "." + id, instance.getSpell(spellContext.getMagicManager()));
-        });
+        magicInstances.forEach((id, instance) -> spellContext.putVariable(getId() + "." + id, instance.getSpell(spellContext.getMagicManager())));
     }
 
     public void importPackage(ContextMap context, MagicManager magicManager) {
-        magicInstances.forEach((id, instance) -> {
-            context.putVariable(getId() + "." + id, instance.getSpell(magicManager));
-        });
+        magicInstances.forEach((id, instance) -> context.putVariable(getId() + "." + id, instance.getSpell(magicManager)));
     }
 
     public String getId() {

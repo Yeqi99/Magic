@@ -14,41 +14,41 @@ public class ObjectDefineFunction extends HasVariableFunction {
         if (args.size() < 2) {
             return new ErrorResult("VARIABLE_DEFINE_FUNCTION_ARGS_ERROR", "Object define don't have enough args.");
         }
-        String varName="";
+        String varName;
         if (args.get(0) instanceof StringResult name) {
-            varName=name.getString();
-        }else {
+            varName = name.getString();
+        } else {
             return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
         if (args.get(1) instanceof StringResult v) {
             spellContext.getContextMap().putObject(varName, v.getString());
-        }else if (args.get(1) instanceof DoubleResult v) {
+        } else if (args.get(1) instanceof DoubleResult v) {
             spellContext.getContextMap().putObject(varName, v.getDouble());
-        }else if (args.get(1) instanceof BooleanResult v) {
+        } else if (args.get(1) instanceof BooleanResult v) {
             spellContext.getContextMap().putObject(varName, v.getBoolean());
-        }else if (args.get(1) instanceof IntegerResult v) {
+        } else if (args.get(1) instanceof IntegerResult v) {
             spellContext.getContextMap().putObject(varName, v.getInteger());
-        }else if(args.get(1) instanceof ObjectResult v) {
+        } else if (args.get(1) instanceof ObjectResult v) {
             spellContext.getContextMap().putObject(varName, v.getObject());
-        }else if (args.get(1) instanceof LongResult v){
+        } else if (args.get(1) instanceof LongResult v) {
             spellContext.getContextMap().putObject(varName, v.getLong());
-        }else if (args.get(1) instanceof FloatResult v){
+        } else if (args.get(1) instanceof FloatResult v) {
             spellContext.getContextMap().putObject(varName, v.getFloat());
-        }else if(args.get(1) instanceof ListResult v){
+        } else if (args.get(1) instanceof ListResult v) {
             spellContext.getContextMap().putObject(varName, v.getList());
-        }else if(args.get(1) instanceof MapResult v){
+        } else if (args.get(1) instanceof MapResult v) {
             spellContext.getContextMap().putObject(varName, v.getMap());
-        }else if(args.get(1) instanceof SetResult v){
+        } else if (args.get(1) instanceof SetResult v) {
             spellContext.getContextMap().putObject(varName, v.getSet());
-        }else if(args.get(1) instanceof SpellResult v) {
+        } else if (args.get(1) instanceof SpellResult v) {
             spellContext.getContextMap().putObject(varName, v.getSpell());
-        }else if(args.get(1) instanceof NullResult){
+        } else if (args.get(1) instanceof NullResult) {
             spellContext.getContextMap().putObject(varName, null);
-        }else if(args.get(1) instanceof ContextMapResult v){
+        } else if (args.get(1) instanceof ContextMapResult v) {
             spellContext.getContextMap().putObject(varName, v.getContextMap());
-        }else if(args.get(1) instanceof ArgumentsResult v){
+        } else if (args.get(1) instanceof ArgumentsResult v) {
             spellContext.getContextMap().putObject(varName, v);
-        }else {
+        } else {
             spellContext.getContextMap().putObject(varName, args.get(1));
         }
         return new NullResult();
