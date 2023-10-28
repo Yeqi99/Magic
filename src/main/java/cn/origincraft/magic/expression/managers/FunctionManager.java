@@ -34,7 +34,7 @@ public class FunctionManager {
         } else {
             String real = instance.getAliasesManager().getRealName(registerName);
             if (real.equals(registerName)) {
-                throw new IllegalArgumentException("Function " + registerName + " does not exist");
+                System.out.println("Function " + registerName + " does not exist");
             }
             return functions.get(real);
         }
@@ -43,7 +43,7 @@ public class FunctionManager {
     public void register(FastFunction function) {
         String registerName = function.getName();
         if (functions.containsKey(registerName)) {
-            throw new IllegalStateException("Function " + registerName + " already exists");
+            System.out.println("Function " + registerName + " already exists");
         } else {
             functions.put(registerName, function);
         }
