@@ -19,15 +19,16 @@ public class ArgsSetting {
     }
 
     public boolean checkArgs(List<FunctionResult> args) {
-        return checkArgsType(args);
+        return checkArgsAmount(args) && checkArgsType(args);
     }
 
-
+    public boolean checkArgsAmount(List<FunctionResult> args) {
+        return args.size() == argsTypes.size();
+    }
     public boolean checkArgsType(List<FunctionResult> args) {
-        for (int i = 0; i < args.size(); i++) {
+        for (int i = 0; i < argsTypes.size(); i++) {
             String type = argsTypes.get(i);
-            MagicResult magicResult = args.get(i);
-            if (!magicResult.getName().equals(type)) return false;
+            if (!args.get(i).getName().equals(type)) return false;
         }
         return true;
     }

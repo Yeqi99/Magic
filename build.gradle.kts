@@ -18,7 +18,7 @@ plugins {
 //}
 
 group = "cn.originmc.magic"
-version = "1.1.2-SNAPSHOT"
+version = "1.1.3-SNAPSHOT"
 description = "Magic"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
