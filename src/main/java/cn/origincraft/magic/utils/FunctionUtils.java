@@ -41,12 +41,12 @@ public class FunctionUtils {
         return result;
     }
 
-    public static ArgsSetting createArgsSetting(int amount, String type, String info, String resultType) {
+    public static ArgsSetting createArgsSetting(String type, String info, String resultType) {
         String[] types = type.split(" ");
         List<String> typeList = new ArrayList<>(Arrays.asList(types));
         String[] infos = info.split("\n");
         List<String> infoList = new ArrayList<>(Arrays.asList(infos));
-        return new ArgsSetting(amount, typeList, infoList, resultType);
+        return new ArgsSetting(typeList, infoList, resultType);
     }
 
 }

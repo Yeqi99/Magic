@@ -6,26 +6,22 @@ import cn.origincraft.magic.expression.functions.MagicResult;
 import java.util.List;
 
 public class ArgsSetting {
-    private int argsAmount;
+
     private List<String> argsTypes;
     private List<String> info;
     private String resultType;
     private String id;
 
-    public ArgsSetting(int argsAmount, List<String> argsTypes, List<String> info, String resultType) {
-        this.argsAmount = argsAmount;
+    public ArgsSetting(List<String> argsTypes, List<String> info, String resultType) {
         this.argsTypes = argsTypes;
         this.info = info;
         this.resultType = resultType;
     }
 
     public boolean checkArgs(List<FunctionResult> args) {
-        return checkArgsAmount(args) && checkArgsType(args);
+        return checkArgsType(args);
     }
 
-    public boolean checkArgsAmount(List<FunctionResult> args) {
-        return args.size() == argsAmount;
-    }
 
     public boolean checkArgsType(List<FunctionResult> args) {
         for (int i = 0; i < args.size(); i++) {
@@ -36,13 +32,6 @@ public class ArgsSetting {
         return true;
     }
 
-    public int getArgsAmount() {
-        return argsAmount;
-    }
-
-    public void setArgsAmount(int argsAmount) {
-        this.argsAmount = argsAmount;
-    }
 
     public List<String> getArgsTypes() {
         return argsTypes;

@@ -120,7 +120,6 @@ public abstract class ArgsFunction implements FastFunction {
                 typeUsage.append(argsType).append(" ");
             }
             usages.add(getName() + "( " + typeUsage + ")");
-            usages.add("ArgsAmount:" + argsSetting.getArgsAmount());
             usages.add("Return Type:" + argsSetting.getResultType());
             usages.add("Info:");
             usages.addAll(argsSetting.getInfo());
