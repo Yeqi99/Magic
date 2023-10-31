@@ -17,6 +17,17 @@ public class ArgsSetting {
         this.info = info;
         this.resultType = resultType;
     }
+    public ArgsSetting(String id,List<String> argsTypes, List<String> info, String resultType) {
+        this.id=id;
+        this.argsTypes = argsTypes;
+        this.info = info;
+        this.resultType = resultType;
+    }
+    public ArgsSetting(String id){
+        this.id=id;
+    }
+    public ArgsSetting(){
+    }
 
     public boolean checkArgs(List<FunctionResult> args) {
         return checkArgsAmount(args) && checkArgsType(args);
@@ -38,31 +49,40 @@ public class ArgsSetting {
         return argsTypes;
     }
 
-    public void setArgsTypes(List<String> argsTypes) {
+    public ArgsSetting setArgsTypes(List<String> argsTypes) {
         this.argsTypes = argsTypes;
+        return this;
     }
 
     public List<String> getInfo() {
         return info;
     }
 
-    public void setInfo(List<String> info) {
+    public ArgsSetting setInfo(List<String> info) {
         this.info = info;
+        return this;
     }
 
     public String getResultType() {
         return resultType;
     }
 
-    public void setResultType(String resultType) {
+    public ArgsSetting setResultType(String resultType) {
         this.resultType = resultType;
+        return this;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public ArgsSetting setId(String id) {
         this.id = id;
+        return this;
     }
+    public ArgsSetting addInfo(String line){
+        info.add(line);
+        return this;
+    }
+
 }
