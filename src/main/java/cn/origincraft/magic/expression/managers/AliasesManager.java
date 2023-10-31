@@ -17,7 +17,9 @@ public class AliasesManager {
         }
         return alias;
     }
-
+    public Map<String,List<String>> getAliases(){
+        return aliases;
+    }
     public void registerAliases(String realName, String... aliases) {
         this.aliases.put(realName, new ArrayList<>(Arrays.asList(aliases)));
     }
