@@ -6,27 +6,11 @@
 
     <groupId>cn.originmc.magic</groupId>
     <artifactId>Magic</artifactId>
-    <version>1.0.25-SNAPSHOT</version>
+    <version>1.1.5-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <repositories>
-        <!-- fly -->
-        <repository>
-            <id>fly-repo</id>
-            <url>https://repo.fastmcmirror.org/content/repositories/releases/</url>
-        </repository>
-    </repositories>
-
-    <dependencies>
-        <!-- FastExpression -->
-        <dependency>
-            <groupId>dev.rgbmc</groupId>
-            <artifactId>FastExpression</artifactId>
-            <version>1.0.0-a0aa2c1</version>
-        </dependency>
-    </dependencies>
 </project>
