@@ -1,5 +1,6 @@
 package cn.origincraft.magic.function;
 
+import cn.origincraft.magic.expression.functions.FastFunction;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.functions.MagicResult;
 
@@ -82,6 +83,14 @@ public class ArgsSetting {
     }
     public ArgsSetting addInfo(String line){
         info.add(line);
+        return this;
+    }
+    public ArgsSetting addArgType(String type){
+        argsTypes.add(type);
+        return this;
+    }
+    public ArgsSetting addArgType(FastFunction fastFunction){
+        argsTypes.add(fastFunction.getName());
         return this;
     }
 
