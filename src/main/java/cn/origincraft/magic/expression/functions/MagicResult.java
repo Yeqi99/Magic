@@ -4,4 +4,5 @@ public interface MagicResult {
     Object getObject();
 
     String getName();
+
 }

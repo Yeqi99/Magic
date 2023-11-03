@@ -19,4 +19,13 @@ public class ArgumentsResult extends ObjectResult {
     public String getName() {
         return "Arguments";
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (FunctionResult arg : getArgs()) {
+            s.append(arg.toString()).append(",");
+        }
+        return s.toString();
+    }
 }

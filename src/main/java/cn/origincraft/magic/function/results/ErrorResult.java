@@ -50,4 +50,13 @@ public class ErrorResult extends FunctionResult implements MagicResult {
     public void addLog(List<String> log) {
         this.log.addAll(log);
     }
+
+    @Override
+    public String toString() {
+        return "ErrorResult{" +
+                "errorId='" + errorId + '\'' +
+                ", info='" + info + '\'' +
+                ", log=" + log +
+                '}';
+    }
 }

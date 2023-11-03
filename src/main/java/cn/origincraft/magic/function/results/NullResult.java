@@ -10,4 +10,9 @@ public class NullResult extends ObjectResult {
     public String getName() {
         return "Null";
     }
+
+    @Override
+    public String toString() {
+        return "null";
+    }
 }

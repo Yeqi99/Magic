@@ -16,4 +16,13 @@ public class SetResult extends ObjectResult {
     public String getName() {
         return "Set";
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Object arg : getSet()) {
+            s.append(arg.toString()).append(",");
+        }
+        return s.toString();
+    }
 }

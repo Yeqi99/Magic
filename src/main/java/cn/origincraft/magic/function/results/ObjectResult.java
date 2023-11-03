@@ -19,4 +19,5 @@ public class ObjectResult extends FunctionResult{
     public String getName() {
         return "Object";
     }
+
 }

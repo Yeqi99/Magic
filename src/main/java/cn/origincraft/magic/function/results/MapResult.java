@@ -17,4 +17,13 @@ public class MapResult extends ObjectResult {
     public String getName() {
         return "Map";
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Map.Entry<?, ?> entry : getMap().entrySet()) {
+            s.append(entry.getKey().toString()).append(":").append(entry.getValue().toString()).append(",");
+        }
+        return s.toString();
+    }
 }

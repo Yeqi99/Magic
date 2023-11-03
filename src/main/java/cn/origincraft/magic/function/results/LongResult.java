@@ -17,4 +17,5 @@ public class LongResult extends ObjectResult {
     public String getName() {
         return "Long";
     }
+
 }

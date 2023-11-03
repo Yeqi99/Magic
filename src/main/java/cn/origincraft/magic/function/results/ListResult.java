@@ -16,4 +16,13 @@ public class ListResult extends ObjectResult {
     public String getName() {
         return "List";
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Object arg : getList()) {
+            s.append(arg.toString()).append(",");
+        }
+        return s.toString();
+    }
 }
