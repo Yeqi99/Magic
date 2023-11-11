@@ -41,9 +41,10 @@ import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.function.system.variable.magic.NormalContextFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
-import cn.origincraft.magic.function.system.variable.meta.string.ASCIIFunction;
-import cn.origincraft.magic.function.system.variable.meta.string.EnterFunction;
-import cn.origincraft.magic.function.system.variable.meta.string.SpaceFunction;
+
+import java.util.function.DoubleFunction;
+import java.util.function.IntFunction;
+import java.util.function.LongFunction;
 
 
 public class FunctionRegister {
@@ -98,13 +99,11 @@ public class FunctionRegister {
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta
-        magicManager.getFastExpression().getFunctionManager().register(new IntFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new DoubleFunction());
+
         magicManager.getFastExpression().getFunctionManager().register(new BooleanFunction(), "bool");
         magicManager.getFastExpression().getFunctionManager().register(new StringFunction(), "str");
-        magicManager.getFastExpression().getFunctionManager().register(new ObjectFunction(), "obj");
-        magicManager.getFastExpression().getFunctionManager().register(new LongFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new FloatFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new NumberFunction(), "num");
+        magicManager.getFastExpression().getFunctionManager().register(new OriginStringFunction(), "ostr");
         // variable.define
         magicManager.getFastExpression().getFunctionManager().register(new ObjectDefineFunction(), "odef");
         magicManager.getFastExpression().getFunctionManager().register(new VariableDefineFunction(), "vdef");
@@ -132,10 +131,6 @@ public class FunctionRegister {
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
-        // variable.meta.string
-        magicManager.getFastExpression().getFunctionManager().register(new SpaceFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new EnterFunction());
-        magicManager.getFastExpression().getFunctionManager().register(new ASCIIFunction());
         // thread
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncExecuteFunction(), "spellae");
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncDaemonExecuteFunction(), "spellade");

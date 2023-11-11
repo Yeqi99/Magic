@@ -1,37 +1,50 @@
 package cn.origincraft.magic.function.system.variable.meta;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
-import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.ListResult;
-import cn.origincraft.magic.function.results.ObjectResult;
-import cn.origincraft.magic.function.results.StringResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class StringFunction extends NormalFunction {
+public class StringFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()) {
-            return new ErrorResult("STRING_FUNCTION_ARGS_ERROR", "String don't have enough args.");
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (FunctionResult functionResult : args) {
-            if (functionResult instanceof ListResult) {
-                List<?> list = ((ListResult) functionResult).getList();
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id=argsSetting.getId();
+        switch (id){
+            case "A":{
+                return new StringResult(args.get(0).toString());
+            }
+            case "B":{
+                List<?> list= (List<?>) args.get(0).getObject();
+                StringBuilder stringBuilder=new StringBuilder();
                 for (Object o : list) {
-                    if (o instanceof String) {
-                        stringBuilder.append(o).append("\n");
-                    }
+                    stringBuilder.append(o.toString());
                 }
-            } else if (functionResult instanceof ObjectResult v) {
-                stringBuilder.append(v.getObject().toString());
-            } else {
-                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+                return new StringResult(stringBuilder.toString());
             }
         }
-        return new StringResult(stringBuilder.toString());
+        return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings=new ArrayList<>();
+        argsSettings.add(new ArgsSetting("A")
+                .addArgType("Object")
+                        .addInfo("object")
+                        .addInfo("Convert object to string.")
+                .setResultType("String")
+        );
+        argsSettings.add(new ArgsSetting("B")
+                .addArgType("List")
+                .addInfo("list")
+                .addInfo("Convert list to string.")
+                .setResultType("String")
+        );
+        return argsSettings;
     }
 
     @Override

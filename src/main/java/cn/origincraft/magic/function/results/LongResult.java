@@ -1,7 +1,7 @@
 package cn.origincraft.magic.function.results;
 
 
-public class LongResult extends ObjectResult {
+public class LongResult extends NumberResult {
 
     public LongResult(long value) {
         super(value);

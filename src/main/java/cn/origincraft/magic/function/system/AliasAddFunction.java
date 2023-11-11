@@ -1,35 +1,50 @@
 package cn.origincraft.magic.function.system;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
+import cn.origincraft.magic.function.ParseType;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
+import cn.origincraft.magic.utils.FunctionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AliasAddFunction extends NormalFunction {
-
+public class AliasAddFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "AliasAdd function requires at least two arguments.");
-        }
-        FunctionResult real = args.get(0);
-        List<FunctionResult> aliases = args.subList(1, args.size());
-        if (real instanceof StringResult realStringResult) {
-            String realString = realStringResult.getString();
-            for (FunctionResult alias : aliases) {
-                if (alias instanceof StringResult aliasStringResult) {
-                    String aliasString = aliasStringResult.getString();
-                    spellContext.getMagicManager().addAlias(realString, aliasString);
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id=argsSetting.getId();
+        switch (id){
+            case "A":{
+                String real=args.get(0).toString();
+                List<FunctionResult> aliases=args.subList(1,args.size());
+                for (FunctionResult alias : aliases) {
+                    if (alias instanceof StringResult){
+                        String aliasString = alias.toString();
+                        spellContext.getMagicManager().addAlias(real, aliasString);
+                    }
                 }
             }
-        } else {
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
         return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        setParseType(0, ParseType.ONLY_FUNCTION);
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("String ...")
+                        .addInfo("string ...(string)")
+                        .addInfo("real alias...")
+                        .addInfo("Add alias to real.")
+        );
+        return argsSettings;
     }
 
     @Override

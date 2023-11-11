@@ -9,7 +9,9 @@ public class ObjectResult extends FunctionResult{
     public ObjectResult(Object object) {
         this.object = object;
     }
-
+    public ObjectResult(FunctionResult functionResult){
+        this.object = functionResult.getObject();
+    }
     @Override
     public Object getObject() {
         return object;

@@ -11,7 +11,7 @@ import cn.origincraft.magic.utils.MethodUtil;
 import java.util.List;
 
 
-public abstract class OriginFunction implements FastFunction {
+public abstract class OriginFunction extends FormatFunction {
     /**
      * 当方法被调用时执行的代码
      *

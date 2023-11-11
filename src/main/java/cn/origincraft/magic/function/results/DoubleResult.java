@@ -1,6 +1,6 @@
 package cn.origincraft.magic.function.results;
 
-public class DoubleResult extends ObjectResult {
+public class DoubleResult extends NumberResult {
 
     public DoubleResult(double value) {
         super(value);

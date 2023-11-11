@@ -7,7 +7,7 @@ import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.MethodUtil;
 
 
-public abstract class OnlyStringFunction implements FastFunction {
+public abstract class OnlyStringFunction extends FormatFunction {
     /**
      * 当方法被调用时执行的代码
      *
@@ -23,6 +23,5 @@ public abstract class OnlyStringFunction implements FastFunction {
         String para = spellContext.getExecuteParameter();
         return whenFunctionCalled(spellContext, para);
     }
-
     public abstract String getType();
 }

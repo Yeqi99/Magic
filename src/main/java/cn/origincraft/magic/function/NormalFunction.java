@@ -82,12 +82,6 @@ public abstract class NormalFunction implements FastFunction {
                         args.add(new BooleanResult((Boolean) v));
                     } else if (v instanceof Long) {
                         args.add((new LongResult((Long) v)));
-                    } else if (v instanceof ContextMapResult) {
-                        args.add((ContextMapResult) v);
-                    } else if (v instanceof Float) {
-                        args.add((new FloatResult((Float) v)));
-                    } else if (v instanceof ArgumentsResult) {
-                        args.add((ArgumentsResult) v);
                     } else if (v instanceof FunctionResult) {
                         args.add((FunctionResult) v);
                     } else {

@@ -29,4 +29,11 @@ public class EvalFunction extends OnlyStringFunction {
         Spell spell = new Spell(spellWorlds, spellContext.getMagicManager());
         return new SpellResult(spell);
     }
+
+    @Override
+    public List<String> getUsage() {
+        List<String> usage = new ArrayList<>();
+        usage.add("eval <code>");
+        return usage;
+    }
 }

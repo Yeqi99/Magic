@@ -1,6 +1,6 @@
 package cn.origincraft.magic.function.results;
 
-public class IntegerResult extends ObjectResult {
+public class IntegerResult extends NumberResult {
     public IntegerResult(int integer) {
         super(integer);
     }

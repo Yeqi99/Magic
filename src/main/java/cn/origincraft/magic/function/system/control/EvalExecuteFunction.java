@@ -27,4 +27,11 @@ public class EvalExecuteFunction extends OnlyStringFunction {
         SpellContext evalSpellContext = spell.execute(spellContext.getContextMap());
         return evalSpellContext.getSpellReturn();
     }
+
+    @Override
+    public List<String> getUsage() {
+        List<String> usage = new ArrayList<>();
+        usage.add("evalExecute <code>");
+        return usage;
+    }
 }

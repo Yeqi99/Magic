@@ -4,13 +4,16 @@ import cn.origincraft.magic.expression.functions.FastFunction;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.functions.MagicResult;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArgsSetting {
 
-    private List<String> argsTypes;
-    private List<String> info;
-    private String resultType;
+    private List<String> argsTypes=new ArrayList<>();
+    private List<String> info=new ArrayList<>();
+    private String resultType="Object";
     private String id;
 
     public ArgsSetting(List<String> argsTypes, List<String> info, String resultType) {
@@ -35,11 +38,17 @@ public class ArgsSetting {
     }
 
     public boolean checkArgsAmount(List<FunctionResult> args) {
+        if (argsTypes.contains("...")){
+            return true;
+        }
         return args.size() == argsTypes.size();
     }
     public boolean checkArgsType(List<FunctionResult> args) {
         for (int i = 0; i < argsTypes.size(); i++) {
             String type = argsTypes.get(i);
+            if (type.equalsIgnoreCase("...")){
+                return true;
+            }
             if (!args.get(i).getName().equals(type)) return false;
         }
         return true;
@@ -93,5 +102,4 @@ public class ArgsSetting {
         argsTypes.add(fastFunction.getName());
         return this;
     }
-
 }
