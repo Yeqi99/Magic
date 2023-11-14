@@ -37,6 +37,7 @@ import cn.origincraft.magic.function.system.variable.define.VariableDefineFuncti
 import cn.origincraft.magic.function.system.variable.get.*;
 import cn.origincraft.magic.function.system.variable.has.ObjectHasFunction;
 import cn.origincraft.magic.function.system.variable.has.VariableHasFunction;
+import cn.origincraft.magic.function.system.variable.magic.ArgsSettingFunction;
 import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.function.system.variable.magic.NormalContextFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
@@ -99,7 +100,6 @@ public class FunctionRegister {
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta
-
         magicManager.getFastExpression().getFunctionManager().register(new BooleanFunction(), "bool");
         magicManager.getFastExpression().getFunctionManager().register(new StringFunction(), "str");
         magicManager.getFastExpression().getFunctionManager().register(new NumberFunction(), "num");
@@ -111,6 +111,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new ContextMapFunction(), "cmap");
         magicManager.getFastExpression().getFunctionManager().register(new SpellFunction(), "spell");
         magicManager.getFastExpression().getFunctionManager().register(new NormalContextFunction(), "ncontext");
+        magicManager.getFastExpression().getFunctionManager().register(new ArgsSettingFunction(),"asetting");
         // variable.container
         magicManager.getFastExpression().getFunctionManager().register(new ListFunction());
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());

@@ -49,6 +49,9 @@ public class ArgsSetting {
             if (type.equalsIgnoreCase("...")){
                 return true;
             }
+            if (type.equalsIgnoreCase("Object") || type.equalsIgnoreCase(".")){
+                continue;
+            }
             if (!args.get(i).getName().equals(type)) return false;
         }
         return true;

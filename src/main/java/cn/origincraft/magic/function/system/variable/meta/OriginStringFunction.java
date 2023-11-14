@@ -5,6 +5,7 @@ import cn.origincraft.magic.function.OnlyStringFunction;
 import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OriginStringFunction extends OnlyStringFunction {
@@ -25,6 +26,8 @@ public class OriginStringFunction extends OnlyStringFunction {
 
     @Override
     public List<String> getUsage() {
-        return null;
+        List<String> usage=new ArrayList<>();
+        usage.add("input string");
+        return usage;
     }
 }

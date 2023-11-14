@@ -39,7 +39,7 @@ public class AliasAddFunction extends ArgsFunction {
         List<ArgsSetting> argsSettings = new ArrayList<>();
         argsSettings.add(
                 new ArgsSetting("A")
-                        .addArgType("String ...")
+                        .addArgType("String").addArgType("...")
                         .addInfo("string ...(string)")
                         .addInfo("real alias...")
                         .addInfo("Add alias to real.")

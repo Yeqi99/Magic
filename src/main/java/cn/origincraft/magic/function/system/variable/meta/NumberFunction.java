@@ -50,14 +50,14 @@ public class NumberFunction extends ArgsFunction {
                 .setResultType("Number")
         );
         argsSettings.add(new ArgsSetting("B")
-                .addArgType("String String")
+                .addArgType("String").addArgType("String")
                         .addInfo("stringNumber type")
                         .addInfo("Convert string to number by type.")
                         .addInfo("type: int, double, float, long")
                 .setResultType("Number")
         );
         argsSettings.add(new ArgsSetting("C")
-                .addArgType("String String Number")
+                .addArgType("String").addArgType("String").addArgType("Number")
                 .addInfo("stringNumber type defaultValue")
                 .addInfo("Convert string to number by type.")
                 .addInfo("type: int, double, float, long")
