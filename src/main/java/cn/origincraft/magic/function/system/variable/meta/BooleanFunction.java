@@ -3,10 +3,8 @@ package cn.origincraft.magic.function.system.variable.meta;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.VariableUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +21,13 @@ public class BooleanFunction extends ArgsFunction {
             case "B":{
                 NumberResult numberResult= (NumberResult) args.get(0);
                 return new BooleanResult(numberResult.toBoolean());
+            }
+            case "C":{
+                Object object = args.get(0).getObject();
+                if(!(object instanceof Boolean)){
+                    return new ErrorResult("TYPE_ERROR","Object convert to boolean failed");
+                }
+                return new BooleanResult((Boolean) object);
             }
         }
         return new NullResult();
@@ -41,6 +46,12 @@ public class BooleanFunction extends ArgsFunction {
                 .addArgType("Number")
                         .addInfo("number")
                         .addInfo("Convert number to boolean.")
+                .setResultType("Boolean")
+        );
+        argsSettings.add(new ArgsSetting("C")
+                .addArgType(".")
+                .addInfo("object")
+                .addInfo("Convert object to boolean")
                 .setResultType("Boolean")
         );
         return argsSettings;

@@ -6,7 +6,7 @@ import cn.origincraft.magic.expression.functions.CallableFunction;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.parameters.StringParameter;
 import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.utils.MethodUtil;
+import cn.origincraft.magic.utils.MethodUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class MagicWords {
                 .getFunctionManager()
                 .parseExpression(magicWords);
         // 方法按照优先级排序
-        function = MethodUtil
+        function = MethodUtils
                 .sortFunctions(
                         magicManager
                                 .getTypePriority(), function);

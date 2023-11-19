@@ -8,7 +8,7 @@ import cn.origincraft.magic.expression.functions.MagicResult;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.*;
 import cn.origincraft.magic.utils.FunctionUtils;
-import cn.origincraft.magic.utils.MethodUtil;
+import cn.origincraft.magic.utils.MethodUtils;
 
 import java.util.*;
 
@@ -39,7 +39,7 @@ public abstract class ArgsFunction extends FormatFunction {
         // 获取参数设置
         List<ArgsSetting> argsSettings = getArgsSetting();
         // 获取上下文
-        SpellContext spellContext = MethodUtil.getSpellContext(parameter);
+        SpellContext spellContext = MethodUtils.getSpellContext(parameter);
         // 获取参数
         List<FunctionResult> args = new ArrayList<>();
         // 获取参数字符串
@@ -60,7 +60,7 @@ public abstract class ArgsFunction extends FormatFunction {
                 // 全解析
                 case ALL -> {
                     FunctionResult functionResult;
-                    if (MethodUtil.isFunction(o)) {
+                    if (MethodUtils.isFunction(o)) {
                         functionResult = FunctionUtils.parseFunction(spellContext, o);
                     } else {
                         functionResult = FunctionUtils.parseVariable(spellContext, o);
@@ -72,7 +72,7 @@ public abstract class ArgsFunction extends FormatFunction {
                 }
                 // 只解析函数
                 case ONLY_FUNCTION -> {
-                    if (MethodUtil.isFunction(o)) {
+                    if (MethodUtils.isFunction(o)) {
                         FunctionResult functionResult = FunctionUtils.parseFunction(spellContext, o);
                         if (functionResult instanceof ErrorResult) {
                             return functionResult;
@@ -84,7 +84,7 @@ public abstract class ArgsFunction extends FormatFunction {
                 }
                 // 只解析变量
                 case ONLY_VARIABLE -> {
-                    if (MethodUtil.isFunction(o)) {
+                    if (MethodUtils.isFunction(o)) {
                         CallableFunction function = (CallableFunction) o;
                         args.add(new StringResult(function.toString()));
                     } else {
@@ -97,7 +97,7 @@ public abstract class ArgsFunction extends FormatFunction {
                 }
                 //全解析但是函数转换为魔咒
                 case FUNCTION_TO_SPELL -> {
-                    if (MethodUtil.isFunction(o)) {
+                    if (MethodUtils.isFunction(o)) {
                         CallableFunction function = (CallableFunction) o;
                         List<String> spellList = new ArrayList<>();
                         spellList.add(function.toString());
@@ -112,7 +112,7 @@ public abstract class ArgsFunction extends FormatFunction {
                 }
                 //只解析函数但是函数转换为魔咒
                 case ONLY_FUNCTION_TO_SPELL -> {
-                    if (MethodUtil.isFunction(o)) {
+                    if (MethodUtils.isFunction(o)) {
                         CallableFunction function = (CallableFunction) o;
                         List<String> spellList = new ArrayList<>();
                         spellList.add(function.toString());

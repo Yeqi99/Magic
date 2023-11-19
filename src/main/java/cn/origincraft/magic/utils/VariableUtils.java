@@ -3,7 +3,7 @@ package cn.origincraft.magic.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class VariableUtil {
+public class VariableUtils {
     public static boolean tryInt(String s) {
         Pattern pattern = Pattern.compile("^-?\\d+$");
         Matcher matcher = pattern.matcher(s);

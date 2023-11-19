@@ -15,15 +15,15 @@ public class StringFunction extends ArgsFunction {
         String id=argsSetting.getId();
         switch (id){
             case "A":{
-                return new StringResult(args.get(0).toString());
-            }
-            case "B":{
                 List<?> list= (List<?>) args.get(0).getObject();
                 StringBuilder stringBuilder=new StringBuilder();
                 for (Object o : list) {
                     stringBuilder.append(o.toString());
                 }
                 return new StringResult(stringBuilder.toString());
+            }
+            case "B":{
+                return new StringResult(args.get(0).toString());
             }
         }
         return new NullResult();
@@ -33,15 +33,15 @@ public class StringFunction extends ArgsFunction {
     public List<ArgsSetting> getArgsSetting() {
         List<ArgsSetting> argsSettings=new ArrayList<>();
         argsSettings.add(new ArgsSetting("A")
-                .addArgType("Object")
-                        .addInfo("object")
-                        .addInfo("Convert object to string.")
-                .setResultType("String")
-        );
-        argsSettings.add(new ArgsSetting("B")
                 .addArgType("List")
                 .addInfo("list")
                 .addInfo("Convert list to string.")
+                .setResultType("String")
+        );
+        argsSettings.add(new ArgsSetting("B")
+                .addArgType(".")
+                .addInfo("object")
+                .addInfo("Convert object to string.")
                 .setResultType("String")
         );
         return argsSettings;

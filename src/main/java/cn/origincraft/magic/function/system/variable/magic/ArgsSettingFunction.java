@@ -4,7 +4,10 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.results.ArgsSettingResult;
+import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
+import cn.origincraft.magic.function.results.SpellResult;
+import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.ArrayList;
@@ -36,6 +39,13 @@ public class ArgsSettingFunction extends ArgsFunction {
                 ArgsSetting argsSetting1=new ArgsSetting(argsSettingId,argsTypeStr,infoStr,returnType);
                 return new ArgsSettingResult(argsSetting1);
             }
+            case "B":{
+                Object object = args.get(0).getObject();
+                if(!(object instanceof ArgsSetting)){
+                    return new ErrorResult("TYPE_ERROR","Object convert to argsSetting failed");
+                }
+                return new ArgsSettingResult((ArgsSetting) object);
+            }
         }
         return new NullResult();
     }
@@ -48,6 +58,13 @@ public class ArgsSettingFunction extends ArgsFunction {
                         .addArgType("String").addArgType("List").addArgType("List").addArgType("String")
                         .addInfo("id argsType info returnType")
                         .addInfo("Create a argsSetting")
+                        .setResultType("ArgsSetting")
+        );
+        argsSettings.add(new ArgsSetting("B")
+                .addArgType(".")
+                .addInfo("object")
+                .addInfo("Convert object to spell")
+                .setResultType("ArgsSetting")
         );
         return argsSettings;
     }

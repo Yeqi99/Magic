@@ -1,10 +1,9 @@
 package cn.origincraft.magic.function;
 
-import cn.origincraft.magic.expression.functions.FastFunction;
 import cn.origincraft.magic.expression.functions.FunctionParameter;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.MethodUtil;
+import cn.origincraft.magic.utils.MethodUtils;
 
 
 public abstract class OnlyStringFunction extends FormatFunction {
@@ -19,7 +18,7 @@ public abstract class OnlyStringFunction extends FormatFunction {
 
     @Override
     public FunctionResult call(FunctionParameter parameter) {
-        SpellContext spellContext = MethodUtil.getSpellContext(parameter);
+        SpellContext spellContext = MethodUtils.getSpellContext(parameter);
         String para = spellContext.getExecuteParameter();
         return whenFunctionCalled(spellContext, para);
     }

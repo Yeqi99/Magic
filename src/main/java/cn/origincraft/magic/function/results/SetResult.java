@@ -1,5 +1,8 @@
 package cn.origincraft.magic.function.results;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SetResult extends ObjectResult {
@@ -24,5 +27,8 @@ public class SetResult extends ObjectResult {
             s.append(arg.toString()).append(",");
         }
         return s.toString();
+    }
+    public Set<Object> getObjectSet(){
+        return new HashSet<>(getSet());
     }
 }

@@ -4,7 +4,7 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.VariableUtil;
+import cn.origincraft.magic.utils.VariableUtils;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class PowerFunction extends NormalFunction {
             base = ((BooleanResult) baseArg).getBoolean() ? 1 : 0;
         } else if (baseArg instanceof StringResult) {
             String stringValue = ((StringResult) baseArg).getString();
-            if (VariableUtil.tryDouble(stringValue)) {
+            if (VariableUtils.tryDouble(stringValue)) {
                 base = Double.parseDouble(stringValue);
             } else {
                 return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
@@ -97,7 +97,7 @@ public class PowerFunction extends NormalFunction {
             }
         }
 
-        if (VariableUtil.hasFractionalPart(result)) {
+        if (VariableUtils.hasFractionalPart(result)) {
             return new DoubleResult(result);
         } else {
             return new IntegerResult((int) result);

@@ -18,9 +18,8 @@ public class VariableDefineFunction extends ArgsFunction {
         switch (id) {
             case "A": {
                 String varName = args.get(0).toString();
-                Object object = args.get(1).getObject();
-                spellContext.getContextMap().putVariable(varName, object);
-                return new ObjectResult(object);
+                spellContext.getContextMap().putVariable(varName, args.get(1));
+                return args.get(1);
             }
         }
         return new NullResult();

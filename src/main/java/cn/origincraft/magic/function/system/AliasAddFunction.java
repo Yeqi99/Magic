@@ -43,6 +43,7 @@ public class AliasAddFunction extends ArgsFunction {
                         .addInfo("string ...(string)")
                         .addInfo("real alias...")
                         .addInfo("Add alias to real.")
+                        .setResultType("Null")
         );
         return argsSettings;
     }

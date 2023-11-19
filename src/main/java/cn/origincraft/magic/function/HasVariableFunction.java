@@ -10,7 +10,7 @@ import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 import cn.origincraft.magic.utils.FunctionUtils;
-import cn.origincraft.magic.utils.MethodUtil;
+import cn.origincraft.magic.utils.MethodUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public abstract class HasVariableFunction extends NormalFunction {
     @Override
     public FunctionResult call(FunctionParameter parameter) {
         List<FunctionResult> args = new ArrayList<>();
-        SpellContext spellContext = MethodUtil.getSpellContext(parameter);
+        SpellContext spellContext = MethodUtils.getSpellContext(parameter);
         String para = spellContext.getExecuteParameter();
         MagicManager mm = spellContext.getMagicManager();
         List<Object> list = FunctionUtils
@@ -36,7 +36,7 @@ public abstract class HasVariableFunction extends NormalFunction {
                         .getFastExpression()
                         .getFunctionManager());
         for (Object o : list) {
-            if (MethodUtil.isFunction(o)) {
+            if (MethodUtils.isFunction(o)) {
                 // 设置当前方法为嵌套调用
                 CallableFunction function = (CallableFunction) o;
                 StringParameter stringParameter =

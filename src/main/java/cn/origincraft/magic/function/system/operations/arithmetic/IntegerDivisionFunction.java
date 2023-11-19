@@ -4,7 +4,7 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.VariableUtil;
+import cn.origincraft.magic.utils.VariableUtils;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class IntegerDivisionFunction extends NormalFunction {
                 } else if (objectValue instanceof Boolean) {
                     value = (Boolean) objectValue ? 1 : 0;
                 } else if (objectValue instanceof String stringValue) {
-                    if (VariableUtil.tryInt(stringValue)) {
+                    if (VariableUtils.tryInt(stringValue)) {
                         value = Integer.parseInt(stringValue);
                     } else {
                         return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");

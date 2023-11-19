@@ -2,7 +2,6 @@ package cn.origincraft.magic.utils;
 
 import cn.origincraft.magic.expression.functions.CallableFunction;
 import cn.origincraft.magic.expression.functions.FunctionParameter;
-import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.object.SpellContextParameter;
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MethodUtil {
+public class MethodUtils {
     public static List<CallableFunction> sortFunctions(Map<String, Integer> typePriority, List<CallableFunction> functions) {
         List<CallableFunction> sortedFunctions = new ArrayList<>(functions);
         sortedFunctions.sort((o1, o2) -> {

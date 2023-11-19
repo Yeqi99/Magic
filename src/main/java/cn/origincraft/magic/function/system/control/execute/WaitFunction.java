@@ -7,7 +7,7 @@ import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.FunctionUtils;
-import cn.origincraft.magic.utils.VariableUtil;
+import cn.origincraft.magic.utils.VariableUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class WaitFunction extends ArgsFunction {
         switch (id) {
             case "A": {
                 String time = (String) args.get(0).getObject();
-                if (!VariableUtil.tryInt(time)) {
+                if (!VariableUtils.tryInt(time)) {
                     return new ErrorResult("TIME_ERROR", "The time must be a number str");
                 }
                 try {
@@ -37,10 +37,10 @@ public class WaitFunction extends ArgsFunction {
             case "B": {
                 String time = (String) args.get(0).getObject();
                 String unit = (String) args.get(1).getObject();
-                if (!VariableUtil.tryInt(time)) {
+                if (!VariableUtils.tryInt(time)) {
                     return new ErrorResult("TIME_ERROR", "The time must be a number str");
                 }
-                if (!VariableUtil.tryInt(unit)) {
+                if (!VariableUtils.tryInt(unit)) {
                     return new ErrorResult("UNIT_ERROR", "The unit must be a number str");
                 }
                 try {

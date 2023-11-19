@@ -1,5 +1,6 @@
 package cn.origincraft.magic.function.results;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListResult extends ObjectResult {
@@ -24,5 +25,8 @@ public class ListResult extends ObjectResult {
             s.append(arg.toString()).append(",");
         }
         return s.toString();
+    }
+    public List<Object> getObjectList(){
+        return new ArrayList<>(getList());
     }
 }

@@ -4,10 +4,7 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.NullResult;
-import cn.origincraft.magic.function.results.ObjectResult;
-import cn.origincraft.magic.function.results.SpellResult;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 
@@ -35,6 +32,13 @@ public class SpellFunction extends ArgsFunction {
                 Spell spell = new Spell(stringList,spellContext.getMagicManager());
                 return new SpellResult(spell);
             }
+            case "C":{
+                Object object = args.get(0).getObject();
+                if(!(object instanceof Spell)){
+                    return new ErrorResult("TYPE_ERROR","Object convert to spell failed");
+                }
+                return new SpellResult((Spell) object);
+            }
         }
         return new NullResult();
     }
@@ -55,6 +59,12 @@ public class SpellFunction extends ArgsFunction {
                         .addInfo("magicWords")
                         .addInfo("Create a spell by magicWords")
                         .setResultType("Spell")
+        );
+        argsSettings.add(new ArgsSetting("C")
+                .addArgType(".")
+                .addInfo("object")
+                .addInfo("Convert object to spell")
+                .setResultType("Spell")
         );
         return argsSettings;
     }

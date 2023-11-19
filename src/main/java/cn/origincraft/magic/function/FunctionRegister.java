@@ -12,10 +12,6 @@ import cn.origincraft.magic.function.system.info.time.NowFunction;
 import cn.origincraft.magic.function.system.io.input.ImportFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
 import cn.origincraft.magic.function.system.io.output.PrintFunction;
-import cn.origincraft.magic.function.system.java.LookPackFunction;
-import cn.origincraft.magic.function.system.java.PackMethodsFunction;
-import cn.origincraft.magic.function.system.java.PackagingFunction;
-import cn.origincraft.magic.function.system.java.UnpackingFunction;
 import cn.origincraft.magic.function.system.operations.arithmetic.*;
 import cn.origincraft.magic.function.system.operations.comparison.CompareFunction;
 import cn.origincraft.magic.function.system.operations.equal.EqualFunction;
@@ -30,8 +26,7 @@ import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction
 import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
 import cn.origincraft.magic.function.system.variable.container.SetFunction;
-import cn.origincraft.magic.function.system.variable.container.arguments.ArgumentsGetFunction;
-import cn.origincraft.magic.function.system.variable.container.arguments.UnpackArgsFunction;
+
 import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
 import cn.origincraft.magic.function.system.variable.get.*;
@@ -43,9 +38,7 @@ import cn.origincraft.magic.function.system.variable.magic.NormalContextFunction
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
 
-import java.util.function.DoubleFunction;
-import java.util.function.IntFunction;
-import java.util.function.LongFunction;
+
 
 
 public class FunctionRegister {
@@ -117,29 +110,18 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new SetFunction());
         magicManager.getFastExpression().getFunctionManager().register(new MapFunction());
         magicManager.getFastExpression().getFunctionManager().register(new ArgumentsFunction(), "args");
-        magicManager.getFastExpression().getFunctionManager().register(new UnpackArgsFunction(), "upargs");
-        // variable.container.arguments
-        magicManager.getFastExpression().getFunctionManager().register(new ArgumentsGetFunction(), "argsget");
         // variable.get
         magicManager.getFastExpression().getFunctionManager().register(new VariableGetFunction(), "vget");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectGetFunction(), "oget");
         magicManager.getFastExpression().getFunctionManager().register(new ContextGetFunction(), "cget");
-        magicManager.getFastExpression().getFunctionManager().register(new ListGetFunction(), "listg");
-        magicManager.getFastExpression().getFunctionManager().register(new MapGetFunction(), "mapg");
         magicManager.getFastExpression().getFunctionManager().register(new ContainerRandomGetFunction(), "crandomg");
-        magicManager.getFastExpression().getFunctionManager().register(new MapGetKeyListFunction(), "mapgkl");
-        magicManager.getFastExpression().getFunctionManager().register(new MapGetValueListFunction(), "mapgvl");
+        magicManager.getFastExpression().getFunctionManager().register(new UnpackFunction(),"upk");
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
         // thread
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncExecuteFunction(), "spellae");
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncDaemonExecuteFunction(), "spellade");
-        // java
-        magicManager.getFastExpression().getFunctionManager().register(new UnpackingFunction(), "unpack");
-        magicManager.getFastExpression().getFunctionManager().register(new PackagingFunction(), "pack");
-        magicManager.getFastExpression().getFunctionManager().register(new PackMethodsFunction(), "packm");
-        magicManager.getFastExpression().getFunctionManager().register(new LookPackFunction(), "lookpack");
         // normal
         magicManager.getFastExpression().getFunctionManager().register(new AliasAddFunction(), "alias", "aliases", "别名");
         magicManager.getFastExpression().getFunctionManager().register(new RegisterCustomFunction(), "rcf");

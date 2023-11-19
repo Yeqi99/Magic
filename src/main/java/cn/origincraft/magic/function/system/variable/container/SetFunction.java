@@ -18,7 +18,14 @@ public class SetFunction extends ArgsFunction {
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
         String id = argsSetting.getId();
         switch (id) {
-            case "A": {
+            case "A":{
+                Object object=args.get(0).getObject();
+                if(!(object instanceof Set<?>)){
+                    return new ErrorResult("TYPE_ERROR","Object convert to set failed");
+                }
+                return new SetResult((Set<?>) object);
+            }
+            case "B": {
                 Set<Object> resultSet = new HashSet<>();
                 for (FunctionResult arg : args) {
                     resultSet.add(arg.getObject());
@@ -34,6 +41,13 @@ public class SetFunction extends ArgsFunction {
         List<ArgsSetting> argsSettings = new ArrayList<>();
         argsSettings.add(
                 new ArgsSetting("A")
+                        .addArgType(".")
+                        .addInfo("object")
+                        .addInfo("Convert object to list")
+                        .setResultType("Set")
+        );
+        argsSettings.add(
+                new ArgsSetting("B")
                         .addArgType("...")
                         .addInfo("args")
                         .addInfo("Create a list.")

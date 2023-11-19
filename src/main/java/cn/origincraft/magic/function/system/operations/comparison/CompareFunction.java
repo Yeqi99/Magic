@@ -4,7 +4,7 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.VariableUtil;
+import cn.origincraft.magic.utils.VariableUtils;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class CompareFunction extends NormalFunction {
             return ((BooleanResult) arg).getBoolean() ? 1 : 0;
         } else if (arg instanceof StringResult) {
             String stringValue = ((StringResult) arg).getString();
-            if (VariableUtil.tryDouble(stringValue)) {
+            if (VariableUtils.tryDouble(stringValue)) {
                 return Double.parseDouble(stringValue);
             } else if (spellContext.getContextMap().hasVariable(stringValue)) {
                 Object variableValue = spellContext.getContextMap().getVariable(stringValue);

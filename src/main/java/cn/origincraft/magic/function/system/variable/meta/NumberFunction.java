@@ -5,7 +5,7 @@ import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
-import cn.origincraft.magic.utils.VariableUtil;
+import cn.origincraft.magic.utils.VariableUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +24,24 @@ public class NumberFunction extends ArgsFunction {
             case "B":{
                 String str= (String) args.get(0).getObject();
                 String type= (String) args.get(1).getObject();
-                return new NumberResult(VariableUtil.stringToNumber(str,type,0));
+                return new NumberResult(VariableUtils.stringToNumber(str,type,0));
             }
             case "C":{
                 String str= (String) args.get(0).getObject();
                 String type= (String) args.get(1).getObject();
                 Number defaultValue= (Number) args.get(2).getObject();
-                return new NumberResult(VariableUtil.stringToNumber(str,type,defaultValue));
+                return new NumberResult(VariableUtils.stringToNumber(str,type,defaultValue));
             }
             case "D":{
                 NumberResult numberResult= (NumberResult) args.get(0);
                 return new StringResult(numberResult.getNumberType());
+            }
+            case "E":{
+                Object object=args.get(0).getObject();
+                if (!(object instanceof Number)){
+                    return new ErrorResult("TYPE_ERROR","Object convert to number failed");
+                }
+                return new NumberResult((Number) object);
             }
         }
         return new NullResult();
@@ -68,6 +75,12 @@ public class NumberFunction extends ArgsFunction {
                 .addInfo("number")
                 .addInfo("Get number's type.")
                 .setResultType("String")
+        );
+        argsSettings.add(new ArgsSetting("E")
+                .addArgType(".")
+                .addInfo("object")
+                .addInfo("Convert object to number")
+                .setResultType("Number")
         );
         return argsSettings;
     }

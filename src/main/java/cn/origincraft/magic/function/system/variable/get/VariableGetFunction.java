@@ -1,63 +1,44 @@
 package cn.origincraft.magic.function.system.variable.get;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class VariableGetFunction extends NormalFunction {
+public class VariableGetFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()) {
-            return new ErrorResult("VARIABLE_GET_FUNCTION_ARGS_ERROR", "VariableGet don't have enough args.");
-        }
-        if (args.get(0) instanceof StringResult v) {
-            String s = v.getString();
-            if (spellContext.getContextMap().hasVariable(s)) {
-                Object o = spellContext.getContextMap().getVariable(s);
-                if (o instanceof String string) {
-                    return new StringResult(string);
-                } else if (o instanceof Integer integer) {
-                    return new IntegerResult(integer);
-                } else if (o instanceof Double aDouble) {
-                    return new DoubleResult(aDouble);
-                } else if (o instanceof Boolean aBoolean) {
-                    return new BooleanResult(aBoolean);
-                } else if (o instanceof List<?> list) {
-                    return new ListResult(list);
-                } else if (o instanceof Set<?> set) {
-                    return new SetResult(set);
-                } else if (o instanceof Map<?, ?> map) {
-                    return new MapResult(map);
-                } else if (o instanceof Spell spell) {
-                    return new SpellResult(spell);
-                } else if (o instanceof Long l) {
-                    return new LongResult(l);
-                } else if (o instanceof Float f) {
-                    return new FloatResult(f);
-                } else if (o == null) {
-                    return new NullResult();
-                } else if (o instanceof ContextMap) {
-                    return new ContextMapResult((ContextMap) o);
-                } else if (o instanceof ArgumentsResult) {
-                    return (ArgumentsResult) o;
-                } else if (o instanceof FunctionResult) {
-                    return (FunctionResult) o;
-                } else {
-                    return new ObjectResult(o);
-                }
-
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id =argsSetting.getId();
+        switch (id){
+            case "A":{
+                String varName = args.get(0).toString();
+                return (FunctionResult) spellContext.getContextMap().getVariable(varName);
             }
         }
-        return args.get(0);
+        return new NullResult();
     }
 
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("String")
+                        .addInfo("varName")
+                        .addInfo("Get variableMap variable.")
+                        .setResultType("Object")
+        );
+        return argsSettings;
+    }
     @Override
     public String getType() {
         return "SYSTEM";
