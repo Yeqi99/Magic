@@ -1,31 +1,37 @@
 package cn.origincraft.magic.function.system.io.output;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PrintFunction extends NormalFunction {
+public class PrintFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
         StringBuilder sb = new StringBuilder();
         for (FunctionResult arg : args) {
-            if (arg instanceof IntegerResult value) {
-                sb.append(value.getInteger());
-            } else if (arg instanceof DoubleResult value) {
-                sb.append(value.getDouble());
-            } else if (arg instanceof BooleanResult value) {
-                sb.append(value.getBoolean());
-            } else if (arg instanceof StringResult value) {
-                sb.append(value.getString());
-            } else if (arg instanceof ObjectResult value) {
-                sb.append(value.getObject());
-            }
+            sb.append(arg.toString());
         }
         System.out.println(sb);
         return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("...")
+                        .addInfo("message")
+                        .addInfo("Print the message")
+                        .setResultType("Null")
+        );
+        return argsSettings;
     }
 
     @Override

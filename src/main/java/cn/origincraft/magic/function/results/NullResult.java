@@ -3,7 +3,7 @@ package cn.origincraft.magic.function.results;
 
 public class NullResult extends ObjectResult {
     public NullResult() {
-        super(null);
+        super("");
     }
 
     @Override

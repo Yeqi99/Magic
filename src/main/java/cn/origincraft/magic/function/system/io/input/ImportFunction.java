@@ -1,6 +1,8 @@
 package cn.origincraft.magic.function.system.io.input;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
@@ -8,31 +10,37 @@ import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.manager.MagicPackage;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ImportFunction extends NormalFunction {
+public class ImportFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Import function requires at least two arguments.");
-        }
-        FunctionResult id = args.get(0);
-        FunctionResult path = args.get(1);
-        if (id instanceof StringResult) {
-            if (path instanceof StringResult pathStringResult) {
-                StringResult idStringResult = (StringResult) id;
-                String idString = idStringResult.getString();
-                String pathString = pathStringResult.getString();
-                MagicPackage magicPackage = new MagicPackage(idString);
-                magicPackage.loadFiles(pathString);
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id=argsSetting.getId();
+        switch (id){
+            case "A":{
+                String fileId=args.get(0).toString();
+                String path=args.get(1).toString();
+                MagicPackage magicPackage = new MagicPackage(fileId);
+                magicPackage.loadFiles(path);
                 magicPackage.importPackage(spellContext);
-                return new NullResult();
-            } else {
-                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
+                break;
             }
-        } else {
-            return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
         }
+        return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("String").addArgType("String")
+                        .addInfo("id path")
+                        .addInfo("Import spell from file to variable")
+                        .setResultType("Null")
+        );
+        return argsSettings;
     }
 
     @Override
