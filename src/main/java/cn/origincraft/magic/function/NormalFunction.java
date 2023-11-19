@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class NormalFunction implements FastFunction {
+public abstract class NormalFunction extends ArgsFunction implements FastFunction {
     /**
      * 当方法被调用时执行的代码
      *
@@ -94,6 +94,20 @@ public abstract class NormalFunction implements FastFunction {
         }
         return whenFunctionCalled(spellContext, args);
     }
-
+    @Override
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        return whenFunctionCalled(spellContext,args);
+    }
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings=new ArrayList<>();
+        argsSettings.add(new ArgsSetting("A")
+                .addArgType("...")
+                .addInfo("any")
+                .addInfo("not set info")
+                .setResultType("Unknown")
+        );
+        return argsSettings;
+    }
     public abstract String getType();
 }

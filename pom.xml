@@ -6,7 +6,7 @@
 
     <groupId>cn.originmc.magic</groupId>
     <artifactId>Magic</artifactId>
-    <version>1.1.7-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
