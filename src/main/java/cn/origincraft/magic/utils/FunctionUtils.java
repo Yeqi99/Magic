@@ -9,8 +9,6 @@ import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.*;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FunctionUtils {
 //    public static List<Object> parseParaExpression(String expression, FunctionManager manager) {

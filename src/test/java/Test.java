@@ -17,7 +17,7 @@ public class Test {
         List<String> testList = new ArrayList<>();
 //        testList.add("vdef(a comp(num(10) == num(10.0)))");
         testList.add("wait(1 1000)");
-        testList.add("print(num(div(num(3) num(2) num(3)) float))");
+        testList.add("print(+(num(1) num(2) num(3)))");
         Spell spell = new Spell(testList, magicManager);
         SpellContext spellContext= spell.execute(contextMap);
         if(spellContext.hasExecuteError()){
