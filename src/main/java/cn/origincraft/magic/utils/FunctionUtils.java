@@ -41,7 +41,7 @@ public class FunctionUtils {
 //    }
     public static List<Object> parseParaExpression(String expression, FunctionManager manager) {
         List<Object> result = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([\\w\\p{L}]+(?:\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))?)|(==|!=|>=|<=|>|<|%|&|\\+|-|\\*|/|!|\\^|\\$|#|@|~|\\?|,|\\[|]|:|;|'|\\\\|\\|\\.)");
+        Pattern pattern = Pattern.compile("([\\w\\p{L}]+(?:\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))?)|(\\.|==|!=|>=|<=|>|<|%|&|\\+|-|\\*|/|!|\\^|\\$|#|@|~|\\?|,|\\[|]|:|;|'|\\\\|\\|)");
         Matcher matcher = pattern.matcher(expression);
 
         while (matcher.find()) {

@@ -89,7 +89,7 @@ public class FunctionRegister {
         // info
         magicManager.getFastExpression().getFunctionManager().register(new ExecuteCountFunction(), "ecount");
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");
-        magicManager.getFastExpression().getFunctionManager().register(new IsNullFunction(), "null");
+        magicManager.getFastExpression().getFunctionManager().register(new IsNullFunction());
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta
@@ -97,6 +97,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new StringFunction(), "str");
         magicManager.getFastExpression().getFunctionManager().register(new NumberFunction(), "num");
         magicManager.getFastExpression().getFunctionManager().register(new OriginStringFunction(), "ostr");
+        magicManager.getFastExpression().getFunctionManager().register(new NullFunction());
         // variable.define
         magicManager.getFastExpression().getFunctionManager().register(new ObjectDefineFunction(), "odef");
         magicManager.getFastExpression().getFunctionManager().register(new VariableDefineFunction(), "vdef");
