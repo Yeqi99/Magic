@@ -4,9 +4,7 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.ListResult;
 import cn.origincraft.magic.function.results.ObjectResult;
-import cn.origincraft.magic.function.results.SetResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.RandomUtils;
 

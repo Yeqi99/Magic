@@ -3,7 +3,6 @@ package cn.origincraft.magic.function.system.io.input;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.function.results.StringResult;

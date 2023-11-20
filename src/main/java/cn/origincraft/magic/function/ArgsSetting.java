@@ -2,12 +2,9 @@ package cn.origincraft.magic.function;
 
 import cn.origincraft.magic.expression.functions.FastFunction;
 import cn.origincraft.magic.expression.functions.FunctionResult;
-import cn.origincraft.magic.expression.functions.MagicResult;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ArgsSetting {
 

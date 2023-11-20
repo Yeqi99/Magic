@@ -5,12 +5,18 @@ import cn.origincraft.magic.expression.functions.CallableFunction;
 import cn.origincraft.magic.expression.functions.FunctionParameter;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.functions.MagicResult;
-import cn.origincraft.magic.function.results.*;
-import cn.origincraft.magic.object.*;
+import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.SpellResult;
+import cn.origincraft.magic.function.results.StringResult;
+import cn.origincraft.magic.object.Spell;
+import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class ArgsFunction extends FormatFunction {
     private Map<Integer, ParseType> parseTypeMap = new HashMap<>();

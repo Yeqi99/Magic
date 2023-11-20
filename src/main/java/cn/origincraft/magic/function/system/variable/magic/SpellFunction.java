@@ -3,8 +3,9 @@ package cn.origincraft.magic.function.system.variable.magic;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.NullResult;
+import cn.origincraft.magic.function.results.SpellResult;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 

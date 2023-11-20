@@ -3,13 +3,16 @@ package cn.origincraft.magic.function.system.control;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.function.results.ListResult;
+import cn.origincraft.magic.function.results.MapResult;
+import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TraversalFunction extends ArgsFunction {

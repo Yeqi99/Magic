@@ -3,7 +3,6 @@ package cn.origincraft.magic.function.system.info.time;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.DoubleResult;
 import cn.origincraft.magic.object.SpellContext;
 

@@ -6,8 +6,6 @@ import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.results.ArgsSettingResult;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
-import cn.origincraft.magic.function.results.SpellResult;
-import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.ArrayList;

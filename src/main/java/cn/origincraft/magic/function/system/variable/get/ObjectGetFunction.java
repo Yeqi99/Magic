@@ -3,16 +3,11 @@ package cn.origincraft.magic.function.system.variable.get;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.*;
-import cn.origincraft.magic.object.ContextMap;
-import cn.origincraft.magic.object.Spell;
+import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class ObjectGetFunction extends ArgsFunction {
     @Override

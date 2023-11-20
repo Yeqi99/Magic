@@ -1,29 +1,44 @@
 package cn.origincraft.magic.function.system.operations.equal;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.BooleanResult;
 import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class EqualsIgnoreCaseFunction extends NormalFunction {
+public class EqualsIgnoreCaseFunction extends ArgsFunction {
+
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("EQUAL_FUNCTION_ARGS_ERROR", "EqualsIgnoreCase don't have enough args.");
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id = argsSetting.getId();
+        switch (id){
+            case "A":{
+                String firstObject = args.get(0).toString();
+                String secondObject = args.get(1).toString();
+                return new BooleanResult(firstObject.equalsIgnoreCase(secondObject));
+            }
         }
-        FunctionResult first = args.get(0);
-        FunctionResult second = args.get(1);
-        if (first instanceof StringResult && second instanceof StringResult) {
-            String firstString = ((StringResult) first).getString();
-            String secondString = ((StringResult) second).getString();
-            return new BooleanResult(firstString.equalsIgnoreCase(secondString));
-        } else {
-            return new ErrorResult("EQUAL_FUNCTION_ARGS_ERROR", "EqualsIgnoreCase don't support this type.");
-        }
+        return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("String").addArgType("String")
+                        .addInfo("string string")
+                        .addInfo("Ignore case to determine if two strings are the same")
+                        .setResultType("Boolean")
+        );
+        return argsSettings;
     }
 
     @Override

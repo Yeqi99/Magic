@@ -4,7 +4,8 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.ParseType;
-import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.function.results.BooleanResult;
+import cn.origincraft.magic.function.results.NullResult;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.ArrayList;

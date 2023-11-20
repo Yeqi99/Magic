@@ -8,11 +8,11 @@ public class NumberResult extends ObjectResult {
     }
 
     public NumberResult(String number) {
-        super(VariableUtils.stringToNumber(number) == null ? VariableUtils.stringToNumber(number) : 0);
+        super(VariableUtils.stringToNumber(number) != null ? VariableUtils.stringToNumber(number) : 0);
     }
 
     public NumberResult(String number, Number defaultValue) {
-        super(VariableUtils.stringToNumber(number) == null ? VariableUtils.stringToNumber(number) : defaultValue);
+        super(VariableUtils.stringToNumber(number) != null ? VariableUtils.stringToNumber(number) : defaultValue);
     }
 
     public Number getNumber() {
@@ -149,5 +149,26 @@ public class NumberResult extends ObjectResult {
         return 0;
     }
 
-
+    @Override
+    public String toString() {
+        if (isInteger()){
+            return getNumber().intValue()+"";
+        }
+        if (isLong()){
+            return getNumber().intValue()+"";
+        }
+        if (isFloat()){
+            return getNumber().floatValue()+"";
+        }
+        if (isDouble()){
+            return getNumber().doubleValue()+"";
+        }
+        if (isShort()){
+            return getNumber().shortValue()+"";
+        }
+        if (isByte()) {
+            return getNumber().byteValue() + "";
+        }
+        return 0+"";
+    }
 }

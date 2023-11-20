@@ -1,34 +1,40 @@
 package cn.origincraft.magic.function.system.operations.equal;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
-import cn.origincraft.magic.function.results.BooleanResult;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.ObjectResult;
-import cn.origincraft.magic.function.results.StringResult;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class EqualFunction extends NormalFunction {
+public class EqualFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("EQUAL_FUNCTION_ARGS_ERROR", "Equal don't have enough args.");
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id = argsSetting.getId();
+        switch (id){
+            case "A":{
+                Object firstObject = args.get(0).getObject();
+                Object secondObject = args.get(1).getObject();
+                return new BooleanResult(firstObject.equals(secondObject));
+            }
         }
-        FunctionResult first = args.get(0);
-        FunctionResult second = args.get(1);
-        if (first instanceof StringResult && second instanceof StringResult) {
-            String firstString = ((StringResult) first).getString();
-            String secondString = ((StringResult) second).getString();
-            return new BooleanResult(firstString.equals(secondString));
-        }
-        if (first instanceof ObjectResult && second instanceof ObjectResult) {
-            Object firstObject = (first).getObject();
-            Object secondObject = (second).getObject();
-            return new BooleanResult(firstObject.equals(secondObject));
-        }
-        return new ErrorResult("EQUAL_FUNCTION_ARGS_ERROR", "Equal don't support this type.");
+        return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType(".").addArgType(".")
+                        .addInfo("object object")
+                        .addInfo("returns true if two objects are the same")
+                        .setResultType("Boolean")
+        );
+        return argsSettings;
     }
 
     @Override

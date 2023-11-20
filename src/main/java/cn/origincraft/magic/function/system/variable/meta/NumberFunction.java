@@ -3,7 +3,10 @@ package cn.origincraft.magic.function.system.variable.meta;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.results.*;
+import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.NullResult;
+import cn.origincraft.magic.function.results.NumberResult;
+import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtils;
 
@@ -11,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberFunction extends ArgsFunction {
-
-
     @Override
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
         String id=argsSetting.getId();

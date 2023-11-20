@@ -3,12 +3,9 @@ package cn.origincraft.magic.function.system.variable.has;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.HasVariableFunction;
 import cn.origincraft.magic.function.ParseType;
 import cn.origincraft.magic.function.results.BooleanResult;
-import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
-import cn.origincraft.magic.function.results.StringResult;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.ArrayList;

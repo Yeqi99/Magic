@@ -27,7 +27,6 @@ import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction
 import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
 import cn.origincraft.magic.function.system.variable.container.SetFunction;
-
 import cn.origincraft.magic.function.system.variable.define.ObjectDefineFunction;
 import cn.origincraft.magic.function.system.variable.define.VariableDefineFunction;
 import cn.origincraft.magic.function.system.variable.get.*;

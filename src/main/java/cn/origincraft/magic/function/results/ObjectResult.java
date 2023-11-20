@@ -5,6 +5,9 @@ import cn.origincraft.magic.expression.functions.FunctionResult;
 
 public class ObjectResult extends FunctionResult{
     private final Object object;
+    public ObjectResult(){
+        object=null;
+    }
 
     public ObjectResult(Object object) {
         this.object = object;
@@ -21,5 +24,6 @@ public class ObjectResult extends FunctionResult{
     public String getName() {
         return "Object";
     }
+
 
 }
