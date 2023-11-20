@@ -1,6 +1,8 @@
 package cn.origincraft.magic.function.system.control.execute;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.ArgumentsResult;
 import cn.origincraft.magic.function.results.ErrorResult;
@@ -10,35 +12,41 @@ import cn.origincraft.magic.object.NormalContext;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ArgsSpellExecuteFunction extends NormalFunction {
+public class ArgsSpellExecuteFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments don't have enough args.");
-        }
-        FunctionResult spell = args.get(0);
-        FunctionResult arguments = args.get(1);
-        if (spell instanceof SpellResult) {
-            if (arguments instanceof ArgumentsResult) {
-                Spell spell1 = ((SpellResult) spell).getSpell();
-                List<FunctionResult> args1 = ((ArgumentsResult) arguments).getArgs();
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id =argsSetting.getId();
+        switch (id){
+            case "A":{
+                Spell spell= (Spell) args.get(0).getObject();
+                List<FunctionResult> arguments= (List<FunctionResult>) args.get(1).getObject();
                 NormalContext context = new NormalContext();
-                context.putVariable("args", new ArgumentsResult(args1));
-                SpellContext spellContext1 = spell1.execute(context);
-                if (!spellContext1.hasSpellReturn()) {
+                context.putVariable("args", new ArgumentsResult(arguments));
+                SpellContext executeContext = spell.execute(context);
+                if (!executeContext.hasSpellReturn()) {
                     return new NullResult();
                 } else {
-                    return spellContext1.getSpellReturn();
+                    return executeContext.getSpellReturn();
                 }
-            } else {
-                return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
             }
-        } else {
-            return new ErrorResult("ARGUMENTS_FUNCTION_ARGS_ERROR", "Arguments type error.");
         }
+        return new NullResult();
+    }
 
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("Spell").addArgType("Arguments")
+                        .addInfo("spell args")
+                        .addInfo("execute spell with args")
+                        .setResultType("Object")
+        );
+        return argsSettings;
     }
 
     @Override

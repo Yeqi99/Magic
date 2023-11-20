@@ -287,4 +287,13 @@ public class SpellContext {
     public void setContextMap(ContextMap contextMap) {
         this.contextMap = contextMap;
     }
+
+    public void importContextMap(ContextMap contextMap){
+        for (String variableName : this.contextMap.getVariableNames()) {
+            this.contextMap.putVariable(variableName,contextMap.getVariable(variableName));
+        }
+        for (String variableName : this.contextMap.getObjectNames()) {
+            this.contextMap.putObject(variableName,contextMap.getObject(variableName));
+        }
+    }
 }

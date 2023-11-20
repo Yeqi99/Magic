@@ -20,8 +20,8 @@ public class WhileFunction extends ArgsFunction {
         switch (id) {
             case "A": {
                 boolean flag = args.get(0).toBoolean(false);
+                SpellContext executeContext = null;
                 while (flag) {
-                    SpellContext executeContext = null;
                     for (FunctionResult functionResult : args.subList(1, args.size())) {
                         if (functionResult instanceof SpellResult) {
                             Spell spell = (Spell) functionResult.getObject();
@@ -57,7 +57,7 @@ public class WhileFunction extends ArgsFunction {
                         .addArgType("Boolean").addArgType("...")
                         .addInfo("boolean spell...")
                         .addInfo("if first arg is true then execute spells util first arg is false")
-                        .setResultType("Object")
+                        .setResultType("Boolean")
         );
         argsSettings.add(
                 new ArgsSetting("B")
