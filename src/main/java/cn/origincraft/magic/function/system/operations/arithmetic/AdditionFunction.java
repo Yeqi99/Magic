@@ -1,53 +1,49 @@
 package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdditionFunction extends NormalFunction {
+public class AdditionFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        double result = 0;
-        for (FunctionResult arg : args) {
-            if (arg instanceof IntegerResult value) {
-                result += value.getInteger();
-            } else if (arg instanceof DoubleResult value) {
-                result += value.getDouble();
-            } else if (arg instanceof BooleanResult value) {
-                result += value.getBoolean() ? 1 : 0;
-            } else if (arg instanceof StringResult value) {
-                if (VariableUtils.tryDouble(value.getString())) {
-                    result += Double.parseDouble(value.getString());
-                } else {
-                    return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
-                }
-            } else if (arg instanceof ObjectResult value) {
-                if (value.getObject() instanceof Integer) {
-                    result += (Integer) value.getObject();
-                } else if (value.getObject() instanceof Double) {
-                    result += (Double) value.getObject();
-                } else if (value.getObject() instanceof Boolean) {
-                    result += (Boolean) value.getObject() ? 1 : 0;
-                } else if (value.getObject() instanceof String) {
-                    if (((String) value.getObject()).matches("-?\\d+(\\.\\d+)?")) {
-                        result += Double.parseDouble((String) value.getObject());
-                    } else {
-                        return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id = argsSetting.getId();
+        switch (id){
+            case "A":{
+                double result=0;
+                for (FunctionResult arg : args) {
+                    NumberResult numberResult=null;
+                    if (args instanceof NumberResult){
+                        numberResult= (NumberResult) arg;
+                    }else {
+                        numberResult=new NumberResult(arg.toNumber(0));
                     }
-                } else {
-                    return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
+                    result+=numberResult.toDouble();
                 }
+                return new NumberResult(result);
             }
         }
-        if (VariableUtils.hasFractionalPart(result)) {
-            return new DoubleResult(result);
-        } else {
-            return new IntegerResult((int) result);
-        }
+        return new NullResult();
+    }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("...")
+                        .addInfo("number...")
+                        .addInfo("return numbers sum")
+                        .setResultType("Number")
+        );
+        return argsSettings;
     }
 
     @Override

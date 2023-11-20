@@ -1,64 +1,51 @@
 package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MultiplicationFunction extends NormalFunction {
+public class MultiplicationFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.isEmpty()) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "MultiplyFunction function requires at least one argument.");
-        }
-
-        double result = 1.0; // Initialize result to 1 for multiplication
-
-        for (FunctionResult arg : args) {
-
-
-            if (arg instanceof IntegerResult) {
-                result *= ((IntegerResult) arg).getInteger();
-            } else if (arg instanceof DoubleResult) {
-                result *= ((DoubleResult) arg).getDouble();
-            } else if (arg instanceof BooleanResult) {
-                result *= ((BooleanResult) arg).getBoolean() ? 1 : 0;
-            } else if (arg instanceof StringResult) {
-                String stringValue = ((StringResult) arg).getString();
-                if (VariableUtils.tryDouble(stringValue)) {
-                    result *= Double.parseDouble(stringValue);
-                } else {
-                    return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
-                }
-            } else if (arg instanceof ObjectResult) {
-                Object objectValue = arg.getObject();
-                if (objectValue instanceof Integer) {
-                    result *= (Integer) objectValue;
-                } else if (objectValue instanceof Double) {
-                    result *= (Double) objectValue;
-                } else if (objectValue instanceof Boolean) {
-                    result *= (Boolean) objectValue ? 1 : 0;
-                } else if (objectValue instanceof String stringValue) {
-                    if (stringValue.matches("-?\\d+(\\.\\d+)?")) {
-                        result *= Double.parseDouble(stringValue);
-                    } else {
-                        return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id = argsSetting.getId();
+        switch (id){
+            case "A":{
+                double result=0;
+                for (FunctionResult arg : args) {
+                    NumberResult numberResult=null;
+                    if (args instanceof NumberResult){
+                        numberResult= (NumberResult) arg;
+                    }else {
+                        numberResult=new NumberResult(arg.toNumber(0));
                     }
-                } else {
-                    return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
+                    result*=numberResult.toDouble();
                 }
+                return new NumberResult(result);
             }
         }
-
-        if (VariableUtils.hasFractionalPart(result)) {
-            return new DoubleResult(result);
-        } else {
-            return new IntegerResult((int) result);
-        }
+        return new NullResult();
     }
+
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("...")
+                        .addInfo("number...")
+                        .addInfo("return the result of multiplication calculation")
+                        .setResultType("Number")
+        );
+        return argsSettings;
+    }
+
 
     @Override
     public String getType() {

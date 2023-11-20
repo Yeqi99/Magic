@@ -7,6 +7,7 @@ import cn.origincraft.magic.expression.functions.FastFunction;
 import cn.origincraft.magic.expression.functions.FunctionParameter;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.parameters.StringParameter;
+import cn.origincraft.magic.utils.FunctionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,14 +59,28 @@ public class FunctionManager {
         return functions.containsKey(registerName);
     }
 
+//    public List<CallableFunction> parseExpression(String expression) {
+//        List<CallableFunction> callableFunctions = new ArrayList<>();
+//        Pattern pattern = Pattern.compile("([\\w\\p{L}]+)\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
+//        Matcher matcher = pattern.matcher(expression);
+//        while (matcher.find()) {
+//            String functionName = matcher.group(1);
+//            String parameter = matcher.group(2);
+//            callableFunctions.add(new CallableFunction(get(functionName), new StringParameter(parameter)));
+//        }
+//        return callableFunctions;
+//    }
     public List<CallableFunction> parseExpression(String expression) {
         List<CallableFunction> callableFunctions = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([\\w\\p{L}]+)\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
-        Matcher matcher = pattern.matcher(expression);
-        while (matcher.find()) {
-            String functionName = matcher.group(1);
-            String parameter = matcher.group(2);
-            callableFunctions.add(new CallableFunction(get(functionName), new StringParameter(parameter)));
+        List<String> contexts= FunctionUtils.parseCode(expression);
+        for (String context : contexts) {
+            if (context.endsWith(")")){
+                String functionName=FunctionUtils.extractMethodName(context);
+                String para= FunctionUtils.extractContent(context);
+                assert para != null;
+                para = para.strip();
+                callableFunctions.add(new CallableFunction(get(functionName), new StringParameter(para)));
+            }
         }
         return callableFunctions;
     }

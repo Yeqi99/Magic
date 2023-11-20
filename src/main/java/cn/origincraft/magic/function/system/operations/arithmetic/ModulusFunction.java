@@ -1,73 +1,54 @@
 package cn.origincraft.magic.function.system.operations.arithmetic;
 
 import cn.origincraft.magic.expression.functions.FunctionResult;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.NormalFunction;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ModulusFunction extends NormalFunction {
+public class ModulusFunction extends ArgsFunction {
     @Override
-    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args) {
-        if (args.size() < 2) {
-            return new ErrorResult("INSUFFICIENT_ARGUMENTS", "Modulus function requires at least two arguments.");
-        }
-
-        int result = 0;
-        boolean isFirstArg = true;
-
-        for (FunctionResult arg : args) {
-            int value;
-            if (arg instanceof IntegerResult) {
-                value = ((IntegerResult) arg).getInteger();
-            } else if (arg instanceof DoubleResult) {
-                value = (int) ((DoubleResult) arg).getDouble();
-            } else if (arg instanceof BooleanResult) {
-                value = ((BooleanResult) arg).getBoolean() ? 1 : 0;
-            } else if (arg instanceof StringResult) {
-                String stringValue = ((StringResult) arg).getString();
-                if (stringValue.matches("-?\\d+")) {
-                    value = Integer.parseInt(stringValue);
-                } else {
-                    return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
-                }
-            } else if (arg instanceof ObjectResult) {
-                Object objectValue = arg.getObject();
-                if (objectValue instanceof Integer) {
-                    value = (Integer) objectValue;
-                } else if (objectValue instanceof Double) {
-                    value = (int) ((Double) objectValue).doubleValue();
-                } else if (objectValue instanceof Boolean) {
-                    value = (Boolean) objectValue ? 1 : 0;
-                } else if (objectValue instanceof String stringValue) {
-                    if (VariableUtils.tryInt(stringValue)) {
-                        value = Integer.parseInt(stringValue);
-                    } else {
-                        return new ErrorResult("ERROR_IN_TYPE", "Cannot convert string to number.");
+    public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
+        String id =argsSetting.getId();
+        switch (id){
+            case "A":{
+                NumberResult dividend= (NumberResult) args.get(0);
+                double result = dividend.toDouble();
+                for (FunctionResult functionResult : args.subList(1, args.size())) {
+                    NumberResult numberResult=null;
+                    if (args instanceof NumberResult){
+                        numberResult= (NumberResult) functionResult;
+                    }else {
+                        numberResult=new NumberResult(functionResult.toNumber(0));
                     }
-                } else {
-                    return new ErrorResult("ERROR_IN_TYPE", "Cannot convert object to number.");
+                    if (numberResult.toDouble()==0){
+                        return new ErrorResult("ARGS_ERROR","Divider cannot be 0");
+                    }
+                    result%=numberResult.toDouble();
                 }
-            } else {
-                return new ErrorResult("UNKNOWN_ARGUMENT_TYPE", "Unsupported argument type.");
-            }
-
-            if (isFirstArg) {
-                result = value;
-                isFirstArg = false;
-            } else {
-                if (value == 0) {
-                    return new ErrorResult("MODULUS_BY_ZERO", "Modulus by zero is not allowed.");
-                }
-                result %= value;
+                return new NumberResult(result);
             }
         }
-
-        return new IntegerResult(result);
+        return new NullResult();
     }
 
+    @Override
+    public List<ArgsSetting> getArgsSetting() {
+        List<ArgsSetting> argsSettings = new ArrayList<>();
+        argsSettings.add(
+                new ArgsSetting("A")
+                        .addArgType("Number").addArgType("...")
+                        .addInfo("dividend ...")
+                        .addInfo("return the result of modulus calculation")
+                        .setResultType("Number")
+        );
+        return argsSettings;
+    }
     @Override
     public String getType() {
         return "SYSTEM";

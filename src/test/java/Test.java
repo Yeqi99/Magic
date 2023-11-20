@@ -15,9 +15,9 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
-//        testList.add("vdef(a number(str( -105 )))");
+//        testList.add("vdef(a comp(num(10) == num(10.0)))");
         testList.add("wait(1 1000)");
-        testList.add("print(str( -105 str(1)))");
+        testList.add("print(num(div(num(3) num(2) num(3)) float))");
         Spell spell = new Spell(testList, magicManager);
         SpellContext spellContext= spell.execute(contextMap);
         if(spellContext.hasExecuteError()){

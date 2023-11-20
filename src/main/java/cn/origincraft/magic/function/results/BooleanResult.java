@@ -14,4 +14,9 @@ public class BooleanResult extends ObjectResult {
     public String getName() {
         return "Boolean";
     }
+
+    @Override
+    public Number toNumber(Number defaultValue) {
+        return getBoolean()?1:0;
+    }
 }

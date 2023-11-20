@@ -44,14 +44,13 @@ import cn.origincraft.magic.function.system.variable.meta.*;
 public class FunctionRegister {
     public static void regDefault(MagicManager magicManager) {
         // operations.arithmetic
-        magicManager.getFastExpression().getFunctionManager().register(new AdditionFunction(), "add");
-        magicManager.getFastExpression().getFunctionManager().register(new SubtractionFunction(), "sub");
-        magicManager.getFastExpression().getFunctionManager().register(new MultiplicationFunction(), "mul");
-        magicManager.getFastExpression().getFunctionManager().register(new DivisionFunction(), "div");
-        magicManager.getFastExpression().getFunctionManager().register(new PowerFunction(), "pow");
-        magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(), "mod");
-        magicManager.getFastExpression().getFunctionManager().register(new IntegerDivisionFunction(), "idiv");
-        magicManager.getFastExpression().getFunctionManager().register(new SelfAddFunction(), "sadd");
+        magicManager.getFastExpression().getFunctionManager().register(new AdditionFunction(), "add","+");
+        magicManager.getFastExpression().getFunctionManager().register(new SubtractionFunction(), "sub","-");
+        magicManager.getFastExpression().getFunctionManager().register(new MultiplicationFunction(), "mul","*");
+        magicManager.getFastExpression().getFunctionManager().register(new DivisionFunction(), "div","/");
+        magicManager.getFastExpression().getFunctionManager().register(new PowerFunction(), "pow","^");
+        magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(), "mod","%");
+        magicManager.getFastExpression().getFunctionManager().register(new IntegerDivisionFunction(), "idiv","//");
         // operations.comparison
         magicManager.getFastExpression().getFunctionManager().register(new CompareFunction(), "comp");
         // operations.logic

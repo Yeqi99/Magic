@@ -7,7 +7,7 @@ import cn.origincraft.magic.object.SpellContext;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Deprecated
 public abstract class NormalFunction extends ArgsFunction implements FastFunction {
     /**
      * 当方法被调用时执行的代码

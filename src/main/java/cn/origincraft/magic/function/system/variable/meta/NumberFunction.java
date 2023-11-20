@@ -38,6 +38,21 @@ public class NumberFunction extends ArgsFunction {
                 return new StringResult(numberResult.getNumberType());
             }
             case "E":{
+                NumberResult numberResult= (NumberResult) args.get(0);
+                String type=args.get(1).toString();
+                if (type.equalsIgnoreCase("int")){
+                    return new NumberResult(numberResult.toInteger());
+                }else if(type.equalsIgnoreCase("long")){
+                    return new NumberResult(numberResult.toLong());
+                }else if(type.equalsIgnoreCase("float")){
+                    return new NumberResult(numberResult.toFloat());
+                }else if(type.equalsIgnoreCase("double")){
+                    return new NumberResult(numberResult.toDouble());
+                }else {
+                    return numberResult;
+                }
+            }
+            case "F":{
                 Object object=args.get(0).getObject();
                 if (!(object instanceof Number)){
                     return new ErrorResult("TYPE_ERROR","Object convert to number failed");
@@ -78,6 +93,13 @@ public class NumberFunction extends ArgsFunction {
                 .setResultType("String")
         );
         argsSettings.add(new ArgsSetting("E")
+                .addArgType("Number").addArgType("String")
+                .addInfo("number type")
+                .addInfo("Change number's type.")
+                .addInfo("type: int, double, float, long")
+                .setResultType("Number")
+        );
+        argsSettings.add(new ArgsSetting("F")
                 .addArgType(".")
                 .addInfo("object")
                 .addInfo("Convert object to number")

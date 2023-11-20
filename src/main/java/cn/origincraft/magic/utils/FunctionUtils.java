@@ -39,27 +39,43 @@ public class FunctionUtils {
 //        }
 //        return result;
 //    }
+//    public static List<Object> parseParaExpression(String expression, FunctionManager manager) {
+//        List<Object> result = new ArrayList<>();
+//        Pattern pattern = Pattern.compile("([\\w\\p{L}]+(?:\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))?)|(==|!=|>=|<=|>|<|%|&|\\+|-|\\*|/|!|\\^|\\$|#|@|~|\\?|,|\\[|]|:|;|'|\\\\|\\|)");
+//        Matcher matcher = pattern.matcher(expression);
+//
+//        while (matcher.find()) {
+//            String token = matcher.group(1);
+//            if (token == null) {
+//                token = matcher.group(2);
+//            }
+//            if (token.endsWith(")")) {
+//                // 这是一个函数调用
+//                Pattern functionPattern = Pattern.compile("([\\w\\p{L}]+)\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
+//                Matcher functionMatcher = functionPattern.matcher(token);
+//                if (functionMatcher.find()) {
+//                    String functionName = functionMatcher.group(1);
+//                    String parameter = functionMatcher.group(2); // 使用相同的匹配器获取参数
+//                    result.add(new CallableFunction(manager.get(functionName), new StringParameter(parameter)));
+//                }
+//            } else {
+//                result.add(token);
+//            }
+//        }
+//        return result;
+//    }
     public static List<Object> parseParaExpression(String expression, FunctionManager manager) {
         List<Object> result = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([\\w\\p{L}]+(?:\\((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*\\))?)|(==|!=|>=|<=|>|<|%|&|\\+|-|\\*|/|!|\\^|\\$|#|@|~|\\?|,|\\[|]|:|;|'|\\\\|\\|)");
-        Matcher matcher = pattern.matcher(expression);
-
-        while (matcher.find()) {
-            String token = matcher.group(1);
-            if (token == null) {
-                token = matcher.group(2);
-            }
-            if (token.endsWith(")")) {
-                // 这是一个函数调用
-                Pattern functionPattern = Pattern.compile("([\\w\\p{L}]+)\\(((?:[^()]*|\\((?:[^()]*|\\([^()]*\\))*\\))*)\\)");
-                Matcher functionMatcher = functionPattern.matcher(token);
-                if (functionMatcher.find()) {
-                    String functionName = functionMatcher.group(1);
-                    String parameter = functionMatcher.group(2); // 使用相同的匹配器获取参数
-                    result.add(new CallableFunction(manager.get(functionName), new StringParameter(parameter)));
-                }
-            } else {
-                result.add(token);
+        List<String> contexts=parseCode(expression);
+        for (String context : contexts) {
+            if (context.endsWith(")")){
+                String functionName=extractMethodName(context);
+                String para= extractContent(context);
+                assert para != null;
+                para = para.strip();
+                result.add(new CallableFunction(manager.get(functionName), new StringParameter(para)));
+            }else {
+                result.add(context);
             }
         }
         return result;
@@ -129,6 +145,68 @@ public class FunctionUtils {
             }
         } else {
             return new StringResult(value);
+        }
+    }
+    public static List<String> parseCode(String code) {
+        List<String> outData = new ArrayList<>();
+
+        while (code.charAt(0) == ' ') {
+            code = code.substring(1);
+        }
+
+        boolean putBegin = false;
+        int begin = 0;
+        int length = 0;
+        int bracketNumber = 0;
+
+        for (int end = 0; end < code.length(); end++) {
+            char currentChar = code.charAt(end);
+            if (currentChar == '(') {
+                bracketNumber++;
+            } else if (currentChar == ')') {
+                bracketNumber--;
+            } else if (currentChar == ' ' && bracketNumber == 0) {
+                if (!putBegin || (length != 0 && length != 1)) {
+                    putBegin = true;
+                    outData.add(code.substring(begin, begin + length));
+                }
+                begin += length;
+                length = 0;
+            }
+            length++;
+        }
+
+        if (begin != code.length()) {
+            outData.add(code.substring(begin));
+        }
+
+        for (int index = 0; index < outData.size(); index++) {
+            String item = outData.get(index);
+            if (item.charAt(0) != ' ') {
+                continue;
+            }
+            outData.set(index, item.substring(1));
+        }
+
+        return outData;
+    }
+    public static String extractContent(String input) {
+        int startIndex = input.indexOf('(');
+        int endIndex = input.lastIndexOf(')');
+
+        if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
+            return input.substring(startIndex + 1, endIndex);
+        } else {
+            return null; // 或者你可以根据需求返回其他内容或抛出异常
+        }
+    }
+    public static String extractMethodName(String input) {
+        int startIndex = input.indexOf('(');
+
+        if (startIndex != -1) {
+            return input.substring(0, startIndex);
+        } else {
+            return null;
         }
     }
 }
