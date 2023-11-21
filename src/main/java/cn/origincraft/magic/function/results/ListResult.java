@@ -29,4 +29,8 @@ public class ListResult extends ObjectResult {
     public List<Object> getObjectList(){
         return new ArrayList<>(getList());
     }
+    @Override
+    public int len() {
+        return getList().size();
+    }
 }

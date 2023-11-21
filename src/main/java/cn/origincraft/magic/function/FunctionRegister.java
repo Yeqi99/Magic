@@ -48,6 +48,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new PowerFunction(), "pow","^");
         magicManager.getFastExpression().getFunctionManager().register(new ModulusFunction(), "mod","%");
         magicManager.getFastExpression().getFunctionManager().register(new IntegerDivisionFunction(), "idiv","//");
+        magicManager.getFastExpression().getFunctionManager().register(new SelfComputingFunction(),"selfc","@");
         // operations.comparison
         magicManager.getFastExpression().getFunctionManager().register(new CompareFunction(), "comp");
         // operations.logic
@@ -87,6 +88,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new IsNullFunction());
         magicManager.getFastExpression().getFunctionManager().register(new RangeFunction());
         magicManager.getFastExpression().getFunctionManager().register(new TypeFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new LengthFunction(),"len");
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta

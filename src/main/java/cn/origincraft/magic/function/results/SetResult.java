@@ -29,4 +29,9 @@ public class SetResult extends ObjectResult {
     public Set<Object> getObjectSet(){
         return new HashSet<>(getSet());
     }
+
+    @Override
+    public int len() {
+        return getSet().size();
+    }
 }

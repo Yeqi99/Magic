@@ -39,4 +39,8 @@ public class MapResult extends ObjectResult {
         }
         return convertedMap;
     }
+    @Override
+    public int len() {
+        return getMap().keySet().size();
+    }
 }

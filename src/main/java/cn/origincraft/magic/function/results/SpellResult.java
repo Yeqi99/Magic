@@ -17,4 +17,8 @@ public class SpellResult extends ObjectResult {
     public String getName() {
         return "Spell";
     }
+    @Override
+    public int len() {
+        return getSpell().getMagicWordsList().size();
+    }
 }

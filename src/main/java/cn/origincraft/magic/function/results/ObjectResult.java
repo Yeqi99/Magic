@@ -25,5 +25,4 @@ public class ObjectResult extends FunctionResult{
         return "Object";
     }
 
-
 }

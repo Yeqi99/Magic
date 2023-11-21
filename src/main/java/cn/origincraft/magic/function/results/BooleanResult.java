@@ -19,4 +19,5 @@ public class BooleanResult extends ObjectResult {
     public Number toNumber(Number defaultValue) {
         return getBoolean()?1:0;
     }
+
 }

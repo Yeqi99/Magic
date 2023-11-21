@@ -29,4 +29,8 @@ public class ContextMapResult extends ObjectResult {
         }
         return s.toString();
     }
+    @Override
+    public int len() {
+        return getContextMap().getObjectNames().size();
+    }
 }

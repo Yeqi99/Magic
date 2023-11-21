@@ -26,6 +26,13 @@ public class StringFunction extends ArgsFunction {
             case "B":{
                 return new StringResult(args.get(0).toString());
             }
+            case "C":{
+                StringBuilder stringBuilder=new StringBuilder();
+                for (FunctionResult arg : args) {
+                    stringBuilder.append(arg.toString());
+                }
+                return new StringResult(stringBuilder.toString());
+            }
         }
         return new NullResult();
     }
@@ -45,7 +52,14 @@ public class StringFunction extends ArgsFunction {
                 .addInfo("Convert object to string.")
                 .setResultType("String")
         );
+        argsSettings.add(new ArgsSetting("C")
+                .addArgType("...")
+                .addInfo("object..")
+                .addInfo("Convert objects to string.")
+                .setResultType("String")
+        );
         return argsSettings;
+
     }
 
     @Override

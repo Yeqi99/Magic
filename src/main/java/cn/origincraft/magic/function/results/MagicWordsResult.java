@@ -16,4 +16,8 @@ public class MagicWordsResult extends ObjectResult {
     public String getName() {
         return "MagicWords";
     }
+    @Override
+    public int len() {
+        return getMagicWords().getFunction().size();
+    }
 }

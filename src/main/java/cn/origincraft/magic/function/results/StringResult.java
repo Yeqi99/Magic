@@ -28,4 +28,8 @@ public class StringResult extends ObjectResult {
         Number number = VariableUtils.stringToNumber(str);
         return number != null;
     }
+    @Override
+    public int len() {
+        return getString().length();
+    }
 }

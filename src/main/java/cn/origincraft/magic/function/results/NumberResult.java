@@ -171,4 +171,8 @@ public class NumberResult extends ObjectResult {
         }
         return 0+"";
     }
+    @Override
+    public int len() {
+        return toString().length();
+    }
 }

@@ -28,4 +28,8 @@ public class ArgumentsResult extends ObjectResult {
         }
         return s.toString();
     }
+    @Override
+    public int len() {
+        return getArgs().size();
+    }
 }

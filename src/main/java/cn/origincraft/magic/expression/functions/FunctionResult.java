@@ -28,4 +28,7 @@ public class FunctionResult implements MagicResult {
         }
         return (Boolean) getObject();
     }
+    public int len(){
+        return 0;
+    }
 }
