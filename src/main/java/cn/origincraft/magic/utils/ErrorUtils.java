@@ -16,4 +16,13 @@ public class ErrorUtils {
         errors.addAll(spellContext.getExecuteErrorLocation());
         return errors;
     }
+
+    public static String stringError(SpellContext spellContext) {
+        List<String> errors = normalError(spellContext);
+        StringBuilder string= new StringBuilder();
+        for (String error : errors) {
+            string.append(error).append("\n");
+        }
+        return string.substring(0,string.length()-1);
+    }
 }
