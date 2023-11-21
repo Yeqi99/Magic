@@ -109,7 +109,7 @@ public class Magic {
                             System.out.println("Return:"+spellContext.getSpellReturn().getObject());
                         }
                         continue;
-                    }s
+                    }
                     default:{
                         System.out.println("Unknown command, enter /help to view help！");
                     }
