@@ -35,6 +35,7 @@ public class FunctionManager {
             String real = instance.getAliasesManager().getRealName(registerName);
             if (real.equals(registerName)) {
                 System.out.println("Function " + registerName + " does not exist");
+                return functions.get("null");
             }
             return functions.get(real);
         }

@@ -26,6 +26,7 @@ public class WhileFunction extends ArgsFunction {
                         if (functionResult instanceof SpellResult) {
                             Spell spell = (Spell) functionResult.getObject();
                             executeContext = spell.execute(spellContext.getContextMap());
+                            spellContext.addPrintLog(executeContext.getPrintLog());
                         }
                     }
                     if (executeContext == null) {

@@ -17,6 +17,7 @@ public class PrintFunction extends ArgsFunction {
             sb.append(arg.toString());
         }
         System.out.println(sb);
+        spellContext.addPrintLog(sb.toString());
         return new NullResult();
     }
 

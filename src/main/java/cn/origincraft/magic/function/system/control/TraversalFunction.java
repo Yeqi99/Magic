@@ -29,6 +29,7 @@ public class TraversalFunction extends ArgsFunction {
                     contextMap.putVariable("index", i);
                     contextMap.putVariable("value", container.get(i));
                     SpellContext context = spell.execute(contextMap);
+                    spellContext.addPrintLog(context.getPrintLog());
                     Object value = context.getContextMap().getVariable("value");
                     if (value instanceof NullResult) {
                         continue;

@@ -25,6 +25,7 @@ public class EvalExecuteFunction extends OnlyStringFunction {
         spellWorlds.add(args);
         Spell spell = new Spell(spellWorlds, spellContext.getMagicManager());
         SpellContext evalSpellContext = spell.execute(spellContext.getContextMap());
+        spellContext.addPrintLog(evalSpellContext.getPrintLog());
         return evalSpellContext.getSpellReturn();
     }
 

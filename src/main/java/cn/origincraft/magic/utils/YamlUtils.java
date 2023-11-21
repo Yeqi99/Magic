@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class YamlUtils {
     public static Map<String, Object> getYaml(String path){
+        System.out.println(FileUtils.getJarFolderPath()+path);
         try (InputStream inputStream =new FileInputStream(FileUtils.getJarFolderPath()+path)) {
             Yaml yaml = new Yaml();
             return yaml.load(inputStream);

@@ -296,4 +296,20 @@ public class SpellContext {
             this.contextMap.putObject(variableName,contextMap.getObject(variableName));
         }
     }
+    public void addPrintLog(String message){
+        String s=getPrintLog();
+        if (s==null){
+            getExecuteResultMap().put("printLog",message);
+        }else {
+            getExecuteResultMap().put("printLog",s+"\n"+message);
+        }
+
+    }
+    public String getPrintLog(){
+        Object object=getExecuteResultMap().get("printLog");
+        if (object==null){
+            return null;
+        }
+        return (String) object;
+    }
 }
