@@ -5,10 +5,7 @@ import cn.origincraft.magic.function.system.AliasAddFunction;
 import cn.origincraft.magic.function.system.RegisterCustomFunction;
 import cn.origincraft.magic.function.system.control.*;
 import cn.origincraft.magic.function.system.control.execute.*;
-import cn.origincraft.magic.function.system.info.ExecuteCountFunction;
-import cn.origincraft.magic.function.system.info.IsNullFunction;
-import cn.origincraft.magic.function.system.info.MagicWordsIndexFunction;
-import cn.origincraft.magic.function.system.info.RangeFunction;
+import cn.origincraft.magic.function.system.info.*;
 import cn.origincraft.magic.function.system.info.time.NowFunction;
 import cn.origincraft.magic.function.system.io.input.ImportFunction;
 import cn.origincraft.magic.function.system.io.input.InputFunction;
@@ -89,6 +86,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new MagicWordsIndexFunction(), "eindex");
         magicManager.getFastExpression().getFunctionManager().register(new IsNullFunction());
         magicManager.getFastExpression().getFunctionManager().register(new RangeFunction());
+        magicManager.getFastExpression().getFunctionManager().register(new TypeFunction());
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta

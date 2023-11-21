@@ -4,6 +4,7 @@ import cn.origincraft.magic.expression.functions.CallableFunction;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.managers.FunctionManager;
 import cn.origincraft.magic.expression.parameters.StringParameter;
+import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.*;
@@ -69,8 +70,10 @@ public class FunctionUtils {
             if (context.endsWith(")")){
                 String functionName=extractMethodName(context);
                 String para= extractContent(context);
-                assert para != null;
-                para = para.strip();
+                if(manager.get(functionName) instanceof ArgsFunction){
+                    assert para != null;
+                    para=para.strip();
+                }
                 result.add(new CallableFunction(manager.get(functionName), new StringParameter(para)));
             }else {
                 result.add(context);

@@ -7,6 +7,7 @@ import cn.origincraft.magic.expression.functions.FastFunction;
 import cn.origincraft.magic.expression.functions.FunctionParameter;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.expression.parameters.StringParameter;
+import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.utils.FunctionUtils;
 
 import java.util.ArrayList;
@@ -75,8 +76,10 @@ public class FunctionManager {
             if (context.endsWith(")")){
                 String functionName=FunctionUtils.extractMethodName(context);
                 String para= FunctionUtils.extractContent(context);
-                assert para != null;
-                para = para.strip();
+                if(get(functionName) instanceof ArgsFunction){
+                    assert para != null;
+                    para=para.strip();
+                }
                 callableFunctions.add(new CallableFunction(get(functionName), new StringParameter(para)));
             }
         }

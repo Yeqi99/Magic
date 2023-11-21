@@ -3,10 +3,7 @@ package cn.origincraft.magic.function.system.variable.meta;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.ArgsFunction;
 import cn.origincraft.magic.function.ArgsSetting;
-import cn.origincraft.magic.function.results.ErrorResult;
-import cn.origincraft.magic.function.results.NullResult;
-import cn.origincraft.magic.function.results.NumberResult;
-import cn.origincraft.magic.function.results.StringResult;
+import cn.origincraft.magic.function.results.*;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.VariableUtils;
 
@@ -53,6 +50,29 @@ public class NumberFunction extends ArgsFunction {
                 }
             }
             case "F":{
+                List<?> numList= (List<?>) args.get(0).getObject();
+                String type=args.get(1).toString();
+                List<Number> result=new ArrayList<>();
+                for (Object object : numList) {
+                    if (object instanceof Number){
+                        NumberResult numberResult=new NumberResult((Number) object);
+                        if (type.equalsIgnoreCase("int")){
+                            result.add(numberResult.toInteger());
+                        }else if(type.equalsIgnoreCase("long")){
+                            result.add(numberResult.toLong());
+                        }else if(type.equalsIgnoreCase("float")){
+                            result.add(numberResult.toFloat());
+                        }else if(type.equalsIgnoreCase("double")){
+                            result.add(numberResult.toDouble());
+                        }else {
+                            return numberResult;
+                        }
+                    }
+                }
+                return new ListResult(result);
+
+            }
+            case "G":{
                 Object object=args.get(0).getObject();
                 if (!(object instanceof Number)){
                     return new ErrorResult("TYPE_ERROR","Object convert to number failed");
@@ -100,6 +120,13 @@ public class NumberFunction extends ArgsFunction {
                 .setResultType("Number")
         );
         argsSettings.add(new ArgsSetting("F")
+                .addArgType("List").addArgType("String")
+                .addInfo("numberList type")
+                .addInfo("Change numberList's type.")
+                .addInfo("type: int, double, float, long")
+                .setResultType("List")
+        );
+        argsSettings.add(new ArgsSetting("G")
                 .addArgType(".")
                 .addInfo("object")
                 .addInfo("Convert object to number")
