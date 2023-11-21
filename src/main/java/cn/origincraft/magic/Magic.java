@@ -46,6 +46,7 @@ public class Magic {
         List<String> spellWords=new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("input:");
+        System.out.println("Enter /help for help");
         while (true) {
             String userInput = scanner.nextLine();
             if (userInput.startsWith("/")){
