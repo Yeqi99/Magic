@@ -150,7 +150,9 @@ public class FunctionUtils {
     }
     public static List<String> parseCode(String code) {
         List<String> outData = new ArrayList<>();
-
+        if (code.isEmpty()){
+            return new ArrayList<>();
+        }
         while (code.charAt(0) == ' ') {
             code = code.substring(1);
         }
@@ -198,7 +200,7 @@ public class FunctionUtils {
         if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
             return input.substring(startIndex + 1, endIndex);
         } else {
-            return null; // 或者你可以根据需求返回其他内容或抛出异常
+            return null;
         }
     }
     public static String extractMethodName(String input) {

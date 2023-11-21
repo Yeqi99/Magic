@@ -1,6 +1,7 @@
 package cn.origincraft.magic;
 
 import cn.origincraft.magic.function.FunctionRegister;
+import cn.origincraft.magic.manager.MagicPackage;
 import cn.origincraft.magic.object.ContextMap;
 import cn.origincraft.magic.object.NormalContext;
 import cn.origincraft.magic.object.Spell;
@@ -52,9 +53,9 @@ public class Magic {
                 String[] cmdArgs=command.split(" ");
                 switch (cmdArgs[0]) {
                     case "exit":{
-                        server.stop(10);
+                        System.out.println("Exit in 3 seconds");
+                        server.stop(3);
                         System.exit(0);
-                        System.out.println("Exited");
                         return;
                     }
                     case "clear":{
@@ -74,7 +75,20 @@ public class Magic {
                         continue;
                     }
                     case "save":{
-                        Path targetFilePath = Paths.get(FileUtils.getPath(cmdArgs[1]+".m"));
+                        if (cmdArgs.length<2){
+                            System.out.println("Insufficient parameters");
+                            continue;
+                        }
+                        Path targetFilePath;
+                        if (cmdArgs.length>2){
+                            targetFilePath=Paths.get(cmdArgs[2]+"\\"+cmdArgs[1]+".m");
+                        }else {
+                            targetFilePath = Paths.get(FileUtils.getPath("spells\\"+cmdArgs[1]+".m"));
+                        }
+                        Path parentDir = targetFilePath.getParent();
+                        if (parentDir != null) {
+                            Files.createDirectories(parentDir);
+                        }
                         Files.write(targetFilePath, spellWords);
                         System.out.println("Saved in "+cmdArgs[1]+".m");
                         continue;
@@ -84,19 +98,55 @@ public class Magic {
                         System.out.println("/exit");
                         System.out.println("/clear");
                         System.out.println("/look");
-                        System.out.println("/context");
                         System.out.println("/go");
+                        System.out.println("/context <name>");
+                        System.out.println("/manager <name>");
+                        System.out.println("/save <name> [path]");
+                        System.out.println("/import <name> <path>");
                         System.out.println("------------------------------");
+                        continue;
+                    }
+                    case "import":{
+                        if (cmdArgs.length<3){
+                            System.out.println("Insufficient parameters");
+                        }
+                        MagicPackage magicPackage=new MagicPackage(cmdArgs[1]);
+                        magicPackage.loadFiles(cmdArgs[2]);
+                        if (!magicManagerMap.containsKey(managerName)){
+                            MagicManager newMagic=new MagicManager();
+                            FunctionRegister.regDefault(newMagic);
+                            magicManagerMap.put(managerName,newMagic);
+                        }
+                        if (!mainContextMaps.containsKey(contextMapName)){
+                            mainContextMaps.put(contextMapName,new NormalContext());
+                        }
+                        magicPackage.importPackage(mainContextMaps.get(contextMapName),magicManagerMap.get(managerName));
                         continue;
                     }
                     case "context":{
                         if (cmdArgs.length<2){
                             System.out.println("Insufficient parameters");
+                            continue;
                         }
                         contextMapName=cmdArgs[1];
                         System.out.println("Change context to"+contextMapName);
+                        continue;
+                    }
+                    case "manager":{
+                        if (cmdArgs.length<2){
+                            System.out.println("Insufficient parameters");
+                            continue;
+                        }
+                        managerName=cmdArgs[1];
+                        System.out.println("Change manager to"+contextMapName);
+                        continue;
                     }
                     case "go":{
+                        if (!magicManagerMap.containsKey(managerName)){
+                            MagicManager newMagic=new MagicManager();
+                            FunctionRegister.regDefault(newMagic);
+                            magicManagerMap.put(managerName,newMagic);
+                        }
                         Spell spell=new Spell(spellWords,magicManagerMap.get(managerName));
                         if (!mainContextMaps.containsKey(contextMapName)){
                             mainContextMaps.put(contextMapName,new NormalContext());

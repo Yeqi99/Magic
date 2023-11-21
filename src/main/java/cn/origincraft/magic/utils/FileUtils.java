@@ -12,7 +12,7 @@ public class FileUtils {
         return url.getPath();
     }
     public static String getPath(String path){
-        return getJarPath()+"\\"+path;
+        return getJarFolderPath()+"\\"+path;
     }
     public static String getJarFolderPath() {
         // 获取当前类的 URL
