@@ -116,6 +116,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new ContextGetFunction(), "cget");
         magicManager.getFastExpression().getFunctionManager().register(new ContainerRandomGetFunction(), "crandomg");
         magicManager.getFastExpression().getFunctionManager().register(new UnpackFunction(),"upk");
+        magicManager.getFastExpression().getFunctionManager().register(new GetFunction());
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
