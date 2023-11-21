@@ -79,6 +79,13 @@ public class NumberFunction extends ArgsFunction {
                 }
                 return new NumberResult((Number) object);
             }
+            case "H":{
+                List<Number> numbers=new ArrayList<>();
+                for (FunctionResult arg : args) {
+                    numbers.add(new NumberResult(arg.toString()).toNumber(0));
+                }
+                return new ListResult(numbers);
+            }
         }
         return new NullResult();
     }
@@ -131,6 +138,12 @@ public class NumberFunction extends ArgsFunction {
                 .addInfo("object")
                 .addInfo("Convert object to number")
                 .setResultType("Number")
+        );
+        argsSettings.add(new ArgsSetting("H")
+                .addArgType("...")
+                .addInfo("strings...")
+                .addInfo("Convert strings to numbers")
+                .setResultType("List")
         );
         return argsSettings;
     }

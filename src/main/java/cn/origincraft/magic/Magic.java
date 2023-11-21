@@ -6,6 +6,7 @@ import cn.origincraft.magic.object.NormalContext;
 import cn.origincraft.magic.object.Spell;
 import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.ErrorUtils;
+import cn.origincraft.magic.utils.FileUtils;
 import cn.origincraft.magic.utils.YamlUtils;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,13 +15,16 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
-public class Main {
+public class Magic {
     public static Map<String,MagicManager> magicManagerMap=new HashMap<>();
     public static Map<String, ContextMap> mainContextMaps=new HashMap<>();
     public static void main(String[] args) throws IOException {
-        Map<String, Object> config = YamlUtils.getYaml("/config.yml");
+        Map<String, Object> config = YamlUtils.getYaml("\\config.yml");
         if (config==null){
             System.out.println("Missing configuration file");
             return;
@@ -35,6 +39,88 @@ public class Main {
         server.setExecutor(null);
         server.start();
         System.out.println("Server started on port " + port);
+
+        String managerName="default";
+        String contextMapName="default";
+        List<String> spellWords=new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("input:");
+        while (true) {
+            String userInput = scanner.nextLine();
+            if (userInput.startsWith("/")){
+                String command=userInput.replace("/","").toLowerCase();
+                String[] cmdArgs=command.split(" ");
+                switch (cmdArgs[0]) {
+                    case "exit":{
+                        server.stop(10);
+                        System.exit(0);
+                        System.out.println("Exited");
+                        return;
+                    }
+                    case "clear":{
+                        spellWords=new ArrayList<>();
+                        System.out.println("Cleared");
+                        continue;
+                    }
+                    case "look":{
+                        System.out.println("Magic Manager:"+managerName);
+                        System.out.println("Context:"+contextMapName);
+                        System.out.println("Current code:");
+                        System.out.println("------------------------------");
+                        for (String spellWord : spellWords) {
+                            System.out.println(spellWord);
+                        }
+                        System.out.println("------------------------------");
+                        continue;
+                    }
+                    case "save":{
+                        Path targetFilePath = Paths.get(FileUtils.getPath(cmdArgs[1]+".m"));
+                        Files.write(targetFilePath, spellWords);
+                        System.out.println("Saved in "+cmdArgs[1]+".m");
+                        continue;
+                    }
+                    case "help":{
+                        System.out.println("------------------------------");
+                        System.out.println("/exit");
+                        System.out.println("/clear");
+                        System.out.println("/look");
+                        System.out.println("/context");
+                        System.out.println("/go");
+                        System.out.println("------------------------------");
+                        continue;
+                    }
+                    case "context":{
+                        if (cmdArgs.length<2){
+                            System.out.println("Insufficient parameters");
+                        }
+                        contextMapName=cmdArgs[1];
+                        System.out.println("Change context to"+contextMapName);
+                    }
+                    case "go":{
+                        Spell spell=new Spell(spellWords,magicManagerMap.get(managerName));
+                        if (!mainContextMaps.containsKey(contextMapName)){
+                            mainContextMaps.put(contextMapName,new NormalContext());
+                        }
+                        System.out.println("Execute spell:");
+                        SpellContext spellContext=spell.execute(mainContextMaps.get(managerName));
+                        if (spellContext.hasExecuteError()){
+                            System.out.println(ErrorUtils.stringError(spellContext));
+                        }else if (spellContext.hasSpellReturn()){
+                            System.out.println("Return:"+spellContext.getSpellReturn().getObject());
+                        }
+                        continue;
+                    }s
+                    default:{
+                        System.out.println("Unknown command, enter /help to view help！");
+                    }
+                }
+            }else {
+                if (userInput.contains(")")){
+                    spellWords.add(userInput);
+                }
+            }
+
+        }
     }
 
     static class MagicHttpHandler implements HttpHandler {
