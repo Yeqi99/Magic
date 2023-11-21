@@ -210,10 +210,14 @@ public class Magic {
                         if (spellContext.hasExecuteError()) {
                             response = ErrorUtils.stringError(spellContext);
                         } else if (spellContext.hasSpellReturn()) {
+                            String printLog=spellContext.getPrintLog();
+                            if (printLog==null){
+                                printLog="";
+                            }
                             if (spellContext.getSpellReturn() instanceof NullResult){
-                                response = spellContext.getPrintLog();
+                                response = printLog;
                             }else {
-                                response = spellContext.getPrintLog() + "\nreturn:" + spellContext.getSpellReturn().toString();
+                                response = printLog + "\nreturn:" + spellContext.getSpellReturn().toString();
                             }
                         }
                     } else {

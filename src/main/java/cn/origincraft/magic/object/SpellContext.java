@@ -299,6 +299,9 @@ public class SpellContext {
     public void addPrintLog(String message){
         String s=getPrintLog();
         if (s==null){
+            if (message==null){
+                return;
+            }
             getExecuteResultMap().put("printLog",message);
         }else {
             getExecuteResultMap().put("printLog",s+"\n"+message);

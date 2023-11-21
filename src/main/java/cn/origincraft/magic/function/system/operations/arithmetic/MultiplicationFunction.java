@@ -16,7 +16,7 @@ public class MultiplicationFunction extends ArgsFunction {
         String id = argsSetting.getId();
         switch (id){
             case "A":{
-                double result=0;
+                double result=1;
                 for (FunctionResult arg : args) {
                     NumberResult numberResult=null;
                     if (args instanceof NumberResult){
