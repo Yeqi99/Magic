@@ -8,6 +8,7 @@ import cn.origincraft.magic.function.results.NumberResult;
 import cn.origincraft.magic.object.SpellContext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SplitFunction extends ArgsFunction {
@@ -23,13 +24,14 @@ public class SplitFunction extends ArgsFunction {
             case "A":{
                 String origin=args.get(0).toString();
                 String symbol=args.get(1).toString();
-                return new ListResult(List.of(origin.split(symbol)));
+                List<String> strings = new ArrayList<>(Arrays.asList(origin.split(symbol)));
+                return new ListResult(strings);
             }
             case "B":{
                 String origin=args.get(0).toString();
                 String symbol=args.get(1).toString();
                 NumberResult numberResult= (NumberResult) args.get(2);
-                return new ListResult(List.of(origin.split(symbol,numberResult.toInteger())));
+                return new ListResult(Arrays.asList(origin.split(symbol,numberResult.toInteger())));
             }
         }
         return null;
