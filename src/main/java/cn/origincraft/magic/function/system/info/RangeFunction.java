@@ -42,6 +42,27 @@ public class RangeFunction extends ArgsFunction {
                 NumberResult step = (NumberResult) args.get(2);
                 return ListUtils.generateRange(start.toDouble(), end.toDouble(), step.toDouble());
             }
+            case "D": {
+                NumberResult end=new NumberResult(args.get(0).toString(),0);
+                return ListUtils.generateRange(0, end.toDouble(), 1);
+            }
+            case "E": {
+                NumberResult start=new NumberResult(args.get(0).toString(),0);
+                NumberResult end=new NumberResult(args.get(1).toString(),0);
+                double startDouble = start.toDouble();
+                double endDouble = end.toDouble();
+                double step = 1;
+                if (startDouble > endDouble) {
+                    step = -1;
+                }
+                return ListUtils.generateRange(startDouble, endDouble, step);
+            }
+            case "F":{
+                NumberResult start=new NumberResult(args.get(0).toString(),0);
+                NumberResult end=new NumberResult(args.get(1).toString(),0);
+                NumberResult step=new NumberResult(args.get(2).toString(),1);
+                return ListUtils.generateRange(start.toDouble(), end.toDouble(), step.toDouble());
+            }
         }
         return new NullResult();
     }
@@ -70,6 +91,33 @@ public class RangeFunction extends ArgsFunction {
         argsSettings.add(
                 new ArgsSetting("C")
                         .addArgType("Number").addArgType("Number").addArgType("Number")
+                        .addInfo("start end step")
+                        .addInfo("generate a number list")
+                        .addInfo("starting from start until the specified value step = step")
+                        .addInfo("elements type is double")
+                        .setResultType("List")
+        );
+        argsSettings.add(
+                new ArgsSetting("D")
+                        .addArgType(".")
+                        .addInfo("number")
+                        .addInfo("generate a number list")
+                        .addInfo("starting from 0 until the specified value step = 1")
+                        .addInfo("elements type is double")
+                        .setResultType("List")
+        );
+        argsSettings.add(
+                new ArgsSetting("E")
+                        .addArgType(".").addArgType(".")
+                        .addInfo("start end")
+                        .addInfo("generate a number list")
+                        .addInfo("starting from start until the specified value step = 1")
+                        .addInfo("elements type is double")
+                        .setResultType("List")
+        );
+        argsSettings.add(
+                new ArgsSetting("F")
+                        .addArgType(".").addArgType(".").addArgType(".")
                         .addInfo("start end step")
                         .addInfo("generate a number list")
                         .addInfo("starting from start until the specified value step = step")

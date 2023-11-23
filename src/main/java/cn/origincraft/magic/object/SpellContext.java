@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SpellContext {
     private ContextMap contextMap;
+    private Spell self;
 
     // 执行字典
     private ConcurrentHashMap<String, Object> executeResultMap = new ConcurrentHashMap<>();
@@ -314,5 +315,13 @@ public class SpellContext {
             return null;
         }
         return (String) object;
+    }
+
+    public Spell getSelf() {
+        return self;
+    }
+
+    public void setSelf(Spell self) {
+        this.self = self;
     }
 }

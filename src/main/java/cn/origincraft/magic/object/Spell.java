@@ -21,6 +21,7 @@ public class Spell {
 
     public SpellContext execute(ContextMap contextMap) {
         spellContext = new SpellContext();
+        spellContext.setSelf(this);
         spellContext.setContextMap(contextMap);
         spellContext.putMagicManager(getMagicManager());
         int index = 0;

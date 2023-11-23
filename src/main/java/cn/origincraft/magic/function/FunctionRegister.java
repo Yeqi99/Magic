@@ -89,6 +89,7 @@ public class FunctionRegister {
         magicManager.getFastExpression().getFunctionManager().register(new RangeFunction());
         magicManager.getFastExpression().getFunctionManager().register(new TypeFunction());
         magicManager.getFastExpression().getFunctionManager().register(new LengthFunction(),"len");
+        magicManager.getFastExpression().getFunctionManager().register(new SelfFunction());
         // info.time
         magicManager.getFastExpression().getFunctionManager().register(new NowFunction());
         // variable.meta
