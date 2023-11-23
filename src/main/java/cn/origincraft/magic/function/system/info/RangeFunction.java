@@ -68,7 +68,7 @@ public class RangeFunction extends ArgsFunction {
                         .setResultType("List")
         );
         argsSettings.add(
-                new ArgsSetting("B")
+                new ArgsSetting("C")
                         .addArgType("Number").addArgType("Number").addArgType("Number")
                         .addInfo("start end step")
                         .addInfo("generate a number list")
