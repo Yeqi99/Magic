@@ -20,6 +20,8 @@ import cn.origincraft.magic.function.system.operations.logic.OrFunction;
 import cn.origincraft.magic.function.system.operations.logic.XOrFunction;
 import cn.origincraft.magic.function.system.thread.SpellAsyncDaemonExecuteFunction;
 import cn.origincraft.magic.function.system.thread.SpellAsyncExecuteFunction;
+import cn.origincraft.magic.function.system.util.list.SortFunction;
+import cn.origincraft.magic.function.system.util.string.SplitFunction;
 import cn.origincraft.magic.function.system.variable.container.ArgumentsFunction;
 import cn.origincraft.magic.function.system.variable.container.ListFunction;
 import cn.origincraft.magic.function.system.variable.container.MapFunction;
@@ -127,5 +129,9 @@ public class FunctionRegister {
         // normal
         magicManager.getFastExpression().getFunctionManager().register(new AliasAddFunction(), "alias", "aliases", "别名");
         magicManager.getFastExpression().getFunctionManager().register(new RegisterCustomFunction(), "rcf");
+        //util.list
+        magicManager.getFastExpression().getFunctionManager().register(new SortFunction());
+        //util.string
+        magicManager.getFastExpression().getFunctionManager().register(new SplitFunction());
     }
 }
