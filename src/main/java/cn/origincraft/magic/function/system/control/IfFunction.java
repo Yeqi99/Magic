@@ -17,7 +17,7 @@ public class IfFunction extends ArgsFunction {
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
         String id =argsSetting.getId();
         switch (id){
-            case "A":{
+            case "B":{
                 boolean flag= args.get(0).toBoolean(false);
                 if (!flag){
                     return new NullResult();
@@ -35,7 +35,7 @@ public class IfFunction extends ArgsFunction {
                 }
                 return executeContext.getSpellReturn();
             }
-            case "B":{
+            case "A":{
                 boolean flag=args.get(0).toBoolean(false);
                 if (!flag){
                     spellContext.putExecuteIndexAllow(spellContext.getExecuteIndex(), false);
@@ -51,18 +51,19 @@ public class IfFunction extends ArgsFunction {
         List<ArgsSetting> argsSettings = new ArrayList<>();
         argsSettings.add(
                 new ArgsSetting("A")
-                        .addArgType("Boolean").addArgType("...")
-                        .addInfo("boolean spell...")
-                        .addInfo("if first arg is true then execute spells")
-                        .setResultType("Object")
-        );
-        argsSettings.add(
-                new ArgsSetting("B")
                         .addArgType("Boolean")
                         .addInfo("boolean")
                         .addInfo("if first arg is false then skip line and execute the next line")
                         .setResultType("Boolean")
         );
+        argsSettings.add(
+                new ArgsSetting("B")
+                        .addArgType("Boolean").addArgType("...")
+                        .addInfo("boolean spell...")
+                        .addInfo("if first arg is true then execute spells")
+                        .setResultType("Object")
+        );
+
         return argsSettings;
     }
 

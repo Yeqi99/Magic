@@ -18,7 +18,7 @@ public class WhileFunction extends ArgsFunction {
     public FunctionResult whenFunctionCalled(SpellContext spellContext, List<FunctionResult> args, ArgsSetting argsSetting) {
         String id = argsSetting.getId();
         switch (id) {
-            case "A": {
+            case "B": {
                 boolean flag = args.get(0).toBoolean(false);
                 SpellContext executeContext = null;
                 while (flag) {
@@ -36,7 +36,7 @@ public class WhileFunction extends ArgsFunction {
                     flag = returnResult.toBoolean(false);
                 }
             }
-            case "B": {
+            case "A": {
                 boolean flag = args.get(0).toBoolean(false);
                 if (flag) {
                     spellContext.putExecuteNext(spellContext.getExecuteIndex());
@@ -55,18 +55,19 @@ public class WhileFunction extends ArgsFunction {
         List<ArgsSetting> argsSettings = new ArrayList<>();
         argsSettings.add(
                 new ArgsSetting("A")
-                        .addArgType("Boolean").addArgType("...")
-                        .addInfo("boolean spell...")
-                        .addInfo("if first arg is true then execute spells util first arg is false")
-                        .setResultType("Boolean")
-        );
-        argsSettings.add(
-                new ArgsSetting("B")
                         .addArgType("Boolean")
                         .addInfo("boolean")
                         .addInfo("if first arg is true then next still execute this line util first arg is false")
                         .setResultType("Boolean")
         );
+        argsSettings.add(
+                new ArgsSetting("B")
+                        .addArgType("Boolean").addArgType("...")
+                        .addInfo("boolean spell...")
+                        .addInfo("if first arg is true then execute spells util first arg is false")
+                        .setResultType("Boolean")
+        );
+
         return argsSettings;
     }
 
