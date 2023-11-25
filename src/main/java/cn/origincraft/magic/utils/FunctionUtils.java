@@ -154,6 +154,9 @@ public class FunctionUtils {
             return new ArrayList<>();
         }
         while (code.charAt(0) == ' ') {
+            if (code.length()<2){
+                return outData;
+            }
             code = code.substring(1);
         }
 
