@@ -36,8 +36,7 @@ import cn.origincraft.magic.function.system.variable.magic.ContextMapFunction;
 import cn.origincraft.magic.function.system.variable.magic.NormalContextFunction;
 import cn.origincraft.magic.function.system.variable.magic.SpellFunction;
 import cn.origincraft.magic.function.system.variable.meta.*;
-
-
+import cn.origincraft.magic.function.system.variable.put.PutFunction;
 
 
 public class FunctionRegister {
@@ -123,6 +122,8 @@ public class FunctionRegister {
         // variable.has
         magicManager.getFastExpression().getFunctionManager().register(new VariableHasFunction(), "vhas");
         magicManager.getFastExpression().getFunctionManager().register(new ObjectHasFunction(), "ohas");
+        // variable.put
+        magicManager.getFastExpression().getFunctionManager().register(new PutFunction());
         // thread
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncExecuteFunction(), "spellae");
         magicManager.getFastExpression().getFunctionManager().register(new SpellAsyncDaemonExecuteFunction(), "spellade");
