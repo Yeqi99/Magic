@@ -38,13 +38,13 @@ public class NumberFunction extends ArgsFunction {
                 NumberResult numberResult= (NumberResult) args.get(0);
                 String type=args.get(1).toString();
                 if (type.equalsIgnoreCase("int")){
-                    return new NumberResult(numberResult.toInteger());
+                    return new IntegerResult(numberResult.toInteger());
                 }else if(type.equalsIgnoreCase("long")){
-                    return new NumberResult(numberResult.toLong());
+                    return new LongResult(numberResult.toLong());
                 }else if(type.equalsIgnoreCase("float")){
-                    return new NumberResult(numberResult.toFloat());
+                    return new FloatResult(numberResult.toFloat());
                 }else if(type.equalsIgnoreCase("double")){
-                    return new NumberResult(numberResult.toDouble());
+                    return new DoubleResult(numberResult.toDouble());
                 }else {
                     return numberResult;
                 }
