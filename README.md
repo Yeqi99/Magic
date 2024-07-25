@@ -1,5 +1,5 @@
 ## WIKI
-> [中文](https://wiki.originmc.cn/zh/Magic)
+> [中文](http://115.230.124.120:9999/zh/%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/Magic/Magic)
 ## 开源协议
 
 本项目采用 [GNU通用公共许可证 3.0 (GNU GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.en.html)。
