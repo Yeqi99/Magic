@@ -13,6 +13,7 @@ import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -135,7 +136,12 @@ public abstract class ArgsFunction extends FormatFunction {
         // 遍历参数设置,寻找匹配的参数设置触发
         for (ArgsSetting argsSetting : argsSettings) {
             if (argsSetting.checkArgs(args)) {
-                return whenFunctionCalled(spellContext, args, argsSetting);
+                try {
+                    return whenFunctionCalled(spellContext, args, argsSetting);
+                } catch (Exception e){
+                    // 生成错误信息
+                    return new ErrorResult("JAVA_ERROR",e.getMessage());
+                }
             }
         }
         // 如果没有找到匹配的参数设置，返回错误信息

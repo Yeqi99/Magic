@@ -18,6 +18,7 @@ import cn.origincraft.magic.function.system.operations.logic.AndFunction;
 import cn.origincraft.magic.function.system.operations.logic.NotFunction;
 import cn.origincraft.magic.function.system.operations.logic.OrFunction;
 import cn.origincraft.magic.function.system.operations.logic.XOrFunction;
+import cn.origincraft.magic.function.system.reflect.JavaClassFunction;
 import cn.origincraft.magic.function.system.thread.SpellAsyncDaemonExecuteFunction;
 import cn.origincraft.magic.function.system.thread.SpellAsyncExecuteFunction;
 import cn.origincraft.magic.function.system.util.list.SortFunction;
@@ -41,6 +42,8 @@ import cn.origincraft.magic.function.system.variable.put.PutFunction;
 
 public class FunctionRegister {
     public static void regDefault(MagicManager magicManager) {
+        //reflect
+        magicManager.getFastExpression().getFunctionManager().register(new JavaClassFunction(),"jc");
         // operations.arithmetic
         magicManager.getFastExpression().getFunctionManager().register(new AdditionFunction(), "add","+");
         magicManager.getFastExpression().getFunctionManager().register(new SubtractionFunction(), "sub","-");

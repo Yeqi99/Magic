@@ -1,6 +1,7 @@
 package cn.origincraft.magic.object;
 
 import cn.origincraft.magic.MagicManager;
+import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
 
 import java.util.ArrayList;
@@ -44,7 +45,12 @@ public class Spell {
             // 记录本条序号为执行序号
             spellContext.putExecuteIndex(index);
             // 执行魔语并获取执行后的上下文
-            magicWords.execute(spellContext);
+            try {
+                magicWords.execute(spellContext);
+            }catch (Exception e) {
+                spellContext.putExecuteError(new ErrorResult("JAVA_ERROR",e.getMessage()));
+                break;
+            }
             // 检查是否抛出错误
             if (spellContext.hasExecuteError()) {
                 break;
