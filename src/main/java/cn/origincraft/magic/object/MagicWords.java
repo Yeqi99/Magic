@@ -61,7 +61,30 @@ public class MagicWords {
         }
         return spellContext;
     }
+    public SpellContext fastExecute(SpellContext spellContext) {
+        // 遍历魔语中的语义元素
+        for (CallableFunction callableFunction : function) {
+            // 设置当前方法为非嵌套调用
+            StringParameter stringParameter = (StringParameter) callableFunction.getParameter();
+            spellContext.putExecuteParameter(stringParameter.getString());
 
+            FunctionResult result = callableFunction.getFunction()
+                    .call(new SpellContextParameter(spellContext));
+            if (result instanceof ErrorResult) {
+                spellContext.putExecuteError(result);
+                List<String> errLocation = new ArrayList<>();
+                String location = "At index " + spellContext.getExecuteIndex();
+                String sum = "Already executed " + spellContext.getExecuteCount() + " statements";
+                String word = "Words " + getOriginMagicWords();
+                errLocation.add(location);
+                errLocation.add(sum);
+                errLocation.add(word);
+                spellContext.putExecuteErrorLocation(errLocation);
+                break;
+            }
+        }
+        return spellContext;
+    }
     public List<CallableFunction> getFunction() {
         return function;
     }

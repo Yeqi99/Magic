@@ -13,7 +13,6 @@ import cn.origincraft.magic.object.SpellContext;
 import cn.origincraft.magic.utils.FunctionUtils;
 import cn.origincraft.magic.utils.MethodUtils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

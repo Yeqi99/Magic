@@ -4,6 +4,7 @@ package cn.origincraft.magic.object;
 import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.expression.functions.FunctionResult;
 import cn.origincraft.magic.function.results.ErrorResult;
+import cn.origincraft.magic.function.results.NullResult;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class SpellContext {
 
     public SpellContext() {
         putExecuteNext(0);
+        putSpellReturn(new NullResult());
     }
 
 

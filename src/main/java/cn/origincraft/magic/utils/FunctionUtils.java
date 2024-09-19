@@ -196,6 +196,8 @@ public class FunctionUtils {
 
         return outData;
     }
+
+
     public static String extractContent(String input) {
         int startIndex = input.indexOf('(');
         int endIndex = input.lastIndexOf(')');
@@ -206,6 +208,8 @@ public class FunctionUtils {
             return null;
         }
     }
+
+
     public static String extractMethodName(String input) {
         int startIndex = input.indexOf('(');
 
@@ -214,5 +218,56 @@ public class FunctionUtils {
         } else {
             return null;
         }
+    }
+
+    // 检查字符串是否是 名字{XXXX} 形式
+    public static boolean isNameWithBraces(String str) {
+        // 去除前后的空格并将换行符替换为空格
+        str = str.trim().replaceAll("\n", " ");
+
+        // 检查是否包含大括号
+        if (str.contains("{") && str.endsWith("}")) {
+            int openBraceIndex = str.indexOf('{');
+            int closeBraceIndex = str.lastIndexOf('}');
+
+            // 确保大括号的位置合理并且大括号匹配
+            if (openBraceIndex > 0 && closeBraceIndex > openBraceIndex) {
+                int openBraces = 0;
+                int closeBraces = 0;
+
+                // 遍历字符串，统计大括号的数量
+                for (int i = 0; i < str.length(); i++) {
+                    char currentChar = str.charAt(i);
+                    if (currentChar == '{') {
+                        openBraces++;
+                    } else if (currentChar == '}') {
+                        closeBraces++;
+                    }
+                }
+
+                // 确保大括号匹配
+                return openBraces == closeBraces;
+            }
+        }
+
+        return false;
+    }
+    // 提取名字
+    public static String extractCodeName(String str) {
+        if (isNameWithBraces(str)) {
+            int openBraceIndex = str.indexOf('{');
+            return str.substring(0, openBraceIndex).trim();
+        }
+        return "";
+    }
+
+    // 提取内容
+    public static String extractCodeContent(String str) {
+        if (isNameWithBraces(str)) {
+            int openBraceIndex = str.indexOf('{');
+            int closeBraceIndex = str.lastIndexOf('}');
+            return str.substring(openBraceIndex + 1, closeBraceIndex).trim();
+        }
+        return "";
     }
 }

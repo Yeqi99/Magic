@@ -18,7 +18,9 @@ import java.util.Map;
 public class FunctionManager {
     private final Map<String, FastFunction> functions;
     private final FastExpression instance;
-
+    public List<FastFunction> getFunctions() {
+        return new ArrayList<>(functions.values());
+    }
     public FunctionManager(FastExpression instance) {
         functions = new HashMap<>();
         this.instance = instance;

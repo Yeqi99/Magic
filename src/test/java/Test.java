@@ -15,23 +15,19 @@ public class Test {
         MagicManager magicManager = new MagicManager();
         FunctionRegister.regDefault(magicManager);
         List<String> testList = new ArrayList<>();
-        testList.add("vdef(map map(list(1 2) list(eval(print(1)) eval(print(2)))))");
-//        testList.add("wait(1 1000)");
-        testList.add("spelle(spell(map(map 1)))");
+        testList.add("vdef(a 123321)");
+
+        testList.add("print(a b c)");
         Spell spell = new Spell(testList, magicManager);
-        SpellContext spellContext= spell.execute(contextMap);
-        if(spellContext.hasExecuteError()){
-            System.out.println(spellContext.getExecuteError().getErrorId()+":"+spellContext.getExecuteError().getInfo());
-            for (String s : spellContext.getExecuteError().getLog()) {
-                System.out.println(s);
+        // 记录开始时间
+        long startTime = System.currentTimeMillis();
+        SpellContext spellContext= spell.fastExecute(contextMap);
+        // 记录结束时间
+        long endTime = System.currentTimeMillis();
+        // 计算执行时间
+        long executionTime = endTime - startTime;
 
-            }
-            for (String s : spellContext.getExecuteErrorLocation()) {
-                System.out.println(s);
-            }
-
-        }
-
+        System.out.println("执行时间: " + executionTime + " 毫秒");
     }
 
 }

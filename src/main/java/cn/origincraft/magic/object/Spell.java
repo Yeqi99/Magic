@@ -19,6 +19,10 @@ public class Spell {
             magicWordsList.add(new MagicWords(s, magicManager));
         }
     }
+    public Spell(String magicWordsString, MagicManager magicManager) {
+        setMagicManager(magicManager);
+        magicWordsList.add(new MagicWords(magicWordsString, magicManager));
+    }
 
     public SpellContext execute(ContextMap contextMap) {
         spellContext = new SpellContext();
@@ -73,7 +77,25 @@ public class Spell {
         }
         return spellContext;
     }
-
+    public SpellContext fastExecute(ContextMap contextMap) {
+        spellContext = new SpellContext();
+        spellContext.setSelf(this);
+        spellContext.setContextMap(contextMap);
+        spellContext.putMagicManager(getMagicManager());
+        for (MagicWords magicWords : magicWordsList) {
+            try {
+                magicWords.fastExecute(spellContext);
+            }catch (Exception e) {
+                spellContext.putExecuteError(new ErrorResult("JAVA_ERROR",e.getMessage()));
+                break;
+            }
+            // 检查是否抛出错误
+            if (spellContext.hasExecuteError()) {
+                break;
+            }
+        }
+        return spellContext;
+    }
     public SpellContext getSpellContext() {
         return spellContext;
     }

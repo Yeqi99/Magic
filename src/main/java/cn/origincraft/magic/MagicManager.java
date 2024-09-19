@@ -2,9 +2,12 @@ package cn.origincraft.magic;
 
 import cn.origincraft.magic.expression.FastExpression;
 import cn.origincraft.magic.expression.functions.FastFunction;
+import cn.origincraft.magic.function.ArgsFunction;
+import cn.origincraft.magic.function.ArgsSetting;
 import cn.origincraft.magic.function.FunctionRegister;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -96,5 +99,32 @@ public class MagicManager {
 
     public void setConstraintPriority(int constraintPriority) {
         this.constraintPriority = constraintPriority;
+    }
+
+    public String getUsagePrompt(){
+        List<FastFunction>  fastExpressions =fastExpression.getFunctionManager().getFunctions();
+        StringBuilder prompt= new StringBuilder();
+        for (FastFunction fastFunction:fastExpressions) {
+
+            Map<String, List<String>> aliasesMap = fastExpression.getAliasesManager().getAliases();
+            if (aliasesMap.containsKey(fastFunction.getName())){
+                StringBuilder aliases = new StringBuilder();
+                for (String s : getFastExpression().getAliasesManager().getAliases().get(fastFunction.getName())) {
+                    aliases.append(s).append(" ");
+                }
+                prompt.append("[").append(fastFunction.getName()).append("(").append(aliases).append(")").append("]{\n");
+            }else {
+                prompt.append("[").append(fastFunction.getName()).append("]{\n");
+            }
+            if (fastFunction instanceof ArgsFunction argsFunction) {
+                for (String s : argsFunction.getUsage()) {
+                   prompt.append("    ").append(s).append("\n");
+                }
+                prompt.append("}\n");
+            }else {
+                prompt.append("]{\nUNKNOWN\n}\n");
+            }
+        }
+        return prompt.toString();
     }
 }
