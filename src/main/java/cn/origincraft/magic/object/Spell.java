@@ -4,6 +4,8 @@ import cn.origincraft.magic.MagicManager;
 import cn.origincraft.magic.function.results.ErrorResult;
 import cn.origincraft.magic.function.results.NullResult;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +52,17 @@ public class Spell {
             spellContext.putExecuteIndex(index);
             // 执行魔语并获取执行后的上下文
             try {
-                magicWords.execute(spellContext);
-            }catch (Exception e) {
-                spellContext.putExecuteError(new ErrorResult("JAVA_ERROR",e.getMessage()));
+                magicWords.fastExecute(spellContext);
+            } catch (Exception e) {
+                // 获取异常的堆栈信息
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                String stackTrace = sw.toString();
+
+                // 将错误信息和堆栈信息一起放入 ErrorResult
+                String errorMessage = e.getMessage();
+                spellContext.putExecuteError(new ErrorResult("JAVA_ERROR", errorMessage + "\n" + stackTrace));
                 break;
             }
             // 检查是否抛出错误
@@ -85,8 +95,16 @@ public class Spell {
         for (MagicWords magicWords : magicWordsList) {
             try {
                 magicWords.fastExecute(spellContext);
-            }catch (Exception e) {
-                spellContext.putExecuteError(new ErrorResult("JAVA_ERROR",e.getMessage()));
+            } catch (Exception e) {
+                // 获取异常的堆栈信息
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                e.printStackTrace(pw);
+                String stackTrace = sw.toString();
+
+                // 将错误信息和堆栈信息一起放入 ErrorResult
+                String errorMessage = e.getMessage();
+                spellContext.putExecuteError(new ErrorResult("JAVA_ERROR", errorMessage + "\n" + stackTrace));
                 break;
             }
             // 检查是否抛出错误
