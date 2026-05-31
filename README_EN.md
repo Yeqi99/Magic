@@ -4,9 +4,11 @@
 
 [English](README_EN.md) | [中文](README.md)
 
+MagicPaper proof-of-use integration: [Yeqi99/MagicPaper](https://github.com/Yeqi99/MagicPaper)
+
 Magic is a Java scripting-language core designed for projects that want to embed their own domain semantics. Its goal is not to imitate a traditional programming language with decorative syntax. The goal is "zero syntax sugar": expression power should come from semantic functions, while control flow, variables, containers, and environment-specific abilities are all registered, replaced, and composed as semantics.
 
-In other words, Magic aims to store more executable logic in the same amount of text, and to let third-party projects quickly expose their own capabilities as short semantic phrases. MagicPaper is the most complete Minecraft-oriented implementation, connecting Magic to Paper / Folia server behavior. MagicRedis is another practical example of Magic used in an application scenario.
+In other words, Magic aims to store more executable logic in the same amount of text, and to let third-party projects quickly expose their own capabilities as short semantic phrases. [MagicPaper](https://github.com/Yeqi99/MagicPaper) is the most complete Minecraft-oriented implementation, connecting Magic to Paper / Folia server behavior. MagicRedis is another practical example of Magic used in an application scenario.
 
 ## Implementation
 

@@ -1,12 +1,16 @@
 # Magic
 
+> **Magic turns software capabilities into compact, machine-readable semantics that humans can write, agents can understand, and runtimes can safely execute.**
+>
 > **Magic 将软件能力转化为紧凑、机器可读的语义：人可以书写，智能体可以理解，运行时可以安全执行。**
 
 [English](README_EN.md) | [中文](README.md)
 
+MagicPaper proof-of-use integration: [Yeqi99/MagicPaper](https://github.com/Yeqi99/MagicPaper)
+
 Magic 是一个面向接入方的 Java 脚本语言内核。它的设计目标不是把语法做得像传统编程语言一样华丽，而是尽量做到“0 代码糖”：把表达能力交给语义函数，把控制流、变量、容器、环境能力都抽象成可注册、可替换、可组合的语义。
 
-换句话说，Magic 希望在同样的文本量里存储更多可执行逻辑，并让第三方项目可以快速把自己的业务能力接入为一组短语义。Minecraft 方向的 MagicPaper 是当前最完整的落地实现；MagicRedis 则是 Magic 在实际应用场景中的另一个范例。
+换句话说，Magic 希望在同样的文本量里存储更多可执行逻辑，并让第三方项目可以快速把自己的业务能力接入为一组短语义。Minecraft 方向的 [MagicPaper](https://github.com/Yeqi99/MagicPaper) 是当前最完整的落地实现；MagicRedis 则是 Magic 在实际应用场景中的另一个范例。
 
 ## 当前实现
 
