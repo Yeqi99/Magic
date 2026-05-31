@@ -209,6 +209,32 @@ Spell=print(hello)&Env=default
 
 也可以直接发送纯文本 Magic 语句。HTTP 模式会复用指定 env 的上下文，适合给编辑器、网页调试面板或其他工具调用。
 
+## 发布与自动构建
+
+仓库使用 GitHub Actions 自动构建 Magic：
+
+- push 到 `master` / `main`：自动构建并保存 `magic-latest` 工作流产物。
+- pull request：自动构建校验。
+- 推送 `v*` tag 或发布 GitHub Release：自动构建并上传 Release 资产。
+
+发布一个新版本时，只需要打 tag 并推送：
+
+```bash
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+
+自动发布的 Release 资产包括：
+
+```text
+magic.jar
+magic-cli.zip
+magic-cli.tar.gz
+SHA256SUMS
+```
+
+也可以先在 GitHub 创建 Release；Release 发布后，CI/CD 会自动把最新构建产物上传到该 Release。
+
 ## 项目结构
 
 ```text

@@ -1,0 +1,74 @@
+name: Magic CI/CD
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - master
+      - main
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Magic
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Build jar
+        run: mvn -B -Dmaven.test.skip=true package
+
+      - name: Package CLI distribution
+        run: |
+          chmod +x scripts/install.sh scripts/package-dist.sh
+          scripts/package-dist.sh
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: magic-latest
+          path: |
+            dist/magic.jar
+            dist/magic-cli.tar.gz
+            dist/magic-cli.zip
+            dist/SHA256SUMS
+          if-no-files-found: error
+
+      - name: Publish release assets
+        if: github.event_name == 'release' || startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ github.event.release.tag_name || github.ref_name }}
+        run: |
+          if ! gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release create "$TAG_NAME" \
+              --title "$TAG_NAME" \
+              --notes "Automated Magic build for $TAG_NAME"
+          fi
+
+          gh release upload "$TAG_NAME" \
+            dist/magic.jar \
+            dist/magic-cli.tar.gz \
+            dist/magic-cli.zip \
+            dist/SHA256SUMS \
+            --clobber
