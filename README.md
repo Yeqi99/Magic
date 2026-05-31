@@ -1,8 +1,6 @@
-Magic is a semantic execution layer for agent-friendly software maintenance.
-
-Magic 是一个面向 Agent 友好型软件维护的语义执行层。
-
 # Magic
+
+> **Magic 是一个面向 Agent 友好型软件维护的语义执行层。**
 
 [English](README_EN.md) | [中文](README.md)
 
