@@ -1,6 +1,6 @@
 # Magic
 
-> **Magic is a semantic execution layer for agent-friendly software maintenance.**
+> **Magic turns software capabilities into compact, machine-readable semantics that humans can write, agents can understand, and runtimes can safely execute.**
 
 [English](README_EN.md) | [中文](README.md)
 
