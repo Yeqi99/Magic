@@ -6,7 +6,7 @@
 
 > **Magic turns software capabilities into compact, machine-readable semantics that humans can write, agents can understand, and runtimes can safely execute.**
 
-[English](README_EN.md) | [中文](README.md)
+[English](README_EN.md) | [中文](README.md) | [Docs](https://yeqi99.github.io/Magic/)
 
 MagicPaper proof-of-use integration: [Yeqi99/MagicPaper](https://github.com/Yeqi99/MagicPaper)
 

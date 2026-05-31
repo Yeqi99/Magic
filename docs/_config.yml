@@ -1,0 +1,10 @@
+title: Magic
+description: A semantic execution layer for software systems and the agents that maintain them.
+theme: minima
+plugins:
+  - jekyll-feed
+header_pages:
+  - getting-started.md
+  - semantics.md
+  - magicpaper.md
+  - roadmap.md

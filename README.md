@@ -8,7 +8,7 @@
 >
 > **Magic 将软件能力转化为紧凑、机器可读的语义：人可以书写，智能体可以理解，运行时可以安全执行。**
 
-[English](README_EN.md) | [中文](README.md)
+[English](README_EN.md) | [中文](README.md) | [Docs](https://yeqi99.github.io/Magic/)
 
 MagicPaper proof-of-use integration: [Yeqi99/MagicPaper](https://github.com/Yeqi99/MagicPaper)
 
