@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" alt="Magic logo" width="720">
+</p>
+
 # Magic
 
 > **Magic turns software capabilities into compact, machine-readable semantics that humans can write, agents can understand, and runtimes can safely execute.**
