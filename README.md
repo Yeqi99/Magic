@@ -162,13 +162,39 @@ REPL 命令以 `:` 开头，也兼容旧调试台的 `/` 前缀：
 
 ## 安装方式
 
-先构建：
+安装前需要本机已经有 Java 17 或更高版本。
+
+Linux 一条命令：
+
+```bash
+mkdir -p "$HOME/.magic" && curl -fsSL https://github.com/Yeqi99/Magic/releases/latest/download/magic-cli.tar.gz | tar -xz -C "$HOME/.magic" --strip-components=1 && { grep -qxF 'export PATH="$HOME/.magic/bin:$PATH"' "$HOME/.bashrc" 2>/dev/null || echo 'export PATH="$HOME/.magic/bin:$PATH"' >> "$HOME/.bashrc"; } && export PATH="$HOME/.magic/bin:$PATH" && magic repl
+```
+
+macOS 一条命令：
+
+```bash
+mkdir -p "$HOME/.magic" && curl -fsSL https://github.com/Yeqi99/Magic/releases/latest/download/magic-cli.tar.gz | tar -xz -C "$HOME/.magic" --strip-components=1 && { grep -qxF 'export PATH="$HOME/.magic/bin:$PATH"' "$HOME/.zshrc" 2>/dev/null || echo 'export PATH="$HOME/.magic/bin:$PATH"' >> "$HOME/.zshrc"; } && export PATH="$HOME/.magic/bin:$PATH" && magic repl
+```
+
+Windows PowerShell 一条命令：
+
+```powershell
+$m="$HOME\.magic"; $t=Join-Path $env:TEMP "magic-install"; Remove-Item $t -Recurse -Force -ErrorAction SilentlyContinue; New-Item -ItemType Directory -Force $m,$t | Out-Null; Invoke-WebRequest "https://github.com/Yeqi99/Magic/releases/latest/download/magic-cli.zip" -OutFile "$t\magic-cli.zip"; Expand-Archive "$t\magic-cli.zip" -DestinationPath $t -Force; Copy-Item "$t\Magic\*" $m -Recurse -Force; $bin="$m\bin"; $path=[Environment]::GetEnvironmentVariable("Path","User"); if (($path -split ';') -notcontains $bin) { [Environment]::SetEnvironmentVariable("Path", "$bin;$path", "User") }; $env:Path="$bin;$env:Path"; magic repl
+```
+
+如果命令执行完成后当前终端已经能进入 `magic repl`，以后新开的终端也可以直接使用：
+
+```bash
+magic repl
+```
+
+开发者也可以从源码构建并安装：
 
 ```bash
 mvn package
 ```
 
-Linux / macOS：
+Linux / macOS 源码安装：
 
 ```bash
 sh scripts/install.sh
@@ -176,7 +202,7 @@ export PATH="$HOME/.magic/bin:$PATH"
 magic repl
 ```
 
-Windows PowerShell：
+Windows PowerShell 源码安装：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\install.ps1
