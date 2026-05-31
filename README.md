@@ -96,29 +96,118 @@ manager.registerFunction(new YourFunction(), "alias1", "alias2");
 
 如果你的项目只希望复用 Magic 的执行模型，也可以只注册自己的语义，不启用默认系统语义。
 
-## 构建与运行
+## 命令行 CLI
 
-构建：
+Magic 提供一个命令行入口 `magic`。它既可以像脚本解释器一样运行 `.m` 文件，也可以进入交互式调试台，还可以创建类似 Python 虚拟环境体验的 Magic env。
+
+常用命令：
+
+```bash
+magic repl
+magic run script.m
+magic eval "print(hello world)"
+magic env create dev
+magic env use dev
+magic env list
+magic http --port 22329
+```
+
+全局选项：
+
+```bash
+magic repl --env dev
+magic run script.m --env dev
+magic eval "print(hello)" --no-import
+magic env home
+```
+
+Magic env 是一个独立的工作上下文目录，默认位于 `~/.magic/envs/<name>`。每个 env 都有自己的 `spells/` 目录，CLI 启动时会把该目录下的 `.m` 文件导入为 `env.<envName>.<fileName>` 变量。这样可以像 Python 的虚拟环境一样，为不同项目、服务器或实验隔离上下文。
+
+## 终端调试台
+
+进入 REPL：
+
+```bash
+magic repl
+```
+
+在 REPL 中，直接输入 Magic 语句会加入当前缓冲区：
+
+```text
+magic(default:0)> vdef(name str(Magic))
+added #1
+magic(default:1)> print(name)
+added #2
+magic(default:2)> :run
+```
+
+REPL 命令以 `:` 开头，也兼容旧调试台的 `/` 前缀：
+
+```text
+:run, :go                 执行当前缓冲区
+:run <file.m>             执行文件
+:eval <words>             立即执行一行 Magic 语句
+:buffer, :look            查看当前缓冲区
+:clear                    清空缓冲区
+:save <name> [directory]  保存缓冲区为 .m 文件，默认保存到当前 env 的 spells/
+:import <dir> [id]        导入目录下的 .m 文件为 id.* 变量
+:reset                    重置上下文，并重新导入当前 env 的 spells/
+:context                  查看当前上下文变量和对象
+:functions [filter]       查看已注册语义
+:aliases <function>       查看语义别名
+:env list|create|use|path 管理 env
+:home                     查看 Magic home
+:exit                     退出
+```
+
+## 安装方式
+
+先构建：
 
 ```bash
 mvn package
 ```
 
-构建产物位于 `target/`。当前 `pom.xml` 会使用 shade 插件打包依赖，并把 `cn.origincraft.magic.Magic` 写入 Jar Manifest 的 `Main-Class`。
+Linux / macOS：
 
-直接运行主类后，Magic 会读取 `src/main/resources/config.yml` 中的 HTTP 端口配置，默认端口为 `22329`。主类目前包含一个实验性质的命令行与 HTTP 执行入口：
+```bash
+sh scripts/install.sh
+export PATH="$HOME/.magic/bin:$PATH"
+magic repl
+```
 
-- `/help`：查看命令。
-- `/go`：执行当前输入的语句。
-- `/clear`：清空当前输入。
-- `/look`：查看当前 MagicManager、Context 和已输入语句。
-- `/save <name> [path]`：保存当前语句为 `.m` 文件。
-- `/import <name> <path>`：导入一个目录下的 `.m` 文件。
-- `/context <name>`：切换上下文名。
-- `/manager <name>`：切换 MagicManager 名。
-- `/exit`：退出。
+Windows PowerShell：
 
-HTTP 入口为 `POST /magic`，当前主要用于调试和外部实验接入。
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\install.ps1
+$env:Path="$HOME\.magic\bin;$env:Path"
+magic repl
+```
+
+安装脚本会把 jar 放到 `~/.magic/lib/magic.jar`，并在 `~/.magic/bin` 中生成 `magic` 启动脚本。也可以通过 `MAGIC_HOME` 或安装脚本的 prefix 参数指定安装目录。
+
+不安装也可以直接运行构建产物：
+
+```bash
+java -jar target/Magic-*.jar repl
+java -jar target/Magic-*.jar run script.m
+```
+
+## HTTP 调试入口
+
+如果需要保留外部调用方式，可以启动 HTTP 调试服务：
+
+```bash
+magic http --port 22329 --env default
+```
+
+发送 `POST /magic`，请求体可以是表单：
+
+```text
+Spell=print(hello)&Env=default
+```
+
+也可以直接发送纯文本 Magic 语句。HTTP 模式会复用指定 env 的上下文，适合给编辑器、网页调试面板或其他工具调用。
 
 ## 项目结构
 

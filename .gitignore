@@ -6,6 +6,7 @@
 
 # Maven
 target/
+out/
 dependency-reduced-pom.xml
 pom.xml.tag
 pom.xml.releaseBackup

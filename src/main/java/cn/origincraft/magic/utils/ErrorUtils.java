@@ -13,7 +13,12 @@ public class ErrorUtils {
         errors.add(errorResult.getErrorId() + ":" + errorResult.getInfo());
         errors.addAll(errorResult.getLog());
         errors.add("Error in ");
-        errors.addAll(spellContext.getExecuteErrorLocation());
+        List<String> location = spellContext.getExecuteErrorLocation();
+        if (location == null || location.isEmpty()) {
+            errors.add("Unknown location");
+        } else {
+            errors.addAll(location);
+        }
         return errors;
     }
 
